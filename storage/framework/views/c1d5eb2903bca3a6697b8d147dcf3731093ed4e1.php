@@ -274,4 +274,4 @@
     </div>
 </div>
 <!-- Left Sidebar End -->
-<?php /**PATH D:\xampp\htdocs\rubic-network\resources\views/layouts/sidebar.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\xampp\htdocs\rubicnetwork\resources\views/layouts/sidebar.blade.php ENDPATH**/ ?>

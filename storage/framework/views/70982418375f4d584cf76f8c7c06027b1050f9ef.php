@@ -10,4 +10,4 @@
 <?php echo $__env->yieldContent('script'); ?>
 <?php echo $__env->yieldContent('script-bottom'); ?>
 
-<?php /**PATH D:\xampp\htdocs\rubic-network\resources\views/layouts/vendor-scripts.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\xampp\htdocs\rubicnetwork\resources\views/layouts/vendor-scripts.blade.php ENDPATH**/ ?>

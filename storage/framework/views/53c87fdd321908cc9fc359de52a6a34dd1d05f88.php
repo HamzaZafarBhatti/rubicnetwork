@@ -17,4 +17,4 @@
     </div>
 </div>
 <!-- end page title -->
-<?php /**PATH D:\xampp\htdocs\rubic-network\resources\views/components/breadcrumb.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\xampp\htdocs\rubicnetwork\resources\views/components/breadcrumb.blade.php ENDPATH**/ ?>

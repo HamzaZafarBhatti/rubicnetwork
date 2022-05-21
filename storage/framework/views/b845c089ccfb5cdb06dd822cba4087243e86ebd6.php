@@ -135,4 +135,4 @@
 <!-- /Right-bar -->
 
 <!-- Right bar overlay-->
-<div class="rightbar-overlay"></div><?php /**PATH D:\xampp\htdocs\rubic-network\resources\views/layouts/right-sidebar.blade.php ENDPATH**/ ?>
+<div class="rightbar-overlay"></div><?php /**PATH D:\xampp\htdocs\rubicnetwork\resources\views/layouts/right-sidebar.blade.php ENDPATH**/ ?>

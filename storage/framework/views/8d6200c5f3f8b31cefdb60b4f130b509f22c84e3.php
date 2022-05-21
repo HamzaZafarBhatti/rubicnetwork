@@ -11,4 +11,4 @@
             </div>
         </div>
     </div>
-</footer><?php /**PATH D:\xampp\htdocs\rubic-network\resources\views/layouts/footer.blade.php ENDPATH**/ ?>
+</footer><?php /**PATH D:\xampp\htdocs\rubicnetwork\resources\views/layouts/footer.blade.php ENDPATH**/ ?>

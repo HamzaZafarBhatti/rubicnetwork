@@ -21,4 +21,4 @@
     <?php echo $__env->make('layouts.vendor-scripts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </body>
 </html>
-<?php /**PATH D:\xampp\htdocs\rubic-network\resources\views/layouts/master-without-nav.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\xampp\htdocs\rubicnetwork\resources\views/layouts/master-without-nav.blade.php ENDPATH**/ ?>

@@ -281,4 +281,4 @@
         </div>
     </div>
 </header>
-<?php /**PATH D:\xampp\htdocs\rubic-network\resources\views/layouts/topbar.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\xampp\htdocs\rubicnetwork\resources\views/layouts/topbar.blade.php ENDPATH**/ ?>
