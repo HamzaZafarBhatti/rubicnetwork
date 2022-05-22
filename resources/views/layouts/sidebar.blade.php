@@ -21,7 +21,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="shopping-cart"></i>
+                        <i data-feather="filter"></i>
                         <span data-key="t-ecommerce">Rubic Extraction</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -32,7 +32,7 @@
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="shopping-cart"></i>
+                        <i data-feather="share-2"></i>
                         <span data-key="t-ecommerce">Viral Share</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -43,7 +43,7 @@
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="shopping-cart"></i>
+                        <i data-feather="dollar-sign"></i>
                         <span data-key="t-ecommerce">Referral Earnings</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -54,13 +54,13 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i data-feather="message-square"></i>
+                        <i data-feather="arrow-up-circle"></i>
                         <span data-key="t-chat">Upgrade Plan</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="shopping-cart"></i>
+                        <i data-feather="shuffle"></i>
                         <span data-key="t-ecommerce">Convert Extraction to Activation Code</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -70,7 +70,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i data-feather="message-square"></i>
+                        <i data-feather="send"></i>
                         <span data-key="t-chat">Transfer Extraction</span>
                     </a>
                 </li>
@@ -101,7 +101,7 @@
                 <li class="menu-title" data-key="t-apps">Rubic Staking</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="shopping-cart"></i>
+                        <i data-feather="shopping-bag"></i>
                         <span data-key="t-ecommerce">Fund Rubic Stake Account</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -111,7 +111,7 @@
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="shopping-cart"></i>
+                        <i data-feather="shopping-bag"></i>
                         <span data-key="t-ecommerce">Stake Rubic to Earn</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -137,37 +137,37 @@
                 <li class="menu-title" data-key="t-apps">Account Information</li>
                 <li>
                     <a href="#">
-                        <i data-feather="message-square"></i>
+                        <i data-feather="user"></i>
                         <span data-key="t-chat">My Account Settings</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i data-feather="message-square"></i>
+                        <i data-feather="settings"></i>
                         <span data-key="t-chat">Transaction Code Settings</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i data-feather="message-square"></i>
+                        <i data-feather="file"></i>
                         <span data-key="t-chat">Payment Proof</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i data-feather="message-square"></i>
+                        <i data-feather="archive"></i>
                         <span data-key="t-chat">Login History</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i data-feather="message-square"></i>
+                        <i data-feather="info"></i>
                         <span data-key="t-chat">All Notifications</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i data-feather="message-square"></i>
+                        <i data-feather="log-out"></i>
                         <span data-key="t-chat">Logout</span>
                     </a>
                     

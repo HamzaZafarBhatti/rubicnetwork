@@ -110,6 +110,33 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
+                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Indirect Referral Earnings</span>
+                            <h4 class="mb-3">
+                                ₦<span class="counter-value" data-target="0.00">0.00</span>
+                            </h4>
+                            <div class="text-nowrap">
+                                <span class="badge bg-soft-success text-success">+₦0.00</span>
+                                <span class="ms-1 text-muted font-size-13">Since last week</span>
+                            </div>
+                        </div>
+
+                        <div class="flex-shrink-0 text-end dash-widget">
+                            <div id="mini-chart13" data-colors='["#1c84ee", "#33c38e"]' class="apex-charts"></div>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <a href="#">Indirect Referral Earnings History ></a>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-h-100">
+                <!-- card body -->
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Viral Trend</span>
                             <h4 class="mb-3">
                                 ₦<span class="counter-value" data-target="0.00">0.00</span>
