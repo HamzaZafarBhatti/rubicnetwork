@@ -3,7 +3,7 @@
     @lang('translation.Dashboards')
 @endsection
 @section('css')
-    <link href="{{ URL::asset('/assets/libs/admin-resources/admin-resources.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/user_assets/libs/admin-resources/admin-resources.min.css') }}" rel="stylesheet">
 @endsection
 @section('content')
     @component('components.breadcrumb')
@@ -698,7 +698,7 @@
                                                 <li>
                                                     <div class="conversation-list">
                                                         <div class="d-flex">
-                                                            <img src="assets/images/users/avatar-3.jpg"
+                                                            <img src="{{ asset('user_assets/images/users/avatar-3.jpg') }}"
                                                                 class="rounded-circle avatar-sm" alt="">
                                                             <div class="flex-1">
                                                                 <div class="ctext-wrap">
@@ -754,7 +754,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <img src="assets/images/users/avatar-6.jpg"
+                                                            <img src="{{ asset('user_assets/images/users/avatar-6.jpg') }}"
                                                                 class="rounded-circle avatar-sm" alt="">
                                                         </div>
 
@@ -765,7 +765,7 @@
                                                 <li>
                                                     <div class="conversation-list">
                                                         <div class="d-flex">
-                                                            <img src="assets/images/users/avatar-3.jpg"
+                                                            <img src="{{ asset('user_assets/images/users/avatar-3.jpg') }}"
                                                                 class="rounded-circle avatar-sm" alt="">
                                                             <div class="flex-1">
                                                                 <div class="ctext-wrap">
@@ -795,7 +795,7 @@
                                                         </div>
 
                                                         <div class="d-flex">
-                                                            <img src="assets/images/users/avatar-3.jpg"
+                                                            <img src="{{ asset('user_assets/images/users/avatar-3.jpg') }}"
                                                                 class="rounded-circle avatar-sm" alt="">
                                                             <div class="flex-1">
                                                                 <div class="ctext-wrap">
@@ -857,7 +857,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <img src="assets/images/users/avatar-6.jpg"
+                                                            <img src="{{ asset('user_assets/images/users/avatar-6.jpg') }}"
                                                                 class="rounded-circle avatar-sm" alt="">
                                                         </div>
                                                     </div>
@@ -867,7 +867,7 @@
                                                 <li>
                                                     <div class="conversation-list">
                                                         <div class="d-flex">
-                                                            <img src="assets/images/users/avatar-3.jpg"
+                                                            <img src="{{ asset('user_assets/images/users/avatar-3.jpg') }}"
                                                                 class="rounded-circle avatar-sm" alt="">
                                                             <div class="flex-1">
                                                                 <div class="ctext-wrap">
@@ -904,7 +904,7 @@
                                                 <li>
                                                     <div class="conversation-list">
                                                         <div class="d-flex">
-                                                            <img src="assets/images/users/avatar-3.jpg"
+                                                            <img src="{{ asset('user_assets/images/users/avatar-3.jpg') }}"
                                                                 class="rounded-circle avatar-sm" alt="">
                                                             <div class="flex-1">
                                                                 <div class="ctext-wrap">
@@ -920,7 +920,7 @@
                                                                         <ul class="list-inline message-img mt-3  mb-0">
                                                                             <li class="list-inline-item message-img-list">
                                                                                 <a class="d-inline-block m-1" href="">
-                                                                                    <img src="assets/images/small/img-1.jpg"
+                                                                                    <img src="{{ asset('user_assets/images/small/img-1.jpg') }}"
                                                                                         alt=""
                                                                                         class="rounded img-thumbnail">
                                                                                 </a>
@@ -928,7 +928,7 @@
 
                                                                             <li class="list-inline-item message-img-list">
                                                                                 <a class="d-inline-block m-1" href="">
-                                                                                    <img src="assets/images/small/img-2.jpg"
+                                                                                    <img src="{{ asset('user_assets/images/small/img-2.jpg') }}"
                                                                                         alt=""
                                                                                         class="rounded img-thumbnail">
                                                                                 </a>
@@ -994,10 +994,10 @@
 @endsection
 @section('script')
     <!-- apexcharts -->
-    <script src="{{ URL::asset('/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ URL::asset('/assets/libs/admin-resources/admin-resources.min.js') }}"></script>
+    <script src="{{ URL::asset('/user_assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ URL::asset('/user_assets/libs/admin-resources/admin-resources.min.js') }}"></script>
 
     <!-- dashboard init -->
-    <script src="{{ URL::asset('/assets/js/pages/dashboard.init.js') }}"></script>
-    <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+    <script src="{{ URL::asset('/user_assets/js/pages/dashboard.init.js') }}"></script>
+    <script src="{{ URL::asset('/user_assets/js/app.min.js') }}"></script>
 @endsection

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -14,14 +16,31 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes();
 //Language Translation
-Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
+Route::get('index/{locale}', [HomeController::class, 'lang']);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('dashboard');
+//Frontend
+Route::get('/', [FrontendController::class, 'index'])->name('front.index');
+Route::get('/about_us', [FrontendController::class, 'about_us'])->name('front.about_us');
+Route::get('/rubic_staking', [FrontendController::class, 'rubic_staking'])->name('front.rubic_staking');
+Route::get('/rubic_network', [FrontendController::class, 'rubic_network'])->name('front.rubic_network');
+Route::get('/terms_condition', [FrontendController::class, 'terms_condition'])->name('front.terms_condition');
+Route::get('/privacy_policy', [FrontendController::class, 'privacy_policy'])->name('front.privacy_policy');
+Route::get('/pin_verification', [FrontendController::class, 'pin_verification'])->name('front.pin_verification');
+Route::get('/cookies_policy', [FrontendController::class, 'cookies_policy'])->name('front.cookies_policy');
+Route::get('/contact_us', [FrontendController::class, 'contact_us'])->name('front.contact_us');
+Route::get('/top_earners', [FrontendController::class, 'top_earners'])->name('front.top_earners');
+Route::get('/payment_proof', [FrontendController::class, 'payment_proof'])->name('front.payment_proof');
+Route::get('/faq', [FrontendController::class, 'faq'])->name('front.faq');
+Route::get('/pin_dispatchers', [FrontendController::class, 'pin_dispatchers'])->name('front.pin_dispatchers');
+Route::get('/disclaimer', [FrontendController::class, 'disclaimer'])->name('front.disclaimer');
+Route::get('/sponsored_post', [FrontendController::class, 'sponsored_post'])->name('front.sponsored_post');
+
+Route::get('/user/dashboard', [HomeController::class, 'root'])->name('dashboard');
 
 //Update User Details
-Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
-Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
+Route::post('/update-profile/{id}', [HomeController::class, 'updateProfile'])->name('updateProfile');
+Route::post('/update-password/{id}', [HomeController::class, 'updatePassword'])->name('updatePassword');
 
-Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+Route::get('{any}', [HomeController::class, 'index'])->name('index');
 
 
