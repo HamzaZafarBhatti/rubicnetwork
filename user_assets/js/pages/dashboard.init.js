@@ -34,6 +34,8 @@
     new ApexCharts(document.querySelector("#mini-chart12"), t).render();
     t = { series: [30, 70], chart: { type: "donut", height: 110 }, colors: e("#mini-chart13"), legend: { show: !1 }, dataLabels: { enabled: !1 } };
     new ApexCharts(document.querySelector("#mini-chart13"), t).render();
+    t = { series: [30, 70], chart: { type: "donut", height: 110 }, colors: e("#mini-chart14"), legend: { show: !1 }, dataLabels: { enabled: !1 } };
+    new ApexCharts(document.querySelector("#mini-chart14"), t).render();
     t = {
         series: [
             { name: "Profit", data: [12.45, 16.2, 8.9, 11.42, 12.6, 18.1, 18.2, 14.16, 11.1, 8.09, 16.34, 12.88] },

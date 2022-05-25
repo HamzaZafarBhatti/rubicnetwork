@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 //Language Translation
 Route::get('index/{locale}', [HomeController::class, 'lang']);
@@ -35,12 +38,23 @@ Route::get('/pin_dispatchers', [FrontendController::class, 'pin_dispatchers'])->
 Route::get('/disclaimer', [FrontendController::class, 'disclaimer'])->name('front.disclaimer');
 Route::get('/sponsored_post', [FrontendController::class, 'sponsored_post'])->name('front.sponsored_post');
 
-Route::get('/user/dashboard', [HomeController::class, 'root'])->name('dashboard');
+Route::prefix('user')->middleware('auth:web')->group(function() {
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+});
 
 //Update User Details
 Route::post('/update-profile/{id}', [HomeController::class, 'updateProfile'])->name('updateProfile');
 Route::post('/update-password/{id}', [HomeController::class, 'updatePassword'])->name('updatePassword');
 
-Route::get('{any}', [HomeController::class, 'index'])->name('index');
+// Route::get('{any}', [HomeController::class, 'index'])->name('index');
 
 
+Route::prefix('rubicnetworkadministration')->group(function () {
+    Route::get('/', [AdminLoginController::class, 'login'])->name('admin.login');
+    Route::post('/', [AdminLoginController::class, 'do_login'])->name('admin.do_login');
+
+    Route::middleware('auth:admin')->group(function () {
+        Route::post('/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    });
+});

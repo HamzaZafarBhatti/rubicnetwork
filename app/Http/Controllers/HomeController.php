@@ -21,22 +21,9 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index(Request $request)
+    public function dashboard()
     {
-        if (view()->exists($request->path())) {
-            return view($request->path());
-        }
-        return abort(404);
-    }
-
-    public function root()
-    {
-        return view('index');
+        return view('user.dashboard');
     }
 
     /*Language Translation*/
