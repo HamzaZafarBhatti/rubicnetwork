@@ -4,6 +4,11 @@
 @endsection
 @section('css')
     <link href="{{ URL::asset('/user_assets/libs/admin-resources/admin-resources.min.css') }}" rel="stylesheet">
+    <style>
+        #tradingview_d68cc {
+            height: 400px;
+        }
+    </style>
 @endsection
 @section('content')
     @component('components.breadcrumb')
@@ -410,111 +415,16 @@
                         </div>
                     </div>
 
-                    <div class="row align-items-center">
-                        <div class="col-xl-8">
-                            <div>
-                                <div id="market-overview" data-colors='["#1c84ee", "#33c38e"]' class="apex-charts">
-                                </div>
+                    <div class="row">
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div id="tradingview_d68cc"></div>
+                            <div class="tradingview-widget-copyright"><a
+                                    href="https://www.tradingview.com/symbols/RBCUSDT/?exchange=GATEIO" rel="noopener"
+                                    target="_blank"><span class="blue-text">RBCUSDT Chart</span></a> by TradingView
                             </div>
                         </div>
-                        <div class="col-xl-4">
-                            <div class="p-4">
-                                <div class="mt-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-sm m-auto">
-                                            <span class="avatar-title rounded-circle bg-light text-dark font-size-13">
-                                                1
-                                            </span>
-                                        </div>
-                                        <div class="flex-grow-1 ms-3">
-                                            <span class="font-size-14">Mobile Phones</span>
-                                        </div>
-
-                                        <div class="flex-shrink-0">
-                                            <span
-                                                class="badge rounded-pill badge-soft-success font-size-12 fw-medium">+5.4%</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-sm m-auto">
-                                            <span class="avatar-title rounded-circle bg-light text-dark font-size-13">
-                                                2
-                                            </span>
-                                        </div>
-                                        <div class="flex-grow-1 ms-3">
-                                            <span class="font-size-14">Smart Watch</span>
-                                        </div>
-
-                                        <div class="flex-shrink-0">
-                                            <span
-                                                class="badge rounded-pill badge-soft-success font-size-12 fw-medium">+6.8%</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-sm m-auto">
-                                            <span class="avatar-title rounded-circle bg-light text-dark font-size-13">
-                                                3
-                                            </span>
-                                        </div>
-                                        <div class="flex-grow-1 ms-3">
-                                            <span class="font-size-14">Protable Acoustics</span>
-                                        </div>
-
-                                        <div class="flex-shrink-0">
-                                            <span
-                                                class="badge rounded-pill badge-soft-danger font-size-12 fw-medium">-4.9%</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-sm m-auto">
-                                            <span class="avatar-title rounded-circle bg-light text-dark font-size-13">
-                                                4
-                                            </span>
-                                        </div>
-                                        <div class="flex-grow-1 ms-3">
-                                            <span class="font-size-14">Smart Speakers</span>
-                                        </div>
-
-                                        <div class="flex-shrink-0">
-                                            <span
-                                                class="badge rounded-pill badge-soft-success font-size-12 fw-medium">+3.5%</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-sm m-auto">
-                                            <span class="avatar-title rounded-circle bg-light text-dark font-size-13">
-                                                5
-                                            </span>
-                                        </div>
-                                        <div class="flex-grow-1 ms-3">
-                                            <span class="font-size-14">Camcorders</span>
-                                        </div>
-
-                                        <div class="flex-shrink-0">
-                                            <span
-                                                class="badge rounded-pill badge-soft-danger font-size-12 fw-medium">-0.3%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 pt-2">
-                                    <a href="" class="btn btn-primary w-100">See All Balances <i
-                                            class="mdi mdi-arrow-right ms-1"></i></a>
-                                </div>
-
-                            </div>
-                        </div>
+                        <!-- TradingView Widget END -->
                     </div>
                 </div>
                 <!-- end card -->
@@ -1025,6 +935,7 @@
     <script src="{{ URL::asset('/user_assets/libs/admin-resources/admin-resources.min.js') }}"></script>
 
     <!-- dashboard init -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script src="{{ URL::asset('/user_assets/js/pages/dashboard.init.js') }}"></script>
     <script src="{{ URL::asset('/user_assets/js/app.min.js') }}"></script>
 @endsection

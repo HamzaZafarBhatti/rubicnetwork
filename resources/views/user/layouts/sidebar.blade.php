@@ -10,7 +10,7 @@
                 <li class="menu-title" data-key="t-menu">@lang('translation.Menu')</li>
 
                 <li>
-                    <a href="{{ route('dashboard')}}">
+                    <a href="{{ route('user.dashboard')}}">
                         <i data-feather="home"></i>
                         <span class="badge rounded-pill bg-soft-success text-success float-end">9+</span>
                         <span data-key="t-dashboard">@lang('translation.Dashboards')</span>

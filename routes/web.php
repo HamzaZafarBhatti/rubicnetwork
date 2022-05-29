@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -38,23 +40,23 @@ Route::get('/pin_dispatchers', [FrontendController::class, 'pin_dispatchers'])->
 Route::get('/disclaimer', [FrontendController::class, 'disclaimer'])->name('front.disclaimer');
 Route::get('/sponsored_post', [FrontendController::class, 'sponsored_post'])->name('front.sponsored_post');
 
-Route::prefix('user')->middleware('auth:web')->group(function() {
-    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+//User Dashboard
+Route::prefix('user')->middleware('auth:web')->name('user.')->group(function() {
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 });
 
 //Update User Details
 Route::post('/update-profile/{id}', [HomeController::class, 'updateProfile'])->name('updateProfile');
 Route::post('/update-password/{id}', [HomeController::class, 'updatePassword'])->name('updatePassword');
 
-// Route::get('{any}', [HomeController::class, 'index'])->name('index');
-
-
-Route::prefix('rubicnetworkadministration')->group(function () {
-    Route::get('/', [AdminLoginController::class, 'login'])->name('admin.login');
-    Route::post('/', [AdminLoginController::class, 'do_login'])->name('admin.do_login');
+//User Admin
+Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
+    Route::get('/', [AdminLoginController::class, 'login'])->name('login');
+    Route::post('/', [AdminLoginController::class, 'do_login'])->name('do_login');
 
     Route::middleware('auth:admin')->group(function () {
-        Route::post('/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
-        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::resource('/settings', SettingController::class);
     });
 });
