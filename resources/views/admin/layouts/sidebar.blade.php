@@ -11,14 +11,20 @@
 
                 <li >
                     <a href="{{ route('admin.dashboard')}}">
-                        <i data-feather="home"></i>
+                        <i class="fas fa-home"></i>
                         <span data-key="t-dashboard">@lang('translation.Dashboards')</span>
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.banks.index')}}">
+                        <i class="fas fa-piggy-bank"></i>
+                        <span data-key="t-bank">Banks</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.settings.index')}}">
-                        <i data-feather="settings"></i>
-                        <span data-key="t-dashboard">Settings</span>
+                        <i class="fas fa-cog"></i>
+                        <span data-key="t-setting">Settings</span>
                     </a>
                 </li>
 {{-- 

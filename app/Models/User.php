@@ -2,44 +2,53 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'avatar',
-    ];
+    protected $guarded = [];
+
+    protected $table = 'users';
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function deposit()
+    {
+        return $this->hasMany('App\Model\Deposit', 'user_id');
+    }
+    public function transfers()
+    {
+        return $this->hasMany(Transfer::class, 'sender_id');
+    }
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class);
+    }
+    public function data_operator()
+    {
+        return $this->belongsTo(DataOperator::class);
+    }
+    public function child_reference()
+    {
+        return $this->belongsToMany(User::class, Referral::class, 'ref_id', 'user_id');
+    }
+    public function parent_reference()
+    {
+        return $this->belongsToMany(User::class, Referral::class, 'user_id', 'ref_id')->withPivot('is_direct');
+    }
 }

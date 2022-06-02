@@ -1,4 +1,4 @@
-@extends('master')
+@extends('admin.master')
 
 @section('content')
 
@@ -76,7 +76,7 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class='dropdown-item'
-                                                            href="{{ url('/') }}/admin/bank/{{ $val->id }}"><i
+                                                            href="{{ url('/') }}/rubicnetworkadministration/bank/{{ $val->id }}"><i
                                                                 class="icon-pencil7 mr-2"></i>Edit</a>
                                                     </div>
                                                 </div>

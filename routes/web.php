@@ -2,10 +2,19 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\BankController;
+use App\Http\Controllers\DepositController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentProofController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PyschemeController;
+use App\Http\Controllers\SelfcashoutController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TransferController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebController;
+use App\Http\Controllers\WithdrawController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -51,12 +60,216 @@ Route::post('/update-password/{id}', [HomeController::class, 'updatePassword'])-
 
 //User Admin
 Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
-    Route::get('/', [AdminLoginController::class, 'login'])->name('login');
-    Route::post('/', [AdminLoginController::class, 'do_login'])->name('do_login');
+    // Route::get('/', [AdminLoginController::class, 'login'])->name('login');
+    // Route::post('/', [AdminLoginController::class, 'do_login'])->name('do_login');
+    Route::get('/', [AdminLoginController::class, 'index'])->name('loginForm');
+    Route::post('/', [AdminLoginController::class, 'authenticate'])->name('login');
 
     Route::middleware('auth:admin')->group(function () {
-        Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
+        Route::get('/logout', [AdminLoginController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-        Route::resource('/settings', SettingController::class);
+        Route::resource('settings', SettingController::class);
+        // Route::resource('banks', BankController::class);
+        Route::get('/banks', [AdminController::class, 'banks'])->name('banks');
+        Route::post('/bank_store', [AdminController::class, 'bank_store'])->name('bank.store');
+        Route::get('bank/{id}', [AdminController::class, 'bank_edit'])->name('bank.edit');
+        Route::post('bank', [AdminController::class, 'bank_update'])->name('bank.update');
     });
+});
+
+
+// Route::group(['prefix' => 'admin'], function () {
+//     Route::get('/', 'AdminLoginController@index')->name('admin.loginForm');
+//     Route::post('/', 'AdminLoginController@authenticate')->name('admin.login');
+// });
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    // Route::get('/logout', 'AdminController@logout')->name('admin.logout');
+    // Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+    //Bank Controller
+    // Route::get('/banks', 'AdminController@banks')->name('admin.banks');
+    // Route::post('/bank_store', 'AdminController@bank_store')->name('admin.bank.store');
+    // Route::get('bank/{id}', 'AdminController@bank_edit')->name('admin.bank.edit');
+    // Route::post('bank', 'AdminController@bank_update')->name('admin.bank.update');
+    //Data Operator Controller
+    Route::get('/data_operators', [AdminController::class, 'data_operators'])->name('admin.data_operators');
+    Route::post('/data_operator_store', [AdminController::class, 'data_operator_store'])->name('admin.data_operator.store');
+    Route::get('data_operator/{id}', [AdminController::class, 'data_operator_edit'])->name('admin.data_operator.edit');
+    Route::post('data_operator', [AdminController::class, 'data_operator_update'])->name('admin.data_operator.update');
+    //Blog controller
+    Route::post('/createcategory', [PostController::class, 'CreateCategory']);
+    Route::post('/updatecategory', [PostController::class, 'UpdateCategory']);
+    Route::get('/post-category', [PostController::class, 'category'])->name('admin.cat');
+    Route::get('/unblog/{id}', [PostController::class, 'unblog'])->name('blog.unpublish');
+    Route::get('/pblog/{id}', [PostController::class, 'pblog'])->name('blog.publish');
+    Route::get('blog', [PostController::class, 'index'])->name('admin.blog');
+    Route::get('blog/create', [PostController::class, 'create'])->name('blog.create');
+    Route::post('blog/create', [PostController::class, 'store'])->name('blog.store');
+    Route::get('blog/delete/{id}', [PostController::class, 'destroy'])->name('blog.delete');
+    Route::get('category/delete/{id}', [PostController::class, 'delcategory'])->name('blog.delcategory');
+    Route::get('blog/edit/{id}', [PostController::class, 'edit'])->name('blog.edit');
+    Route::post('blog-update', [PostController::class, 'updatePost'])->name('blog.update');
+
+    //Web controller
+    Route::post('social-links/update', [WebController::class, 'UpdateSocial'])->name('social-links.update');
+    Route::get('social-links', [WebController::class, 'sociallinks'])->name('social-links');
+
+    Route::post('about-us/update', [WebController::class, 'UpdateAbout'])->name('about-us.update');
+    Route::get('about-us', [WebController::class, 'aboutus'])->name('about-us');
+
+    Route::post('privacy-policy/update', [WebController::class, 'UpdatePrivacy'])->name('privacy-policy.update');
+    Route::get('privacy-policy', [WebController::class, 'privacypolicy'])->name('privacy-policy');
+
+    Route::post('terms/update', [WebController::class, 'UpdateTerms'])->name('terms.update');
+    Route::get('terms', [WebController::class, 'terms'])->name('admin.terms');
+
+    Route::post('/createvendors', [WebController::class, 'CreateVendors']);
+    //Route::post('/vendors', [WebController::class, 'Vendors']);   
+    Route::get('coupons', [WebController::class, 'coupons'])->name('admin.coupons');
+    Route::post('/createfaq', [WebController::class, 'CreateFaq']);
+    Route::post('faq/update', [WebController::class, 'UpdateFaq'])->name('faq.update');
+    Route::get('faq/delete/{id}', [WebController::class, 'DestroyFaq'])->name('faq.delete');
+    Route::get('faq', [WebController::class, 'faq'])->name('admin.faq');
+    Route::post('vendors/update', [WebController::class, 'UpdateVendors'])->name('vendors.update');
+    Route::post('vendors/delete/{id}', [WebController::class, 'DestroyVendors'])->name('vendors.delete');
+    Route::get('vendors', [WebController::class, 'vendors'])->name('admin.vendors');
+    Route::post('/createcoupons', [WebController::class, 'CreateCoupons']);
+    Route::get('coupons/delete/{id}', [WebController::class, 'DestroyCoupons'])->name('coupons.delete');
+    Route::post('coupons/update', [WebController::class, 'UpdateCoupons'])->name('coupons.update');
+
+
+    Route::post('/createservice', [WebController::class, 'CreateService']);
+    Route::post('service/update', [WebController::class, 'UpdateService'])->name('service.update');
+    Route::get('service/delete/{id}', [WebController::class, 'DestroyService'])->name('service.delete');
+    Route::get('service', [WebController::class, 'services'])->name('admin.service');
+
+    Route::post('/createpage', [WebController::class, 'CreatePage']);
+    Route::post('page/update', [WebController::class, 'UpdatePage'])->name('page.update');
+    Route::get('page/delete/{id}', [WebController::class, 'DestroyPage'])->name('page.delete');
+    Route::get('page', [WebController::class, 'page'])->name('admin.page');
+    Route::get('/unpage/{id}', [WebController::class, 'unpage'])->name('page.unpublish');
+    Route::get('/ppage/{id}', [WebController::class, 'ppage'])->name('page.publish');
+
+    Route::post('/createreview', [WebController::class, 'CreateReview']);
+    Route::post('review/update', [WebController::class, 'UpdateReview'])->name('review.update');
+    Route::get('review/edit/{id}', [WebController::class, 'EditReview'])->name('review.edit');
+    Route::get('review/delete/{id}', [WebController::class, 'DestroyReview'])->name('review.delete');
+    Route::get('review', [WebController::class, 'review'])->name('admin.review');
+    Route::get('/unreview/{id}', [WebController::class, 'unreview'])->name('review.unpublish');
+    Route::get('/preview/{id}', [WebController::class, 'preview'])->name('review.publish');
+
+    Route::get('currency', [WebController::class, 'currency'])->name('admin.currency');
+    Route::get('pcurrency/{id}', [WebController::class, 'pcurrency'])->name('blog.publish');
+
+    Route::get('logo', [WebController::class, 'logo'])->name('admin.logo');
+    Route::post('updatelogo', [WebController::class, 'UpdateLogo']);
+    Route::post('updatefavicon', [WebController::class, 'UpdateFavicon']);
+
+    Route::get('home-page', [WebController::class, 'homepage'])->name('homepage');
+    Route::post('home-page/update', [WebController::class, 'Updatehomepage'])->name('homepage.update');
+    Route::post('section1/update', [WebController::class, 'section1']);
+    Route::post('section2/update', [WebController::class, 'section2']);
+    Route::post('section3/update', [WebController::class, 'section3']);
+    Route::post('section4/update', [WebController::class, 'section4']);
+
+    //Withdrawal controller
+    Route::get('withdraw-log', [WithdrawController::class, 'withdrawlog'])->name('admin.withdraw.log');
+    Route::get('withdraw-approved', [WithdrawController::class, 'withdrawapproved'])->name('admin.withdraw.approved');
+    Route::get('withdraw-declined', [WithdrawController::class, 'withdrawdeclined'])->name('admin.withdraw.declined');
+    Route::get('withdraw-unpaid', [WithdrawController::class, 'withdrawunpaid'])->name('admin.withdraw.unpaid');
+    Route::get('withdraw/delete/{id}', [WithdrawController::class, 'DestroyWithdrawal'])->name('withdraw.delete');
+    Route::get('approvewithdraw/{id}', [WithdrawController::class, 'approve'])->name('withdraw.approve');
+    Route::post('withdraw-approve-multi', [WithdrawController::class, 'approve_multi'])->name('admin.withdraw.approve_multi');
+    Route::post('approvewithdrawmine', [WithdrawController::class, 'approvemine'])->name('withdraw.approvemine');
+    Route::get('declinewithdraw/{id}', [WithdrawController::class, 'decline'])->name('withdraw.declined');
+    //Data Withdrawal controller
+    Route::get('data_withdraw-log', [WithdrawController::class, 'data_withdrawlog'])->name('admin.data_withdraw.log');
+    Route::get('data_withdraw-approved', [WithdrawController::class, 'data_withdrawapproved'])->name('admin.data_withdraw.approved');
+    Route::get('data_withdraw-declined', [WithdrawController::class, 'data_withdrawdeclined'])->name('admin.data_withdraw.declined');
+    Route::get('data_withdraw-unpaid', [WithdrawController::class, 'data_withdrawunpaid'])->name('admin.data_withdraw.unpaid');
+    Route::get('data_withdraw/delete/{id}', [WithdrawController::class, 'DestroyDataWithdrawal'])->name('data_withdraw.delete');
+    Route::get('approvedata_withdraw/{id}', [WithdrawController::class, 'dataapprove'])->name('data_withdraw.approve');
+    Route::post('data_withdraw-approve-multi', [WithdrawController::class, 'dataapprove_multi'])->name('admin.data_withdraw.approve_multi');
+    Route::post('approvedata_withdrawmine', [WithdrawController::class, 'dataapprovemine'])->name('data_withdraw.approvemine');
+    Route::get('declinedata_withdraw/{id}', [WithdrawController::class, 'datadecline'])->name('data_withdraw.declined');
+    //Selfcashout controller
+    Route::get('selfcashout-log', [SelfcashoutController::class, 'selfcashoutlog'])->name('admin.selfcashout.log');
+    Route::get('selfcashout-approved', [SelfcashoutController::class, 'selfcashoutapproved'])->name('admin.selfcashout.approved');
+    Route::get('selfcashout-declined', [SelfcashoutController::class, 'selfcashoutdeclined'])->name('admin.selfcashout.declined');
+    Route::get('selfcashout-unpaid', [SelfcashoutController::class, 'selfcashoutunpaid'])->name('admin.selfcashout.unpaid');
+    Route::get('selfcashout/delete/{id}', [SelfcashoutController::class, 'DestroySelfcashout'])->name('selfcashout.delete');
+    Route::get('approveselfcashout/{id}', [SelfcashoutController::class, 'approve'])->name('selfcashout.approve');
+    Route::post('selfcashout-approve-multi', [SelfcashoutController::class, 'approve_multi'])->name('admin.selfcashout.approve_multi');
+    Route::get('declineselfcashout/{id}', [SelfcashoutController::class, 'decline'])->name('selfcashout.declined');
+    //Payment Proof controller
+    Route::get('paymentproof-log', [PaymentProofController::class, 'paymentprooflog'])->name('admin.paymentproof.log');
+    Route::get('paymentproof-approved', [PaymentProofController::class, 'paymentproofapproved'])->name('admin.paymentproof.approved');
+    Route::get('paymentproof-declined', [PaymentProofController::class, 'paymentproofdeclined'])->name('admin.paymentproof.declined');
+    Route::get('paymentproof-pending', [PaymentProofController::class, 'paymentproofpending'])->name('admin.paymentproof.pending');
+    Route::get('paymentproof/delete/{id}', [PaymentProofController::class, 'DestroyPaymentProof'])->name('paymentproof.delete');
+    Route::get('approvepaymentproof/{id}', [PaymentProofController::class, 'approve'])->name('paymentproof.approve');
+    Route::post('paymentproof-approve-multi', [PaymentProofController::class, 'approve_multi'])->name('admin.paymentproof.approve_multi');
+    Route::get('declinepaymentproof/{id}', [PaymentProofController::class, 'decline'])->name('paymentproof.declined');
+
+    //Deposit controller
+    Route::get('deposit-log', [DepositController::class, 'depositlog'])->name('admin.deposit.log');
+    Route::get('deposit-method', [DepositController::class, 'depositmethod'])->name('admin.deposit.method');
+    Route::post('storegateway', [DepositController::class, 'store']);
+    Route::get('deposit-approved', [DepositController::class, 'depositapproved'])->name('admin.deposit.approved');
+    Route::get('deposit-pending', [DepositController::class, 'depositpending'])->name('admin.deposit.pending');
+    Route::get('deposit-declined', [DepositController::class, 'depositdeclined'])->name('admin.deposit.declined');
+    Route::get('deposit/delete/{id}', [DepositController::class, 'DestroyDeposit'])->name('deposit.delete');
+    Route::get('approvedeposit/{id}', [DepositController::class, 'approve'])->name('deposit.approve');
+    Route::get('declinedeposit/{id}', [DepositController::class, 'decline'])->name('deposit.decline');
+
+    //Py scheme controller
+    Route::get('py-completed', [PyschemeController::class, 'Completed'])->name('admin.py.completed');
+    Route::get('py-pending', [PyschemeController::class, 'Pending'])->name('admin.py.pending');
+    Route::get('py-plans', [PyschemeController::class, 'Plans'])->name('admin.py.plans');
+    Route::get('py/delete/{id}', [PyschemeController::class, 'Destroy'])->name('py.delete');
+    Route::get('py-plan/delete/{id}', [PyschemeController::class, 'PlanDestroy'])->name('py.plan.delete');
+    Route::get('py-plan-create', [PyschemeController::class, 'Create'])->name('admin.plan.create');
+    Route::post('py-plan-create', [PyschemeController::class, 'Store'])->name('admin.plan.store');
+    Route::get('py-plan/{id}', [PyschemeController::class, 'Edit'])->name('admin.plan.edit');
+    Route::post('py-plan-edit', [PyschemeController::class, 'Update'])->name('admin.plan.update');
+    Route::get('py-generate-plan-coupons', [PyschemeController::class, 'generate_coupons'])->name('admin.plan.generate_coupons');
+    Route::get('py-download-plan-coupons', [PyschemeController::class, 'download_codes'])->name('admin.plan.download_codes');
+    Route::post('py-generate-plan-coupons', [PyschemeController::class, 'do_generate_coupons'])->name('admin.plan.do_generate_coupons');
+
+    //Setting controller
+    Route::get('settings', [SettingController::class, 'Settings'])->name('admin.setting');
+    Route::post('settings', [SettingController::class, 'SettingsUpdate'])->name('admin.settings.update');
+    Route::get('email', [SettingController::class, 'Email'])->name('admin.email');
+    Route::post('email', [SettingController::class, 'EmailUpdate'])->name('admin.email.update');
+    Route::get('sms', [SettingController::class, 'Sms'])->name('admin.sms');
+    Route::post('sms', [SettingController::class, 'SmsUpdate'])->name('admin.sms.update');
+    Route::get('account', [SettingController::class, 'Account'])->name('admin.account');
+    Route::post('account', [SettingController::class, 'AccountUpdate'])->name('admin.account.update');
+
+    //Transfer controller
+    Route::get('transfers', [TransferController::class, 'Transfers'])->name('admin.transfers');
+    Route::get('referrals', [TransferController::class, 'Referrals'])->name('admin.referrals');
+
+    //User controller
+    Route::get('users', [AdminController::class, 'Users'])->name('admin.users');
+    Route::get('messages', [AdminController::class, 'Messages'])->name('admin.message');
+    Route::get('unblock-user/{id}', [AdminController::class, 'Unblockuser'])->name('user.unblock');
+    Route::get('block-user/{id}', [AdminController::class, 'Blockuser'])->name('user.block');
+    Route::get('manage-user/{id}', [AdminController::class, 'Manageuser'])->name('user.manage');
+    Route::get('user/delete/{id}', [AdminController::class, 'Destroyuser'])->name('user.delete');
+    Route::get('email/{id}/{name}', [AdminController::class, 'Email'])->name('user.email');
+    Route::post('email_send', [AdminController::class, 'Sendemail'])->name('user.email.send');
+    Route::get('promo', [AdminController::class, 'Promo'])->name('user.promo');
+    Route::post('promo', [AdminController::class, 'Sendpromo'])->name('user.promo.send');
+    Route::get('message/delete/{id}', [AdminController::class, 'Destroymessage'])->name('message.delete');
+    Route::get('ticket', [AdminController::class, 'Ticket'])->name('admin.ticket');
+    Route::get('ticket/delete/{id}', [AdminController::class, 'Destroyticket'])->name('ticket.delete');
+    Route::get('close-ticket/delete/{id}', [AdminController::class, 'Closeticket'])->name('ticket.close');
+    Route::get('manage-ticket/{id}', [AdminController::class, 'Manageticket'])->name('ticket.manage');
+    Route::post('reply-ticket', [AdminController::class, 'Replyticket'])->name('ticket.reply');
+    Route::post('profile-update', [AdminController::class, 'Profileupdate']);
+    Route::post('profile-update-pin', [AdminController::class, 'Profileupdatepin']);
+    Route::post('update_bank_details', [AdminController::class, 'UpdateBankDetails']);
+    Route::get('approve-kyc/{id}', [AdminController::class, 'Approvekyc'])->name('admin.approve.kyc');
+    Route::get('reject-kyc/{id}', [AdminController::class, 'Rejectkyc'])->name('admin.reject.kyc');
 });
