@@ -9,6 +9,6 @@ class Plans extends Model {
     protected $guarded = [];
 
     public function user() {
-        return $this->hasOneThrough(User::class, Coupons::class, 'plan_id', 'coupon', 'id', 'serial');
+        return $this->hasMany(User::class);
     }
 }

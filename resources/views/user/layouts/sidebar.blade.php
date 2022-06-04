@@ -25,9 +25,9 @@
                         <span data-key="t-ecommerce">Rubic Extraction</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-products">Extract Rubic Token</a></li>
-                        <li><a href="#" data-key="t-product-detail">Extraction History</a></li>
-                        <li><a href="#" data-key="t-orders">Convert to Wallet</a></li>
+                        <li><a href="{{ route('user.extractions.page') }}" key="t-products">Extract Rubic Token</a></li>
+                        <li><a href="{{ route('user.extractions.history') }}" data-key="t-product-detail">Extraction History</a></li>
+                        <li><a href="{{ route('user.extractions.convert') }}" data-key="t-orders">Convert to Wallet</a></li>
                     </ul>
                 </li>
                 <li>

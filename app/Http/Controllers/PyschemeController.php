@@ -132,6 +132,7 @@ class PyschemeController extends Controller
         $data->convert_rate = $request->convert_rate;
         $data->active_period = $request->active_period;
         $data->min_ref_earn_wd_cycle = $request->min_ref_earn_wd_cycle;
+        $data->extraction_plan_time = $request->extraction_plan_time;
         if (empty($request->status)) {
             $data->status = 0;
         } else {

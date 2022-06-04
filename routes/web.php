@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\DepositController;
+use App\Http\Controllers\ExtractionController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentProofController;
@@ -52,6 +53,11 @@ Route::get('/sponsored_post', [FrontendController::class, 'sponsored_post'])->na
 //User Dashboard
 Route::prefix('user')->middleware('auth:web')->name('user.')->group(function() {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/extractions/page', [ExtractionController::class, 'extractions_page'])->name('extractions.page');
+    Route::get('/extractions/start', [ExtractionController::class, 'extractions_start'])->name('extractions.start');
+    Route::get('/extractions/end', [ExtractionController::class, 'extractions_end'])->name('extractions.end');
+    Route::get('/extractions/history', [ExtractionController::class, 'extractions_history'])->name('extractions.history');
+    Route::get('/extractions/convert', [ExtractionController::class, 'extractions_convert'])->name('extractions.convert');
 });
 
 //Update User Details
@@ -66,7 +72,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
     Route::post('/', [AdminLoginController::class, 'authenticate'])->name('login');
 
     Route::middleware('auth:admin')->group(function () {
-        Route::get('/logout', [AdminLoginController::class, 'logout'])->name('logout');
+        Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::resource('settings', SettingController::class);
         // Route::resource('banks', BankController::class);

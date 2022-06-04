@@ -326,7 +326,7 @@ class AdminController extends Controller
     {
         Auth::guard()->logout();
         session()->flash('message', 'Just Logged Out!');
-        return redirect('/admin');
+        return redirect('/rubicnetworkadministration');
     }
 
     public function banks()
