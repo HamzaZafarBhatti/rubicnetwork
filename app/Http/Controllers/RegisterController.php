@@ -151,6 +151,15 @@ class RegisterController extends Controller
             'referee_username' => 'required|string',
         ]);
 
+        
+        $referee_user = User::/* with('parent_reference')-> */whereUsername($request->referee_username)->first();
+        // return json_encode($referee_user);
+        if (!$referee_user) {
+            return redirect()->route('user.referral', $request->referee_username)
+                ->withErrors(['referee_username' => 'REFERRAL USERNAME INVALID'])
+                ->withInput();
+        }
+
         $coupon_code = Coupon::with('plan')->where('serial', $request->coupon_id)->first();
         if (!$coupon_code) {
             return redirect()->route('user.referral', $request->referee_username)
@@ -205,7 +214,6 @@ class RegisterController extends Controller
             'activated_at' => date('Y-m-d'),
             'password' => bcrypt($request->password),
         ]);
-        $referee_user = User::/* with('parent_reference')-> */whereUsername($request->referee_username)->first();
         // return $coupon_code->plan->id;
         // return $main;
         // if ($coupon_code->plan->id === 10) {
