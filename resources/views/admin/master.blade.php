@@ -179,7 +179,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="{{route('admin.banks')}}" class="nav-link">
+							<a href="{{route('admin.banks.index')}}" class="nav-link">
 								<i class="icon-home"></i>
 								<span>
 									Banks

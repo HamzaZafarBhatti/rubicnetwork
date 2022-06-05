@@ -36,8 +36,6 @@
         }
 
         .deadline-format {
-            background: var(--clr-grey-1);
-            color: var(--clr-white);
             width: 5rem;
             height: 5rem;
             display: grid;

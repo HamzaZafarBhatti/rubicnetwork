@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BankController extends Controller
 {
@@ -15,8 +16,10 @@ class BankController extends Controller
     public function index()
     {
         //
+        // return 'hello';
         $banks = Bank::all();
-        return view('admin.banks.index', compact('banks'));
+        $title = 'Banks';
+        return view('admin.banks.index', compact('banks', 'title'));
     }
 
     /**
@@ -38,6 +41,16 @@ class BankController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            Bank::create([
+                'name' => $request->name,
+                'status' => $request->status,
+            ]);
+            Session::flash('success', 'Bank added.');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Error! Bank addition failed.');
+        }
+        return redirect()->route('admin.banks.index');
     }
 
     /**
@@ -60,6 +73,8 @@ class BankController extends Controller
     public function edit(Bank $bank)
     {
         //
+        $title = 'Edit Bank';
+        return view('admin.banks.edit', compact('bank', 'title'));
     }
 
     /**
@@ -72,6 +87,17 @@ class BankController extends Controller
     public function update(Request $request, Bank $bank)
     {
         //
+        try {
+            $bank = Bank::find($request->id);
+            $bank->update([
+                'name' => $request->name,
+                'status' => $request->status,
+            ]);
+            Session::flash('success', 'Bank updated.');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Error! Bank update failed.');
+        }
+        return redirect()->route('admin.banks.index');
     }
 
     /**

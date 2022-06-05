@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
                         <p class="text-danger"></p>
-                        <form action="{{ route('admin.bank.store') }}" method="post">
+                        <form action="{{ route('admin.banks.store') }}" method="post">
                             @csrf
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Name:</label>
@@ -76,7 +76,7 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class='dropdown-item'
-                                                            href="{{ url('/') }}/rubicnetworkadministration/bank/{{ $val->id }}"><i
+                                                            href="{{ route('admin.banks.edit', $val->id) }}"><i
                                                                 class="icon-pencil7 mr-2"></i>Edit</a>
                                                     </div>
                                                 </div>
