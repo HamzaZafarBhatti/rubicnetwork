@@ -187,7 +187,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="{{route('admin.data_operators')}}" class="nav-link">
+							<a href="{{route('admin.data_operators.index')}}" class="nav-link">
 								<i class="icon-mobile3"></i>
 								<span>
 									Data Operators

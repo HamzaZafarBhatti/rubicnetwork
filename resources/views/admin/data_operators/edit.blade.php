@@ -10,8 +10,9 @@
                     </div>
                     <div class="card-body">
                         <p class="text-danger"></p>
-                        <form action="{{ route('admin.data_operator.update') }}" method="post">
+                        <form action="{{ route('admin.data_operators.update', $data_operator->id) }}" method="post">
                             @csrf
+                            @method('patch')
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Name:</label>
                                 <div class="col-lg-10">
