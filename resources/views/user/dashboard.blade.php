@@ -497,7 +497,7 @@
                                         <div class="simplebar-content" style="padding: 0px 16px;">
                                             <table class="table align-middle table-nowrap">
                                                 <tbody>
-                                                    @if ($extractions)
+                                                    @if (!$extractions->isEmpty())
                                                         @foreach ($extractions as $item)
                                                             <tr>
                                                                 <td>
@@ -517,7 +517,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <div>
-                                                                        <h5 class="font-size-15">No record found!</h5>
+                                                                        <h5 class="font-size-15">No Extractions Yet!</h5>
                                                                     </div>
                                                                 </td>
                                                             </tr>
