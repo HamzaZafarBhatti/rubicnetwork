@@ -67,13 +67,7 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Dashboard
-        @endslot
-        @slot('title1')
-            Good Evening ! {{ auth()->user()->name }}
-        @endslot
-        @slot('small')
-            You are on the <a href="#">Rubic Extraction Plan 1</a>
+            Extraction
         @endslot
         @slot('title2')
             Extraction Page

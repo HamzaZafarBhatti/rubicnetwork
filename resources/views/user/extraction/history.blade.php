@@ -13,14 +13,14 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Dashboard
+            Extraction
         @endslot
-        @slot('title1')
+        {{-- @slot('title1')
             Good Evening ! {{ auth()->user()->name }}
         @endslot
         @slot('small')
             You are on the <a href="#">{{ auth()->user()->plan->name }}</a>
-        @endslot
+        @endslot --}}
         @slot('title2')
             Extraction History
         @endslot

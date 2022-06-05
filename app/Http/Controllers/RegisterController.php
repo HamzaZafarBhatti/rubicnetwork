@@ -110,7 +110,7 @@ class RegisterController extends Controller
             'email_time' => $email_time,
             'phone_verify' => $phone_verify,
             'phone_time' => $phone_time,
-            'rubic_wallet' => $basic->balance_reg,
+            'extraction_balance' => $basic->balance_reg,
             'ip_address' => user_ip(),
             'coupon_id' => $coupon_code->id,
             'plan_id' => $coupon_code->plan_id,
