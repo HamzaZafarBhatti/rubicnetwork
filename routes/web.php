@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\DataOperatorController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ExtractionController;
 use App\Http\Controllers\FrontendController;
@@ -75,11 +76,8 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::resource('settings', SettingController::class);
-        // Route::resource('banks', BankController::class);
-        Route::get('/banks', [AdminController::class, 'banks'])->name('banks');
-        Route::post('/bank_store', [AdminController::class, 'bank_store'])->name('bank.store');
-        Route::get('bank/{id}', [AdminController::class, 'bank_edit'])->name('bank.edit');
-        Route::post('bank', [AdminController::class, 'bank_update'])->name('bank.update');
+        Route::resource('banks', BankController::class);
+        Route::resource('data_operators', DataOperatorController::class);
     });
 });
 
@@ -98,10 +96,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     // Route::get('bank/{id}', 'AdminController@bank_edit')->name('admin.bank.edit');
     // Route::post('bank', 'AdminController@bank_update')->name('admin.bank.update');
     //Data Operator Controller
-    Route::get('/data_operators', [AdminController::class, 'data_operators'])->name('admin.data_operators');
-    Route::post('/data_operator_store', [AdminController::class, 'data_operator_store'])->name('admin.data_operator.store');
-    Route::get('data_operator/{id}', [AdminController::class, 'data_operator_edit'])->name('admin.data_operator.edit');
-    Route::post('data_operator', [AdminController::class, 'data_operator_update'])->name('admin.data_operator.update');
+    // Route::get('/data_operators', [AdminController::class, 'data_operators'])->name('admin.data_operators');
+    // Route::post('/data_operator_store', [AdminController::class, 'data_operator_store'])->name('admin.data_operator.store');
+    // Route::get('data_operator/{id}', [AdminController::class, 'data_operator_edit'])->name('admin.data_operator.edit');
+    // Route::post('data_operator', [AdminController::class, 'data_operator_update'])->name('admin.data_operator.update');
     //Blog controller
     Route::post('/createcategory', [PostController::class, 'CreateCategory']);
     Route::post('/updatecategory', [PostController::class, 'UpdateCategory']);
