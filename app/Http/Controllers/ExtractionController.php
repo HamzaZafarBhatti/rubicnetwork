@@ -35,9 +35,9 @@ class ExtractionController extends Controller
                 'plan_id' => $user->plan_id,
                 'amount' => $user->extraction_balance,
                 'trx' => $random_string,
-                'end_datetime' => Carbon::now()->addHours($plan->extraction_plan_time),
-                // 'end_datetime' => Carbon::now()->addSeconds(5),
-                'profit' => $plan->percent * $plan->upgrade / 100 * $plan->extraction_plan_time,
+                // 'end_datetime' => Carbon::now()->addHours($plan->extraction_plan_time),
+                'end_datetime' => Carbon::now()->addSeconds(5),
+                'profit' => $plan->percent * $plan->upgrade / 100,
                 'start_datetime' => Carbon::now()
             ]);
             return array('status' => '1');

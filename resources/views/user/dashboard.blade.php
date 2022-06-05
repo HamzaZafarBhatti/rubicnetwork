@@ -8,6 +8,7 @@
         #tradingview_d68cc {
             height: 400px;
         }
+
     </style>
 @endsection
 @section('content')
@@ -36,10 +37,12 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">My Rubic Wallet</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="{{ auth()->user()->rubic_wallet }}">{{ auth()->user()->rubic_wallet }}</span>
+                                ₦<span class="counter-value"
+                                    data-target="{{ auth()->user()->rubic_wallet }}">{{ auth()->user()->rubic_wallet }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->rubic_wallet }}</span>
+                                <span
+                                    class="badge bg-soft-success text-success">+₦{{ auth()->user()->rubic_wallet }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -63,10 +66,12 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Rubic Stake Profit</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="{{ auth()->user()->rubic_stake_wallet }}">{{ auth()->user()->rubic_stake_wallet }}</span>
+                                ₦<span class="counter-value"
+                                    data-target="{{ auth()->user()->rubic_stake_wallet }}">{{ auth()->user()->rubic_stake_wallet }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->rubic_stake_wallet }}</span>
+                                <span
+                                    class="badge bg-soft-success text-success">+₦{{ auth()->user()->rubic_stake_wallet }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -90,10 +95,12 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Extraction Balance</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="{{ auth()->user()->extraction_balance }}">{{ auth()->user()->extraction_balance }}</span>
+                                ₦<span class="counter-value"
+                                    data-target="{{ auth()->user()->extraction_balance }}">{{ auth()->user()->extraction_balance }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->extraction_balance }}</span>
+                                <span
+                                    class="badge bg-soft-success text-success">+₦{{ auth()->user()->extraction_balance }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -103,7 +110,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="#">Extraction History ></a>
+                        <a href="{{ route('user.extractions.history') }}">Extraction History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->
@@ -117,10 +124,12 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Referral Earnings</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="{{ auth()->user()->ref_earning }}">{{ auth()->user()->ref_earning }}</span>
+                                ₦<span class="counter-value"
+                                    data-target="{{ auth()->user()->ref_earning }}">{{ auth()->user()->ref_earning }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->ref_earning }}</span>
+                                <span
+                                    class="badge bg-soft-success text-success">+₦{{ auth()->user()->ref_earning }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -144,10 +153,12 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Indirect Referral Earnings</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="{{ auth()->user()->indirect_ref_earning }}">{{ auth()->user()->indirect_ref_earning }}</span>
+                                ₦<span class="counter-value"
+                                    data-target="{{ auth()->user()->indirect_ref_earning }}">{{ auth()->user()->indirect_ref_earning }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->indirect_ref_earning }}</span>
+                                <span
+                                    class="badge bg-soft-success text-success">+₦{{ auth()->user()->indirect_ref_earning }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -171,10 +182,12 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Viral Trend</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="{{ auth()->user()->viral_share_earning }}">{{ auth()->user()->viral_share_earning }}</span>
+                                ₦<span class="counter-value"
+                                    data-target="{{ auth()->user()->viral_share_earning }}">{{ auth()->user()->viral_share_earning }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->viral_share_earning }}</span>
+                                <span
+                                    class="badge bg-soft-success text-success">+₦{{ auth()->user()->viral_share_earning }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -314,10 +327,12 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Rubic Stake Wallet</span>
                             <h4 class="mb-3">
-                                $<span class="counter-value" data-target="{{ auth()->user()->rubic_stake_wallet }}">{{ auth()->user()->rubic_stake_wallet }}</span>
+                                $<span class="counter-value"
+                                    data-target="{{ auth()->user()->rubic_stake_wallet }}">{{ auth()->user()->rubic_stake_wallet }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+${{ auth()->user()->rubic_stake_wallet }}</span>
+                                <span
+                                    class="badge bg-soft-success text-success">+${{ auth()->user()->rubic_stake_wallet }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -466,7 +481,8 @@
                     <h4 class="card-title mb-0">Most Recent Extractions</h4>
                 </div><!-- end card header -->
                 <div class="card-header align-items-center d-flex justify-content-center">
-                    <h4 class="card-title mb-0"><small>Rubic Extraction Plan: [Display Plan Name]</small></h4>
+                    <h4 class="card-title mb-0"><small>Rubic Extraction Plan: {{ auth()->user()->plan->name }}</small>
+                    </h4>
                 </div><!-- end card header -->
 
                 <div class="card-body px-0 pt-2">
@@ -481,72 +497,31 @@
                                         <div class="simplebar-content" style="padding: 0px 16px;">
                                             <table class="table align-middle table-nowrap">
                                                 <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div>
-                                                                <h5 class="font-size-15">{{-- <a href=""
-                                                                        class="text-dark"> --}}Rubic
-                                                                    Extraction Blockchain: {{-- </a> --}}</h5>
-                                                                <span
-                                                                    class="text-muted">a8d57nfbdfbf4325n43bkb34kjk32</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div>
-                                                                <h5 class="font-size-15">{{-- <a href=""
-                                                                        class="text-dark"> --}}Rubic
-                                                                    Extraction Blockchain: {{-- </a> --}}</h5>
-                                                                <span
-                                                                    class="text-muted">a8d57nfbdfbf4325n43bkb34kjk32</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div>
-                                                                <h5 class="font-size-15">{{-- <a href=""
-                                                                        class="text-dark"> --}}Rubic
-                                                                    Extraction Blockchain: {{-- </a> --}}</h5>
-                                                                <span
-                                                                    class="text-muted">a8d57nfbdfbf4325n43bkb34kjk32</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div>
-                                                                <h5 class="font-size-15">{{-- <a href=""
-                                                                        class="text-dark"> --}}Rubic
-                                                                    Extraction Blockchain: {{-- </a> --}}</h5>
-                                                                <span
-                                                                    class="text-muted">a8d57nfbdfbf4325n43bkb34kjk32</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div>
-                                                                <h5 class="font-size-15">{{-- <a href=""
-                                                                        class="text-dark"> --}}Rubic
-                                                                    Extraction Blockchain: {{-- </a> --}}</h5>
-                                                                <span
-                                                                    class="text-muted">a8d57nfbdfbf4325n43bkb34kjk32</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div>
-                                                                <h5 class="font-size-15">{{-- <a href=""
-                                                                        class="text-dark"> --}}Rubic
-                                                                    Extraction Blockchain: {{-- </a> --}}</h5>
-                                                                <span
-                                                                    class="text-muted">a8d57nfbdfbf4325n43bkb34kjk32</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                    @if ($extractions)
+                                                        @foreach ($extractions as $item)
+                                                            <tr>
+                                                                <td>
+                                                                    <div>
+                                                                        <h5 class="font-size-15">
+                                                                            {{-- <a href=""
+                                                                            class="text-dark"> --}}Rubic
+                                                                            Extraction Blockchain: {{-- </a> --}}
+                                                                        </h5>
+                                                                        <span
+                                                                            class="text-muted">{{ $item->trx }}</span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @else
+                                                            <tr>
+                                                                <td>
+                                                                    <div>
+                                                                        <h5 class="font-size-15">No record found!</h5>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>

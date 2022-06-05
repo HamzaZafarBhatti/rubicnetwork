@@ -60,7 +60,13 @@
                                                     <td>{{ $item->amount }}</td>
                                                     <td>{{ $item->profit }}</td>
                                                     <td>{{ $item->trx }}</td>
-                                                    <td>{{ $item->status }}</td>
+                                                    <td>
+                                                        @if ($item->status == 2)
+                                                            Completed
+                                                        @else
+                                                            In progress
+                                                        @endif
+                                                    </td>
                                                     <td>{{ $item->start_datetime }}</td>
                                                     <td>{{ $item->end_datetime }}</td>
                                                 </tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank;
 use App\Models\DataOperator;
+use App\Models\Extraction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,8 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        return view('user.dashboard');
+        $extractions = Extraction::where('user_id', auth()->user()->id)->get();
+        return view('user.dashboard', compact('extractions'));
     }
 
     public function profile()
