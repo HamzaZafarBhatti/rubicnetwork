@@ -56,15 +56,10 @@ class LoginController extends Controller
 
     public function do_login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'email' => 'required|string',
             'password' => 'required'
         ]);
-        if ($validator->fails()) {
-            // adding an extra field 'error'...
-            $validator->errors()->add('error', 'true');
-            return response()->json($validator->errors());
-        }
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $ip_address = user_ip();
             $user = User::find(auth()->user()->id);

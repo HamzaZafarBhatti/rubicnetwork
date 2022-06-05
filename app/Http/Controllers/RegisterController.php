@@ -46,35 +46,26 @@ class RegisterController extends Controller
     public function do_register(Request $request)
     {
         // return $request;
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|min:5|unique:users|regex:/^\S*$/u',
             'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'required|numeric|min:8|unique:users',
             'password' => 'required|string|min:4|confirmed',
-            'coupon_id' => 'required|string|unique:users',
+            'coupon_id' => 'required|string',
         ]);
-        if ($validator->fails()) {
-            // adding an extra field 'error'...
-            $errors = $validator->errors();
-            $data['errors'] = $errors;
-            $html_err = "ERROR REGISTRATION: ";
-            foreach ($errors->all() as $error) {
-                $html_err .=  $error . ', ';
-            }
-            Session::flash('error', $html_err);
-            return view('user.auth.register', $data);
-        }
 
         $coupon_code = Coupon::where('serial', $request->coupon_id)->first();
         // return $coupon_code;
         if (!$coupon_code) {
-            Session::flash('error', 'ACTIVATION PIN CODE INVALID');
-            return view('user.auth.register');
+            return redirect()->route('user.register')
+                        ->withErrors(['coupon_id' => 'ACTIVATION PIN CODE INVALID'])
+                        ->withInput();
         }
         if ($coupon_code->status == 1) {
-            Session::flash('error', 'ACTIVATION PIN CODE used');
-            return view('user.auth.register');
+            return redirect()->route('user.register')
+                        ->withErrors(['coupon_id' => 'ACTIVATION PIN CODE used'])
+                        ->withInput();
         }
 
         $basic = Settings::first();
