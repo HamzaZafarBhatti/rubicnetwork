@@ -39,7 +39,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        Paginator::useBootstrapFive();
         View::composer('*', function ($view) {
             if (Auth::check()) {
                 $user = User::find(Auth::user()->id);

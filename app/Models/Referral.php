@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Referral extends Model {
-    protected $table = "referral";
-    protected $guarded = [];
+class Referral extends Model
+{
+    use HasFactory;
 
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
-    }
+    protected $fillable = [
+        'referee_id',
+        'referral_id',
+    ];
+    
 }

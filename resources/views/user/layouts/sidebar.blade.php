@@ -47,9 +47,9 @@
                         <span data-key="t-ecommerce">Referral Earnings</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-products">My Referrals</a></li>
-                        <li><a href="#" data-key="t-product-detail">Earning History</a></li>
-                        <li><a href="#" data-key="t-orders">Convert to Wallet</a></li>
+                        <li><a href="{{ route('user.referrals.index') }}" key="t-products">My Referrals</a></li>
+                        <li><a href="{{ route('user.referrals.earning_history') }}" data-key="t-product-detail">Earning History</a></li>
+                        <li><a href="{{ route('user.referrals.convert') }}" data-key="t-orders">Convert to Wallet</a></li>
                     </ul>
                 </li>
                 <li>

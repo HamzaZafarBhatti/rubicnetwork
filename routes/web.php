@@ -14,6 +14,7 @@ use App\Http\Controllers\PaymentProofController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PyschemeController;
+use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SelfcashoutController;
 use App\Http\Controllers\SettingController;
@@ -64,11 +65,18 @@ Route::name('user.')->group(function () {
     Route::prefix('user')->middleware('auth:web')->group(function () {
         Route::get('logout', [UserController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+        Route::get('profile', [UserController::class, 'profile'])->name('profile');
+        //Extraction
         Route::get('/extractions/page', [ExtractionController::class, 'extractions_page'])->name('extractions.page');
         Route::get('/extractions/start', [ExtractionController::class, 'extractions_start'])->name('extractions.start');
         Route::get('/extractions/end', [ExtractionController::class, 'extractions_end'])->name('extractions.end');
         Route::get('/extractions/history', [ExtractionController::class, 'extractions_history'])->name('extractions.history');
         Route::get('/extractions/convert', [ExtractionController::class, 'extractions_convert'])->name('extractions.convert');
+        //Referral
+        Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
+        Route::get('/referrals/earning/history', [ReferralController::class, 'earning_history'])->name('referrals.earning_history');
+        Route::get('/referrals/convert', [ReferralController::class, 'convert'])->name('referrals.convert');
+
     });
 });
 
