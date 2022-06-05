@@ -31,6 +31,7 @@ use App\Models\Reply;
 use App\Models\Review;
 use App\Models\Earning;
 use App\Models\Etemplate;
+use App\Models\Plan;
 use App\Models\Referral;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
@@ -84,9 +85,9 @@ class AdminController extends Controller
         $data['approvedwd'] = Withdraw::whereStatus(1)->count();
         $data['declinedwd'] = Withdraw::whereStatus(2)->count();
         $data['pendingwd'] = Withdraw::whereStatus(0)->count();
-        $data['totalplan'] = Plans::count();
-        $data['appplan'] = Plans::whereStatus(1)->count();
-        $data['penplan'] = Plans::whereStatus(0)->count();
+        $data['totalplan'] = Plan::count();
+        $data['appplan'] = Plan::whereStatus(1)->count();
+        $data['penplan'] = Plan::whereStatus(0)->count();
         $data['totalprofit'] = Profits::count();
         $data['appprofit'] = Profits::whereStatus(1)->count();
         $data['penprofit'] = Profits::whereStatus(0)->count();
@@ -328,7 +329,7 @@ class AdminController extends Controller
         session()->flash('message', 'Just Logged Out!');
         return redirect('/rubicnetworkadministration');
     }
-    
+
     public function resolve_account_number(Request $request)
     {
         $response = resolve_account_number($request->account_number, $request->bank_id);

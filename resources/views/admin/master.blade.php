@@ -227,7 +227,7 @@
 								<li class="nav-item"><a href="{{route('admin.plans.index')}}" class="nav-link"><i class="icon-puzzle4"></i>Plans</a></li>
 								<li class="nav-item"><a href="{{route('admin.py.completed')}}" class="nav-link"><i class="icon-cup2"></i>Completed</a></li>
 								<li class="nav-item"><a href="{{route('admin.py.pending')}}" class="nav-link"><i class="icon-spinner2 spinner"></i>Pending</a></li>
-								<li class="nav-item"><a href="{{route('admin.plan.generate_coupons')}}" class="nav-link"><i class="icon-add"></i>Generate Coupons</a></li>
+								<li class="nav-item"><a href="{{route('admin.coupons.index')}}" class="nav-link"><i class="icon-add"></i>Generate Coupons</a></li>
 							</ul>
 						</li>												
 						<li class="nav-item nav-item-submenu">

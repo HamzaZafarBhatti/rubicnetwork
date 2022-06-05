@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DataOperatorController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ExtractionController;
@@ -80,6 +81,8 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('banks', BankController::class);
         Route::resource('data_operators', DataOperatorController::class);
         Route::resource('plans', PlanController::class);
+        Route::resource('coupons', CouponController::class);
+        Route::get('/coupons_download', [CouponController::class, 'coupons_download'])->name('coupons.download');
     });
 });
 
@@ -221,9 +224,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     //Py scheme controller
     Route::get('py-completed', [PyschemeController::class, 'Completed'])->name('admin.py.completed');
     Route::get('py-pending', [PyschemeController::class, 'Pending'])->name('admin.py.pending');
-    Route::get('py-generate-plan-coupons', [PyschemeController::class, 'generate_coupons'])->name('admin.plan.generate_coupons');
-    Route::get('py-download-plan-coupons', [PyschemeController::class, 'download_codes'])->name('admin.plan.download_codes');
-    Route::post('py-generate-plan-coupons', [PyschemeController::class, 'do_generate_coupons'])->name('admin.plan.do_generate_coupons');
 
     //Setting controller
     Route::get('settings', [SettingController::class, 'Settings'])->name('admin.setting');

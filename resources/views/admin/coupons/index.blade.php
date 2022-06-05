@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
                         <p class="text-danger"></p>
-                        <form action="{{ route('admin.plan.do_generate_coupons') }}" method="post">
+                        <form action="{{ route('admin.coupons.store') }}" method="post">
                             @csrf
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Codes Quantity:</label>
@@ -35,14 +35,6 @@
                                     </select>
                                 </div>
                             </div>
-                            {{-- <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Codes Length:</label>
-                                <div class="col-lg-10">
-                                    <div class="input-group">
-                                        <input type="number" step="1" name="length" required class="form-control">
-                                    </div>
-                                </div>
-                            </div> --}}
                             <div class="text-right">
                                 <button type="submit" class="btn bg-dark">Submit<i
                                         class="icon-paperplane ml-2"></i></button>
@@ -77,26 +69,14 @@
                                         <td>{{ $val->serial }}</td>
                                         <td>{{ $val->plan ? $val->plan->name : 'N/A' }}</td>
                                         <td>
-                                            @if ($val->status == 'inactive')
+                                            @if ($val->status == 1)
                                                 <span class="badge badge-danger">Disabled</span>
-                                            @elseif($val->status == 'active')
+                                            @elseif($val->status == 0)
                                                 <span class="badge badge-success">Active</span>
                                             @endif
                                         </td>
                                         <td>{{ date('Y/m/d h:i:A', strtotime($val->created_at)) }}</td>
                                         <td>{{ date('Y/m/d h:i:A', strtotime($val->updated_at)) }}</td>
-                                        {{-- <td class="text-center">
-                                        <div class="list-icons">
-                                            <div class="dropdown">
-                                                <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                                    <i class="icon-menu9"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class='dropdown-item' href="{{url('/')}}/admin/py-plan/{{$val->id}}"><i class="icon-pencil7 mr-2"></i>Edit</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -110,10 +90,11 @@
 @stop
 @section('script')
     <script>
-        console.log('{{Session::get('download_link')}}')
-        if('{{Session::get('download_link')}}') {
+        console.log('{{ Session::get('download_link') }}')
+        if ('{{ Session::get('download_link') }}') {
             // location.reload(true);
-            $('#download_link').removeClass('disabled').attr('href', '{{route(Session::get('download_link') ?? 'user.dashboard')}}').trigger('click');
+            $('#download_link').removeClass('disabled').attr('href',
+                '{{ route(Session::get('download_link') ?? 'user.dashboard') }}').trigger('click');
         } else {
             $('#download_link').addClass('disabled')
         }

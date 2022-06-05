@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
-use App\Models\Coupons;
+use App\Models\Coupon;
 use App\Models\Currency;
 use App\Models\Design;
 use App\Models\Logo;
@@ -89,7 +89,7 @@ class AppServiceProvider extends ServiceProvider
         $data['cat'] = Category::all();
         $data['ui'] = Design::first();
         $data['logo'] = Logo::first();
-        $data['coupons'] = Coupons::all();
+        // $data['coupons'] = Coupon::all();
         $data['currency'] = Currency::whereStatus(1)->first();
 
         View::share($data);
