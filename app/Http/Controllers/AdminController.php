@@ -88,9 +88,9 @@ class AdminController extends Controller
         $data['totalplan'] = Plan::count();
         $data['appplan'] = Plan::whereStatus(1)->count();
         $data['penplan'] = Plan::whereStatus(0)->count();
-        $data['totalprofit'] = Profits::count();
-        $data['appprofit'] = Profits::whereStatus(1)->count();
-        $data['penprofit'] = Profits::whereStatus(0)->count();
+        // $data['totalprofit'] = Profits::count();
+        // $data['appprofit'] = Profits::whereStatus(1)->count();
+        // $data['penprofit'] = Profits::whereStatus(0)->count();
         $data['messages'] = Contact::count();
         return view('admin.dashboard.index', $data);
     }

@@ -133,7 +133,7 @@
       </div>
     </div>
   </div>  
-  <div class="col-md-4">
+  {{-- <div class="col-md-4">
     <div class="card border-left-3 border-left-violet rounded-left-0">
       <div class="card-body">
         <div class="d-sm-flex align-item-sm-center flex-sm-nowrap">
@@ -153,5 +153,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   @stop
