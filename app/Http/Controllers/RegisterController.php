@@ -59,13 +59,13 @@ class RegisterController extends Controller
         // return $coupon_code;
         if (!$coupon_code) {
             return redirect()->route('user.register')
-                        ->withErrors(['coupon_id' => 'ACTIVATION PIN CODE INVALID'])
-                        ->withInput();
+                ->withErrors(['coupon_id' => 'ACTIVATION PIN CODE INVALID'])
+                ->withInput();
         }
         if ($coupon_code->status == 1) {
             return redirect()->route('user.register')
-                        ->withErrors(['coupon_id' => 'ACTIVATION PIN CODE used'])
-                        ->withInput();
+                ->withErrors(['coupon_id' => 'ACTIVATION PIN CODE used'])
+                ->withInput();
         }
 
         $basic = Settings::first();
@@ -89,7 +89,6 @@ class RegisterController extends Controller
         $sms_code = strtoupper(Str::random(6));
         $email_time = Carbon::parse()->addMinutes(5);
         $phone_time = Carbon::parse()->addMinutes(5);
-        $acct = '2' . rand(1, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -126,53 +125,42 @@ class RegisterController extends Controller
             'username' => $request->username,
             'password' => $request->password,
         ])) {
-
             return redirect()->route('user.dashboard');
         }
     }
-    public function referral($id)
+    public function referral($username)
     {
-        $data['title'] = 'GoldMint Mining Account Registration';
-        $data['ref'] = $id;
         // return $data;
         if (Auth::user()) {
             return redirect()->intended('user/dashboard');
         } else {
-            return view('/auth/referral', $data);
+            return view('user.auth.referral', compact('username'));
         }
     }
 
-    public function submitreferral(Request $request)
+    public function do_referral(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        // return $request;
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|min:5|unique:users|regex:/^\S*$/u',
             'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'required|numeric|min:8|unique:users',
             'password' => 'required|string|min:4|confirmed',
-            'coupon' => 'required|string|unique:users',
+            'coupon_id' => 'required|string',
+            'referee_username' => 'required|string',
         ]);
-        if ($validator->fails()) {
-            // adding an extra field 'error'...
-            $data['title'] = 'Affiliate system';
-            $data['ref'] = $request->ref;
-            $data['errors'] = $validator->errors();
-            Session::flash('error', 'ERROR REGISTRATION: ' . json_encode($data['errors']));
-            return view('/auth/referral', $data);
-        }
 
-        $coupon_code = Coupon::with('plan')->where('serial', $request->coupon)->first();
+        $coupon_code = Coupon::with('plan')->where('serial', $request->coupon_id)->first();
         if (!$coupon_code) {
-            $data['title'] = 'Affiliate system';
-            $data['ref'] = $request->ref;
-            Session::flash('error', 'ACTIVATION PIN CODE INVALID');
-            return view('/auth/referral', $data);
+            return redirect()->route('user.referral', $request->referee_username)
+                ->withErrors(['coupon_id' => 'ACTIVATION PIN CODE INVALID'])
+                ->withInput();
         }
-        if ($coupon_code->status == 'inactive') {
-            $data['title'] = 'Affiliate system';
-            $data['ref'] = $request->ref;
-            Session::flash('error', 'ACTIVATION PIN CODE used');
-            return view('/auth/referral', $data);
+        if ($coupon_code->status == 1) {
+            return redirect()->route('user.referral', $request->referee_username)
+                ->withErrors(['coupon_id' => 'ACTIVATION PIN CODE used'])
+                ->withInput();
         }
         // return $coupon_code;
 
@@ -189,78 +177,77 @@ class RegisterController extends Controller
         } else {
             $phone_verify = 1;
         }
-        if ($basic->coupon_verification == 1) {
-            $coupon = 0;
-        } else {
-            $coupon = 1;
-        }
+        // if ($basic->coupon_verification == 1) {
+        //     $coupon = 0;
+        // } else {
+        //     $coupon = 1;
+        // }
         // return $request;
         $verification_code = strtoupper(Str::random(6));
         $sms_code = strtoupper(Str::random(6));
         $email_time = Carbon::parse()->addMinutes(5);
         $phone_time = Carbon::parse()->addMinutes(5);
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->username = $request->username;
-        $user->email_verify = $email_verify;
-        $user->verification_code = $verification_code;
-        $user->sms_code = $sms_code;
-        $user->email_time = $email_time;
-        $user->phone_verify = $phone_verify;
-        $user->phone_time = $phone_time;
-        $user->balance = $basic->balance_reg;
-        $user->ip_address = user_ip();
-        $user->pin = '0000';
-        $user->coupon = $request->coupon;
-        $user->activated_at = date('Y-m-d');
-        $user->password = Hash::make($request->password);
-        $user->save();
-        $main = User::with('parent_reference')->whereUsername($request->ref)->first();
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'username' => $request->username,
+            'email_verify' => $email_verify,
+            'verification_code' => $verification_code,
+            'sms_code' => $sms_code,
+            'email_time' => $email_time,
+            'phone_verify' => $phone_verify,
+            'phone_time' => $phone_time,
+            'extraction_balance' => $basic->balance_reg,
+            'ip_address' => user_ip(),
+            'coupon_id' => $coupon_code->id,
+            'plan_id' => $coupon_code->plan_id,
+            'activated_at' => date('Y-m-d'),
+            'password' => bcrypt($request->password),
+        ]);
+        $referee_user = User::/* with('parent_reference')-> */whereUsername($request->referee_username)->first();
         // return $coupon_code->plan->id;
         // return $main;
-        if ($coupon_code->plan->id === 10) {
-            $main->is_selfcashout = $main->is_selfcashout + 1;
-        }
-        $ref_bonus = $main->ref_bonus + ($coupon_code->plan->upgrade * $coupon_code->plan->ref_percent / 100);
-        $main->ref_bonus = $ref_bonus;
-        $main->save();
-        $ref = User::whereUsername($request->username)->first();
-        $sav['user_id'] = $ref->id;
-        $sav['ref_id'] = $main->id;
-        $sav['is_direct'] = 1;
-        Referral::create($sav);
-        if (!$main->parent_reference->isEmpty()) {
-            $parent = User::find($main->parent_reference[0]->id);
-            $ref_bonus = $parent->ref_bonus + ($coupon_code->plan->upgrade * $coupon_code->plan->indirect_ref_com / 100);
-            $parent->ref_bonus = $ref_bonus;
-            $parent->save();
-            $sav['user_id'] = $ref->id;
-            $sav['ref_id'] = $parent->id;
-            $sav['is_direct'] = 0;
-            Referral::create($sav);
-        }
-        $coupon_code->update(['status' => 'inactive']);
+        // if ($coupon_code->plan->id === 10) {
+        //     $main->is_selfcashout = $main->is_selfcashout + 1;
+        // }
+        $ref_bonus = $referee_user->ref_earning + ($coupon_code->plan->upgrade * $coupon_code->plan->ref_percent / 100);
+        Referral::create([
+            'referral_id' => $user->id,
+            'referee_id' => $referee_user->id,
+            'referee_ref_earning' => $referee_user->ref_earning,
+            'bonus' => $ref_bonus,
+        ]);
+        $referee_user->update(['ref_earning' => $ref_bonus]);
+        // if (!$main->parent_reference->isEmpty()) {
+        //     $parent = User::find($main->parent_reference[0]->id);
+        //     $ref_bonus = $parent->ref_bonus + ($coupon_code->plan->upgrade * $coupon_code->plan->indirect_ref_com / 100);
+        //     $parent->ref_bonus = $ref_bonus;
+        //     $parent->save();
+        //     $sav['user_id'] = $ref->id;
+        //     $sav['ref_id'] = $parent->id;
+        //     $sav['is_direct'] = 0;
+        //     Referral::create($sav);
+        // }
+        $coupon_code->update(['status' => 1]);
 
 
-        if ($basic->email_verification == 1) {
-            $text = "Your Email Verification Code Is: $user->verification_code";
-            // send_email($user->email, $user->name, 'Email verification', $text);
-            $temp = Etemplate::first();
-            Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->name, $text, 'Email verification'));
-        }
-        if ($basic->sms_verification == 1) {
-            $message = "Your phone verification code is: $user->sms_code";
-            send_sms($user->phone, strip_tags($message));
-        }
+        // if ($basic->email_verification == 1) {
+        //     $text = "Your Email Verification Code Is: $user->verification_code";
+        //     // send_email($user->email, $user->name, 'Email verification', $text);
+        //     $temp = Etemplate::first();
+        //     Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->name, $text, 'Email verification'));
+        // }
+        // if ($basic->sms_verification == 1) {
+        //     $message = "Your phone verification code is: $user->sms_code";
+        //     send_sms($user->phone, strip_tags($message));
+        // }
 
         if (Auth::attempt([
             'username' => $request->username,
             'password' => $request->password,
         ])) {
-
-            return redirect()->intended('user/dashboard');
+            return redirect()->route('user.dashboard');
         }
     }
 }

@@ -60,6 +60,8 @@ Route::get('/sponsored_post', [FrontendController::class, 'sponsored_post'])->na
 Route::name('user.')->group(function () {
     Route::get('/register', [RegisterController::class, 'register'])->name('register');
     Route::post('/register', [RegisterController::class, 'do_register'])->name('do_register');
+    Route::get('/rubic_referral/{username}', [RegisterController::class, 'referral'])->name('referral');
+    Route::post('/rubic_referral', [RegisterController::class, 'do_referral'])->name('do_referral');
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login', [LoginController::class, 'do_login'])->name('do_login');
     Route::prefix('user')->middleware('auth:web')->group(function () {
@@ -76,7 +78,6 @@ Route::name('user.')->group(function () {
         Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
         Route::get('/referrals/earning/history', [ReferralController::class, 'earning_history'])->name('referrals.earning_history');
         Route::get('/referrals/convert', [ReferralController::class, 'convert'])->name('referrals.convert');
-
     });
 });
 

@@ -1,6 +1,6 @@
 @extends('layouts.master-without-nav')
 @section('title')
-    @lang('translation.Register')
+    Referral Signup
 @endsection
 @section('content')
     <div class="auth-page">
@@ -20,7 +20,7 @@
                                         <h5 class="mb-0">Register Account</h5>
                                     </div>
                                     <form class="needs-validation mt-4 pt-2" novalidate method="POST"
-                                        action="{{ route('user.do_register') }}">
+                                        action="{{ route('user.do_referral') }}">
                                         @csrf
                                         <div class="form-floating form-floating-custom mb-4">
                                             <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -104,8 +104,6 @@
                                                 <i data-feather="lock"></i>
                                             </div>
                                         </div>
-                                        
-
                                         <div class="form-floating form-floating-custom mb-4">
                                             <input type="text" class="form-control @error('coupon_id') is-invalid @enderror"
                                                 name="coupon_id" value="{{ old('coupon_id') }}" id="input-coupon-id"
@@ -120,9 +118,23 @@
                                                 <i data-feather="key"></i>
                                             </div>
                                         </div>
+                                        <div class="form-floating form-floating-custom mb-4">
+                                            <input type="text" class="form-control @error('referee_username') is-invalid @enderror"
+                                                name="referee_username" value="{{ $username }}" id="input-referee_username" required readonly>
+                                            @error('referee_username')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                            <label for="input-referee_username">Referral User</label>
+                                            <div class="form-floating-icon">
+                                                <i data-feather="user"></i>
+                                            </div>
+                                        </div>
                                         <div class="mb-4">
-                                            <p class="mb-0">By registering you agree to the {{ $set->site_name }} <a href="#"
-                                                    class="text-primary">Terms of Use</a></p>
+                                            <p class="mb-0">By registering you agree to the
+                                                {{ $set->site_name }} <a href="#" class="text-primary">Terms of Use</a>
+                                            </p>
                                         </div>
                                         <div class="mb-3">
                                             <button class="btn btn-primary w-100 waves-effect waves-light"
@@ -131,8 +143,9 @@
                                     </form>
 
                                     <div class="mt-5 text-center">
-                                        <p class="text-muted mb-0">Already have an account ? <a href="{{ route('user.login') }}"
-                                                class="text-primary fw-semibold"> Login </a> </p>
+                                        <p class="text-muted mb-0">Already have an account ? <a
+                                                href="{{ route('user.login') }}" class="text-primary fw-semibold"> Login
+                                            </a> </p>
                                     </div>
                                 </div>
                             </div>

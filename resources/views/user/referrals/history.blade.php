@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 @section('title')
-    My Referrals
+    Referral Earning History
 @endsection
 @section('css')
     <link href="{{ URL::asset('user_assets/libs/datatables.net-bs4/datatables.net-bs4.min.css') }}" rel="stylesheet"
@@ -16,7 +16,7 @@
             Referrals
         @endslot
         @slot('title2')
-            My Referrals
+        Earning History
         @endslot
     @endcomponent
 
@@ -24,25 +24,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Referral Link</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="hstack gap-3">
-                                <input class="form-control me-auto" type="text" id="referral_link"
-                                    value="{{ url('/') . '/rubic_referral/' . auth()->user()->username }}">
-                                <button type="button" onclick="copyReferralLink()" class="btn btn-secondary">Copy</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">My Referrals</h4>
+                    <h4 class="card-title">Earning History</h4>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -52,8 +34,9 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Full Name</th>
                                             <th>Username</th>
+                                            <th>Initial Balance</th>
+                                            <th>Referral Bonus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -61,8 +44,9 @@
                                             @foreach ($referrals as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->referral->name }}</td>
                                                     <td>{{ $item->referral->username }}</td>
+                                                    <td>{{ $item->referee_ref_earning }}</td>
+                                                    <td>{{ $item->bonus }}</td>
                                                 </tr>
                                             @endforeach
                                         @endif

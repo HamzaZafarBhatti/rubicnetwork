@@ -10,7 +10,13 @@ class ReferralController extends Controller
     //
     public function index()
     {
-        $referrals = Referral::whereRefereeId(auth()->user()->id)->get();
+        $referrals = Referral::with('referral')->whereRefereeId(auth()->user()->id)->get();
         return view('user.referrals.index', compact('referrals'));
+    }
+
+    public function earning_history()
+    {
+        $referrals = Referral::with('referral')->whereRefereeId(auth()->user()->id)->get();
+        return view('user.referrals.history', compact('referrals'));
     }
 }
