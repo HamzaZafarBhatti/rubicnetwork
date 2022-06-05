@@ -11,10 +11,10 @@
     <meta name="application-name" content="{{$set->site_name}}"/>
     <meta name="msapplication-TileColor" content="#ffffff"/>
     <meta name="description" content="{{$set->site_desc}}" />
-    {{-- <link rel="shortcut icon" href="{{url('/')}}/asset/{{ $logo->image_link2}}" />
+    <link rel="shortcut icon" href="{{url('/')}}/asset/{{ $logo->image_link2}}" />
     <link rel="apple-touch-icon" href="{{url('/')}}/asset/{{ $logo->image_link2}}" />
     <link rel="apple-touch-icon" sizes="72x72" href="{{url('/')}}/asset/{{ $logo->image_link2 }}" />
-    <link rel="apple-touch-icon" sizes="114x114" href="{{url('/')}}/asset/{{ $logo->image_link2 }}" /> --}}
+    <link rel="apple-touch-icon" sizes="114x114" href="{{url('/')}}/asset/{{ $logo->image_link2 }}" />
     <link rel="stylesheet" href="{{url('/')}}/asset/frontend/css/sweetalert.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="{{url('/')}}/asset/global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -68,13 +68,13 @@
     <div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center">
         <div class="navbar-brand navbar-brand-md">
           <a href="{{url('/')}}" class="d-inline-block">
-		  	{{-- <img src="{{url('/')}}/asset/{{ $logo->image_link }}"> --}}
+		  	<img src="{{url('/')}}/asset/{{ $logo->image_link }}">
           </a>
         </div>
         
         <div class="navbar-brand navbar-brand-xs">
           <a href="{{url('/')}}" class="d-inline-block">
-		  	{{-- <img src="{{url('/')}}/asset/{{ $logo->image_link }}"> --}}
+		  	<img src="{{url('/')}}/asset/{{ $logo->image_link }}">
           </a>
         </div>
     </div>

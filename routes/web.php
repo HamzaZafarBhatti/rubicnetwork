@@ -9,10 +9,12 @@ use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ExtractionController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaymentProofController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PyschemeController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SelfcashoutController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TransferController;
@@ -32,7 +34,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Auth::routes();
+// Auth::routes();
 //Language Translation
 Route::get('index/{locale}', [HomeController::class, 'lang']);
 
@@ -54,13 +56,20 @@ Route::get('/disclaimer', [FrontendController::class, 'disclaimer'])->name('fron
 Route::get('/sponsored_post', [FrontendController::class, 'sponsored_post'])->name('front.sponsored_post');
 
 //User Dashboard
-Route::prefix('user')->middleware('auth:web')->name('user.')->group(function() {
-    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-    Route::get('/extractions/page', [ExtractionController::class, 'extractions_page'])->name('extractions.page');
-    Route::get('/extractions/start', [ExtractionController::class, 'extractions_start'])->name('extractions.start');
-    Route::get('/extractions/end', [ExtractionController::class, 'extractions_end'])->name('extractions.end');
-    Route::get('/extractions/history', [ExtractionController::class, 'extractions_history'])->name('extractions.history');
-    Route::get('/extractions/convert', [ExtractionController::class, 'extractions_convert'])->name('extractions.convert');
+Route::name('user.')->group(function () {
+    Route::get('/register', [RegisterController::class, 'register'])->name('register');
+    Route::post('/register', [RegisterController::class, 'do_register'])->name('do_register');
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/login', [LoginController::class, 'do_login'])->name('do_login');
+    Route::prefix('user')->middleware('auth:web')->group(function () {
+        Route::get('logout', [UserController::class, 'logout'])->name('logout');
+        Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+        Route::get('/extractions/page', [ExtractionController::class, 'extractions_page'])->name('extractions.page');
+        Route::get('/extractions/start', [ExtractionController::class, 'extractions_start'])->name('extractions.start');
+        Route::get('/extractions/end', [ExtractionController::class, 'extractions_end'])->name('extractions.end');
+        Route::get('/extractions/history', [ExtractionController::class, 'extractions_history'])->name('extractions.history');
+        Route::get('/extractions/convert', [ExtractionController::class, 'extractions_convert'])->name('extractions.convert');
+    });
 });
 
 //Update User Details

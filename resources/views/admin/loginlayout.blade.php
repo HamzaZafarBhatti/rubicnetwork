@@ -11,10 +11,10 @@
         <meta name="application-name" content="{{$set->site_name}}"/>
         <meta name="msapplication-TileColor" content="#ffffff"/>
         <meta name="description" content="{{$set->site_desc}}" />
-        {{-- <link rel="shortcut icon" href="{{ url('/') }}/asset/{{ $logo->image_link2 }}" /> --}}
-        {{-- <link rel="apple-touch-icon" href="{{url('/')}}/asset/{{ $logo->image_link }}" /> --}}
-        {{-- <link rel="apple-touch-icon" sizes="72x72" href="{{url('/')}}/asset/{{ $logo->image_link }}" /> --}}
-        {{-- <link rel="apple-touch-icon" sizes="114x114" href="{{url('/')}}/asset/{{ $logo->image_link }}" /> --}}
+        <link rel="shortcut icon" href="{{ url('/') }}/asset/{{ $logo->image_link2 }}" />
+        <link rel="apple-touch-icon" href="{{url('/')}}/asset/{{ $logo->image_link }}" />
+        <link rel="apple-touch-icon" sizes="72x72" href="{{url('/')}}/asset/{{ $logo->image_link }}" />
+        <link rel="apple-touch-icon" sizes="114x114" href="{{url('/')}}/asset/{{ $logo->image_link }}" />
         <link rel="stylesheet" href="{{url('/')}}/asset/css/sweetalert.css" type="text/css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700&display=swap">
         <link rel="stylesheet" href="{{url('/')}}/asset/dashboard/vendor/nucleo/css/nucleo.css" type="text/css">
@@ -39,7 +39,7 @@
     <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
       <div class="container">
         <a class="navbar-brand" href="{{url('/')}}">
-          {{-- <img src="{{url('/')}}/asset/{{$logo->image_link}}"> --}}
+          <img src="{{url('/')}}/asset/{{$logo->image_link}}">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@
             <div class="row">
               <div class="col-6 collapse-brand">
                 <a href="{{url('/')}}">
-                  {{-- <img src="{{url('/')}}/asset/{{$logo->image_link}}"> --}}
+                  <img src="{{url('/')}}/asset/{{$logo->image_link}}">
                 </a>
               </div>
               <div class="col-6 collapse-close">

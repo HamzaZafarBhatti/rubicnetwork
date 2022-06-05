@@ -839,13 +839,6 @@ class UserController extends Controller
         }
     }
 
-    public function logout()
-    {
-        Auth::guard()->logout();
-        session()->flash('message', 'Just Logged Out!');
-        return redirect('/login');
-    }
-
     public function submitPin(Request $request)
     {
         $this->validate($request, [

@@ -36,10 +36,10 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">My Rubic Wallet</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="0.00">0.00</span>
+                                ₦<span class="counter-value" data-target="{{ auth()->user()->rubic_wallet }}">{{ auth()->user()->rubic_wallet }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦0.00</span>
+                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->rubic_wallet }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -63,10 +63,10 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Rubic Stake Profit</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="0.00">0.00</span>
+                                ₦<span class="counter-value" data-target="{{ auth()->user()->rubic_stake_wallet }}">{{ auth()->user()->rubic_stake_wallet }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦0.00</span>
+                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->rubic_stake_wallet }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -90,10 +90,10 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Extraction Balance</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="0.00">0.00</span>
+                                ₦<span class="counter-value" data-target="{{ auth()->user()->extraction_balance }}">{{ auth()->user()->extraction_balance }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦0.00</span>
+                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->extraction_balance }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -117,10 +117,10 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Referral Earnings</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="0.00">0.00</span>
+                                ₦<span class="counter-value" data-target="{{ auth()->user()->ref_earning }}">{{ auth()->user()->ref_earning }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦0.00</span>
+                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->ref_earning }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -144,10 +144,10 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Indirect Referral Earnings</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="0.00">0.00</span>
+                                ₦<span class="counter-value" data-target="{{ auth()->user()->indirect_ref_earning }}">{{ auth()->user()->indirect_ref_earning }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦0.00</span>
+                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->indirect_ref_earning }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -171,10 +171,10 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Viral Trend</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="0.00">0.00</span>
+                                ₦<span class="counter-value" data-target="{{ auth()->user()->viral_share_earning }}">{{ auth()->user()->viral_share_earning }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+₦0.00</span>
+                                <span class="badge bg-soft-success text-success">+₦{{ auth()->user()->viral_share_earning }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -314,10 +314,10 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Rubic Stake Wallet</span>
                             <h4 class="mb-3">
-                                $<span class="counter-value" data-target="0.00">0.00</span>
+                                $<span class="counter-value" data-target="{{ auth()->user()->rubic_stake_wallet }}">{{ auth()->user()->rubic_stake_wallet }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+$0.00</span>
+                                <span class="badge bg-soft-success text-success">+${{ auth()->user()->rubic_stake_wallet }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -366,7 +366,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
-                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Stake Referrak Earnings</span>
+                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Stake Referral Earnings</span>
                             <h4 class="mb-3">
                                 $<span class="counter-value" data-target="0.00">0.00</span>
                             </h4>

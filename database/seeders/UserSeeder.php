@@ -16,13 +16,14 @@ class UserSeeder extends Seeder
     public function run()
     {
         //
-        User::create([
-            'name' => 'Test User', 
-            'email' => 'user@test.com', 
-            'password' => bcrypt('password'), 
-            'email_verified_at' => now(), 
-            'avatar' => 'avatar-1.jpg', 
-            'created_at' => now(),
-        ]);
+        
+        // User::create([
+        //     'name' => 'Test User', 
+        //     'email' => 'user@test.com', 
+        //     'password' => bcrypt('password'), 
+        //     'email_verified_at' => now(), 
+        //     'avatar' => 'avatar-1.jpg', 
+        //     'created_at' => now(),
+        // ]);
     }
 }

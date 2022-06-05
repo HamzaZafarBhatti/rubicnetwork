@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Mail\GeneralEmail;
 use App\Models\Etemplate;
 use Illuminate\Http\Request;
-use Validator;
 use App\Models\User;
 use App\Models\Settings;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
-use Session;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -27,7 +26,7 @@ class LoginController extends Controller
         if (Auth::user()) {
             return redirect()->intended('user/dashboard');
         } else {
-            return view('/auth/login', $data);
+            return view('user.auth.login', $data);
         }
     }
     public function faverify()
@@ -55,7 +54,7 @@ class LoginController extends Controller
         }
     }
 
-    public function submitlogin(Request $request)
+    public function do_login(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string',
@@ -66,18 +65,19 @@ class LoginController extends Controller
             $validator->errors()->add('error', 'true');
             return response()->json($validator->errors());
         }
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password,])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $ip_address = user_ip();
-            $user = User::find(Auth::user()->id);
+            $user = User::find(auth()->user()->id);
             $set = $data['set'] = Settings::first();
-            if ($ip_address != $user->ip_address & $set['email_notify'] == 1) {
-                // send_email($user->email, $user->username, 'Login Notification', 'Please be informed your account was just accessed from the IP address: ' .$ip_address. '. If this was you, please you can ignore this message or reset your account password immediately or contact us.');
-                $temp = Etemplate::first();
-                Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Sorry your account was just accessed from an unknown IP address<br> ' . $ip_address . '<br>If this was you, please you can ignore this message or reset your account password.', 'Login Notification'));
-            }
-            $user->last_login = Carbon::now();
-            $user->ip_address = $ip_address;
-            $user->save();
+            // if ($ip_address != $user->ip_address & $set['email_notify'] == 1) {
+            //     // send_email($user->email, $user->username, 'Login Notification', 'Please be informed your account was just accessed from the IP address: ' .$ip_address. '. If this was you, please you can ignore this message or reset your account password immediately or contact us.');
+            //     $temp = Etemplate::first();
+            //     Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Sorry your account was just accessed from an unknown IP address<br> ' . $ip_address . '<br>If this was you, please you can ignore this message or reset your account password.', 'Login Notification'));
+            // }
+            $user->update([
+                'last_login' => Carbon::now(),
+                'ip_address' => $ip_address
+            ]);
             if ($user->fa_status == 1) {
                 return redirect()->route('2fa');
             } else {

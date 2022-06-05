@@ -177,14 +177,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a href="{{ route('user.logout') }}">
                         <i data-feather="log-out"></i>
                         <span data-key="t-chat">Logout</span>
                     </a>
-                    
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
                 </li>
 
             </ul>

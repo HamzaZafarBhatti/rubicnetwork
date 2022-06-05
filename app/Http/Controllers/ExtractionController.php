@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Plans;
+use App\Models\Plan;
 use App\Models\Profits;
 use App\Models\User;
 use Carbon\Carbon;
@@ -26,7 +26,7 @@ class ExtractionController extends Controller
     public function extractions_start()
     {
         $user = auth()->user();
-        $plan = Plans::find($user->plan_id);
+        $plan = Plan::find($user->plan_id);
         $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
         $random_string = substr(str_shuffle($data), 0, 16);
         $profit = Profits::where('user_id', $user->id)->where('status', 0)->latest()->first();
