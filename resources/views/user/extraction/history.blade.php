@@ -62,9 +62,11 @@
                                                     <td>{{ $item->trx }}</td>
                                                     <td>
                                                         @if ($item->status == 2)
-                                                            Completed
+                                                            <span
+                                                                class="badge rounded-pill badge-soft-success">Extracted</span>
                                                         @else
-                                                            In progress
+                                                            <span
+                                                                class="badge rounded-pill badge-soft-warning">Extracting</span>
                                                         @endif
                                                     </td>
                                                     <td>{{ $item->start_datetime }}</td>
