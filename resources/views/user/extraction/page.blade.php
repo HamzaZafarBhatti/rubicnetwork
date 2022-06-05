@@ -129,7 +129,7 @@
                     @endif
 
                     <input type="hidden" id="extract_end_date"
-                        value="{{ $latest_mine ? \Carbon\Carbon::parse($latest_mine->end_date) : null }}">
+                        value="{{ $latest_mine ? \Carbon\Carbon::parse($latest_mine->end_datetime) : null }}">
                 </div>
             </div>
         </div>

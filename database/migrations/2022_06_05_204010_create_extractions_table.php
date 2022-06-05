@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('extractions', function (Blueprint $table) {
             $table->id();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('plan_id')->references('id')->on('plan')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('plan_id')->constrained()->cascadeOnDelete();
             $table->float('amount');
             $table->float('profit');
-            $table->integer('status');
+            $table->integer('status')->default(0);
             $table->string('trx');
-            $table->dateTime('end_date');
-            $table->dateTime('date');
+            $table->dateTime('end_datetime');
+            $table->dateTime('start_datetime');
             $table->timestamps();
         });
     }

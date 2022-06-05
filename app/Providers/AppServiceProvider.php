@@ -12,6 +12,7 @@ use App\Models\Setting;
 use App\Models\Settings;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Paginator::useBootstrapFive();
         View::composer('*', function ($view) {
             if (Auth::check()) {
                 $user = User::find(Auth::user()->id);
