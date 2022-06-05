@@ -10,14 +10,14 @@
                     </div>
                     <div class="card-body">
                         <p class="text-danger"></p>
-                        <form action="{{ route('admin.plan.update') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.plans.update', $plan->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('patch')
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Name:</label>
                                 <div class="col-lg-10">
                                     <input type="text" name="name" class="form-control" value="{{ $plan->name }}"
                                         reqiured>
-                                    <input type="hidden" name="id" value="{{ $plan->id }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -32,28 +32,18 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Minimum amount:</label>
-                                <div class="col-lg-10">
-                                    <div class="input-group">
-                                        <input type="number" step="any" name="min_amount" value="{{$plan->min_deposit}}" class="form-control">
-                                        <span class="input-group-append">
-                                            <span class="input-group-text">BTC</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>                             
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Maximum amount:</label>
+                                <label class="col-form-label col-lg-2">Amount:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
-                                        <input type="number" step="any" name="max_amount" value="{{$plan->amount}}" class="form-control">
+                                        <input type="number" step="any" name="amount" value="{{ $plan->amount }}"
+                                            class="form-control">
                                         <span class="input-group-append">
-                                            <span class="input-group-text">BTC</span>
+                                            <span class="input-group-text">%</span>
                                         </span>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Upgrade:</label>
                                 <div class="col-lg-10">

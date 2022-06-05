@@ -9,6 +9,7 @@ use App\Http\Controllers\ExtractionController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentProofController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PyschemeController;
 use App\Http\Controllers\SelfcashoutController;
@@ -78,6 +79,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('settings', SettingController::class);
         Route::resource('banks', BankController::class);
         Route::resource('data_operators', DataOperatorController::class);
+        Route::resource('plans', PlanController::class);
     });
 });
 
@@ -90,16 +92,6 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     // Route::get('/logout', 'AdminController@logout')->name('admin.logout');
     // Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
-    //Bank Controller
-    // Route::get('/banks', 'AdminController@banks')->name('admin.banks');
-    // Route::post('/bank_store', 'AdminController@bank_store')->name('admin.bank.store');
-    // Route::get('bank/{id}', 'AdminController@bank_edit')->name('admin.bank.edit');
-    // Route::post('bank', 'AdminController@bank_update')->name('admin.bank.update');
-    //Data Operator Controller
-    // Route::get('/data_operators', [AdminController::class, 'data_operators'])->name('admin.data_operators');
-    // Route::post('/data_operator_store', [AdminController::class, 'data_operator_store'])->name('admin.data_operator.store');
-    // Route::get('data_operator/{id}', [AdminController::class, 'data_operator_edit'])->name('admin.data_operator.edit');
-    // Route::post('data_operator', [AdminController::class, 'data_operator_update'])->name('admin.data_operator.update');
     //Blog controller
     Route::post('/createcategory', [PostController::class, 'CreateCategory']);
     Route::post('/updatecategory', [PostController::class, 'UpdateCategory']);
@@ -229,13 +221,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     //Py scheme controller
     Route::get('py-completed', [PyschemeController::class, 'Completed'])->name('admin.py.completed');
     Route::get('py-pending', [PyschemeController::class, 'Pending'])->name('admin.py.pending');
-    Route::get('py-plans', [PyschemeController::class, 'Plans'])->name('admin.py.plans');
-    Route::get('py/delete/{id}', [PyschemeController::class, 'Destroy'])->name('py.delete');
-    Route::get('py-plan/delete/{id}', [PyschemeController::class, 'PlanDestroy'])->name('py.plan.delete');
-    Route::get('py-plan-create', [PyschemeController::class, 'Create'])->name('admin.plan.create');
-    Route::post('py-plan-create', [PyschemeController::class, 'Store'])->name('admin.plan.store');
-    Route::get('py-plan/{id}', [PyschemeController::class, 'Edit'])->name('admin.plan.edit');
-    Route::post('py-plan-edit', [PyschemeController::class, 'Update'])->name('admin.plan.update');
     Route::get('py-generate-plan-coupons', [PyschemeController::class, 'generate_coupons'])->name('admin.plan.generate_coupons');
     Route::get('py-download-plan-coupons', [PyschemeController::class, 'download_codes'])->name('admin.plan.download_codes');
     Route::post('py-generate-plan-coupons', [PyschemeController::class, 'do_generate_coupons'])->name('admin.plan.do_generate_coupons');
