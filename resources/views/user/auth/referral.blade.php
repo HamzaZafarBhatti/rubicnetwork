@@ -20,7 +20,7 @@
                                         <h5 class="mb-0">Register Account</h5>
                                     </div>
                                     <form class="needs-validation mt-4 pt-2" novalidate method="POST"
-                                        action="{{ route('user.do_referral') }}">
+                                        action="{{ route('user.do_onboarding') }}">
                                         @csrf
                                         <div class="form-floating form-floating-custom mb-4">
                                             <input type="text" class="form-control @error('name') is-invalid @enderror"
