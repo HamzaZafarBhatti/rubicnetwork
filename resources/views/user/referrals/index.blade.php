@@ -31,7 +31,7 @@
                         <div class="col-lg-12">
                             <div class="hstack gap-3">
                                 <input class="form-control me-auto" type="text" id="referral_link"
-                                    value="{{ url('/') . '/rubic_referral/' . auth()->user()->username }}">
+                                    value="{{ url('/') . '/onboarding/' . auth()->user()->username }}">
                                 <button type="button" onclick="copyReferralLink()" class="btn btn-secondary">Copy</button>
                             </div>
                         </div>
