@@ -108,8 +108,8 @@ class User extends Authenticatable
     // {
     //     return $this->belongsToMany(User::class, Referral::class, 'ref_id', 'user_id');
     // }
-    // public function parent_reference()
-    // {
-    //     return $this->belongsToMany(User::class, Referral::class, 'user_id', 'ref_id')->withPivot('is_direct');
-    // }
+    public function parent()
+    {
+        return $this->belongsToMany(User::class, Referral::class, 'referral_id', 'referee_id');
+    }
 }

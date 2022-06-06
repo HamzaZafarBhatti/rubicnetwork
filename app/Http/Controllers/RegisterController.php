@@ -10,6 +10,7 @@ use App\Models\Coupon;
 use App\Models\User;
 use App\Models\Referral;
 use App\Models\Etemplate;
+use App\Models\IndirectReferral;
 use App\Models\Settings;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -149,9 +150,9 @@ class RegisterController extends Controller
             'referee_username' => 'required|string',
         ]);
 
-        
-        $referee_user = User::/* with('parent_reference')-> */whereUsername($request->referee_username)->first();
-        // return json_encode($referee_user);
+
+        $referee_user = User::with('parent')->whereUsername($request->referee_username)->first();
+        // return json_encode(!$referee_user->parent->isEmpty());
         if (!$referee_user) {
             return redirect()->route('user.onboarding', $request->referee_username)
                 ->withErrors(['referee_username' => 'REFERRAL USERNAME INVALID'])
@@ -217,24 +218,27 @@ class RegisterController extends Controller
         // if ($coupon_code->plan->id === 10) {
         //     $main->is_selfcashout = $main->is_selfcashout + 1;
         // }
-        $ref_bonus = $referee_user->ref_earning + ($coupon_code->plan->upgrade * $coupon_code->plan->ref_percent / 100);
+        $ref_bonus = $coupon_code->plan->upgrade * $coupon_code->plan->ref_percent / 100;
+        $ref_earning = $referee_user->ref_earning + $ref_bonus;
         Referral::create([
             'referral_id' => $user->id,
             'referee_id' => $referee_user->id,
             'referee_ref_earning' => $referee_user->ref_earning,
             'bonus' => $ref_bonus,
         ]);
-        $referee_user->update(['ref_earning' => $ref_bonus]);
-        // if (!$main->parent_reference->isEmpty()) {
-        //     $parent = User::find($main->parent_reference[0]->id);
-        //     $ref_bonus = $parent->ref_bonus + ($coupon_code->plan->upgrade * $coupon_code->plan->indirect_ref_com / 100);
-        //     $parent->ref_bonus = $ref_bonus;
-        //     $parent->save();
-        //     $sav['user_id'] = $ref->id;
-        //     $sav['ref_id'] = $parent->id;
-        //     $sav['is_direct'] = 0;
-        //     Referral::create($sav);
-        // }
+        $referee_user->update(['ref_earning' => $ref_earning]);
+        if (!$referee_user->parent->isEmpty()) {
+            $parent = User::find($referee_user->parent[0]->id);
+            $indirect_ref_bonus = $coupon_code->plan->upgrade * $coupon_code->plan->indirect_ref_com / 100;
+            $indirect_ref_earning = $parent->ref_bonus + $indirect_ref_bonus;
+            IndirectReferral::create([
+                'referral_id' => $user->id,
+                'referee_id' => $parent->id,
+                'referee_ref_earning' => $parent->indirect_ref_earning,
+                'bonus' => $indirect_ref_earning,
+            ]);
+            $parent->update(['indirect_ref_earning' => $indirect_ref_earning]);
+        }
         $coupon_code->update(['status' => 1]);
 
 

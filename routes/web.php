@@ -9,6 +9,7 @@ use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ExtractionController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IndirectReferralController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaymentProofController;
 use App\Http\Controllers\PlanController;
@@ -78,6 +79,10 @@ Route::name('user.')->group(function () {
         Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
         Route::get('/referrals/earning/history', [ReferralController::class, 'earning_history'])->name('referrals.earning_history');
         Route::get('/referrals/convert', [ReferralController::class, 'convert'])->name('referrals.convert');
+        //Indirect Referral
+        Route::get('/indirect_referrals', [IndirectReferralController::class, 'index'])->name('indirect_referrals.index');
+        Route::get('/indirect_referrals/earning/history', [IndirectReferralController::class, 'earning_history'])->name('indirect_referrals.earning_history');
+        Route::get('/indirect_referrals/convert', [IndirectReferralController::class, 'convert'])->name('indirect_referrals.convert');
     });
 });
 

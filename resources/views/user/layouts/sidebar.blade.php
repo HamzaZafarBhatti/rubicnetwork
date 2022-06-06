@@ -10,7 +10,7 @@
                 <li class="menu-title" data-key="t-menu">@lang('translation.Menu')</li>
 
                 <li>
-                    <a href="{{ route('user.dashboard')}}">
+                    <a href="{{ route('user.dashboard') }}">
                         <i data-feather="home"></i>
                         <span class="badge rounded-pill bg-soft-success text-success float-end">9+</span>
                         <span data-key="t-dashboard">@lang('translation.Dashboards')</span>
@@ -25,9 +25,12 @@
                         <span data-key="t-ecommerce">Rubic Extraction</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('user.extractions.page') }}" key="t-products">Extract Rubic Token</a></li>
-                        <li><a href="{{ route('user.extractions.history') }}" data-key="t-product-detail">Extraction History</a></li>
-                        <li><a href="{{ route('user.extractions.convert') }}" data-key="t-orders">Convert to Wallet</a></li>
+                        <li><a href="{{ route('user.extractions.page') }}" key="t-products">Extract Rubic Token</a>
+                        </li>
+                        <li><a href="{{ route('user.extractions.history') }}" data-key="t-product-detail">Extraction
+                                History</a></li>
+                        <li><a href="{{ route('user.extractions.convert') }}" data-key="t-orders">Convert to
+                                Wallet</a></li>
                     </ul>
                 </li>
                 <li>
@@ -48,8 +51,10 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('user.referrals.index') }}" key="t-products">My Referrals</a></li>
-                        <li><a href="{{ route('user.referrals.earning_history') }}" data-key="t-product-detail">Earning History</a></li>
-                        <li><a href="{{ route('user.referrals.convert') }}" data-key="t-orders">Convert to Wallet</a></li>
+                        <li><a href="{{ route('user.referrals.earning_history') }}"
+                                data-key="t-product-detail">Earning History</a></li>
+                        <li><a href="{{ route('user.referrals.convert') }}" data-key="t-orders">Convert to Wallet</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -58,9 +63,12 @@
                         <span data-key="t-ecommerce">Indirect Referral Earnings</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-products">My Indirect Referrals</a></li>
-                        <li><a href="#" data-key="t-product-detail">Earning History</a></li>
-                        <li><a href="#" data-key="t-orders">Convert to Wallet</a></li>
+                        <li><a href="{{ route('user.indirect_referrals.index') }}" key="t-products">My Indirect
+                                Referrals</a></li>
+                        <li><a href="{{ route('user.indirect_referrals.earning_history') }}" data-key="t-product-detail">Earning
+                                History</a></li>
+                        <li><a href="{{ route('user.indirect_referrals.convert') }}" data-key="t-orders">Convert to
+                                Wallet</a></li>
                     </ul>
                 </li>
                 <li>
@@ -85,9 +93,9 @@
                         <span data-key="t-chat">Transfer Extraction</span>
                     </a>
                 </li>
-                
+
                 <li class="menu-title" data-key="t-apps">@lang('translation.Pages')</li>
-                
+
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="shopping-cart"></i>
@@ -108,7 +116,7 @@
                         <li><a href="#" data-key="t-product-detail">Rubic Stake Wallet Withdrawal History</a></li>
                     </ul>
                 </li>
-                
+
                 <li class="menu-title" data-key="t-apps">Rubic Staking</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
@@ -140,11 +148,12 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="#" key="t-products">Stake Referral Earnings</a></li>
-                        <li><a href="#" data-key="t-product-detail">Convert Referral Earnings to Rubic Stake Wallet</a></li>
+                        <li><a href="#" data-key="t-product-detail">Convert Referral Earnings to Rubic Stake Wallet</a>
+                        </li>
                     </ul>
                 </li>
 
-                
+
                 <li class="menu-title" data-key="t-apps">Account Information</li>
                 <li>
                     <a href="#">
