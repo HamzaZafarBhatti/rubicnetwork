@@ -174,22 +174,14 @@
                 if (t < 0) {
                     // console.log('finished');
                     clearInterval(countdown);
-                    $('.deadline').addClass('d-none')
+                    $('.deadline').addClass('d-none');
                     $('.deadline-heading').addClass('d-none')
+                    $('.extraction-gif').next().empty().html('Completing Extraction... WAIT!')
                     now = new Date();
                     if (futureDateUTC < now) {
-                        $.ajax({
-                            url: "{{ route('user.extractions.end') }}",
-                            method: 'get',
-                            success: function(response) {
-                                console.log(response)
-                                if (response.status == 2) {
-                                    location.href = "{{ route('user.extractions.page') }}"
-                                } else {
-                                    alert('Error Completing the request')
-                                }
-                            }
-                        })
+                        setTimeout(function() {
+                            window.location.href = "{{ route('user.extractions.thankyou') }}"
+                        }, 2000);
                     }
                 }
             }

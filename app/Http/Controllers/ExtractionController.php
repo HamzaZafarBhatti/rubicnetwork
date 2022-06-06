@@ -28,7 +28,7 @@ class ExtractionController extends Controller
         $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
         $random_string = substr(str_shuffle($data), 0, 16);
         $extraction = Extraction::where('user_id', $user->id)->where('status', 0)->latest()->first();
-        // return !$extraction;
+        // return $extraction;
         if (!$extraction) {
             $extraction = Extraction::create([
                 'user_id' => $user->id,
@@ -36,7 +36,7 @@ class ExtractionController extends Controller
                 'amount' => $user->extraction_balance,
                 'trx' => $random_string,
                 // 'end_datetime' => Carbon::now()->addHours($plan->extraction_plan_time),
-                'end_datetime' => Carbon::now()->addSeconds(15),
+                'end_datetime' => Carbon::now()->addSeconds(10),
                 'profit' => $plan->percent * $plan->upgrade / 100,
                 'start_datetime' => Carbon::now()
             ]);
@@ -45,27 +45,9 @@ class ExtractionController extends Controller
         return array('status' => '0');
     }
 
-    public function extractions_end()
+    public function extractions_thankyou()
     {
-        $user = User::find(auth()->user()->id);
-        // return $user;
-        $extraction = Extraction::whereUserId($user->id)->where('status', 0)->latest('id')->first();
-        if ($extraction) {
-            $end_date = date_create($extraction->end_date);
-            $ndate = date_format($end_date, "Y-m-d H:i:s");
-            // return json_encode([Carbon::now(), $ndate]);
-            if (Carbon::now()->addSecond() > $ndate) {
-                $extraction->update(['status' => 1]);
-                if ($extraction->status == 1) {
-                    // Log::info('if2');
-                    $user->update(['extraction_balance' => $user->extraction_balance + $extraction->profit]);
-                    $extraction->update(['status' => 2]);
-                }
-                return array('status' => '2');
-            }
-            return array('status' => '1');
-        }
-        return array('status' => '0');
+        return view('user.extraction.thank_you');
     }
 
     public function extractions_history()

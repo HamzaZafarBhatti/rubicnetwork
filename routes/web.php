@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
 // Auth::routes();
 //Language Translation
 Route::get('index/{locale}', [HomeController::class, 'lang']);
@@ -71,7 +71,7 @@ Route::name('user.')->group(function () {
         //Extraction
         Route::get('/extractions/page', [ExtractionController::class, 'extractions_page'])->name('extractions.page');
         Route::get('/extractions/start', [ExtractionController::class, 'extractions_start'])->name('extractions.start');
-        Route::get('/extractions/end', [ExtractionController::class, 'extractions_end'])->name('extractions.end');
+        Route::get('/extractions/thankyou', [ExtractionController::class, 'extractions_thankyou'])->name('extractions.thankyou');
         Route::get('/extractions/history', [ExtractionController::class, 'extractions_history'])->name('extractions.history');
         Route::get('/extractions/convert', [ExtractionController::class, 'extractions_convert'])->name('extractions.convert');
         //Referral

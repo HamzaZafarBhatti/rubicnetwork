@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Currency;
 use App\Models\Design;
+use App\Models\Extraction;
 use App\Models\Logo;
 use App\Models\Profits;
 use App\Models\Setting;
@@ -14,6 +15,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -48,22 +50,18 @@ class AppServiceProvider extends ServiceProvider
                 // } else {
                 //     $cast = $user->image;
                 // }
-                // $profit = /* $data['profit'] = */ Profits::whereUser_id($user->id)->where('status', 0)->latest('id')->first();
-                // Log::info(json_encode($profit));
-                // if($profit) {
-                //     $end_date = date_create($profit->end_date);
-                //     $ndate = date_format($end_date, "Y-m-d H:i:s");
-                //     if (Carbon::now() > $ndate) {
-                //         $profit->update(['status' => 1]);
-                //         if ($profit->status == 1) {
-                //             // Log::info('if2');
-                //             $user->balance = $user->balance + $profit->profit;
-                //             $user->save();
-                //             $profit->status = 2;
-                //             $profit->save();
-                //         }
-                //     }
-                // }
+                $extraction = Extraction::whereUserId($user->id)->where('status', 0)->latest('id')->first();
+                if ($extraction) {
+                    $end_date = Carbon::parse($extraction->end_datetime)->format("Y-m-d H:i:s");
+                    if (Carbon::now() > $end_date) {
+                        $extraction->update(['status' => 1]);
+                        if ($extraction->status == 1) {
+                            // Log::info('if2');
+                            $user->update(['extraction_balance' => $user->extraction_balance + $extraction->profit]);
+                            $extraction->update(['status' => 2]);
+                        }
+                    }
+                }
 
                 // $view->with('user', $user);
                 // $view->with('cast', $cast);
@@ -77,7 +75,7 @@ class AppServiceProvider extends ServiceProvider
                 // if($user){
                 //     $expires_on = Carbon::now()->diffInSeconds(Carbon::parse($user->activated_at)->addMonths($user_plan->active_period), false);
                 //     // $view->with('expires_on', $expires_on);
-    
+
                 //     if($expires_on < 0) {
                 //         $user->is_expired = 1;
                 //         $user->save();
@@ -95,10 +93,10 @@ class AppServiceProvider extends ServiceProvider
 
         View::share($data);
     }
-    
+
     protected function loadhelpers()
     {
-        foreach (glob(__DIR__.'/../Helpers/*.php') as $filename) {
+        foreach (glob(__DIR__ . '/../Helpers/*.php') as $filename) {
             require_once $filename;
         }
     }
