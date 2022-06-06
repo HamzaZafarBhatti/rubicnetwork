@@ -28,8 +28,8 @@ class ExtractionController extends Controller
         $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
         $random_string = substr(str_shuffle($data), 0, 16);
         $extraction = Extraction::where('user_id', $user->id)->where('status', 0)->latest()->first();
-        return $extraction;
-        if ($user->plan_id != null && $user->plan_id != 0 && empty($extraction)) {
+        return !$extraction;
+        if ($user->plan_id != null && $user->plan_id != 0 && !$extraction) {
             $extraction = Extraction::create([
                 'user_id' => $user->id,
                 'plan_id' => $user->plan_id,
