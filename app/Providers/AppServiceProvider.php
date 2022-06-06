@@ -50,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
                 // } else {
                 //     $cast = $user->image;
                 // }
-                $extraction = Extraction::whereUserId($user->id)->where('status', 0)->latest('id')->first();
+                $extraction = Extraction::whereUserId(auth()->user()->id)->where('status', 0)->latest('id')->first();
                 if ($extraction) {
                     $end_date = Carbon::parse($extraction->end_datetime)->format("Y-m-d H:i:s");
                     if (Carbon::now() > $end_date) {
