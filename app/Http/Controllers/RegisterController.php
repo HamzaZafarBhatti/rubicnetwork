@@ -7,12 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\GeneralEmail;
 use App\Models\Coupon;
-use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Referral;
 use App\Models\Etemplate;
 use App\Models\Settings;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -128,7 +126,7 @@ class RegisterController extends Controller
             return redirect()->route('user.dashboard');
         }
     }
-    public function referral($username)
+    public function onboarding($username)
     {
         // return $data;
         if (Auth::user()) {
@@ -138,7 +136,7 @@ class RegisterController extends Controller
         }
     }
 
-    public function do_referral(Request $request)
+    public function do_onboarding(Request $request)
     {
         // return $request;
         $validated = $request->validate([
@@ -155,19 +153,19 @@ class RegisterController extends Controller
         $referee_user = User::/* with('parent_reference')-> */whereUsername($request->referee_username)->first();
         // return json_encode($referee_user);
         if (!$referee_user) {
-            return redirect()->route('user.referral', $request->referee_username)
+            return redirect()->route('user.onboarding', $request->referee_username)
                 ->withErrors(['referee_username' => 'REFERRAL USERNAME INVALID'])
                 ->withInput();
         }
 
         $coupon_code = Coupon::with('plan')->where('serial', $request->coupon_id)->first();
         if (!$coupon_code) {
-            return redirect()->route('user.referral', $request->referee_username)
+            return redirect()->route('user.onboarding', $request->referee_username)
                 ->withErrors(['coupon_id' => 'ACTIVATION PIN CODE INVALID'])
                 ->withInput();
         }
         if ($coupon_code->status == 1) {
-            return redirect()->route('user.referral', $request->referee_username)
+            return redirect()->route('user.onboarding', $request->referee_username)
                 ->withErrors(['coupon_id' => 'ACTIVATION PIN CODE used'])
                 ->withInput();
         }

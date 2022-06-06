@@ -60,8 +60,8 @@ Route::get('/sponsored_post', [FrontendController::class, 'sponsored_post'])->na
 Route::name('user.')->group(function () {
     Route::get('/register', [RegisterController::class, 'register'])->name('register');
     Route::post('/register', [RegisterController::class, 'do_register'])->name('do_register');
-    Route::get('/rubic_referral/{username}', [RegisterController::class, 'referral'])->name('referral');
-    Route::post('/rubic_referral', [RegisterController::class, 'do_referral'])->name('do_referral');
+    Route::get('/onboarding/{username}', [RegisterController::class, 'onboarding'])->name('onboarding');
+    Route::post('/onboarding', [RegisterController::class, 'do_onboarding'])->name('do_onboarding');
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login', [LoginController::class, 'do_login'])->name('do_login');
     Route::prefix('user')->middleware('auth:web')->group(function () {
