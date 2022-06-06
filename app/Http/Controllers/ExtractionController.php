@@ -27,16 +27,16 @@ class ExtractionController extends Controller
         $plan = Plan::find($user->plan_id);
         $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
         $random_string = substr(str_shuffle($data), 0, 16);
-        $profit = Extraction::where('user_id', $user->id)->where('status', 0)->latest()->first();
-        // return $profit;
-        if ($user->plan_id != null && $user->plan_id != 0 && empty($profit)) {
+        $extraction = Extraction::where('user_id', $user->id)->where('status', 0)->latest()->first();
+        // return $extraction;
+        if ($user->plan_id != null && $user->plan_id != 0 && empty($extraction)) {
             $extraction = Extraction::create([
                 'user_id' => $user->id,
                 'plan_id' => $user->plan_id,
                 'amount' => $user->extraction_balance,
                 'trx' => $random_string,
-                'end_datetime' => Carbon::now()->addHours($plan->extraction_plan_time),
-                // 'end_datetime' => Carbon::now()->addSeconds(5),
+                // 'end_datetime' => Carbon::now()->addHours($plan->extraction_plan_time),
+                'end_datetime' => Carbon::now()->addSeconds(60),
                 'profit' => $plan->percent * $plan->upgrade / 100,
                 'start_datetime' => Carbon::now()
             ]);
