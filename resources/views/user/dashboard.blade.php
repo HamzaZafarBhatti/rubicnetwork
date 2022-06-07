@@ -8,7 +8,6 @@
         #tradingview_d68cc {
             height: 400px;
         }
-
     </style>
 @endsection
 @section('content')
@@ -49,35 +48,6 @@
 
                         <div class="flex-shrink-0 text-end dash-widget">
                             <div id="mini-chart1" data-colors='["#1c84ee", "#33c38e"]' class="apex-charts"></div>
-                        </div>
-                    </div>
-                    <div class="mt-2">
-                        <a href="#">Transaction History ></a>
-                    </div>
-                </div><!-- end card body -->
-            </div><!-- end card -->
-        </div><!-- end col -->
-        <div class="col-xl-3 col-md-6">
-            <!-- card -->
-            <div class="card card-h-100">
-                <!-- card body -->
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="flex-grow-1">
-                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Rubic Stake Profit</span>
-                            <h4 class="mb-3">
-                                ₦<span class="counter-value"
-                                    data-target="{{ auth()->user()->rubic_stake_wallet }}">{{ auth()->user()->rubic_stake_wallet }}</span>
-                            </h4>
-                            <div class="text-nowrap">
-                                <span
-                                    class="badge bg-soft-success text-success">+₦{{ auth()->user()->rubic_stake_wallet }}</span>
-                                <span class="ms-1 text-muted font-size-13">Since last week</span>
-                            </div>
-                        </div>
-
-                        <div class="flex-shrink-0 text-end dash-widget">
-                            <div id="mini-chart14" data-colors='["#1c84ee", "#33c38e"]' class="apex-charts"></div>
                         </div>
                     </div>
                     <div class="mt-2">
@@ -271,6 +241,15 @@
                 </div><!-- end card body -->
             </div><!-- end card -->
         </div><!-- end col -->
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-18">Rubic Staking
+                    <div>
+                        <small>Financial Earning Staking through RUBIC/USDT Market Trading leverage</small>
+                    </div>
+                </h4>
+            </div>
+        </div>
         <div class="col-xl-3 col-md-6">
             <!-- card -->
             <div class="card card-h-100">
@@ -343,6 +322,35 @@
                     </div>
                     <div class="mt-2">
                         <a href="#">All Wallet Transaction History ></a>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-h-100">
+                <!-- card body -->
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Rubic Stake Profit</span>
+                            <h4 class="mb-3">
+                                ₦<span class="counter-value"
+                                    data-target="{{ auth()->user()->rubic_stake_wallet }}">{{ auth()->user()->rubic_stake_wallet }}</span>
+                            </h4>
+                            <div class="text-nowrap">
+                                <span
+                                    class="badge bg-soft-success text-success">+₦{{ auth()->user()->rubic_stake_wallet }}</span>
+                                <span class="ms-1 text-muted font-size-13">Since last week</span>
+                            </div>
+                        </div>
+
+                        <div class="flex-shrink-0 text-end dash-widget">
+                            <div id="mini-chart14" data-colors='["#1c84ee", "#33c38e"]' class="apex-charts"></div>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <a href="#">Transaction History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->
@@ -514,13 +522,13 @@
                                                             </tr>
                                                         @endforeach
                                                     @else
-                                                            <tr>
-                                                                <td>
-                                                                    <div>
-                                                                        <h5 class="font-size-15">No Extractions Yet!</h5>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <h5 class="font-size-15">No Extractions Yet!</h5>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
                                                     @endif
                                                 </tbody>
                                             </table>
