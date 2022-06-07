@@ -18,12 +18,6 @@ use Image;
 class PostController extends Controller
 {
 
-    public function category()
-    {
-        $data['title'] = 'Blog Category';
-        $data['cat'] = Category::latest()->get();
-        return view('admin.blog.post-category', $data);
-    }
 
     public function index()
     {
@@ -36,17 +30,6 @@ class PostController extends Controller
         $data['title'] = 'Add Blog';
         $data['category'] = Category::all();
         return view('admin.blog.add', $data);
-    }
-
-    public function delcategory($id)
-    {
-        $data = Category::findOrFail($id);
-        $res =  $data->delete();
-        if ($res) {
-            return back()->with('success', 'Category was Successfully deleted!');
-        } else {
-            return back()->with('alert', 'Problem With Deleting Category');
-        }
     }
 
     public function destroy($id)
@@ -86,33 +69,6 @@ class PostController extends Controller
         return view('admin.blog.edit', $data);
     }
 
-    public function CreateCategory(Request $request)
-    {
-        $macCount = Category::where('categories', $request->name)->count();
-        if ($macCount > 0) {
-            return back()->with('alert', 'This one Already Exist');
-        } else {
-            $data['categories'] = $request->name;
-            $res = Category::create($data);
-            if ($res) {
-                return back()->with('success', 'Saved Successfully!');
-            } else {
-                return back()->with('alert', 'Problem With Adding New Category');
-            }
-        }
-    }
-
-    public function UpdateCategory(Request $request)
-    {
-        $mac = Category::findOrFail($request->id);
-        $mac['categories'] = $request->name;
-        $res = $mac->save();
-        if ($res) {
-            return back()->with('success', ' Updated Successfully!');
-        } else {
-            return back()->with('alert', 'Problem With Updating Category');
-        }
-    }
 
     public function updatePost(Request $request)
     {

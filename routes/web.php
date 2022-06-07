@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DataOperatorController;
 use App\Http\Controllers\DepositController;
@@ -106,6 +107,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('plans', PlanController::class);
         Route::resource('coupons', CouponController::class);
         Route::get('/coupons_download', [CouponController::class, 'coupons_download'])->name('coupons.download');
+        Route::resource('blog_categories', CategoryPostController::class);
     });
 });
 

@@ -85,7 +85,7 @@ class AppServiceProvider extends ServiceProvider
         });
         // $data['setting'] = Setting::first();
         $data['set'] = Settings::first();
-        $data['cat'] = Category::all();
+        // $data['cat'] = Category::all();
         $data['ui'] = Design::first();
         $data['logo'] = Logo::first();
         // $data['coupons'] = Coupon::all();
