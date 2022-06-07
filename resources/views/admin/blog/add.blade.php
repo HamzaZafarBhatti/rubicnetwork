@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
                 <p class="text-danger"></p>
-                <form action="{{ route('blog.create') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.blogs.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
                         <label class="col-form-label col-lg-2">Title:</label>
