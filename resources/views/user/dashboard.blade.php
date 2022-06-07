@@ -31,7 +31,8 @@
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                 <h4 class="mb-sm-0 font-size-18"><span class="text-primary">Rubic Network</span>
                     <div>
-                        <small>Extract RUBIC TOKENS and Get as Revenue with Full Payments - Guaranteed without Referrals</small>
+                        <small>Extract RUBIC TOKENS and Get as Revenue with Full Payments - Guaranteed without
+                            Referrals</small>
                     </div>
                 </h4>
             </div>
@@ -118,7 +119,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="#">Referral Earnings History ></a>
+                        <a href="{{ route('user.referrals.earning_history') }}">Referral Earnings History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->
@@ -147,7 +148,8 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="#">Indirect Referral Earnings History ></a>
+                        <a href="{{ route('user.indirect_referrals.earning_history') }}">Indirect Referral Earnings
+                            History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->
@@ -236,7 +238,8 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Extracts</span>
                             <h4 class="mb-3">
-                                <span class="counter-value" data-target="{{ $extractions_count }}">{{ $extractions_count }}</span>
+                                <span class="counter-value"
+                                    data-target="{{ $extractions_count }}">{{ $extractions_count }}</span>
                             </h4>
                         </div>
 
@@ -245,7 +248,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="#">Extraction History ></a>
+                        <a href="{{ route('user.extractions.history') }}">Extraction History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->
@@ -292,7 +295,8 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Referrals</span>
                             <h4 class="mb-3">
-                                <span class="counter-value" data-target="0">0</span>
+                                <span class="counter-value"
+                                    data-target="{{ $referral_count }}">{{ $referral_count }}</span>
                             </h4>
                         </div>
 
