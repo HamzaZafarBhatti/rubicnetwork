@@ -108,6 +108,9 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('coupons', CouponController::class);
         Route::get('/coupons_download', [CouponController::class, 'coupons_download'])->name('coupons.download');
         Route::resource('blog_categories', CategoryPostController::class);
+        Route::resource('blogs', PostController::class);
+        Route::get('blogs/unpublish/{id}', [PostController::class, 'unpublish'])->name('blogs.unpublish');
+        Route::get('blogs/publish/{id}', [PostController::class, 'publish'])->name('blogs.publish');
     });
 });
 
@@ -120,19 +123,6 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     // Route::get('/logout', 'AdminController@logout')->name('admin.logout');
     // Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
-    //Blog controller
-    Route::post('/createcategory', [PostController::class, 'CreateCategory']);
-    Route::post('/updatecategory', [PostController::class, 'UpdateCategory']);
-    Route::get('/post-category', [PostController::class, 'category'])->name('admin.cat');
-    Route::get('/unblog/{id}', [PostController::class, 'unblog'])->name('blog.unpublish');
-    Route::get('/pblog/{id}', [PostController::class, 'pblog'])->name('blog.publish');
-    Route::get('blog', [PostController::class, 'index'])->name('admin.blog');
-    Route::get('blog/create', [PostController::class, 'create'])->name('blog.create');
-    Route::post('blog/create', [PostController::class, 'store'])->name('blog.store');
-    Route::get('blog/delete/{id}', [PostController::class, 'destroy'])->name('blog.delete');
-    Route::get('category/delete/{id}', [PostController::class, 'delcategory'])->name('blog.delcategory');
-    Route::get('blog/edit/{id}', [PostController::class, 'edit'])->name('blog.edit');
-    Route::post('blog-update', [PostController::class, 'updatePost'])->name('blog.update');
 
     //Web controller
     Route::post('social-links/update', [WebController::class, 'UpdateSocial'])->name('social-links.update');

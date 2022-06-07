@@ -27,14 +27,14 @@
                     <div class="form-group row">
                         <label class="col-form-label col-lg-2">Category:</label>
                         <div class="col-lg-10">
-                            <select class="form-control select" name="cat_id" data-dropdown-css-class="bg-info-800"
+                            <select class="form-control select" name="category_post_id" data-dropdown-css-class="bg-info-800"
                                 data-fouc required>
-                                @foreach ($cat as $val)
-                                    <option value='{{ $val->id }}'>{{ $val->categories }}</option>
+                                @foreach ($category as $val)
+                                    <option value='{{ $val->id }}'>{{ $val->name }}</option>
                                 @endforeach
                             </select>
-                            @if ($errors->has('cat_id'))
-                                <div class="error">{{ $errors->first('cat_id') }}</div>
+                            @if ($errors->has('category_post_id'))
+                                <div class="error">{{ $errors->first('category_post_id') }}</div>
                             @endif
                         </div>
                     </div>
