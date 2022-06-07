@@ -23,15 +23,15 @@
                                 <form class="mt-4 pt-2" action="{{ route('user.do_login') }}" method="POST">
                                     @csrf
                                     <div class="form-floating form-floating-custom mb-4">
-                                        <input type="text" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="input-username" placeholder="Enter User Name" name="email">
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="input-email" placeholder="Enter Email" name="email">
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        <label for="input-username">Username</label>
+                                        <label for="input-email">Email</label>
                                         <div class="form-floating-icon">
-                                        <i data-feather="users"></i>
+                                        <i data-feather="user"></i>
                                         </div>
                                     </div>
 
