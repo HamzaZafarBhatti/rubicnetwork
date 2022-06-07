@@ -243,7 +243,7 @@
         </div><!-- end col -->
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18">Rubic Staking
+                <h4 class="mb-sm-0 font-size-18 text-primary">Rubic Staking
                     <div>
                         <small>Financial Earning Staking through RUBIC/USDT Market Trading leverage</small>
                     </div>
