@@ -141,7 +141,7 @@
                         if (response.status == 1) {
                             location.reload()
                         } else {
-                            alert('MINING already in progress!')
+                            alert('EXTRACTION already in progress!')
                         }
                     }
                 })
