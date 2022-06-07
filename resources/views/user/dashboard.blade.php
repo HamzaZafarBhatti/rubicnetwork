@@ -29,7 +29,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18 text-primary">Rubic Network
+                <h4 class="mb-sm-0 font-size-18"><span class="text-primary">Rubic Network</span>
                     <div>
                         <small>Extract RUBIC TOKENS and Get as Revenue with Full Payments - Guaranteed without Referrals</small>
                     </div>
@@ -252,7 +252,7 @@
         </div><!-- end col -->
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18 text-primary">Rubic Staking
+                <h4 class="mb-sm-0 font-size-18"><span class="text-primary">Rubic Staking</span>
                     <div>
                         <small>Financial Earning Staking through RUBIC/USDT Market Trading leverage</small>
                     </div>
