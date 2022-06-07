@@ -18,8 +18,10 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        $extractions = Extraction::where('user_id', auth()->user()->id)->get();
-        return view('user.dashboard', compact('extractions'));
+        $ext_query = Extraction::where('user_id', auth()->user()->id);
+        $extractions = $ext_query->get();
+        $extractions_count = $ext_query->count();
+        return view('user.dashboard', compact('extractions', 'extractions_count'));
     }
 
     public function profile()

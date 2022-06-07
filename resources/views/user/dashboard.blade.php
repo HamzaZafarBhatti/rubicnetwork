@@ -236,7 +236,7 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Extracts</span>
                             <h4 class="mb-3">
-                                <span class="counter-value" data-target="0">0</span>
+                                <span class="counter-value" data-target="{{ $extractions_count }}">{{ $extractions_count }}</span>
                             </h4>
                         </div>
 
