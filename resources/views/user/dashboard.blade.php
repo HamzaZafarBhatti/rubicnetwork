@@ -15,12 +15,6 @@
         @slot('li_1')
             Dashboard
         @endslot
-        {{-- @slot('title1')
-            Good Evening ! {{ auth()->user()->name }}
-        @endslot
-        @slot('small')
-            You are on the <a href="#">{{ auth()->user()->plan->name }}</a>
-        @endslot --}}
         @slot('title2')
             Welcome !
         @endslot

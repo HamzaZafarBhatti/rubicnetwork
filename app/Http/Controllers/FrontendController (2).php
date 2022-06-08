@@ -115,23 +115,6 @@ class FrontendController extends Controller
         return view('front.blog', $data);
     }
 
-    public function article($id)
-    {
-        $post = $data['post'] = Blog::find($id);
-        $xcat = $data['xcat'] = Category::find($post->cat_id);
-        $post->views += 1;
-        $post->save();
-        $data['title'] = $data['post']->title;
-        $data['is_shared'] = false;
-        if (auth()->user()) {
-            $user_shared_post = Blog::whereHas('users', function ($q) {
-                $q->where('users.id', auth()->user()->id);
-            })->where('id', $id)->first();
-            $data['is_shared'] = $user_shared_post !== null ? true : false;
-        }
-        return view('front.single', $data);
-    }
-
     public function category($id)
     {
         // return $trending;

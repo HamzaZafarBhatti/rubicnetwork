@@ -1,4 +1,4 @@
-@extends('layouts.master-without-nav')
+@extends('user.layouts.master-without-nav')
 @section('title')
 @lang('translation.Recover_Password')
 @endsection

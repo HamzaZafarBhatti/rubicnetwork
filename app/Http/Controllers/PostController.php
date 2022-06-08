@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Validator;
-use App\Models\Blog;
-use App\Models\Category;
 use App\Models\CategoryPost;
 use App\Models\Post;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Image;
+use Illuminate\Support\Str;
 
 
 
@@ -56,6 +53,7 @@ class PostController extends Controller
         );
 
         $in = $request->except('_token');
+        $in['slug'] = Str::slug($request->title, '-');
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = 'post_' . time() . '.jpg';
@@ -97,9 +95,10 @@ class PostController extends Controller
                     'details.required' => 'Post Details  must not be empty',
                 ]
             );
-    
-    
+
+
             $in = $request->except('_token');
+            $in['slug'] = Str::slug($request->title, '-');
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $filename = 'post_' . time() . '.jpg';
@@ -110,14 +109,14 @@ class PostController extends Controller
                 $in['image'] = $filename;
             }
             $res = $post->update($in);
-    
+
             if ($res) {
                 return back()->with('success', 'Updated Successfully!');
             } else {
                 return back()->with('alert', 'Problem With Updating Article');
             }
-        } catch(Exception $e) {
-            Log::info('Error: '. $e->getMessage());
+        } catch (Exception $e) {
+            Log::info('Error: ' . $e->getMessage());
             return back()->with('alert', 'Problem With Updating Article');
         }
         // return $data;

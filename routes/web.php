@@ -22,6 +22,7 @@ use App\Http\Controllers\SelfcashoutController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ViralShareController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\WithdrawController;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,7 @@ Route::get('/faq', [FrontendController::class, 'faq'])->name('front.faq');
 Route::get('/pin_dispatchers', [FrontendController::class, 'pin_dispatchers'])->name('front.pin_dispatchers');
 Route::get('/disclaimer', [FrontendController::class, 'disclaimer'])->name('front.disclaimer');
 Route::get('/sponsored_post', [FrontendController::class, 'sponsored_post'])->name('front.sponsored_post');
+Route::get('/sponsored_post/{id}/{slug}', [FrontendController::class, 'article'])->name('front.single.post');
 
 //User Dashboard
 Route::name('user.')->group(function () {
@@ -84,6 +86,10 @@ Route::name('user.')->group(function () {
         Route::get('/indirect_referrals', [IndirectReferralController::class, 'index'])->name('indirect_referrals.index');
         Route::get('/indirect_referrals/earning/history', [IndirectReferralController::class, 'earning_history'])->name('indirect_referrals.earning_history');
         Route::get('/indirect_referrals/convert', [IndirectReferralController::class, 'convert'])->name('indirect_referrals.convert');
+        //Viral Share
+        Route::get('/viral_shares', [ViralShareController::class, 'index'])->name('viral_shares.index');
+        Route::get('/viral_shares/history', [ViralShareController::class, 'history'])->name('viral_shares.history');
+        Route::get('/viral_shares/convert', [ViralShareController::class, 'convert'])->name('viral_shares.convert');
     });
 });
 

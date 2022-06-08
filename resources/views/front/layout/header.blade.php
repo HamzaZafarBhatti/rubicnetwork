@@ -39,16 +39,19 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarPolicy"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarPolicy" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             POLICY
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarPolicy">
-                            <li><a class="dropdown-item" href="{{ route('front.terms_condition') }}">TERMS & CONDITION</a>
+                            <li><a class="dropdown-item" href="{{ route('front.terms_condition') }}">TERMS &
+                                    CONDITION</a>
                             </li>
-                            <li><a class="dropdown-item" href="{{ route('front.privacy_policy') }}">PRIVACY POLICY</a>
+                            <li><a class="dropdown-item" href="{{ route('front.privacy_policy') }}">PRIVACY
+                                    POLICY</a>
                             </li>
-                            <li><a class="dropdown-item" href="{{ route('front.cookies_policy') }}">COOKIES POLICY</a>
+                            <li><a class="dropdown-item" href="{{ route('front.cookies_policy') }}">COOKIES
+                                    POLICY</a>
                             </li>
                         </ul>
                     </li>
@@ -58,15 +61,17 @@
                             ACTIVATION PIN CODE
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarActivation">
-                            <li><a class="dropdown-item" href="{{ route('front.pin_verification') }}">ACTIVATION PIN CODE VERIFICATION</a>
+                            <li><a class="dropdown-item" href="{{ route('front.pin_verification') }}">ACTIVATION PIN
+                                    CODE VERIFICATION</a>
                             </li>
-                            <li><a class="dropdown-item" href="{{ route('front.pin_dispatchers') }}">ACTIVATION PIN CODE DISPATCHERS</a>
+                            <li><a class="dropdown-item" href="{{ route('front.pin_dispatchers') }}">ACTIVATION PIN
+                                    CODE DISPATCHERS</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarPages"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarPages" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             PAGES
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarPages">
@@ -84,46 +89,24 @@
                             </li>
                         </ul>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('front.terms_condition') }}">TERMS & CONDITION</a>
-                    </li> --}}
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('front.privacy_policy') }}">PRIVACY POLICY</a>
-                    </li> --}}
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('front.pin_verification') }}">ACTIVATION PIN CODE VERIFICATION</a>
-                    </li> --}}
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('front.cookies_policy') }}">COOKIES POLICY</a>
-                    </li> --}}
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('front.contact_us') }}">CONTACT US</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('front.top_earners') }}">TOP EARNERS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('front.payment_proof') }}">PAYMENT PROOF</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('front.faq') }}">FAQ</a>
-                    </li> --}}
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('front.pin_dispatchers') }}">ACTIVATION PIN CODE DISPATCHERS</a>
-                    </li> --}}
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('front.disclaimer') }}">DISLCLAIMER</a>
-                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('front.sponsored_post') }}">SPONSORED POST</a>
                     </li>
-                    <li class="nav-item d-block d-sm-none">
-                        <a href="{{ route('user.login') }}" class="nav-link">Log In</a>
-                    </li>
-                    <li class="nav-item d-block d-sm-none">
-                        <a href="{{ route('user.register') }}" class="button button--effect button--last">Join Now <i
-                                class="fa-solid fa-arrow-right-long"></i></a>
-                    </li>
+                    @guest
+                        <li class="nav-item d-block d-sm-none">
+                            <a href="{{ route('user.login') }}" class="nav-link">Log In</a>
+                        </li>
+                        <li class="nav-item d-block d-sm-none">
+                            <a href="{{ route('user.register') }}" class="button button--effect button--last">Join Now <i
+                                    class="fa-solid fa-arrow-right-long"></i></a>
+                        </li>
+                    @endguest
+                    @auth
+                        <li class="nav-item d-block d-sm-none">
+                            <a href="{{ route('user.dashboard') }}" class="button button--effect button--last">Dashboard <i
+                                    class="fa-solid fa-arrow-right-long"></i></a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>

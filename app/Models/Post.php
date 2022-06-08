@@ -11,6 +11,7 @@ class Post extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'details',
         'image',
         'category_post_id',
@@ -22,5 +23,10 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(CategoryPost::class, 'category_post_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, PostUser::class);
     }
 }

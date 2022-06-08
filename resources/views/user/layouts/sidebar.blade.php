@@ -39,9 +39,9 @@
                         <span data-key="t-ecommerce">Viral Share</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-products">Viral Share Earn</a></li>
-                        <li><a href="#" data-key="t-product-detail">Viral Share History</a></li>
-                        <li><a href="#" data-key="t-orders">Convert to Wallet</a></li>
+                        <li><a href="{{ route('user.viral_shares.index') }}" key="t-products">Viral Share Earn</a></li>
+                        <li><a href="{{ route('user.viral_shares.history') }}" data-key="t-product-detail">Viral Share History</a></li>
+                        <li><a href="{{ route('user.viral_shares.convert') }}" data-key="t-orders">Convert to Wallet</a></li>
                     </ul>
                 </li>
                 <li>

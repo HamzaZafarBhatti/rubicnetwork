@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryPost;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -66,5 +68,20 @@ class FrontendController extends Controller
     public function sponsored_post()
     {
         return view('front.sponsored_post');
+    }
+    public function article($id)
+    {
+        // return auth()->user();
+        $post = $data['post'] = Post::with('category')->whereId($id)->first();
+        $post->update(['views' => $post->views + 1]);
+        $data['title'] = $data['post']->title;
+        $data['is_shared'] = false;
+        if (auth()->user()) {
+            $user_shared_post = Post::whereHas('users', function ($q) {
+                $q->where('users.id', auth()->user()->id);
+            })->where('id', $id)->first();
+            $data['is_shared'] = $user_shared_post !== null ? true : false;
+        }
+        return view('front.single_post', $data);
     }
 }
