@@ -20,6 +20,7 @@ use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SelfcashoutController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\StakePlanController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViralShareController;
@@ -111,6 +112,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('banks', BankController::class);
         Route::resource('data_operators', DataOperatorController::class);
         Route::resource('plans', PlanController::class);
+        Route::resource('stake_plans', StakePlanController::class);
         Route::resource('coupons', CouponController::class);
         Route::get('/coupons_download', [CouponController::class, 'coupons_download'])->name('coupons.download');
         Route::resource('blog_categories', CategoryPostController::class);
