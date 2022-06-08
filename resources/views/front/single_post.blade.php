@@ -19,6 +19,12 @@
                                 <p>{{ \Carbon\Carbon::parse($post->post_date)->toFormattedDateString() }}</p>
                             </div>
                         </div>
+                        <div class="post__date">
+                            <div class="dat">
+                                <i class="fas fa-eye"></i>
+                                <p>{{ $post->views }}</p>
+                            </div>
+                        </div>
                     </div>
                     <a href="{{ route('user.register') }}" class="button button--effect button--last">CLICK TO EARN <i class="fas fa-share"></i></a>
                 </div>
