@@ -26,7 +26,10 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{ route('user.register') }}" class="button button--effect button--last">CLICK TO EARN <i class="fas fa-share"></i></a>
+                    @if (!$is_shared)
+                        <a href="{{ route('user.register') }}" class="button button--effect button--last">CLICK TO EARN <i
+                                class="fas fa-share"></i></a>
+                    @endif
                 </div>
                 <h2>{{ $post->title }}</h2>
                 <h5>{{ $post->category->name }}</h5>
