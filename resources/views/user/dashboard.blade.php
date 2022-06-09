@@ -928,4 +928,14 @@
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script src="{{ URL::asset('/user_assets/js/pages/dashboard.init.js') }}"></script>
     <script src="{{ URL::asset('/user_assets/js/app.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            console.log('dashboard')
+            setTimeout(() => {
+            console.log('dashboard timeout')
+                $('body').attr('data-sidebar-size', 'lg')
+            }, 1000);
+            $('body').attr('data-sidebar-size', 'lg')
+        })
+    </script>
 @endsection
