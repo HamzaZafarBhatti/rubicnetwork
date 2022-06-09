@@ -26,30 +26,30 @@
                 </div>
             </div>
             @if ($post)
-            <div class="row">
-                <div class="col-xl-4 col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="product-img position-relative">
-                                <img src="{{ url('/') }}/asset/thumbnails/{{ $post->image }}" alt=""
-                                    class="img-fluid mx-auto d-block">
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <div>
-                                    <h5 class="mb-3 text-truncate"><a href="javascript: void(0);"
-                                            class="text-dark">{{ $post->title }} </a></h5>
-                                    <h6>{!! Str::limit($post->details, 150) !!}<a target="_blank"
-                                            href="{{ route('front.single.post', [$post->id, $post->slug] ) }}"
-                                            class="text-muted"> Read more.</a></h6>
+                <div class="row">
+                    <div class="col-xl-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="product-img position-relative">
+                                    <img src="{{ url('/') }}/asset/thumbnails/{{ $post->image }}" alt=""
+                                        class="img-fluid mx-auto d-block">
                                 </div>
-                                <p class="text-primary mb-0" style="min-width: fit-content">
-                                    Views: {{ $post->views }}
-                                </p>
+                                <div class="d-flex justify-content-between align-items-center mt-4">
+                                    <div>
+                                        <h5 class="mb-3 text-truncate"><a href="javascript: void(0);"
+                                                class="text-dark">{{ $post->title }} </a></h5>
+                                        <h6>{!! Str::limit($post->details, 150) !!}<a target="_blank"
+                                                href="{{ route('front.single.post', [$post->id, $post->slug] ) }}"
+                                                class="text-muted"> Read more.</a></h6>
+                                    </div>
+                                    <p class="text-primary mb-0" style="min-width: fit-content">
+                                        Views: {{ $post->views }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @else
                 <h4>No Latest Post!</h4>
             @endif

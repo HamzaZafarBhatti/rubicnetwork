@@ -14,4 +14,10 @@ class ViralShareController extends Controller
         $post = Post::where('status', 1)->whereDate('post_date', Carbon::now())->first();
         return view('user.viral_shares.index', compact('post'));
     }
+
+    public function earn()
+    {
+        $user = User::find(auth()->user()->id);
+        return $user;
+    }
 }
