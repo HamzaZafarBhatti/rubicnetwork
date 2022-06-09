@@ -172,7 +172,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="#">Viral Trend History ></a>
+                        <a href="{{ route('user.viral_shares.history') }}">Viral Trend History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->
@@ -186,7 +186,8 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Viral Trend</span>
                             <h4 class="mb-3">
-                                <span class="counter-value" data-target="0">0</span>
+                                <span class="counter-value"
+                                    data-target="{{ $viral_share_count }}">{{ $viral_share_count }}</span>
                             </h4>
                         </div>
 
@@ -195,7 +196,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="#">Viral Trend History ></a>
+                        <a href="{{ route('user.viral_shares.history') }}">Viral Trend History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->
