@@ -36,6 +36,7 @@
                                             <th>#</th>
                                             <th>Post</th>
                                             <th>Bonus</th>
+                                            <th>Share Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -45,6 +46,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->post->title }}</td>
                                                     <td>{{ $item->bonus }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($item->created_on)->toFormattedDateString() }}</td>
                                                 </tr>
                                             @endforeach
                                         @endif
