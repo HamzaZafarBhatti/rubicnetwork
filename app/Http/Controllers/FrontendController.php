@@ -67,7 +67,9 @@ class FrontendController extends Controller
     }
     public function sponsored_post()
     {
-        return view('front.sponsored_post');
+        $posts = Post::all();
+        $popular_posts = Post::orderBy('created_at', 'desc')->orderBy('views', 'desc')->limit(3)->get();
+        return view('front.sponsored_post', compact('posts', 'popular_posts'));
     }
     public function article($id)
     {
