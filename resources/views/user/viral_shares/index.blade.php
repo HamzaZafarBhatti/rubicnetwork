@@ -25,6 +25,7 @@
                     </div>
                 </div>
             </div>
+            @if ($post)
             <div class="row">
                 <div class="col-xl-4 col-sm-12">
                     <div class="card">
@@ -49,6 +50,9 @@
                     </div>
                 </div>
             </div>
+            @else
+                <h4>No Latest Post!</h4>
+            @endif
             <!-- end row -->
         </div>
     </div>
