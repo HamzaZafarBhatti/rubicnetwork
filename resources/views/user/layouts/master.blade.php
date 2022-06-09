@@ -40,12 +40,10 @@
 @include('user.layouts.vendor-scripts')
 <script>
     $(document).ready(function() {
-        console.log('master')
         setTimeout(() => {
         console.log('master timeout')
             $('body').attr('data-sidebar-size', 'lg')
-        }, 1000);
-        $('body').attr('data-sidebar-size', 'lg')
+        }, 2000);
     })
 </script>
 </body>
