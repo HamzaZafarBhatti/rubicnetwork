@@ -26,14 +26,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="share-title">
-                        @include('front.partial_single_post')
-                    </div>
                 </div>
                 <h2>{{ $post->title }}</h2>
                 <h5>{{ $post->category->name }}</h5>
                 <div class="group">{!! $post->details !!}</div>
-
+                <div class="share-title text-start mt-4">
+                    @include('front.partial_single_post')
+                </div>
             </div>
         </div>
     </section>
