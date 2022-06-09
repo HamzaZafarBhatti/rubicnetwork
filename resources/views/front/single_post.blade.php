@@ -37,7 +37,7 @@
         </div>
     </section>
     <!-- ==== #blog single banner end ==== -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -54,25 +54,25 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @section('scripts')
     <script>
-        $(document).ready(function() {
-            $('#viral_earn').click(function() {
-                console.log('hello')
-                $.ajax({
-                    url: "{{ route('user.viral_shares.earn', $post->id) }}",
-                    method: 'get',
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log(response)
-                        $('.share-title').empty().html(response.html_text)
-                        $("#exampleModal").modal('show')
-                    }
-                })
-            })
-        })
+        // $(document).ready(function() {
+        //     $('#viral_earn').click(function() {
+        //         console.log('hello')
+        //         $.ajax({
+        //             url: "{{ route('user.viral_shares.earn', $post->id) }}",
+        //             method: 'get',
+        //             dataType: 'json',
+        //             success: function(response) {
+        //                 console.log(response)
+        //                 $('.share-title').empty().html(response.html_text)
+        //                 $("#exampleModal").modal('show')
+        //             }
+        //         })
+        //     })
+        // })
     </script>
 @endsection

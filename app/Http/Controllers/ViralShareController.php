@@ -28,15 +28,23 @@ class ViralShareController extends Controller
             'post_id' => $id,
             'bonus' => $user->plan->viral_share_bonus
         ]);
-        $data['is_shared'] = false;
-        if (auth()->user()) {
-            $user_shared_post = Post::whereHas('users', function ($q) {
-                $q->where('users.id', auth()->user()->id);
-            })->where('id', $id)->first();
-            $data['is_shared'] = $user_shared_post !== null ? true : false;
-        }
-        $data['post'] = Post::find($id);
-        $html = view('front.partial_single_post', $data)->render();
-        return json_encode(array('status' => '1', 'html_text' => $html));
+        return redirect()->route('user.viral_shares.history')->with('success', "You have successfully earned from today's VIRAL SHARE. You can now go back to your dashboard to continue to earn from other social activities which RubicNetwork offers.");
+        // $data['is_shared'] = false;
+        // if (auth()->user()) {
+        //     $user_shared_post = Post::whereHas('users', function ($q) {
+        //         $q->where('users.id', auth()->user()->id);
+        //     })->where('id', $id)->first();
+        //     $data['is_shared'] = $user_shared_post !== null ? true : false;
+        // }
+        // $data['post'] = Post::find($id);
+        // $html = view('front.partial_single_post', $data)->render();
+        // return json_encode(array('status' => '1', 'html_text' => $html));
+    }
+
+    public function history()
+    {
+        $shares = PostUser::with('post')->where('user_id', auth()->user()->id)->get();
+        // return $shares;
+        return view('user.viral_shares.history', compact('shares'));
     }
 }

@@ -14,4 +14,13 @@ class PostUser extends Model
         'user_id',
         'bonus',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->select('name', 'username', 'id');
+    }
+    public function post()
+    {
+        return $this->belongsTo(Post::class)->select('id', 'title');
+    }
 }

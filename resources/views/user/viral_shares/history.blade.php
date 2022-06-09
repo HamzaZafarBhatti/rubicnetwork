@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 @section('title')
-    Extraction Page
+    Viral Shares History
 @endsection
 @section('css')
     <link href="{{ URL::asset('user_assets/libs/datatables.net-bs4/datatables.net-bs4.min.css') }}" rel="stylesheet"
@@ -13,10 +13,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Extraction
+            Viral Shares
         @endslot
         @slot('title2')
-            Extraction History
+            History
         @endslot
     @endcomponent
 
@@ -24,7 +24,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Extraction History</h4>
+                    <h4 class="card-title">Viral Shares History</h4>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -34,37 +34,17 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>User</th>
-                                            <th>Plan</th>
-                                            <th>User Extract Balance</th>
-                                            <th>Extract Amount</th>
-                                            <th>Transaction</th>
-                                            <th>Status</th>
-                                            <th>Start Time</th>
-                                            <th>End Time</th>
+                                            <th>Post</th>
+                                            <th>Bonus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if ($extractions)
-                                            @foreach ($extractions as $item)
+                                        @if ($shares)
+                                            @foreach ($shares as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->user->name }}</td>
-                                                    <td>{{ $item->plan->name }}</td>
-                                                    <td>{{ $item->amount }}</td>
-                                                    <td>{{ $item->profit }}</td>
-                                                    <td>{{ $item->trx }}</td>
-                                                    <td>
-                                                        @if ($item->status == 2)
-                                                            <span
-                                                                class="badge rounded-pill badge-soft-success">Extracted</span>
-                                                        @else
-                                                            <span
-                                                                class="badge rounded-pill badge-soft-warning">Extracting</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>{{ $item->start_datetime }}</td>
-                                                    <td>{{ $item->end_datetime }}</td>
+                                                    <td>{{ $item->post->title }}</td>
+                                                    <td>{{ $item->bonus }}</td>
                                                 </tr>
                                             @endforeach
                                         @endif
