@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-4">
                                     <div>
-                                        <h5 class="mb-3 text-truncate"><a href="javascript: void(0);"
+                                        <h5 class="mb-3 text-truncate"><a href="{{ route('front.single.post', [$post->id, $post->slug] ) }}" target="_blank"
                                                 class="text-dark">{{ $post->title }} </a></h5>
                                         <h6>{!! Str::limit($post->details, 150) !!}<a target="_blank"
                                                 href="{{ route('front.single.post', [$post->id, $post->slug] ) }}"

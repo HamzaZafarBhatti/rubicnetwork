@@ -29,6 +29,7 @@
     @include('front.layout.footer')
     @include('front.layout.scroll-to-top')
     @include('front.layout.scripts')
+    @yield('scripts')
 
 </body>
 

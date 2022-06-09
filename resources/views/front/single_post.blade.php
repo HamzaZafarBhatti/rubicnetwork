@@ -26,10 +26,9 @@
                             </div>
                         </div>
                     </div>
-                    @if (!$is_shared)
-                        <a href="{{ route('user.register') }}" class="button button--effect button--last">CLICK TO EARN <i
-                                class="fas fa-share"></i></a>
-                    @endif
+                    <div class="share-title">
+                        @include('front.partial_single_post')
+                    </div>
                 </div>
                 <h2>{{ $post->title }}</h2>
                 <h5>{{ $post->category->name }}</h5>
@@ -39,67 +38,42 @@
         </div>
     </section>
     <!-- ==== #blog single banner end ==== -->
-
-    <!-- ==== browse all post section start ==== -->
-    {{-- <section class="latest__post__features section__space bg__img">
-        <div class="container">
-            <div class="latest__post__features__area wow fadeInUp">
-                <div class="title__with__cta">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-lg-8">
-                            <h2>Latest Posts</h2>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="text-start text-lg-end">
-                                <a href="blog.html" class="button button--secondary button--effect">Browse All
-                                    Posts</a>
-                            </div>
-                        </div>
-                    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">WELL DONE!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="row altr">
-                    <div class="col-md-6 col-xl-4">
-                        <div class="featured__large__post">
-                            <a href="blog-single.html" class="thumbnail">
-                                <img src="assets/images/blog/latest-one.png" alt="Poster" />
-                            </a>
-                            <div class="blog__content">
-                                <h5><a href="blog-single.html">Learn the Benefits of Rental
-                                        Property Investing</a></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                                <a href="blog-single.html">Read More <i class="fa-solid fa-arrow-right-long"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-xl-4">
-                        <div class="featured__large__post">
-                            <a href="blog-single.html" class="thumbnail">
-                                <img src="assets/images/blog/latest__two.png" alt="Poster" />
-                            </a>
-                            <div class="blog__content">
-                                <h5><a href="blog-single.html">A Short Guide on Rental
-                                        Property Investment</a></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                                <a href="blog-single.html">Read More <i class="fa-solid fa-arrow-right-long"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-xl-4">
-                        <div class="featured__large__post">
-                            <a href="blog-single.html" class="thumbnail">
-                                <img src="assets/images/blog/latest-three.png" alt="Poster" />
-                            </a>
-                            <div class="blog__content">
-                                <h5><a href="blog-single.html">Learn the Benefits of Rental
-                                        Property Investing</a></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                                <a href="blog-single.html">Read More <i class="fa-solid fa-arrow-right-long"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="modal-body">
+                    <p>You have successfully earned from today's VIRAL SHARE.</p>
+                    <p>You can now go back to your dashboard to continue to earn from other social activities which
+                        RubicNetwork offers.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-    </section> --}}
-    <!-- ==== #browse all post section end ==== -->
+    </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#viral_earn').click(function() {
+                console.log('hello')
+                $.ajax({
+                    url: "{{ route('user.viral_shares.earn', $post->id) }}",
+                    method: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response)
+                        $('.share-title').empty().html(response.html_text)
+                        $("#exampleModal").modal('show')
+                    }
+                })
+            })
+        })
+    </script>
 @endsection

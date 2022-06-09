@@ -100,10 +100,10 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Facebook share amount:</label>
+                                <label class="col-form-label col-lg-2">Viral share bonus:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
-                                        <input type="number" name="fb_share_amount" placeholder="400NGN"
+                                        <input type="number" name="viral_share_bonus" placeholder="400NGN"
                                             class="form-control" required>
                                     </div>
                                 </div>
@@ -121,18 +121,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Minimum withdrawal for TRADING PROFIT:</label>
+                                <label class="col-form-label col-lg-2">Minimum withdrawal for Viral Share earning:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
-                                        <input type="number" name="min_trade_profit_wd" placeholder="200NGN"
+                                        <input type="number" name="min_viral_share_earning_wd" placeholder="200NGN"
                                             class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">TRADING PROFIT CYCLE:</label>
+                                <label class="col-form-label col-lg-2">Viral Share earning Withdraw CYCLE:</label>
                                 <div class="col-lg-10">
-                                    <select class="form-control select" name="min_trade_profit_wd_cycle" data-fouc required>
+                                    <select class="form-control select" name="min_viral_share_earning_wd_cycle" data-fouc required>
                                         <option value="1">Daily
                                         </option>
                                         <option value="7">Weekly

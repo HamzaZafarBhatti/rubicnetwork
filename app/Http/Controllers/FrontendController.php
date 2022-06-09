@@ -75,7 +75,7 @@ class FrontendController extends Controller
         $post = $data['post'] = Post::with('category')->whereId($id)->first();
         $post->update(['views' => $post->views + 1]);
         $data['title'] = $data['post']->title;
-        $data['is_shared'] = false;
+        $data['is_shared'] = true;
         if (auth()->user()) {
             $user_shared_post = Post::whereHas('users', function ($q) {
                 $q->where('users.id', auth()->user()->id);

@@ -89,9 +89,9 @@ Route::name('user.')->group(function () {
         Route::get('/indirect_referrals/convert', [IndirectReferralController::class, 'convert'])->name('indirect_referrals.convert');
         //Viral Share
         Route::get('/viral_shares', [ViralShareController::class, 'index'])->name('viral_shares.index');
+        Route::get('/viral_shares/{id}/earn', [ViralShareController::class, 'earn'])->name('viral_shares.earn');
         Route::get('/viral_shares/history', [ViralShareController::class, 'history'])->name('viral_shares.history');
         Route::get('/viral_shares/convert', [ViralShareController::class, 'convert'])->name('viral_shares.convert');
-        Route::get('/viral_shares/earn', [ViralShareController::class, 'earn'])->name('viral_shares.earn');
     });
 });
 
