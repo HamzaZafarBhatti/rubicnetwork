@@ -7,9 +7,15 @@
             </a>
             <div class="navbar__out order-2 order-xl-3">
                 <div class="nav__group__btn">
-                    <a href="{{ route('user.login') }}" class="log d-none d-sm-block"> Log In </a>
-                    <a href="{{ route('user.register') }}" class="button button--effect d-none d-sm-block"> Join Now <i
-                            class="fa-solid fa-arrow-right-long"></i> </a>
+                    @auth
+                        <a href="{{ route('user.dashboard') }}" class="button button--effect d-none d-sm-block"> Dashboard
+                            <i class="fa-solid fa-arrow-right-long"></i> </a>
+                    @endauth
+                    @guest
+                        <a href="{{ route('user.login') }}" class="log d-none d-sm-block"> Log In </a>
+                        <a href="{{ route('user.register') }}" class="button button--effect d-none d-sm-block"> Join Now
+                            <i class="fa-solid fa-arrow-right-long"></i> </a>F
+                    @endguest
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav"
                     aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle Primary Nav">
@@ -92,21 +98,22 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('front.sponsored_post') }}">SPONSORED POST</a>
                     </li>
+                    @auth
+                    <li class="nav-item d-block d-sm-none">
+                        <a href="{{ route('user.dashboard') }}"
+                            class="button button--effect button--last">Dashboard <i
+                                class="fa-solid fa-arrow-right-long"></i></a>
+                    </li>    
+                    @endauth
                     @guest
                         <li class="nav-item d-block d-sm-none">
                             <a href="{{ route('user.login') }}" class="nav-link">Log In</a>
                         </li>
                         <li class="nav-item d-block d-sm-none">
-                            <a href="{{ route('user.register') }}" class="button button--effect button--last">Join Now <i
-                                    class="fa-solid fa-arrow-right-long"></i></a>
+                            <a href="{{ route('user.register') }}" class="button button--effect button--last">Join
+                                Now <i class="fa-solid fa-arrow-right-long"></i></a>
                         </li>
                     @endguest
-                    @auth
-                        <li class="nav-item d-block d-sm-none">
-                            <a href="{{ route('user.dashboard') }}" class="button button--effect button--last">Dashboard <i
-                                    class="fa-solid fa-arrow-right-long"></i></a>
-                        </li>
-                    @endauth
                 </ul>
             </div>
         </div>
