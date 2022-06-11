@@ -117,6 +117,10 @@ class StakeCouponController extends Controller
     public function destroy(StakeCoupon $stakeCoupon)
     {
         //
+    }
+
+    public function stake_coupons_download()
+    {
         $codes = Session::get('stake_codes');
         Session::forget(['stake_codes', 'download_link']);
         return response($codes)
