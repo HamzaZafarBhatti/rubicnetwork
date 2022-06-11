@@ -111,7 +111,7 @@ class StakePlanController extends Controller
     {
         //
         $title = $stakePlan->name;
-        return view('admin.stake_plans.edit', compact('title', 'plan'));
+        return view('admin.stake_plans.edit', compact('title', 'stakePlan'));
     }
 
     /**

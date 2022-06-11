@@ -76,7 +76,7 @@
                                 <label class="col-form-label col-lg-2">Return Capital after running:</label>
                                 <div class="col-lg-10">
                                     <select class="form-control select" name="return_capital" data-fouc required>
-                                        <option value="0" @if ($stakePlan->return_capital == o) selected @endif>No
+                                        <option value="0" @if ($stakePlan->return_capital == 0) selected @endif>No
                                         </option>
                                         <option value="1" @if ($stakePlan->return_capital == 1) selected @endif>Yes
                                         </option>
