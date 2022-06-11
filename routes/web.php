@@ -95,6 +95,8 @@ Route::name('user.')->group(function () {
         Route::get('/viral_shares/convert', [ViralShareController::class, 'convert'])->name('viral_shares.convert');
         //Stake Plan
         Route::get('stake_plans/activate', [StakePlanController::class, 'activate'])->name('stake_plans.activate');
+        Route::get('stake_plans/{stakePlan}/do_activate_tether', [StakePlanController::class, 'do_activate_tether'])->name('stake_plans.do_activate_tether');
+        Route::post('stake_plans/{stakePlan}/do_activate_coupon', [StakePlanController::class, 'do_activate_coupon'])->name('stake_plans.do_activate_coupon');
         Route::get('stake_plans/history', [StakePlanController::class, 'history'])->name('stake_plans.history');
     });
 });
@@ -119,9 +121,9 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('plans', PlanController::class);
         Route::resource('stake_plans', StakePlanController::class);
         Route::resource('coupons', CouponController::class);
-        Route::get('/coupons_download', [CouponController::class, 'coupons_download'])->name('coupons.download');
+        Route::get('/coupons/download', [CouponController::class, 'coupons_download'])->name('coupons.download');
         Route::resource('stake_coupons', StakeCouponController::class);
-        Route::get('/stake_coupons_download', [StakeCouponController::class, 'stake_coupons_download'])->name('stake_coupons.download');
+        Route::get('/stake_coupons/download', [StakeCouponController::class, 'stake_coupons_download'])->name('stake_coupons.download');
         Route::resource('blog_categories', CategoryPostController::class);
         Route::resource('blogs', PostController::class);
         Route::get('blogs/unpublish/{id}', [PostController::class, 'unpublish'])->name('blogs.unpublish');

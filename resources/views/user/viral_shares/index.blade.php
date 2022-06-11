@@ -11,8 +11,8 @@
         @slot('li_1')
             Viral Share
         @endslot
-        @slot('title')
-            Products
+        @slot('title2')
+            Latest Post
         @endslot
     @endcomponent
 

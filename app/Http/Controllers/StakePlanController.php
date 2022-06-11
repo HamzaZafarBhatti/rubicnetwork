@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StakeCoupon;
 use App\Models\StakePlan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Image;
+use PayKassaSCI;
 
 class StakePlanController extends Controller
 {
@@ -44,10 +47,10 @@ class StakePlanController extends Controller
     {
         //
         // return $request;
-        if(strlen($request->code_prefix) > 4) {
+        if (strlen($request->code_prefix) > 4) {
             return back()->with('alert', 'Prefix can only be 4 characters');
         }
-        
+
         if (empty($request->status)) {
             $status = 0;
         } else {
@@ -124,10 +127,10 @@ class StakePlanController extends Controller
     {
         //
         // return $request;
-        if(strlen($request->code_prefix) > 4) {
+        if (strlen($request->code_prefix) > 4) {
             return back()->with('alert', 'Prefix can only be 4 characters');
         }
-        
+
         if (empty($request->status)) {
             $status = 0;
         } else {
@@ -191,5 +194,93 @@ class StakePlanController extends Controller
     {
         $plans = StakePlan::where('status', 1)->get();
         return view('user.stake_plans.activate', compact('plans'));
+    }
+    public function do_activate_coupon(Request $request, StakePlan $stakePlan)
+    {
+        // return $stakePlan;
+        // return $request;
+        $stake_coupon = StakeCoupon::whereSerial($request->stake_activation_code)->first();
+        // return json_encode($stake_coupon);
+        if (!$stake_coupon) {
+            return back()->with('alert', 'Stake Activation code is invalid');
+        }
+        if ($stake_coupon->status) {
+            return back()->with('alert', 'Stake Activation code is already used');
+        }
+        $user = User::find(auth()->user()->id);
+        $bonus = $stakePlan->percent * $stakePlan->amount / 100;
+        $user->update(['rubic_stake_wallet' => $user->rubic_stake_wallet + $bonus]);
+
+        return $bonus;
+
+        // $stake_coupon->update(['status'=>1]);
+        // PLAN0P8ZHV
+    }
+
+    public function do_activate_tether(StakePlan $stakePlan)
+    {
+        // return $stakePlan;
+        require_once('app/paykassa/paykassa_sci.class.php'); //the plug-in class to work with SCI, you can download it at the link
+
+        $paykassa_merchant_id = '16603';                 // the ID of the merchant
+        $paykassa_merchant_password = '49fDhcMSxMA8yTmbCJ2rvAhzR7SmDIFG';     // merchant password
+        $test = true;                                              // False test mode - off, True - Enabled
+
+
+        $amount = 10;
+        $system = 'tron_trc20';
+        $currency = 'USDT';
+        $order_id = 'shop_377';
+        $comment = 'comment';
+
+
+        $paykassa = new PayKassaSCI(
+            $paykassa_merchant_id,
+            $paykassa_merchant_password,
+            $test
+        );
+        // return json_encode($paykassa);
+
+        $system_id = [
+            "bitcoin" => 11, // supported currencies BTC    
+            "ethereum" => 12, // supported currencies ETH    
+            "litecoin" => 14, // supported currencies LTC    
+            "dogecoin" => 15, // supported currencies DOGE    
+            "dash" => 16, // supported currencies DASH    
+            "bitcoincash" => 18, // supported currencies BCH    
+            "zcash" => 19, // supported currencies ZEC    
+            "ripple" => 22, // supported currencies XRP    
+            "tron" => 27, // supported currencies TRX    
+            "stellar" => 28, // supported currencies XLM    
+            "binancecoin" => 29, // supported currencies BNB    
+            "tron_trc20" => 30, // supported currencies USDT    
+            "binancesmartchain_bep20" => 31, // supported currencies USDT, BUSD, USDC, ADA, EOS, BTC, ETH, DOGE    
+            "ethereum_erc20" => 32, // supported currencies USDT    
+        ];
+
+        $res = $paykassa->sci_create_order_get_data(
+            $amount,    // required parameter the payment amount example: 1.0433
+            $currency,  // mandatory parameter, currency, example: BTC
+            $order_id,  // mandatory parameter, the unique numeric identifier of the payment in your system, example: 150800
+            $comment,   // mandatory parameter, text commentary of payment example: service Order #150800
+            $system_id[$system] // a required parameter, for example: 12 - Ethereum
+        );
+        // return json_encode($res);
+
+        if ($res['error']) {        // $res['error'] - true if the error
+            return $res['message'];   // $res['message'] - the text of the error message
+            // actions in case of an error
+        } else {
+            $invoice = $res['data']['invoice'];     // The operation number in the system Paykassa.pro
+            $order_id = $res['data']['order_id'];   // The order in the merchant
+            $wallet = $res['data']['wallet'];       // Address for payment
+            $amount = $res['data']['amount'];       // The amount to be paid may change if the Board is translated into a client
+            $system = $res['data']['system'];       // A system in which the billed
+            $url = $res['data']['url'];             // The link to proceed for payment
+            $tag = $res['data']['tag'];             // Tag to indicate the translation to ripple
+
+            return 'Send funds to this address ' . $wallet . (!empty($tag) ? ' Tag: ' . $tag : '') . ' Balance will be updated automatically.';
+            //Send funds to this address 32e6LAW8Nps9GJMSQK4Busm6UUUkUc4tzE. Balance will be updated automatically.
+        }
     }
 }
