@@ -121,11 +121,11 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="shopping-bag"></i>
-                        <span data-key="t-ecommerce">Fund Rubic Stake Account</span>
+                        <span data-key="t-ecommerce">Activate Rubic Stake Plan</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-products">Fund Stake Account</a></li>
-                        <li><a href="#" data-key="t-product-detail">Fund History</a></li>
+                        <li><a href="{{ route('user.stake_plans.activate') }}" key="t-products">Activate Stake Plan</a></li>
+                        <li><a href="{{ route('user.stake_plans.history') }}" data-key="t-product-detail">Stake Plan Activation History</a></li>
                     </ul>
                 </li>
                 <li>

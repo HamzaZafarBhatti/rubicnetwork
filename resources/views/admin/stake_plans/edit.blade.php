@@ -33,19 +33,10 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Minimum Deposit:</label>
+                                <label class="col-form-label col-lg-2">STAKE PLAN AMOUNT:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
-                                        <input type="number" step="any" name="min_deposit" value="{{ $stakePlan->min_deposit }}"
-                                            class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Maximum Deposit:</label>
-                                <div class="col-lg-10">
-                                    <div class="input-group">
-                                        <input type="number" step="any" name="max_deposit" value="{{ $stakePlan->max_deposit }}"
+                                        <input type="number" step="any" name="amount" value="{{ $stakePlan->amount }}"
                                             class="form-control">
                                     </div>
                                 </div>

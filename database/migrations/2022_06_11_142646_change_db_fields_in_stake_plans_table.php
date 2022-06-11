@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::table('stake_plans', function (Blueprint $table) {
             //
-            $table->integer('min_deposit');
-            $table->integer('max_deposit');
             $table->boolean('return_capital');
             $table->integer('stake_profit_transfer');
             $table->integer('stake_profit_transfer_cycle');
@@ -24,7 +22,6 @@ return new class extends Migration
             $table->integer('stake_wallet_wd_cycle');
             $table->integer('ref_earning_transfer');
             $table->integer('ref_earning_transfer_cycle');
-            $table->dropColumn('amount');
             $table->dropColumn('hashrate');
             $table->dropColumn('upgrade');
             $table->dropColumn('fb_share_amount');
@@ -51,8 +48,6 @@ return new class extends Migration
     {
         Schema::table('stake_plans', function (Blueprint $table) {
             //
-            $table->dropColumn('min_deposit');
-            $table->dropColumn('max_deposit');
             $table->dropColumn('return_capital');
             $table->dropColumn('stake_profit_transfer');
             $table->dropColumn('stake_profit_transfer_cycle');
@@ -60,7 +55,6 @@ return new class extends Migration
             $table->dropColumn('stake_wallet_wd_cycle');
             $table->dropColumn('ref_earning_transfer');
             $table->dropColumn('ref_earning_transfer_cycle');
-            $table->integer('amount');
             $table->string('hashrate');
             $table->integer('upgrade');
             $table->integer('fb_share_amount');

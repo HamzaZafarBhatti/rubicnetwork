@@ -92,6 +92,9 @@ Route::name('user.')->group(function () {
         Route::get('/viral_shares/{id}/earn', [ViralShareController::class, 'earn'])->name('viral_shares.earn');
         Route::get('/viral_shares/history', [ViralShareController::class, 'history'])->name('viral_shares.history');
         Route::get('/viral_shares/convert', [ViralShareController::class, 'convert'])->name('viral_shares.convert');
+        //Stake Plan
+        Route::get('stake_plans/activate', [StakePlanController::class, 'activate'])->name('stake_plans.activate');
+        Route::get('stake_plans/history', [StakePlanController::class, 'history'])->name('stake_plans.history');
     });
 });
 
