@@ -71,8 +71,7 @@ class StakePlanController extends Controller
             'ref_percent' => $request->ref_percent,
             'image' => $image_name,
             'upgrade' => $request->upgrade,
-            'min_deposit' => $request->min_deposit,
-            'max_deposit' => $request->max_deposit,
+            'amount' => $request->amount,
             'return_capital' => $request->return_capital,
             'stake_profit_transfer' => $request->stake_profit_transfer,
             'stake_profit_transfer_cycle' => $request->stake_profit_transfer_cycle,
@@ -153,8 +152,7 @@ class StakePlanController extends Controller
             'ref_percent' => $request->ref_percent,
             'image' => $image_name,
             'upgrade' => $request->upgrade,
-            'min_deposit' => $request->min_deposit,
-            'max_deposit' => $request->max_deposit,
+            'amount' => $request->amount,
             'return_capital' => $request->return_capital,
             'stake_profit_transfer' => $request->stake_profit_transfer,
             'stake_profit_transfer_cycle' => $request->stake_profit_transfer_cycle,
@@ -187,5 +185,11 @@ class StakePlanController extends Controller
         } else {
             return back()->with('alert', 'Problem With Deleting Request');
         }
+    }
+
+    public function activate()
+    {
+        $plans = StakePlan::where('status', 1)->get();
+        return view('user.stake_plans.activate', compact('plans'));
     }
 }
