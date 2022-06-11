@@ -16,9 +16,7 @@
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Daily percent</th>
-                                    <th>Price</th>
                                     <th>Duration</th>
-                                    <th>Hashrate</th>
                                     <th>Ref percent</th>
                                     <th>Status</th>
                                     <th>Created</th>
@@ -34,9 +32,7 @@
                                                 style="height: auto; max-width: 40%;"></td>
                                         <td>{{ $val->name }}</td>
                                         <td>{{ $val->percent }}%</td>
-                                        <td>{{ substr($val->amount, 0, 9) }}BTC</td>
                                         <td>{{ $val->duration . $val->period }}(s)</td>
-                                        <td>{{ $val->hashrate }}</td>
                                         <td>{{ $val->ref_percent }}</td>
                                         <td>
                                             @if ($val->status == 0)
@@ -55,7 +51,7 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class='dropdown-item'
-                                                            href="{{ route('admin.plans.edit', $val->id) }}"><i
+                                                            href="{{ route('admin.stake_plans.edit', $val->id) }}"><i
                                                                 class="icon-pencil7 mr-2"></i>Edit</a>
                                                     </div>
                                                 </div>

@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
                         <p class="text-danger"></p>
-                        <form action="{{ route('admin.plans.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.stake_plans.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Name:</label>
@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Hourly percent:</label>
+                                <label class="col-form-label col-lg-2">Daily percent:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
                                         <input type="number" step="any" name="percent"
@@ -33,26 +33,20 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Amount:</label>
+                                <label class="col-form-label col-lg-2">Minimum Deposit:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
-                                        <input type="number" step="any" name="amount"
+                                        <input type="number" step="any" name="min_deposit"
                                             class="form-control">
-                                        <span class="input-group-append">
-                                            <span class="input-group-text">%</span>
-                                        </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Upgrade:</label>
+                                <label class="col-form-label col-lg-2">Maximum Deposit:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
-                                        <input type="number" step="any" name="upgrade"
+                                        <input type="number" step="any" name="max_deposit"
                                             class="form-control">
-                                        <span class="input-group-append">
-                                            <span class="input-group-text">%</span>
-                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -79,6 +73,17 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-form-label col-lg-2">Return Capital after running:</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control select" name="return_capital" data-fouc required>
+                                        <option value="0">No
+                                        </option>
+                                        <option value="1">Yes
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Referral percent:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
@@ -91,48 +96,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Hashrate:</label>
+                                <label class="col-form-label col-lg-2">Minimum transfer for STAKE PROFIT:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
-                                        <input type="text" name="hashrate" placeholder="20Ph/s" class="form-control"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Facebook share amount:</label>
-                                <div class="col-lg-10">
-                                    <div class="input-group">
-                                        <input type="number" name="fb_share_amount" placeholder="400NGN"
+                                        <input type="number" name="stake_profit_transfer" placeholder="200NGN"
                                             class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">INDIRECT REFERRAL COMMISSION:</label>
+                                <label class="col-form-label col-lg-2">STAKE PROFIT TRANSFER to STAKE WALLET CYCLE:</label>
                                 <div class="col-lg-10">
-                                    <div class="input-group">
-                                        <input type="number" name="indirect_ref_com" placeholder="2.5" class="form-control"
-                                            required>
-                                        <span class="input-group-append">
-                                            <span class="input-group-text">%</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Minimum withdrawal for TRADING PROFIT:</label>
-                                <div class="col-lg-10">
-                                    <div class="input-group">
-                                        <input type="number" name="min_trade_profit_wd" placeholder="200NGN"
-                                            class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-lg-2">TRADING PROFIT CYCLE:</label>
-                                <div class="col-lg-10">
-                                    <select class="form-control select" name="min_trade_profit_wd_cycle" data-fouc required>
+                                    <select class="form-control select" name="stake_profit_transfer_cycle" data-fouc required>
                                         <option value="1">Daily
                                         </option>
                                         <option value="7">Weekly
@@ -143,19 +118,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Minimum withdrawal for ACCOUNT BALANCE:</label>
+                                <label class="col-form-label col-lg-2">Minimum withdrawal for STAKE WALLET:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
-                                        <input type="number" name="min_account_balance_wd" placeholder="200NGN"
+                                        <input type="number" name="stake_wallet_wd" placeholder="200NGN"
                                             class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">ACCOUNT BALANCE CYCLE:</label>
+                                <label class="col-form-label col-lg-2">STAKE WALLET WITHDRAWAL CYCLE:</label>
                                 <div class="col-lg-10">
-                                    <select class="form-control select" name="min_account_balance_wd_cycle" data-fouc
-                                        required>
+                                    <select class="form-control select" name="stake_wallet_wd_cycle" data-fouc required>
                                         <option value="1">Daily
                                         </option>
                                         <option value="7">Weekly
@@ -166,18 +140,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Minimum withdrawal for REFERRAL EARNINGS:</label>
+                                <label class="col-form-label col-lg-2">Minimum referral earnings transfer to STAKE WALLET:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
-                                        <input type="number" name="min_ref_earn_wd" placeholder="200NGN"
+                                        <input type="number" name="ref_earning_transfer" placeholder="200NGN"
                                             class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">REFERRAL EARNINGS CYCLE:</label>
+                                <label class="col-form-label col-lg-2">REFERRAL EARNING TRANSFER to STAKE WALLET CYCLE:</label>
                                 <div class="col-lg-10">
-                                    <select class="form-control select" name="min_ref_earn_wd_cycle" data-fouc required>
+                                    <select class="form-control select" name="ref_earning_transfer_cycle" data-fouc required>
                                         <option value="1">Daily
                                         </option>
                                         <option value="7">Weekly
@@ -208,44 +182,11 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Activation Code Length:</label>
+                                <label class="col-form-label col-lg-2">STAKE WALLET Activation Code Length:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
                                         <input type="number" name="code_length" class="form-control"
                                             required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Mine Balance Convert Rate:</label>
-                                <div class="col-lg-10">
-                                    <div class="input-group">
-                                        <input type="number" name="convert_rate" class="form-control"
-                                            step=".1" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Plan Active Period:</label>
-                                <div class="col-lg-10">
-                                    <div class="input-group">
-                                        <input type="number" name="active_period" class="form-control"
-                                            step=".1" required>
-                                        <span class="input-group-append">
-                                            <span class="input-group-text">Months</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Extraction Time:</label>
-                                <div class="col-lg-10">
-                                    <div class="input-group">
-                                        <input type="number" name="extraction_plan_time" class="form-control"
-                                            step="1" required>
-                                        <span class="input-group-append">
-                                            <span class="input-group-text">Hours</span>
-                                        </span>
                                     </div>
                                 </div>
                             </div>

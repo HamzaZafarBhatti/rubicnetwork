@@ -56,7 +56,7 @@ class StakePlanController extends Controller
         $image_name = '';
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $filename = 'plan_' . time() . '.png';
+            $filename = 'stake_plan_' . time() . '.png';
             $location = 'asset/images/' . $filename;
             Image::make($image)->save($location);
             $image_name = $filename;
@@ -67,25 +67,21 @@ class StakePlanController extends Controller
             'percent' => $request->percent,
             'duration' => $request->duration,
             'period' => $request->period,
-            'amount' => $request->amount,
             'status' => $status,
             'ref_percent' => $request->ref_percent,
-            'hashrate' => $request->hashrate,
             'image' => $image_name,
             'upgrade' => $request->upgrade,
-            'fb_share_amount' => $request->fb_share_amount,
-            'indirect_ref_com' => $request->indirect_ref_com,
-            'min_trade_profit_wd' => $request->min_trade_profit_wd,
-            'min_trade_profit_wd_cycle' => $request->min_trade_profit_wd_cycle,
-            'min_account_balance_wd' => $request->min_account_balance_wd,
-            'min_account_balance_wd_cycle' => $request->min_account_balance_wd_cycle,
-            'min_ref_earn_wd' => $request->min_ref_earn_wd,
-            'min_ref_earn_wd_cycle' => $request->min_ref_earn_wd_cycle,
+            'min_deposit' => $request->min_deposit,
+            'max_deposit' => $request->max_deposit,
+            'return_capital' => $request->return_capital,
+            'stake_profit_transfer' => $request->stake_profit_transfer,
+            'stake_profit_transfer_cycle' => $request->stake_profit_transfer_cycle,
+            'stake_wallet_wd' => $request->stake_wallet_wd,
+            'stake_wallet_wd_cycle' => $request->stake_wallet_wd_cycle,
+            'ref_earning_transfer' => $request->ref_earning_transfer,
+            'ref_earning_transfer_cycle' => $request->ref_earning_transfer_cycle,
             'code_prefix' => $request->code_prefix,
             'code_length' => $request->code_length,
-            'convert_rate' => $request->convert_rate,
-            'active_period' => $request->active_period,
-            'extraction_plan_time' => $request->extraction_plan_time,
         ]);
         if ($res) {
             return redirect()->route('admin.stake_plans.index')->with('success', 'Saved Successfully!');
@@ -141,7 +137,7 @@ class StakePlanController extends Controller
         $image_name = $stakePlan->image;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $filename = 'plan_' . time() . '.png';
+            $filename = 'stake_plan_' . time() . '.png';
             $location = 'asset/images/' . $filename;
             Image::make($image)->save($location);
             $path = './asset/images/';
@@ -153,25 +149,21 @@ class StakePlanController extends Controller
             'percent' => $request->percent,
             'duration' => $request->duration,
             'period' => $request->period,
-            'amount' => $request->amount,
             'status' => $status,
             'ref_percent' => $request->ref_percent,
-            'hashrate' => $request->hashrate,
             'image' => $image_name,
             'upgrade' => $request->upgrade,
-            'fb_share_amount' => $request->fb_share_amount,
-            'indirect_ref_com' => $request->indirect_ref_com,
-            'min_trade_profit_wd' => $request->min_trade_profit_wd,
-            'min_trade_profit_wd_cycle' => $request->min_trade_profit_wd_cycle,
-            'min_account_balance_wd' => $request->min_account_balance_wd,
-            'min_account_balance_wd_cycle' => $request->min_account_balance_wd_cycle,
-            'min_ref_earn_wd' => $request->min_ref_earn_wd,
-            'min_ref_earn_wd_cycle' => $request->min_ref_earn_wd_cycle,
+            'min_deposit' => $request->min_deposit,
+            'max_deposit' => $request->max_deposit,
+            'return_capital' => $request->return_capital,
+            'stake_profit_transfer' => $request->stake_profit_transfer,
+            'stake_profit_transfer_cycle' => $request->stake_profit_transfer_cycle,
+            'stake_wallet_wd' => $request->stake_wallet_wd,
+            'stake_wallet_wd_cycle' => $request->stake_wallet_wd_cycle,
+            'ref_earning_transfer' => $request->ref_earning_transfer,
+            'ref_earning_transfer_cycle' => $request->ref_earning_transfer_cycle,
             'code_prefix' => $request->code_prefix,
             'code_length' => $request->code_length,
-            'convert_rate' => $request->convert_rate,
-            'active_period' => $request->active_period,
-            'extraction_plan_time' => $request->extraction_plan_time,
         ]);
         if ($res) {
             return redirect()->route('admin.stake_plans.index')->with('success', 'Saved Successfully!');
