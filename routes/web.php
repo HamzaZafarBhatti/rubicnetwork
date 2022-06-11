@@ -20,6 +20,7 @@ use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SelfcashoutController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\StakeCouponController;
 use App\Http\Controllers\StakePlanController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\UserController;
@@ -119,6 +120,8 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('stake_plans', StakePlanController::class);
         Route::resource('coupons', CouponController::class);
         Route::get('/coupons_download', [CouponController::class, 'coupons_download'])->name('coupons.download');
+        Route::resource('stake_coupons', StakeCouponController::class);
+        Route::get('/stake_coupons_download', [StakeCouponController::class, 'stake_coupons_download'])->name('stake_coupons.download');
         Route::resource('blog_categories', CategoryPostController::class);
         Route::resource('blogs', PostController::class);
         Route::get('blogs/unpublish/{id}', [PostController::class, 'unpublish'])->name('blogs.unpublish');

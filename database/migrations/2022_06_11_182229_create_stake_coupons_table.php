@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('coupons', function (Blueprint $table) {
+        Schema::create('stake_coupons', function (Blueprint $table) {
             $table->id();
             $table->string('serial');
             $table->boolean('status')->default(0);
-            $table->foreignId('plan_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('stake_plan_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coupons');
+        Schema::dropIfExists('stake_coupons');
     }
 };
