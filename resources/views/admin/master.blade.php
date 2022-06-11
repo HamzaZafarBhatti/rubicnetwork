@@ -270,7 +270,7 @@
                                 <li class="nav-item"><a href="{{ route('admin.py.pending') }}"
                                         class="nav-link"><i class="icon-spinner2 spinner"></i>Pending</a></li> --}}
                                 <li class="nav-item"><a href="{{ route('admin.stake_coupons.index') }}"
-                                        class="nav-link"><i class="icon-add"></i>Generate Coupons</a></li>
+                                        class="nav-link"><i class="icon-add"></i>Generate Stake Coupons</a></li>
                             </ul>
                         </li>
                         <li class="nav-item nav-item-submenu">
