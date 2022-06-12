@@ -69,7 +69,7 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="d-flex justify-content-center flex-column" style="gap: 10px">
-                                                                <a type="button" href="{{ route('user.stake_plans.do_activate_tether', $plan->id) }}" class="btn btn-primary">ACTIVATE USING
+                                                                <a type="button" {{-- href="{{ route('user.stake_plans.do_activate_tether', $plan->id) }}" --}} class="btn btn-primary">ACTIVATE USING
                                                                     TETHER USDT</a>
                                                                 <button type="button" class="btn btn-primary stake_activate">ACTIVATE USING
                                                                     STAKE ACTIVATION CODE</button>

@@ -45,9 +45,9 @@
                 <div class="card">
                     <div class="card-header header-elements-inline">
                         <h6 class="card-title font-weight-semibold">Coupon Codes</h6>
-                        <div class="header-elements">
+                        {{-- <div class="header-elements">
                             <a type="button" id="download_link" class="btn btn-primary" disabled>Download</a>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="">
                         <table class="table datatable-show-all">

@@ -344,11 +344,11 @@
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Rubic Stake Profit</span>
                             <h4 class="mb-3">
                                 ₦<span class="counter-value"
-                                    data-target="{{ auth()->user()->rubic_stake_wallet }}">{{ auth()->user()->rubic_stake_wallet }}</span>
+                                    data-target="{{ auth()->user()->user_stake_plans->sum('stake_profit') }}">{{ auth()->user()->user_stake_plans->sum('stake_profit') }}</span>
                             </h4>
                             <div class="text-nowrap">
                                 <span
-                                    class="badge bg-soft-success text-success">+₦{{ auth()->user()->rubic_stake_wallet }}</span>
+                                    class="badge bg-soft-success text-success">+₦{{ auth()->user()->user_stake_plans->sum('stake_profit') }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>

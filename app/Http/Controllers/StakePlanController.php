@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\StakeCoupon;
 use App\Models\StakePlan;
 use App\Models\User;
+use App\Models\UserStakePlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Image;
@@ -190,6 +191,14 @@ class StakePlanController extends Controller
         }
     }
 
+    public function history()
+    {
+        $plans = UserStakePlan::with('stake_plan')->where('user_id', auth()->user()->id)->get();
+        $user_stake_profit = UserStakePlan::where('user_id', auth()->user()->id)->where('is_withdrawn', 0)->sum('stake_profit');
+        // $user = User::with('user_stake_plans')->whereId(auth()->user()->id)->first();
+        // return $user_stake_profit;
+        return view('user.stake_plans.history', compact('plans', 'user_stake_profit'));
+    }
     public function activate()
     {
         $plans = StakePlan::where('status', 1)->get();
@@ -209,12 +218,15 @@ class StakePlanController extends Controller
         }
         $user = User::find(auth()->user()->id);
         $bonus = $stakePlan->percent * $stakePlan->amount / 100;
-        $user->update(['rubic_stake_wallet' => $user->rubic_stake_wallet + $bonus]);
-
-        return $bonus;
-
-        // $stake_coupon->update(['status'=>1]);
-        // PLAN0P8ZHV
+        UserStakePlan::create([
+            'user_id' => $user->id,
+            'stake_plan_id' => $stakePlan->id,
+            'status' => 1,
+            'stake_coupon_id' => $stake_coupon->id,
+            'stake_profit' => $bonus
+        ]);
+        $stake_coupon->update(['status' => 1]);
+        return redirect()->route('user.stake_plans.history');
     }
 
     public function do_activate_tether(StakePlan $stakePlan)

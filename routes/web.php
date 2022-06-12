@@ -115,7 +115,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
     Route::middleware('auth:admin')->group(function () {
         Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-        Route::resource('settings', SettingController::class);
+        // Route::resource('settings', SettingController::class);
         Route::resource('banks', BankController::class);
         Route::resource('data_operators', DataOperatorController::class);
         Route::resource('plans', PlanController::class);

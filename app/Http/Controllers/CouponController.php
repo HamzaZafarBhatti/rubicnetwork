@@ -122,6 +122,7 @@ class CouponController extends Controller
     public function coupons_download()
     {
         $codes = Session::get('codes');
+        return $codes;
         Session::forget(['codes', 'download_link']);
         return response($codes)
             ->withHeaders([

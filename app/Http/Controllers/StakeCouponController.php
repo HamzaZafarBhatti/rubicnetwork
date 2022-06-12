@@ -6,6 +6,7 @@ use App\Models\StakeCoupon;
 use App\Models\StakePlan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class StakeCouponController extends Controller
@@ -122,12 +123,15 @@ class StakeCouponController extends Controller
     public function stake_coupons_download()
     {
         $codes = Session::get('stake_codes');
+        return $codes;
         Session::forget(['stake_codes', 'download_link']);
-        return response($codes)
-            ->withHeaders([
-                'Content-Type' => 'text/plain',
-                'Cache-Control' => 'no-store, no-cache',
-                'Content-Disposition' => 'attachment; filename="latest_stake_codes.txt',
-            ]);
+        File::put(public_path('/upload/codes/latest_stake_codes.txt'),$codes);
+        return response()->download(public_path('/upload/codes/latest_stake_codes.txt'));
+        // return response($codes)
+        //     ->withHeaders([
+        //         'Content-Type' => 'text/plain',
+        //         'Cache-Control' => 'no-store, no-cache',
+        //         'Content-Disposition' => 'attachment; filename="latest_stake_codes.txt',
+        //     ]);
     }
 }

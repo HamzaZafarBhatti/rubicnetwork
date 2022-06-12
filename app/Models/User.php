@@ -100,6 +100,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Plan::class);
     }
+    public function stake_plans()
+    {
+        return $this->belongsToMany(StakePlan::class, UserStakePlan::class, 'user_id', 'stake_plan_id');
+    }
+    public function user_stake_plans()
+    {
+        return $this->hasMany(UserStakePlan::class);
+    }
     public function coupon()
     {
         return $this->belongsTo(Coupon::class);
