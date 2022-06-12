@@ -21,11 +21,18 @@
                             <div class="card mb-xl-0">
                                 <div class="card-body">
                                     <div class="p-2">
-                                        <h5 class="font-size-16">{{ $plan->name }}</h5>
-                                        <h1 class="mt-3">{{ $plan->amount }} <span
-                                                class="text-muted font-size-16 fw-medium">/
-                                                Month</span>
-                                        </h1>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h5 class="font-size-16">{{ $plan->name }}</h5>
+                                                <h1 class="mt-3">{{ $plan->amount }} <span
+                                                        class="text-muted font-size-16 fw-medium">/
+                                                        Month</span>
+                                                </h1>
+                                            </div>
+                                            <div>
+                                                <img src="{{ url('/') }}/asset/images/{{ $plan->image }}" alt="{{ $plan->name }}" width="100" height="100" class="rounded-circle" style="object-fit: cover">
+                                            </div>
+                                        </div>
                                         {{-- <p class="text-muted mt-3 font-size-15">For small teams trying out Dason for an
                                         unlimited
                                         period of time</p> --}}
