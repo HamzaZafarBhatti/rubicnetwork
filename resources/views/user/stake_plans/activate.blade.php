@@ -76,6 +76,15 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="d-flex justify-content-center flex-column" style="gap: 10px">
+                                                                <div>
+                                                                    <h6>Stake Plan: {{ $plan->name }}</h6>
+                                                                </div>
+                                                                <div>
+                                                                    <h6>Stake Amount: {{ $plan->amount }}</h6>
+                                                                </div>
+                                                                <div>
+                                                                    <h6>Stake Profit: {{ $plan->percent }}%</h6>
+                                                                </div>
                                                                 <a type="button" {{-- href="{{ route('user.stake_plans.do_activate_tether', $plan->id) }}" --}} class="btn btn-primary">ACTIVATE USING
                                                                     TETHER USDT</a>
                                                                 <button type="button" class="btn btn-primary stake_activate">ACTIVATE USING
