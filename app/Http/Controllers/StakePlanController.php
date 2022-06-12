@@ -193,7 +193,7 @@ class StakePlanController extends Controller
 
     public function history()
     {
-        $plans = UserStakePlan::with('stake_plan')->where('user_id', auth()->user()->id)->get();
+        $plans = UserStakePlan::with('stake_plan', 'stake_coupon')->where('user_id', auth()->user()->id)->get();
         $user_stake_profit = UserStakePlan::where('user_id', auth()->user()->id)->where('is_withdrawn', 0)->sum('stake_profit');
         // $user = User::with('user_stake_plans')->whereId(auth()->user()->id)->first();
         // return $user_stake_profit;

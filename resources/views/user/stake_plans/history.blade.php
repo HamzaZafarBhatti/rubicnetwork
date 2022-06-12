@@ -48,6 +48,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Stake Plan</th>
+                                            <th>Stake Activation Code</th>
                                             <th>Status</th>
                                             <th>Start Date</th>
                                             <th>Completion Date</th>
@@ -61,6 +62,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->stake_plan->name }}</td>
+                                                    <td>{{ $item->stake_coupon->serial }}</td>
                                                     <td>{{ $item->status ? 'Active' : 'Completed' }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($item->created_on)->toFormattedDateString() }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($item->created_on)->addDays($item->stake_plan->duration)->toFormattedDateString() }}</td>
