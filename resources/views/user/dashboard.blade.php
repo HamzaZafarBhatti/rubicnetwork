@@ -399,10 +399,12 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Stake Referral Earnings</span>
                             <h4 class="mb-3">
-                                $<span class="counter-value" data-target="0.00">0.00</span>
+                                $<span class="counter-value"
+                                    data-target="{{ auth()->user()->stake_ref_earning }}">{{ auth()->user()->stake_ref_earning }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+$0.00</span>
+                                <span
+                                    class="badge bg-soft-success text-success">+${{ auth()->user()->stake_ref_earning }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>

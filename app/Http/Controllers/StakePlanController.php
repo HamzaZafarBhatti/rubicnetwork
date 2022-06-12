@@ -216,7 +216,8 @@ class StakePlanController extends Controller
         if ($stake_coupon->status) {
             return back()->with('alert', 'Stake Activation code is already used');
         }
-        $user = User::find(auth()->user()->id);
+        $user = User::with('parent')->whereId(auth()->user()->id)->first();
+        // return $user;
         $bonus = $stakePlan->percent * $stakePlan->amount / 100;
         UserStakePlan::create([
             'user_id' => $user->id,
@@ -225,6 +226,12 @@ class StakePlanController extends Controller
             'stake_coupon_id' => $stake_coupon->id,
             'stake_profit' => $bonus
         ]);
+        if (!$user->parent->isEmpty()) {
+            $parent = User::find($user->parent[0]->id);
+            $stake_ref_bonus = $stakePlan->amount * $stakePlan->ref_percent / 100;
+            $stake_ref_earning = $parent->stake_ref_earning + $stake_ref_bonus;
+            $parent->update(['stake_ref_earning' => $stake_ref_earning]);
+        }
         $stake_coupon->update(['status' => 1]);
         return redirect()->route('user.stake_plans.history');
     }

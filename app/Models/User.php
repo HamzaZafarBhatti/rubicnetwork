@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'rubic_wallet',
         'rubic_stake_wallet',
+        'stake_ref_earning',
         'extraction_balance',
         'ref_earning',
         'indirect_ref_earning',
