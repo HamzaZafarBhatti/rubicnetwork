@@ -157,13 +157,13 @@
 
                 <li class="menu-title" data-key="t-apps">Account Information</li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('user.profile_edit') }}">
                         <i data-feather="user"></i>
                         <span data-key="t-chat">My Account Settings</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('user.profile.set_pin') }}">
                         <i data-feather="settings"></i>
                         <span data-key="t-chat">Transaction Code Settings</span>
                     </a>

@@ -138,7 +138,7 @@
                 <button type="button" class="btn header-item bg-soft-light border-start border-end"
                     id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user"
-                        src="@if (Auth::user()->image != '') {{ URL::asset('images/' . Auth::user()->image) }}@else{{ URL::asset('user_assets/images/users/avatar-1.jpg') }} @endif"
+                        src="@if (Auth::user()->image != '') {{ URL::asset('asset/profile/' . Auth::user()->image) }}@else{{ URL::asset('user_assets/images/users/avatar-1.jpg') }} @endif"
                         alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ Auth::user()->name }}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>

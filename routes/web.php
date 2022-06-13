@@ -75,6 +75,12 @@ Route::name('user.')->group(function () {
         Route::get('logout', [UserController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
         Route::get('profile', [UserController::class, 'profile'])->name('profile');
+        Route::get('profile/edit', [UserController::class, 'profile_edit'])->name('profile_edit');
+        Route::post('profile/update_basic', [UserController::class, 'profile_update_basic'])->name('profile.update_basic');
+        Route::post('profile/update_avatar', [UserController::class, 'profile_update_avatar'])->name('profile.update_avatar');
+        Route::post('profile/update_bank', [UserController::class, 'profile_update_bank'])->name('profile.update_bank');
+        Route::get('profile/set_pin', [UserController::class, 'profile_set_pin'])->name('profile.set_pin');
+        Route::post('profile/update_pin', [UserController::class, 'profile_update_pin'])->name('profile.update_pin');
         //Extraction
         Route::get('/extractions/page', [ExtractionController::class, 'extractions_page'])->name('extractions.page');
         Route::get('/extractions/start', [ExtractionController::class, 'extractions_start'])->name('extractions.start');
@@ -120,7 +126,6 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         // Route::resource('settings', SettingController::class);
         Route::resource('banks', BankController::class);
-        Route::resource('data_operators', DataOperatorController::class);
         Route::resource('plans', PlanController::class);
         Route::resource('stake_plans', StakePlanController::class);
         Route::resource('coupons', CouponController::class);

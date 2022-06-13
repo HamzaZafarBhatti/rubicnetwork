@@ -7,8 +7,11 @@ use App\Models\DataOperator;
 use App\Models\Extraction;
 use App\Models\PostUser;
 use App\Models\Referral;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Image;
 
 class UserController extends Controller
 {
@@ -36,8 +39,83 @@ class UserController extends Controller
     public function profile()
     {
         $banks = Bank::whereStatus(1)->get();
-        $data_operators = DataOperator::whereStatus(1)->get();
-        return view('user.profile.index', compact('banks','data_operators'));
+        return view('user.profile.index', compact('banks'));
+    }
+
+    public function profile_edit()
+    {
+        $banks = Bank::whereStatus(1)->get(['id', 'name']);
+        $user = User::find(auth()->user()->id);
+        return view('user.profile.edit', compact('banks', 'user'));
+    }
+
+    public function profile_update_basic(Request $request)
+    {
+        $user = User::findOrFail(auth()->user()->id);
+        $res = $user->update($request->except('_token'));
+        if ($res) {
+            return back()->with('success', 'Profile Updated Successfully.');
+        } else {
+            return back()->with('error', 'Error Updating Profile.');
+        }
+    }
+    public function profile_update_bank(Request $request)
+    {
+        $user = User::findOrFail(auth()->user()->id);
+        $pin = implode('', $request->pins);
+        if ($pin === '000000') {
+            return back()->with('alert', 'You cannot use the default PIN 000000 to perform transactions, please go to the Account Security Page to have your PIN RESET.');
+        }
+        if ($pin !== $user->pin) {
+            return back()->with('alert', 'Pin is not same.');
+        }
+        $res = $user->update($request->except('_token', 'pins'));
+        if ($res) {
+            return back()->with('success', 'Bank Details Updated Successfully.');
+        } else {
+            return back()->with('error', 'Error Updating Bank Details.');
+        }
+    }
+
+    public function profile_update_avatar(Request $request)
+    {
+        $user = User::findOrFail(auth()->user()->id);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '_' . $user->username . '.jpg';
+            $location = 'asset/profile/' . $filename;
+            if ($user->image != 'user-default.png') {
+                $path = './asset/profile/';
+                File::delete($path . $user->image);
+            }
+            Image::make($image)->resize(800, 800)->save($location);
+            $user->image = $filename;
+            $user->save();
+            return back()->with('success', 'Avatar Updated Successfully.');
+        } else {
+            return back()->with('success', 'An error occured, try again.');
+        }
+    }
+
+    public function profile_set_pin()
+    {
+        return view('user.profile.pin');
+    }
+
+    public function profile_update_pin(Request $request)
+    {
+        try {
+            $user = User::findOrFail(auth()->user()->id);
+            $current_pin = implode('', $request->current_pins);
+            $pin = implode('', $request->pins);
+            if ($current_pin != auth()->user()->pin) {
+                return back()->with('alert', 'Current Pin Not Match.');
+            }
+            $user->update(['pin' => $pin]);
+            return back()->with('success', 'Pin Changed Successfully.');
+        } catch (\PDOException $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 
     public function logout()

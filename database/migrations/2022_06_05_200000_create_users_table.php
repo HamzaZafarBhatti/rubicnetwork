@@ -37,9 +37,7 @@ class CreateUsersTable extends Migration
             $table->boolean('status')->nullable();
             $table->ipAddress('ip_address');
             $table->dateTime('last_login')->nullable();
-            // $table->string('kyc_link')->nullable();
-            // $table->integer('kyc_status')->default(0);
-            $table->string('pin')->default(0000);
+            $table->string('pin')->default(000000);
             $table->string('verification_code');
             $table->string('sms_code');
             $table->boolean('phone_verify');
@@ -57,7 +55,6 @@ class CreateUsersTable extends Migration
             $table->enum('account_type', ['savings', 'current'])->nullable();
             $table->foreignId('data_operator_id')->nullable();
             $table->string('phone_number')->nullable();
-            // $table->boolean('is_expired')->default(0);
             $table->date('activated_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

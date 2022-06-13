@@ -55,7 +55,6 @@ class User extends Authenticatable
         'account_no',
         'account_name',
         'account_type',
-        'data_operator_id',
         'phone_number',
         'activated_at',
     ];
