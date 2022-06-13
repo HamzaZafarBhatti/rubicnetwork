@@ -6,6 +6,7 @@ use App\Models\StakeCoupon;
 use App\Models\StakePlan;
 use App\Models\User;
 use App\Models\UserStakePlan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Image;
@@ -224,7 +225,8 @@ class StakePlanController extends Controller
             'stake_plan_id' => $stakePlan->id,
             'status' => 1,
             'stake_coupon_id' => $stake_coupon->id,
-            'stake_profit' => $bonus
+            'stake_profit' => $bonus,
+            'next_update_time' => Carbon::now()->addDay(),
         ]);
         if (!$user->parent->isEmpty()) {
             $parent = User::find($user->parent[0]->id);

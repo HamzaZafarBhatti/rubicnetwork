@@ -16,6 +16,7 @@ class UserStakePlan extends Model
         'stake_coupon_id',
         'stake_profit',
         'is_withdrawn',
+        'next_update_time',
     ];
 
     public function user()

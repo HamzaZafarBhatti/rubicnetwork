@@ -11,7 +11,9 @@ use App\Models\Logo;
 use App\Models\Profits;
 use App\Models\Setting;
 use App\Models\Settings;
+use App\Models\StakePlan;
 use App\Models\User;
+use App\Models\UserStakePlan;
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
@@ -62,6 +64,30 @@ class AppServiceProvider extends ServiceProvider
                         }
                     }
                 }
+
+                $user_stake_plans = UserStakePlan::all();
+                foreach ($user_stake_plans as $user_stake_plan) {
+                    if ($user_stake_plan->status) {
+                        $stake_plan = StakePlan::find($user_stake_plan->stake_plan_id);
+                        Log::info(Carbon::now()->diffInDays($user_stake_plan->created_on, false));
+                        if (Carbon::now()->diffInDays($user_stake_plan->created_on, false) > $stake_plan->duration) {
+                            // Log::info(json_encode(Carbon::parse($user_stake_plan->next_update_time) < Carbon::now()));
+                            if (Carbon::parse($user_stake_plan->next_update_time) < Carbon::now()) {
+                                $bonus = $stake_plan->percent * $stake_plan->amount / 100;
+                                $user_stake_plan->update([
+                                    'stake_profit' => $user_stake_plan->stake_profit + $bonus,
+                                    'next_update_time' => Carbon::now()->addDay()
+                                ]);
+                            }
+                        }
+                        if (Carbon::now()->diffInDays($user_stake_plan->created_on, false) == $stake_plan->duration) {
+                            $user_stake_plan->update([
+                                'status' => 0,
+                            ]);
+                        }
+                    }
+                }
+                // Log::info($user_stake_plans);
 
                 // $view->with('user', $user);
                 // $view->with('cast', $cast);
