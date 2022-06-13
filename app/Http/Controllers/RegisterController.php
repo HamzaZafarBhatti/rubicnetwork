@@ -213,11 +213,6 @@ class RegisterController extends Controller
             'activated_at' => date('Y-m-d'),
             'password' => bcrypt($request->password),
         ]);
-        // return $coupon_code->plan->id;
-        // return $main;
-        // if ($coupon_code->plan->id === 10) {
-        //     $main->is_selfcashout = $main->is_selfcashout + 1;
-        // }
         $ref_bonus = $coupon_code->plan->upgrade * $coupon_code->plan->ref_percent / 100;
         $ref_earning = $referee_user->ref_earning + $ref_bonus;
         Referral::create([

@@ -126,9 +126,10 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('user.stake_plans.activate') }}" key="t-products">Activate Stake Plan</a></li>
                         <li><a href="{{ route('user.stake_plans.history') }}" data-key="t-product-detail">Stake Plan Activation History</a></li>
+                        <li><a href="#" data-key="t-product-detail">Conversion Stake to Stake Wallet History</a></li>
                     </ul>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="shopping-bag"></i>
                         <span data-key="t-ecommerce">Stake Rubic to Earn</span>
@@ -140,14 +141,14 @@
                         <li><a href="#" data-key="t-product-detail">Staking History</a></li>
                         <li><a href="#" data-key="t-product-detail">Conversion Stake to Stake Wallet History</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="shopping-cart"></i>
                         <span data-key="t-ecommerce">Stake Referral Earnings</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-products">Stake Referral Earnings</a></li>
+                        <li><a href="{{ route('user.stake_referrals.earning_history') }}" key="t-products">Stake Referral Earnings</a></li>
                         <li><a href="#" data-key="t-product-detail">Convert Referral Earnings to Rubic Stake Wallet</a>
                         </li>
                     </ul>

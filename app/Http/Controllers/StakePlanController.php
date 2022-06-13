@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\StakeCoupon;
 use App\Models\StakePlan;
+use App\Models\StakeReferral;
 use App\Models\User;
 use App\Models\UserStakePlan;
 use Carbon\Carbon;
@@ -232,6 +233,12 @@ class StakePlanController extends Controller
             $parent = User::find($user->parent[0]->id);
             $stake_ref_bonus = $stakePlan->amount * $stakePlan->ref_percent / 100;
             $stake_ref_earning = $parent->stake_ref_earning + $stake_ref_bonus;
+            StakeReferral::create([
+                'referral_id' => $user->id,
+                'referee_id' => $parent->id,
+                'referee_stake_ref_earning' => $parent->stake_ref_earning,
+                'bonus' => $stake_ref_bonus,
+            ]);
             $parent->update(['stake_ref_earning' => $stake_ref_earning]);
         }
         $stake_coupon->update(['status' => 1]);

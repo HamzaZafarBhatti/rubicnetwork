@@ -22,6 +22,7 @@ use App\Http\Controllers\SelfcashoutController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StakeCouponController;
 use App\Http\Controllers\StakePlanController;
+use App\Http\Controllers\StakeReferralController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViralShareController;
@@ -98,6 +99,8 @@ Route::name('user.')->group(function () {
         Route::get('stake_plans/{stakePlan}/do_activate_tether', [StakePlanController::class, 'do_activate_tether'])->name('stake_plans.do_activate_tether');
         Route::post('stake_plans/{stakePlan}/do_activate_coupon', [StakePlanController::class, 'do_activate_coupon'])->name('stake_plans.do_activate_coupon');
         Route::get('stake_plans/history', [StakePlanController::class, 'history'])->name('stake_plans.history');
+        //Stake Referral
+        Route::get('stake_referrals/earning_history', [StakeReferralController::class, 'earning_history'])->name('stake_referrals.earning_history');
     });
 });
 
