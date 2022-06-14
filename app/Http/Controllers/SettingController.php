@@ -18,7 +18,7 @@ use Carbon\Carbon;
 class SettingController extends Controller
 {
 
-    public function Settings()
+    public function index()
     {
         $data['title']='General settings';
         return view('admin.settings.basic-setting', $data);
