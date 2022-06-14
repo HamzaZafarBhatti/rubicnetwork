@@ -19,13 +19,6 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Tawk ID:</label>
-                                <div class="col-lg-10">
-                                    <input type="text" name="tawk_id" value="{{ $set->tawk_id }}" maxlength="25"
-                                        class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Company email:</label>
                                 <div class="col-lg-10">
                                     <input type="email" name="email" value="{{ $set->email }}" class="form-control">
