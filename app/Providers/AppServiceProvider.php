@@ -109,11 +109,9 @@ class AppServiceProvider extends ServiceProvider
                 // }
             }
         });
-        // $data['set'] = Setting::first();
-        // $data['cat'] = Category::all();
+        $data['set'] = Setting::first();
         $data['ui'] = Design::first();
         $data['logo'] = Logo::first();
-        // $data['coupons'] = Coupon::all();
         $data['currency'] = Currency::whereStatus(1)->first();
 
         View::share($data);
