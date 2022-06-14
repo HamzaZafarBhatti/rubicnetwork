@@ -116,15 +116,13 @@ Route::post('/update-password/{id}', [HomeController::class, 'updatePassword'])-
 
 //User Admin
 Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
-    // Route::get('/', [AdminLoginController::class, 'login'])->name('login');
-    // Route::post('/', [AdminLoginController::class, 'do_login'])->name('do_login');
     Route::get('/', [AdminLoginController::class, 'index'])->name('loginForm');
     Route::post('/', [AdminLoginController::class, 'authenticate'])->name('login');
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-        // Route::resource('settings', SettingController::class);
+        Route::resource('settings', SettingController::class);
         Route::resource('banks', BankController::class);
         Route::resource('plans', PlanController::class);
         Route::resource('stake_plans', StakePlanController::class);
@@ -221,16 +219,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::post('withdraw-approve-multi', [WithdrawController::class, 'approve_multi'])->name('admin.withdraw.approve_multi');
     Route::post('approvewithdrawmine', [WithdrawController::class, 'approvemine'])->name('withdraw.approvemine');
     Route::get('declinewithdraw/{id}', [WithdrawController::class, 'decline'])->name('withdraw.declined');
-    //Data Withdrawal controller
-    Route::get('data_withdraw-log', [WithdrawController::class, 'data_withdrawlog'])->name('admin.data_withdraw.log');
-    Route::get('data_withdraw-approved', [WithdrawController::class, 'data_withdrawapproved'])->name('admin.data_withdraw.approved');
-    Route::get('data_withdraw-declined', [WithdrawController::class, 'data_withdrawdeclined'])->name('admin.data_withdraw.declined');
-    Route::get('data_withdraw-unpaid', [WithdrawController::class, 'data_withdrawunpaid'])->name('admin.data_withdraw.unpaid');
-    Route::get('data_withdraw/delete/{id}', [WithdrawController::class, 'DestroyDataWithdrawal'])->name('data_withdraw.delete');
-    Route::get('approvedata_withdraw/{id}', [WithdrawController::class, 'dataapprove'])->name('data_withdraw.approve');
-    Route::post('data_withdraw-approve-multi', [WithdrawController::class, 'dataapprove_multi'])->name('admin.data_withdraw.approve_multi');
-    Route::post('approvedata_withdrawmine', [WithdrawController::class, 'dataapprovemine'])->name('data_withdraw.approvemine');
-    Route::get('declinedata_withdraw/{id}', [WithdrawController::class, 'datadecline'])->name('data_withdraw.declined');
     //Selfcashout controller
     Route::get('selfcashout-log', [SelfcashoutController::class, 'selfcashoutlog'])->name('admin.selfcashout.log');
     Route::get('selfcashout-approved', [SelfcashoutController::class, 'selfcashoutapproved'])->name('admin.selfcashout.approved');
@@ -266,7 +254,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('py-pending', [PyschemeController::class, 'Pending'])->name('admin.py.pending');
 
     //Setting controller
-    Route::get('settings', [SettingController::class, 'Settings'])->name('admin.setting');
+    // Route::get('settings', [SettingController::class, 'Settings'])->name('admin.setting');
     Route::post('settings', [SettingController::class, 'SettingsUpdate'])->name('admin.settings.update');
     Route::get('email', [SettingController::class, 'Email'])->name('admin.email');
     Route::post('email', [SettingController::class, 'EmailUpdate'])->name('admin.email.update');

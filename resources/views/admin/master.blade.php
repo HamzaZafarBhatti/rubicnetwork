@@ -194,14 +194,6 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.data_operators.index') }}" class="nav-link">
-                                <i class="icon-mobile3"></i>
-                                <span>
-                                    Data Operators
-                                </span>
-                            </a>
-                        </li>
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-lan2"></i><span>Transfer</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Transfer">
@@ -344,24 +336,6 @@
                                 <li class="nav-item"><a href="{{ route('admin.paymentproof.declined') }}"
                                         class="nav-link"><i class="icon-accessibility"></i>Declined
                                         paymentproof</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-share2"></i><span>Data Operator
-                                    Withdraw system</span></a>
-                            <ul class="nav nav-group-sub" data-submenu-title="Dataoperator">
-                                <li class="nav-item"><a href="{{ route('admin.data_withdraw.log') }}"
-                                        class="nav-link"><i class="icon-list-unordered"></i>Data Operator
-                                        Withdraw log</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.data_withdraw.unpaid') }}"
-                                        class="nav-link"><i class="icon-spinner2 spinner"></i>Unpaid Data
-                                        Operator Withdraw</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.data_withdraw.approved') }}"
-                                        class="nav-link"><i class="icon-thumbs-up2"></i>Approved Data Operator
-                                        Withdraw</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.data_withdraw.declined') }}"
-                                        class="nav-link"><i class="icon-accessibility"></i>Declined Data
-                                        Operator Withdraw</a></li>
                             </ul>
                         </li>
                         <li class="nav-item nav-item-submenu">
