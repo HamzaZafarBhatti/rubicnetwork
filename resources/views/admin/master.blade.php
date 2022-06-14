@@ -222,7 +222,7 @@
                             <a href="#" class="nav-link"><i class="icon-cogs spinner"></i> <span>System
                                     configuration</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="System configuration">
-                                <li class="nav-item"><a href="{{ route('admin.setting') }}"
+                                <li class="nav-item"><a href="{{ route('admin.settings') }}"
                                         class="nav-link"><i class="icon-hammer-wrench"></i>Settings</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.email') }}"
                                         class="nav-link"><i class="icon-envelope"></i>Email</a></li>
