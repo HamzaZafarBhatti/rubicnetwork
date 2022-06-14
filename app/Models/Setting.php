@@ -35,8 +35,8 @@ class Setting extends Model
         'indirect_ref_earning_transfer_start',
         'indirect_ref_earning_transfer_end',
         'stake_ref_earning_transfer',
-        'stake_ref_earning_start',
-        'stake_ref_earning_end',
+        'stake_ref_earning_transfer_start',
+        'stake_ref_earning_transfer_end',
         'upgrade_status',
         'upgrade_fee',
     ];

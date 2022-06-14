@@ -255,7 +255,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
     //Setting controller
     // Route::get('settings', [SettingController::class, 'Settings'])->name('admin.setting');
-    Route::post('settings', [SettingController::class, 'SettingsUpdate'])->name('admin.settings.update');
+    // Route::post('settings', [SettingController::class, 'SettingsUpdate'])->name('admin.settings.update');
     Route::get('email', [SettingController::class, 'Email'])->name('admin.email');
     Route::post('email', [SettingController::class, 'EmailUpdate'])->name('admin.email.update');
     Route::get('sms', [SettingController::class, 'Sms'])->name('admin.sms');
