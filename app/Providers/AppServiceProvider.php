@@ -109,7 +109,7 @@ class AppServiceProvider extends ServiceProvider
                 // }
             }
         });
-        $data['set'] = Setting::first();
+        // $data['set'] = Setting::first();
         // $data['cat'] = Category::all();
         $data['ui'] = Design::first();
         $data['logo'] = Logo::first();
