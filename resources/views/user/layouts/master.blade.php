@@ -10,6 +10,7 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ url('/') }}/asset/{{ $logo->image_link2 }}">
     @include('user.layouts.head-css')
+    <link href="{{ URL::asset('user_assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 </head>
 
 @section('body')
@@ -38,12 +39,29 @@
 
 <!-- JAVASCRIPT -->
 @include('user.layouts.vendor-scripts')
+<script src="{{ URL::asset('user_assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 <script>
     $(document).ready(function() {
         setTimeout(() => {
-        console.log('master timeout')
+            console.log('master timeout')
             $('body').attr('data-sidebar-size', 'lg')
         }, 2000);
+        @if(Session::has('success'))
+            Swal.fire({
+                title: "Success",
+                text: '{{ session('success') }}',
+                icon: "success",
+                confirmButtonColor: "#1c84ee"
+            })
+        @endif
+        @if(Session::has('error'))
+            Swal.fire({
+                title: "Error",
+                text: '{{ session('error') }}',
+                icon: "error",
+                confirmButtonColor: "#1c84ee"
+            })
+        @endif
     })
 </script>
 </body>

@@ -175,7 +175,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('user.login_logs.index') }}">
                         <i data-feather="archive"></i>
                         <span data-key="t-chat">Login History</span>
                     </a>

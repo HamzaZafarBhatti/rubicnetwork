@@ -51,7 +51,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'required|numeric|min:8|unique:users',
             'password' => 'required|string|min:4|confirmed',
-            'coupon_id' => 'required|string',
+            'coupon_id' => 'required|string|regex:/^\S*$/u',
         ]);
 
         $coupon_code = Coupon::where('serial', $request->coupon_id)->first();
@@ -124,6 +124,7 @@ class RegisterController extends Controller
             'username' => $request->username,
             'password' => $request->password,
         ])) {
+            login_log();
             return redirect()->route('user.dashboard');
         }
     }
@@ -146,7 +147,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'required|numeric|min:8|unique:users',
             'password' => 'required|string|min:4|confirmed',
-            'coupon_id' => 'required|string',
+            'coupon_id' => 'required|string|regex:/^\S*$/u',
             'referee_username' => 'required|string',
         ]);
 
@@ -252,6 +253,7 @@ class RegisterController extends Controller
             'username' => $request->username,
             'password' => $request->password,
         ])) {
+            login_log();
             return redirect()->route('user.dashboard');
         }
     }

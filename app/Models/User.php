@@ -57,6 +57,8 @@ class User extends Authenticatable
         'account_type',
         'phone_number',
         'activated_at',
+        'tether_network',
+        'tether_address',
     ];
 
     /**

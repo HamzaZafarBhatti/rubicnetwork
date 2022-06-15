@@ -12,6 +12,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndirectReferralController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LoginLogController;
 use App\Http\Controllers\PaymentProofController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PostController;
@@ -74,13 +75,14 @@ Route::name('user.')->group(function () {
     Route::prefix('user')->middleware('auth:web')->group(function () {
         Route::get('logout', [UserController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-        Route::get('profile', [UserController::class, 'profile'])->name('profile');
         Route::get('profile/edit', [UserController::class, 'profile_edit'])->name('profile_edit');
         Route::post('profile/update_basic', [UserController::class, 'profile_update_basic'])->name('profile.update_basic');
         Route::post('profile/update_avatar', [UserController::class, 'profile_update_avatar'])->name('profile.update_avatar');
         Route::post('profile/update_bank', [UserController::class, 'profile_update_bank'])->name('profile.update_bank');
         Route::get('profile/set_pin', [UserController::class, 'profile_set_pin'])->name('profile.set_pin');
         Route::post('profile/update_pin', [UserController::class, 'profile_update_pin'])->name('profile.update_pin');
+        Route::post('profile/update_tether_address', [UserController::class, 'profile_update_tether_address'])->name('profile.update_tether_address');
+        Route::resource('login_logs', LoginLogController::class);
         //Extraction
         Route::get('/extractions/page', [ExtractionController::class, 'extractions_page'])->name('extractions.page');
         Route::get('/extractions/start', [ExtractionController::class, 'extractions_start'])->name('extractions.start');
@@ -110,9 +112,6 @@ Route::name('user.')->group(function () {
     });
 });
 
-//Update User Details
-Route::post('/update-profile/{id}', [HomeController::class, 'updateProfile'])->name('updateProfile');
-Route::post('/update-password/{id}', [HomeController::class, 'updatePassword'])->name('updatePassword');
 
 //User Admin
 Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {

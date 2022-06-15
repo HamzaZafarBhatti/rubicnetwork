@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Etemplate;
+use App\Models\LoginLog;
 use App\Models\Settings;
 
 
@@ -29,70 +30,6 @@ if (!function_exists('send_email')) {
         }
     }
 }
-// if (!function_exists('get_banks')) {
-
-//     function get_banks()
-//     {
-//         $curl = curl_init();
-
-//         curl_setopt_array($curl, array(
-//             CURLOPT_URL => "https://api.paystack.co/bank",
-//             CURLOPT_RETURNTRANSFER => true,
-//             CURLOPT_ENCODING => "",
-//             CURLOPT_MAXREDIRS => 10,
-//             CURLOPT_TIMEOUT => 30,
-//             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//             CURLOPT_CUSTOMREQUEST => "GET",
-//             CURLOPT_HTTPHEADER => array(
-//                 "Authorization: Bearer " . env('PAYSTACK_SECRET_KEY'),
-//                 "Cache-Control: no-cache",
-//             ),
-//         ));
-
-//         $response = curl_exec($curl);
-//         $err = curl_error($curl);
-//         curl_close($curl);
-
-//         if ($err) {
-//             return ['status' => 0, 'message' => 'cURL Error #:' . $err];
-//         } else {
-//             return json_decode($response);
-//         }
-//     }
-// }
-// if (!function_exists('resolve_account_number')) {
-
-//     function resolve_account_number($account_number, $bank_code)
-//     {
-//         $url = "https://api.paystack.co/bank/resolve?account_number=" . $account_number . "&bank_code=" . $bank_code;
-//         // return $url;
-//         $curl = curl_init();
-
-//         curl_setopt_array($curl, array(
-//             CURLOPT_URL => $url,
-//             CURLOPT_RETURNTRANSFER => true,
-//             CURLOPT_ENCODING => "",
-//             CURLOPT_MAXREDIRS => 10,
-//             CURLOPT_TIMEOUT => 30,
-//             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//             CURLOPT_CUSTOMREQUEST => "GET",
-//             CURLOPT_HTTPHEADER => array(
-//                 "Authorization: Bearer " . env('PAYSTACK_SECRET_KEY'),
-//                 "Cache-Control: no-cache",
-//             ),
-//         ));
-
-//         $response = curl_exec($curl);
-//         $err = curl_error($curl);
-//         curl_close($curl);
-
-//         if ($err) {
-//             return ['status' => 0, 'message' => 'cURL Error #:' . $err];
-//         } else {
-//             return json_decode($response);
-//         }
-//     }
-// }
 
 if (!function_exists('user_ip')) {
     function user_ip()
@@ -273,5 +210,15 @@ if (!function_exists('convertFloat')) {
         }
 
         return number_format($norm, -intval(substr($e, 1)));
+    }
+}
+
+if (!function_exists('login_log')) {
+    function login_log()
+    {
+        LoginLog::create([
+           'user_id' => auth()->user()->id,
+           'ip' => user_ip() 
+        ]);
     }
 }

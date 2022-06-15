@@ -56,4 +56,9 @@ class ExtractionController extends Controller
         // return $extractions;
         return view('user.extraction.history', compact('extractions'));
     }
+
+    public function extractions_convert()
+    {
+        return view('user.extraction.convert');
+    }
 }

@@ -73,6 +73,7 @@ class LoginController extends Controller
                 'last_login' => Carbon::now(),
                 'ip_address' => $ip_address
             ]);
+            login_log();
             if ($user->fa_status == 1) {
                 return redirect()->route('2fa');
             } else {

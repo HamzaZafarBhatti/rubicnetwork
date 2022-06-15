@@ -36,12 +36,6 @@ class UserController extends Controller
         ));
     }
 
-    public function profile()
-    {
-        $banks = Bank::whereStatus(1)->get();
-        return view('user.profile.index', compact('banks'));
-    }
-
     public function profile_edit()
     {
         $banks = Bank::whereStatus(1)->get(['id', 'name']);
@@ -93,7 +87,7 @@ class UserController extends Controller
             $user->save();
             return back()->with('success', 'Avatar Updated Successfully.');
         } else {
-            return back()->with('success', 'An error occured, try again.');
+            return back()->with('error', 'An error occured, try again.');
         }
     }
 
@@ -115,6 +109,18 @@ class UserController extends Controller
             return back()->with('success', 'Pin Changed Successfully.');
         } catch (\PDOException $e) {
             return back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function profile_update_tether_address(Request $request)
+    {
+        // return $request;
+        $user = User::findOrFail(auth()->user()->id);
+        $res = $user->update($request->except('_token'));
+        if ($res) {
+            return back()->with('success', 'Tether Account Updated Successfully.');
+        } else {
+            return back()->with('error', 'Error Updating Tether Account.');
         }
     }
 

@@ -193,12 +193,43 @@
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Update Tether USDT Address</h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <form action="{{ route('user.profile.update_tether_address') }}" method="post">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="tether_network">Tether USDT Network</label>
+                                        <select name="tether_network" class="form-control">
+                                            <option value="">Select Network</option>
+                                            <option value="trc" @if($user->tether_network == 'trc') selected @endif>TRC-20</option>
+                                            <option value="bep" @if($user->tether_network == 'bep') selected @endif>BEP-20</option>
+                                            <option value="erc" @if($user->tether_network == 'erc') selected @endif>ERC-20</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tether_address">Tether USDT Address</label>
+                                        <input type="text" class="form-control" name="tether_address" value="{{ $user->tether_address }}">
+                                    </div>
+                                    <div class="mt-4">
+                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
 @section('script')
     <script src="{{ URL::asset('/user_assets/js/app.min.js') }}"></script>
-    <script src="{{ URL::asset('user_assets/js/pages/profile.init.js') }}"></script>
     <script>
         const inputElements = [...document.querySelectorAll('input.code-input')]
 
