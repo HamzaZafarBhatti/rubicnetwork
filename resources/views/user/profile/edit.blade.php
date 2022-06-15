@@ -146,12 +146,12 @@
                                             <div class="mb-3">
                                                 <label for="pins">Transaction Code</label>
                                                 <div class="d-flex justify-content-around mb-2" style="gap: 20px">
-                                                    <input type="text" class="form-control code-input" name="pins[]">
-                                                    <input type="text" class="form-control code-input" name="pins[]">
-                                                    <input type="text" class="form-control code-input" name="pins[]">
-                                                    <input type="text" class="form-control code-input" name="pins[]">
-                                                    <input type="text" class="form-control code-input" name="pins[]">
-                                                    <input type="text" class="form-control code-input" name="pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="pins[]">
                                                 </div>
                                                 <div>
                                                     <a href="{{ route('user.profile.set_pin') }}">Click here to set transaction code</a>

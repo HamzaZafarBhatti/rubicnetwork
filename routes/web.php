@@ -89,6 +89,7 @@ Route::name('user.')->group(function () {
         Route::get('/extractions/thankyou', [ExtractionController::class, 'extractions_thankyou'])->name('extractions.thankyou');
         Route::get('/extractions/history', [ExtractionController::class, 'extractions_history'])->name('extractions.history');
         Route::get('/extractions/convert', [ExtractionController::class, 'extractions_convert'])->name('extractions.convert');
+        Route::post('/extractions/do_convert', [ExtractionController::class, 'extractions_do_convert'])->name('extractions.do_convert');
         //Referral
         Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
         Route::get('/referrals/earning/history', [ReferralController::class, 'earning_history'])->name('referrals.earning_history');

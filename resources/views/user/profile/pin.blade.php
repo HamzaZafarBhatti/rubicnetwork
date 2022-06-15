@@ -30,12 +30,12 @@
                                             <div class="mb-3">
                                                 <label for="current_pins">Current Transaction Code</label>
                                                 <div class="d-flex justify-content-around" style="gap: 20px">
-                                                    <input type="text" class="form-control code-input  text-center" name="current_pins[]">
-                                                    <input type="text" class="form-control code-input  text-center" name="current_pins[]">
-                                                    <input type="text" class="form-control code-input  text-center" name="current_pins[]">
-                                                    <input type="text" class="form-control code-input  text-center" name="current_pins[]">
-                                                    <input type="text" class="form-control code-input  text-center" name="current_pins[]">
-                                                    <input type="text" class="form-control code-input  text-center" name="current_pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="current_pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="current_pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="current_pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="current_pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="current_pins[]">
+                                                    <input type="text" class="form-control code-input text-center" name="current_pins[]">
                                                 </div>
                                             </div>
                                         </div>
