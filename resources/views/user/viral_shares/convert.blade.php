@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 @section('title')
-    Viral Share Profit Convert to Rubic Wallet
+    Convert Viral Share Earnings to Rubic Wallet
 @endsection
 @section('css')
     <link href="{{ URL::asset('user_assets/libs/datatables.net-bs4/datatables.net-bs4.min.css') }}" rel="stylesheet"
@@ -96,7 +96,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Convert to Rubic Wallet</h4>
+                    <h4 class="card-title">Convert Viral Share Earnings to Rubic Wallet</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
