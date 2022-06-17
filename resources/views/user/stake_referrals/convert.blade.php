@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 @section('title')
-    Convert Viral Share Earnings to Rubic Wallet
+    Convert Stake Referral Earnings to Rubic Stake Wallet
 @endsection
 @section('css')
     <link href="{{ URL::asset('user_assets/libs/datatables.net-bs4/datatables.net-bs4.min.css') }}" rel="stylesheet"
@@ -13,10 +13,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Viral Share
+            Stake Referral Earnings
         @endslot
         @slot('title2')
-            Convert to Rubic Wallet
+            Convert to Rubic Stake Wallet
         @endslot
     @endcomponent
 
@@ -24,69 +24,39 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Rubic Wallet Balance</h4>
+                    <h4 class="card-title">Rubic Stake Wallet</h4>
                 </div>
                 <div class="card-body">
-                    <h4>₦{{ auth()->user()->rubic_wallet }}</h4>
-                    <h5 class="text-success">Rubic Wallet funds can be cashed and paid instantly</h5>
-                    <a href="{{ route('user.wallet.withdraw') }}" type="button"
-                        class="btn btn-primary w-100">Withdraw to Bank</a>
+                    <h4>₦{{ auth()->user()->rubic_stake_wallet }}</h4>
+                    <a href="{{ route('user.stake_wallet.withdraw_to_tether') }}" type="submit"
+                        class="btn btn-primary w-100">Withdraw to USDT Tether</a>
+                    <a href="{{ route('user.stake_wallet.withdraw_to_bank') }}" type="submit"
+                        class="btn btn-primary w-100 mt-3">Withdraw to Bank</a>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Extraction Balance</h4>
+                    <h4 class="card-title">Rubic Stake Profits</h4>
                 </div>
                 <div class="card-body">
-                    <h4>₦{{ auth()->user()->extraction_balance }}</h4>
-                    <h5>Date to Transfer to Wallet</h5>
-                    <h5 class="text-info">{{ $set->extraction_transfer_start }}</h5>
-                    <h5 class="text-info">{{ $set->extraction_transfer_end }}</h5>
-                    <h6 class="text-success">Monthly Transfer flow</h6>
+                    <h4>₦{{ auth()->user()->user_stake_plans()->whereIsWithdrawn(0)->sum('stake_profit') }}</h4>
+                    <h5 class="text-success">Transfers to STAKE WALLET for output can be done once your STAKE BALANCE reaches minimum transfer of the PLAN</h5>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Viral Share Balance</h4>
+                    <h4 class="card-title">Rubic Stake Referral Earnings</h4>
                 </div>
                 <div class="card-body">
-                    <h4>₦{{ auth()->user()->viral_share_earning }}</h4>
+                    <h4>₦{{ auth()->user()->stake_ref_earning }}</h4>
                     <h5>Date to Transfer to Wallet</h5>
-                    <h5 class="text-info">{{ $set->viral_share_transfer_start }}</h5>
-                    <h5 class="text-info">{{ $set->viral_share_transfer_end }}</h5>
-                    <h6 class="text-success">Monthly Transfer flow</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Referral Earnings</h4>
-                </div>
-                <div class="card-body">
-                    <h4>₦{{ auth()->user()->ref_earning }}</h4>
-                    <h5>Date to Transfer to Wallet</h5>
-                    <h5 class="text-info">{{ $set->ref_earning_transfer_start }}</h5>
-                    <h5 class="text-info">{{ $set->ref_earning_transfer_end }}</h5>
-                    <h6 class="text-success">Monthly Transfer flow</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Indirect Referral Earnings</h4>
-                </div>
-                <div class="card-body">
-                    <h4>₦{{ auth()->user()->indirect_ref_earning }}</h4>
-                    <h5>Date to Transfer to Wallet</h5>
-                    <h5 class="text-info">{{ $set->indirect_ref_earning_transfer_start }}</h5>
-                    <h5 class="text-info">{{ $set->indirect_ref_earning_transfer_end }}</h5>
-                    <h6 class="text-success">Monthly Transfer flow</h6>
+                    <h5 class="text-info">{{ $set->stake_ref_earning_transfer_start }}</h5>
+                    <h5 class="text-info">{{ $set->stake_ref_earning_transfer_end }}</h5>
+                    <h6 class="text-success">Weekly flow</h6>
                 </div>
             </div>
         </div>
@@ -96,13 +66,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Convert Viral Share Earnings to Rubic Wallet</h4>
+                    <h4 class="card-title">Convert Stake Referral Earnings to Rubic Stake Wallet</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12">
                             <div>
-                                <form action="{{ route('user.viral_shares.do_convert') }}" method="post">
+                                <form action="{{ route('user.stake_referrals.do_convert') }}" method="post">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">

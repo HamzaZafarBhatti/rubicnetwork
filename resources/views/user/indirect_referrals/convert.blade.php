@@ -29,8 +29,8 @@ Convert Indirect Referral Earnings to Rubic Wallet
                 <div class="card-body">
                     <h4>₦{{ auth()->user()->rubic_wallet }}</h4>
                     <h5 class="text-success">Rubic Wallet funds can be cashed and paid instantly</h5>
-                    <a href="{{ route('user.wallet.withdraw') }}" type="submit"
-                        class="btn btn-primary w-100">Submit</a>
+                    <a href="{{ route('user.wallet.withdraw') }}" type="button"
+                        class="btn btn-primary w-100">Withdraw to Bank</a>
                 </div>
             </div>
         </div>

@@ -344,7 +344,7 @@
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Rubic Stake Profit</span>
                             <h4 class="mb-3">
                                 ₦<span class="counter-value"
-                                    data-target="{{ auth()->user()->user_stake_plans->sum('stake_profit') }}">{{ auth()->user()->user_stake_plans->sum('stake_profit') }}</span>
+                                    data-target="{{ auth()->user()->user_stake_plans()->whereIsWithdrawn(0)->sum('stake_profit') }}">{{ auth()->user()->user_stake_plans()->whereIsWithdrawn(0)->sum('stake_profit') }}</span>
                             </h4>
                             <div class="text-nowrap">
                                 <span
@@ -358,7 +358,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="#">Transaction History ></a>
+                        <a href="{{ route('user.stake_plans.history') }}">Transaction History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->
@@ -414,7 +414,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="#">All Referral History ></a>
+                        <a href="{{ route('user.stake_referrals.earning_history') }}">All Referral History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->

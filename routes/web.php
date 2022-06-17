@@ -115,6 +115,11 @@ Route::name('user.')->group(function () {
         Route::get('stake_plans/history', [StakePlanController::class, 'history'])->name('stake_plans.history');
         //Stake Referral
         Route::get('stake_referrals/earning_history', [StakeReferralController::class, 'earning_history'])->name('stake_referrals.earning_history');
+        Route::get('stake_referrals/convert', [StakeReferralController::class, 'convert'])->name('stake_referrals.convert');
+        Route::post('stake_referrals/do_convert', [StakeReferralController::class, 'do_convert'])->name('stake_referrals.do_convert');
+        //Rubic Stake Wallet
+        Route::get('stake_wallet/withdraw_to_tether', [StakePlanController::class, 'withdraw_to_tether'])->name('stake_wallet.withdraw_to_tether');
+        Route::get('stake_wallet/withdraw_to_bank', [StakePlanController::class, 'withdraw_to_bank'])->name('stake_wallet.withdraw_to_bank');
     });
 });
 

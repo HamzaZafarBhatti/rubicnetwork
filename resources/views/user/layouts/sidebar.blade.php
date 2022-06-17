@@ -149,7 +149,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('user.stake_referrals.earning_history') }}" key="t-products">Stake Referral Earnings</a></li>
-                        <li><a href="#" data-key="t-product-detail">Convert Referral Earnings to Rubic Stake Wallet</a>
+                        <li><a href="{{ route('user.stake_referrals.convert') }}" data-key="t-product-detail">Convert Referral Earnings to Rubic Stake Wallet</a>
                         </li>
                     </ul>
                 </li>

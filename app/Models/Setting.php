@@ -109,4 +109,18 @@ class Setting extends Model
             get: fn ($indirect_ref_earning_transfer_end) => Carbon::parse($indirect_ref_earning_transfer_end)->format('F j, Y h:i A'),
         );
     }
+
+    protected function stakeRefEarningTransferStart(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($stake_ref_earning_transfer_start) => Carbon::parse($stake_ref_earning_transfer_start)->format('F j, Y h:i A'),
+        );
+    }
+
+    protected function stakeRefEarningTransferEnd(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($stake_ref_earning_transfer_end) => Carbon::parse($stake_ref_earning_transfer_end)->format('F j, Y h:i A'),
+        );
+    }
 }
