@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 @section('title')
-    Extraction Profit Convert to Rubic Wallet
+    Referrals Profit Convert to Rubic Wallet
 @endsection
 @section('css')
     <link href="{{ URL::asset('user_assets/libs/datatables.net-bs4/datatables.net-bs4.min.css') }}" rel="stylesheet"
@@ -13,7 +13,7 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Extraction
+            Referrals
         @endslot
         @slot('title2')
             Convert to Rubic Wallet
@@ -102,7 +102,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div>
-                                <form action="{{ route('user.extractions.do_convert') }}" method="post">
+                                <form action="{{ route('user.referrals.do_convert') }}" method="post">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">

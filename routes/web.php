@@ -94,15 +94,20 @@ Route::name('user.')->group(function () {
         Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
         Route::get('/referrals/earning/history', [ReferralController::class, 'earning_history'])->name('referrals.earning_history');
         Route::get('/referrals/convert', [ReferralController::class, 'convert'])->name('referrals.convert');
+        Route::post('/referrals/do_convert', [ReferralController::class, 'do_convert'])->name('referrals.do_convert');
         //Indirect Referral
         Route::get('/indirect_referrals', [IndirectReferralController::class, 'index'])->name('indirect_referrals.index');
         Route::get('/indirect_referrals/earning/history', [IndirectReferralController::class, 'earning_history'])->name('indirect_referrals.earning_history');
         Route::get('/indirect_referrals/convert', [IndirectReferralController::class, 'convert'])->name('indirect_referrals.convert');
+        Route::post('/indirect_referrals/do_convert', [IndirectReferralController::class, 'do_convert'])->name('indirect_referrals.do_convert');
         //Viral Share
         Route::get('/viral_shares', [ViralShareController::class, 'index'])->name('viral_shares.index');
         Route::get('/viral_shares/{id}/earn', [ViralShareController::class, 'earn'])->name('viral_shares.earn');
         Route::get('/viral_shares/history', [ViralShareController::class, 'history'])->name('viral_shares.history');
         Route::get('/viral_shares/convert', [ViralShareController::class, 'convert'])->name('viral_shares.convert');
+        Route::post('/viral_shares/do_convert', [ViralShareController::class, 'do_convert'])->name('viral_shares.do_convert');
+        //Rubic Wallet
+        Route::post('/wallet/withdraw', [ExtractionController::class, 'wallet_withdraw'])->name('wallet.withdraw');
         //Stake Plan
         Route::get('stake_plans/activate', [StakePlanController::class, 'activate'])->name('stake_plans.activate');
         Route::get('stake_plans/{stakePlan}/do_activate_tether', [StakePlanController::class, 'do_activate_tether'])->name('stake_plans.do_activate_tether');

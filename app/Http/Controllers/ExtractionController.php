@@ -88,7 +88,7 @@ class ExtractionController extends Controller
         $start = Carbon::parse($set->extraction_transfer_start);
         $end = Carbon::parse($set->extraction_transfer_end);
         if(($start > $now) || ($end < $now)) {
-            return back()->with('error', 'You cannot transfer Extraction Profit to Rubic Wallet from '.$start->format('l jS \\of F Y h:i:s A').' to '.$end->format('l jS \\of F Y h:i:s A'));
+            return back()->with('error', 'You can only transfer Extraction Profit to Rubic Wallet from '.$start->format('l jS \\of F Y h:i:s A').' to '.$end->format('l jS \\of F Y h:i:s A'));
         }
         $res = ExtractionConvert::create([
             'user_id' => $user->id,
