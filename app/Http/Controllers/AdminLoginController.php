@@ -1,15 +1,16 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Auth;
-use App\Models\Settings;
 
 class AdminLoginController extends Controller
 {
 
 
 	public function __construct(){
-		$Gset = Settings::first();
+		$Gset = Setting::first();
 		$this->sitename = $Gset->site_name;
 	}
 

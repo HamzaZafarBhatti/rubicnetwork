@@ -50,9 +50,9 @@
                                             <th>Stake Plan</th>
                                             <th>Stake Activation Code</th>
                                             <th>Status</th>
-                                            <th>Start Date</th>
+                                            {{-- <th>Start Date</th> --}}
                                             <th>Next Daily Profit</th>
-                                            <th>Completion Date</th>
+                                            {{-- <th>Completion Date</th> --}}
                                             <th>Bonus</th>
                                             <th>Withdrawn</th>
                                         </tr>
@@ -65,9 +65,9 @@
                                                     <td>{{ $item->stake_plan->name }}</td>
                                                     <td>{{ $item->stake_coupon->serial }}</td>
                                                     <td>{{ $item->status ? 'Active' : 'Completed' }}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($item->created_on)->toFormattedDateString() }}</td>
-                                                    <td>{{ $item->status ? \Carbon\Carbon::parse($item->next_update_time)->diffForHumans() : 'NA' }}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($item->created_on)->addDays($item->stake_plan->duration)->toFormattedDateString() }}</td>
+                                                    {{-- <td>{{ \Carbon\Carbon::parse($item->start_time)->toFormattedDateString() }}</td> --}}
+                                                    <td>{{ $item->status ? \Carbon\Carbon::parse($item->next_update_time)->toDateTimeString() : 'NA' }}</td>
+                                                    {{-- <td>{{ \Carbon\Carbon::parse($item->complete_time)->toFormattedDateString() }}</td> --}}
                                                     <td>{{ $item->stake_profit }}</td>
                                                     <td>{{ $item->is_withdrawn ? 'Yes' : 'No' }}</td>
                                                 </tr>

@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Mail\GeneralEmail;
 use App\Models\Etemplate;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Settings;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -63,7 +63,7 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $ip_address = user_ip();
             $user = User::find(auth()->user()->id);
-            $set = $data['set'] = Settings::first();
+            $set = $data['set'] = Setting::first();
             // if ($ip_address != $user->ip_address & $set['email_notify'] == 1) {
             //     // send_email($user->email, $user->username, 'Login Notification', 'Please be informed your account was just accessed from the IP address: ' .$ip_address. '. If this was you, please you can ignore this message or reset your account password immediately or contact us.');
             //     $temp = Etemplate::first();

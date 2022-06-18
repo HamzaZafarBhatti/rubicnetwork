@@ -228,6 +228,9 @@ class StakePlanController extends Controller
             'stake_coupon_id' => $stake_coupon->id,
             'stake_profit' => $bonus,
             'next_update_time' => Carbon::now()->addDay(),
+            // 'next_update_time' => Carbon::now()->addSeconds(10),
+            'start_time' => Carbon::now(),
+            'complete_time' => Carbon::now()->addDays($stakePlan->duration)
         ]);
         if (!$user->parent->isEmpty()) {
             $parent = User::find($user->parent[0]->id);

@@ -65,26 +65,30 @@ class AppServiceProvider extends ServiceProvider
                     }
                 }
 
-                $user_stake_plans = UserStakePlan::all();
+                $user_stake_plans = UserStakePlan::whereStatus(1)->get();
+                // Log::info($user_stake_plans);
                 foreach ($user_stake_plans as $user_stake_plan) {
-                    if ($user_stake_plan->status) {
-                        $stake_plan = StakePlan::find($user_stake_plan->stake_plan_id);
-                        Log::info(Carbon::now()->diffInDays($user_stake_plan->created_on, false));
-                        if (Carbon::now()->diffInDays($user_stake_plan->created_on, false) > $stake_plan->duration) {
-                            // Log::info(json_encode(Carbon::parse($user_stake_plan->next_update_time) < Carbon::now()));
-                            if (Carbon::parse($user_stake_plan->next_update_time) < Carbon::now()) {
-                                $bonus = $stake_plan->percent * $stake_plan->amount / 100;
-                                $user_stake_plan->update([
-                                    'stake_profit' => $user_stake_plan->stake_profit + $bonus,
-                                    'next_update_time' => Carbon::now()->addDay()
-                                ]);
-                            }
-                        }
-                        if (Carbon::now()->diffInDays($user_stake_plan->created_on, false) == $stake_plan->duration) {
+                    $stake_plan = StakePlan::find($user_stake_plan->stake_plan_id);
+                    $diff = Carbon::parse($user_stake_plan->complete_time)->diffInDays(Carbon::now(), false);
+                    Log::info('now:' . Carbon::now());
+                    Log::info('complete:' . Carbon::parse($user_stake_plan->complete_time));
+                    Log::info('Difference:' . $diff);
+                    Log::info('duration:' . $stake_plan->duration);
+                    if ($diff < $stake_plan->duration) {
+                        // Log::info(json_encode(Carbon::parse($user_stake_plan->next_update_time) < Carbon::now()));
+                        if (Carbon::parse($user_stake_plan->next_update_time) < Carbon::now()) {
+                            $bonus = $stake_plan->percent * $stake_plan->amount / 100;
                             $user_stake_plan->update([
-                                'status' => 0,
+                                'stake_profit' => $user_stake_plan->stake_profit + $bonus,
+                                'next_update_time' => Carbon::now()->addDay(),
+                                // 'next_update_time' => Carbon::now()->addSeconds(10)
                             ]);
                         }
+                    }
+                    if ($diff == $stake_plan->duration) {
+                        $user_stake_plan->update([
+                            'status' => 0,
+                        ]);
                     }
                 }
                 // Log::info($user_stake_plans);
