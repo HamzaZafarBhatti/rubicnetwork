@@ -5,7 +5,6 @@ use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\CouponController;
-use App\Http\Controllers\DataOperatorController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ExtractionController;
 use App\Http\Controllers\FrontendController;
@@ -24,13 +23,13 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StakeCouponController;
 use App\Http\Controllers\StakePlanController;
 use App\Http\Controllers\StakeReferralController;
+use App\Http\Controllers\StakeWithdrawController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViralShareController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\WithdrawController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,6 +63,8 @@ Route::get('/disclaimer', [FrontendController::class, 'disclaimer'])->name('fron
 Route::get('/sponsored_post', [FrontendController::class, 'sponsored_post'])->name('front.sponsored_post');
 Route::get('/sponsored_post/{id}/{slug}', [FrontendController::class, 'article'])->name('front.single.post');
 
+Route::get('/test/email', [FrontendController::class, 'test_email']);
+
 //User Dashboard
 Route::name('user.')->group(function () {
     Route::get('/register', [RegisterController::class, 'register'])->name('register');
@@ -72,53 +73,79 @@ Route::name('user.')->group(function () {
     Route::post('/onboarding', [RegisterController::class, 'do_onboarding'])->name('do_onboarding');
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login', [LoginController::class, 'do_login'])->name('do_login');
-    Route::prefix('user')->middleware('auth:web')->group(function () {
-        Route::get('logout', [UserController::class, 'logout'])->name('logout');
-        Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-        Route::get('profile/edit', [UserController::class, 'profile_edit'])->name('profile_edit');
-        Route::post('profile/update_basic', [UserController::class, 'profile_update_basic'])->name('profile.update_basic');
-        Route::post('profile/update_avatar', [UserController::class, 'profile_update_avatar'])->name('profile.update_avatar');
-        Route::post('profile/update_bank', [UserController::class, 'profile_update_bank'])->name('profile.update_bank');
-        Route::get('profile/set_pin', [UserController::class, 'profile_set_pin'])->name('profile.set_pin');
-        Route::post('profile/update_pin', [UserController::class, 'profile_update_pin'])->name('profile.update_pin');
-        Route::post('profile/update_tether_address', [UserController::class, 'profile_update_tether_address'])->name('profile.update_tether_address');
+    Route::get('/user/verify_email', [UserController::class, 'verify_email'])->name('verify_email');
+    Route::get('/user/resend_code', [UserController::class, 'resend_code'])->name('resend_code');
+    Route::post('/user/verify_email', [UserController::class, 'do_verify_email'])->name('do_verify_email');
+    Route::prefix('user')->middleware(['auth:web', 'checkStatus'])->group(function () {
+        Route::controller(UserController::class)->group(function() {
+            Route::get('logout', 'logout')->name('logout');
+            Route::get('/dashboard', 'dashboard')->name('dashboard');
+            Route::get('profile/edit', 'profile_edit')->name('profile_edit');
+            Route::post('profile/update_basic', 'profile_update_basic')->name('profile.update_basic');
+            Route::post('profile/update_avatar', 'profile_update_avatar')->name('profile.update_avatar');
+            Route::post('profile/update_bank', 'profile_update_bank')->name('profile.update_bank');
+            Route::get('profile/set_pin', 'profile_set_pin')->name('profile.set_pin');
+            Route::post('profile/update_pin', 'profile_update_pin')->name('profile.update_pin');
+            Route::post('profile/update_tether_address', 'profile_update_tether_address')->name('profile.update_tether_address');
+        });
         Route::resource('login_logs', LoginLogController::class);
         //Extraction
-        Route::get('/extractions/page', [ExtractionController::class, 'extractions_page'])->name('extractions.page');
-        Route::get('/extractions/start', [ExtractionController::class, 'extractions_start'])->name('extractions.start');
-        Route::get('/extractions/thankyou', [ExtractionController::class, 'extractions_thankyou'])->name('extractions.thankyou');
-        Route::get('/extractions/history', [ExtractionController::class, 'extractions_history'])->name('extractions.history');
-        Route::get('/extractions/convert', [ExtractionController::class, 'extractions_convert'])->name('extractions.convert');
-        Route::post('/extractions/do_convert', [ExtractionController::class, 'extractions_do_convert'])->name('extractions.do_convert');
+        Route::controller(ExtractionController::class)->group(function() {
+            Route::get('/extractions/page', 'extractions_page')->name('extractions.page');
+            Route::get('/extractions/start', 'extractions_start')->name('extractions.start');
+            Route::get('/extractions/thankyou', 'extractions_thankyou')->name('extractions.thankyou');
+            Route::get('/extractions/history', 'extractions_history')->name('extractions.history');
+            Route::get('/extractions/convert', 'extractions_convert')->name('extractions.convert');
+            Route::post('/extractions/do_convert', 'extractions_do_convert')->name('extractions.do_convert');
+        });
         //Referral
-        Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
-        Route::get('/referrals/earning/history', [ReferralController::class, 'earning_history'])->name('referrals.earning_history');
-        Route::get('/referrals/convert', [ReferralController::class, 'convert'])->name('referrals.convert');
-        Route::post('/referrals/do_convert', [ReferralController::class, 'do_convert'])->name('referrals.do_convert');
+        Route::controller(ReferralController::class)->group(function() {
+            Route::get('/referrals', 'index')->name('referrals.index');
+            Route::get('/referrals/earning/history', 'earning_history')->name('referrals.earning_history');
+            Route::get('/referrals/convert', 'convert')->name('referrals.convert');
+            Route::post('/referrals/do_convert', 'do_convert')->name('referrals.do_convert');
+        });
         //Indirect Referral
-        Route::get('/indirect_referrals', [IndirectReferralController::class, 'index'])->name('indirect_referrals.index');
-        Route::get('/indirect_referrals/earning/history', [IndirectReferralController::class, 'earning_history'])->name('indirect_referrals.earning_history');
-        Route::get('/indirect_referrals/convert', [IndirectReferralController::class, 'convert'])->name('indirect_referrals.convert');
-        Route::post('/indirect_referrals/do_convert', [IndirectReferralController::class, 'do_convert'])->name('indirect_referrals.do_convert');
+        Route::controller(IndirectReferralController::class)->group(function() {
+            Route::get('/indirect_referrals', 'index')->name('indirect_referrals.index');
+            Route::get('/indirect_referrals/earning/history', 'earning_history')->name('indirect_referrals.earning_history');
+            Route::get('/indirect_referrals/convert', 'convert')->name('indirect_referrals.convert');
+            Route::post('/indirect_referrals/do_convert', 'do_convert')->name('indirect_referrals.do_convert');
+        });
         //Viral Share
-        Route::get('/viral_shares', [ViralShareController::class, 'index'])->name('viral_shares.index');
-        Route::get('/viral_shares/{id}/earn', [ViralShareController::class, 'earn'])->name('viral_shares.earn');
-        Route::get('/viral_shares/history', [ViralShareController::class, 'history'])->name('viral_shares.history');
-        Route::get('/viral_shares/convert', [ViralShareController::class, 'convert'])->name('viral_shares.convert');
-        Route::post('/viral_shares/do_convert', [ViralShareController::class, 'do_convert'])->name('viral_shares.do_convert');
+        Route::controller(ViralShareController::class)->group(function() {
+            Route::get('/viral_shares', 'index')->name('viral_shares.index');
+            Route::get('/viral_shares/{id}/earn', 'earn')->name('viral_shares.earn');
+            Route::get('/viral_shares/history', 'history')->name('viral_shares.history');
+            Route::get('/viral_shares/convert', 'convert')->name('viral_shares.convert');
+            Route::post('/viral_shares/do_convert', 'do_convert')->name('viral_shares.do_convert');
+        });
         //Rubic Wallet
-        Route::post('/wallet/withdraw', [ExtractionController::class, 'wallet_withdraw'])->name('wallet.withdraw');
+        Route::controller(WithdrawController::class)->group(function() {
+            Route::get('/wallet/withdraw', 'wallet_withdraw')->name('wallet.withdraw');
+            Route::post('/wallet/withdraw', 'wallet_do_withdraw')->name('wallet.do_withdraw');
+            Route::get('/wallet/withdraw_history', 'wallet_withdraw_history')->name('wallet.withdraw_history');
+        });
         //Stake Plan
-        Route::get('stake_plans/activate', [StakePlanController::class, 'activate'])->name('stake_plans.activate');
-        Route::get('stake_plans/{stakePlan}/do_activate_tether', [StakePlanController::class, 'do_activate_tether'])->name('stake_plans.do_activate_tether');
-        Route::post('stake_plans/{stakePlan}/do_activate_coupon', [StakePlanController::class, 'do_activate_coupon'])->name('stake_plans.do_activate_coupon');
-        Route::get('stake_plans/history', [StakePlanController::class, 'history'])->name('stake_plans.history');
+        Route::controller(StakePlanController::class)->group(function() {
+            Route::get('stake_plans/activate', 'activate')->name('stake_plans.activate');
+            Route::get('stake_plans/{stakePlan}/do_activate_tether', 'do_activate_tether')->name('stake_plans.do_activate_tether');
+            Route::post('stake_plans/{stakePlan}/do_activate_coupon', 'do_activate_coupon')->name('stake_plans.do_activate_coupon');
+            Route::get('stake_plans/history', 'history')->name('stake_plans.history');
+        });
         //Stake Referral
-        Route::get('stake_referrals/earning_history', [StakeReferralController::class, 'earning_history'])->name('stake_referrals.earning_history');
-        Route::get('stake_referrals/convert', [StakeReferralController::class, 'convert'])->name('stake_referrals.convert');
-        Route::post('stake_referrals/do_convert', [StakeReferralController::class, 'do_convert'])->name('stake_referrals.do_convert');
+        Route::controller(StakeReferralController::class)->group(function() {
+            Route::get('stake_referrals/earning_history', 'earning_history')->name('stake_referrals.earning_history');
+            Route::get('stake_referrals/convert', 'convert')->name('stake_referrals.convert');
+            Route::post('stake_referrals/do_convert', 'do_convert')->name('stake_referrals.do_convert');
+        });
         //Rubic Stake Wallet
-        Route::get('stake_wallet/withdraw_to_tether', [StakePlanController::class, 'withdraw_to_tether'])->name('stake_wallet.withdraw_to_tether');
+        Route::controller(StakeWithdrawController::class)->group(function() {
+            Route::get('/stake_wallet/withdraw_to_tether', 'withdraw_to_tether')->name('stake_wallet.withdraw_to_tether');
+            Route::post('/stake_wallet/withdraw_to_tether', 'do_withdraw_to_tether')->name('stake_wallet.do_withdraw_to_tether');
+            Route::get('/stake_wallet/withdraw_history', 'withdraw_history')->name('stake_wallet.withdraw_history');
+        });
+        // Route::get('stake_wallet/withdraw_to_tether', [StakePlanController::class, 'withdraw_to_tether'])->name('stake_wallet.withdraw_to_tether');
         Route::get('stake_wallet/withdraw_to_bank', [StakePlanController::class, 'withdraw_to_bank'])->name('stake_wallet.withdraw_to_bank');
     });
 });

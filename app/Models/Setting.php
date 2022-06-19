@@ -41,6 +41,7 @@ class Setting extends Model
         'stake_ref_earning_transfer_end',
         'upgrade_status',
         'upgrade_fee',
+        'ngn_rate',
     ];
 
     // protected $casts = [

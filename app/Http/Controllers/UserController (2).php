@@ -210,16 +210,6 @@ class UserController extends Controller
         return 1;
     }
 
-    public function authCheck()
-    {
-        if (Auth()->user()->status == '0' && Auth()->user()->email_verify == '1' && Auth()->user()->sms_verify == '1') {
-            return redirect()->route('user.dashboard');
-        } else {
-            $data['title'] = "Authorization";
-            return view('user.authorization', $data);
-        }
-    }
-
     public function change_email(Request $request)
     {
         $user = User::find(Auth::user()->id);
@@ -267,44 +257,6 @@ class UserController extends Controller
         return back();
     }
 
-    public function sendEmailVcode(Request $request)
-    {
-        $user = User::find(Auth::user()->id);
-
-        if (Carbon::parse($user->email_time)->addMinutes(1) > Carbon::now()) {
-            $time = Carbon::parse($user->email_time)->addMinutes(1);
-            $delay = $time->diffInSeconds(Carbon::now());
-            $delay = gmdate('i:s', $delay);
-            session()->flash('alert', 'You can resend Verification Code after ' . $delay . ' minutes');
-        } else {
-            $code = strtoupper(Str::random(6));
-            $user->email_time = Carbon::now();
-            $user->verification_code = $code;
-            $user->save();
-            // send_email($user->email, $user->username, 'Verificatin Code', 'Your Verification Code is ' . $code);
-            $temp = Etemplate::first();
-            Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Your Verification Code is ' . $code, 'Verificatin Code'));
-            session()->flash('success', 'Verification Code Send successfully');
-        }
-        return back();
-    }
-
-    public function postEmailVerify(Request $request)
-    {
-
-        $user = User::find(Auth::user()->id);
-        if ($user->verification_code == $request->email_code) {
-            $user->email_verify = 1;
-            $user->save();
-            session()->flash('success', 'Your Profile has been verfied successfully');
-            return redirect()->route('user.dashboard');
-        } else {
-            session()->flash('alert', 'Verification Code Did not matched');
-        }
-        return back();
-    }
-
-
     public function Destroyticket($id)
     {
         $data = Ticket::findOrFail($id);
@@ -341,18 +293,18 @@ class UserController extends Controller
         return back()->with('success', 'Message sent!.');
     }
 
-    public function withdraw()
-    {
-        $user = User::with('bank')->whereId(auth()->user()->id)->first();
-        $data['title'] = 'Withdraw';
-        $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-        $bank_name = $user->bank !== null ? $user->bank->name : 'N/A';
-        $data['account'] = [
-            'account_no' => $user->account_no,
-            'account' => $user->account_name . ' - ' . $user->account_no . ' - ' . $bank_name
-        ];
-        return view('user.withdraw', $data);
-    }
+    // public function withdraw()
+    // {
+    //     $user = User::with('bank')->whereId(auth()->user()->id)->first();
+    //     $data['title'] = 'Withdraw';
+    //     $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
+    //     $bank_name = $user->bank !== null ? $user->bank->name : 'N/A';
+    //     $data['account'] = [
+    //         'account_no' => $user->account_no,
+    //         'account' => $user->account_name . ' - ' . $user->account_no . ' - ' . $bank_name
+    //     ];
+    //     return view('user.withdraw', $data);
+    // }
 
     public function data_withdraw()
     {
@@ -430,173 +382,155 @@ class UserController extends Controller
         return redirect()->route('user.get_coupon_code');
     }
 
-    public function selfcashout()
-    {
-        $set = Settings::first();
-        if ($set->is_testing) {
-            return back()->with('alert', 'You cannot access this page.');
-        }
-        $user = User::with('bank')->whereId(auth()->user()->id)->first();
-        $data['title'] = 'Self Cashout';
-        $data['selfcashout'] = DB::table('self_cashout_history')->whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-        $data['selfcashout_amount'] = $set->selfcashout_amount;
-        $bank_name = $user->bank !== null ? $user->bank->name : 'N/A';
-        $data['account'] = [
-            'account_no' => $user->account_no,
-            'account' => $user->account_name . ' - ' . $user->account_no . ' - ' . $bank_name
-        ];
-        return view('user.selfcashout', $data);
-    }
-
-    public function withdrawsubmit(Request $request)
-    {
-        // return date('Y-m-d');
-        $validator = Validator::make($request->all(), [
-            'amount' => 'required',
-            'type' => 'required',
-            'details' => 'required',
-            'pin' => 'required',
-        ]);
-        if ($validator->fails()) {
-            // adding an extra field 'error'...
-            $user = User::with('bank')->whereId(auth()->user()->id)->first();
-            $data['title'] = 'Withdraw';
-            $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-            $bank_name = $user->bank !== null ? $user->bank->name : 'N/A';
-            $data['account'] = [
-                'account_no' => $user->account_no,
-                'account' => $user->account_name . ' - ' . $user->account_no . ' - ' . $bank_name
-            ];
-            $data['errors'] = $validator->errors();
-            return view('user.withdraw', $data);
-        }
-        if ($request->pin === '0000') {
-            return back()->with('alert', 'You cannot use the default PIN 0000 to perform transactions, please go to the Account Security Page to have your PIN RESET.');
-        }
-        $set = $data['set'] = Settings::first();
-        $user = $data['user'] = User::find(Auth::user()->id);
-        if ($request->pin !== $user->pin) {
-            return back()->with('alert', 'Pin is not same.');
-        }
-        $plan = Plans::whereHas('user', function ($q) use ($user) {
-            $q->where('users.id', $user->id);
-        })->whereStatus(1)->first();
-        $amount = $request->amount - ($request->amount * $set->withdraw_charge / 100);
-        if ($request->type == 1) {
-            if ($plan->min_trade_profit_wd > $request->amount) {
-                return back()->with('alert', 'You have requested less than your plan defined payment.');
-            }
-            $last_wd = Withdraw::whereUser_id($user->id)->whereType(1)->latest()->first();
-            if ($last_wd) {
-                $end = Carbon::parse($last_wd->created_at);
-                $now = Carbon::now();
-                $length = $end->diffInDays($now);
-                if ($length < $plan->min_trade_profit_wd_cycle) {
-                    return back()->with('alert', 'You have already requested this payment.');
-                }
-            }
-            if ($user->profit > $amount || $user->profit == $amount) {
-                $sav['user_id'] = Auth::user()->id;
-                $sav['amount'] = $amount;
-                $sav['status'] = 0;
-                $sav['details'] = $request->details;
-                $sav['type'] = $request->type;
-                Withdraw::create($sav);
-                $user->profit = $user->profit - $amount;
-                $user->save();
-                if ($set->email_notify == 1) {
-                    // send_email(
-                    //     $user->email,
-                    //     $user->username,
-                    //     'Withdraw Request currently being Processed',
-                    //     'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for choosing us.'
-                    // );
-                    $temp = Etemplate::first();
-                    Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
-                }
-                return back()->with('success', 'Withdrawal Request has been submitted, you will be updated shortly.');
-            } else {
-                return back()->with('alert', 'Insufficent balance.');
-            }
-        } elseif ($request->type == 2) {
-            if ($plan->min_account_balance_wd > $request->amount) {
-                return back()->with('alert', 'You have requested less than your plan defined payment.');
-            }
-            $withdraw_count = Withdraw::whereType(2)->whereDate('created_at', date('Y-m-d'))->count();
-            if ($set->mine_user_limit <= $withdraw_count) {
-                return back()->with('alert', 'MINE BALANCE Withdrawal Request Queue for Today is filled. You would be able to place MINE BALANCE request in the next 24hours.');
-            }
-            $last_wd = Withdraw::whereUser_id($user->id)->whereType(2)->latest()->first();
-            if ($last_wd) {
-                $end = Carbon::parse($last_wd->created_at);
-                $now = Carbon::now();
-                $length = $end->diffInDays($now);
-                if ($length < $plan->min_account_balance_wd_cycle) {
-                    return back()->with('alert', 'You have already requested this payment.');
-                }
-            }
-            if ($user->balance > $amount || $user->balance == $amount) {
-                $converted_amount = floor($amount / $plan->convert_rate);
-                $sav['user_id'] = Auth::user()->id;
-                $sav['amount'] = $converted_amount;
-                $sav['status'] = 0;
-                $sav['details'] = $request->details;
-                $sav['type'] = $request->type;
-                Withdraw::create($sav);
-                $user->balance = $user->balance - $amount;
-                $user->save();
-                if ($set->email_notify == 1) {
-                    // send_email(
-                    //     $user->email,
-                    //     $user->username,
-                    //     'Withdraw Request currently being Processed',
-                    //     'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for choosing us.'
-                    // );
-                    $temp = Etemplate::first();
-                    Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $converted_amount . '. Thanks for choosing us.', 'Withdraw Request currently being Processed'));
-                }
-                return back()->with('success', 'Withdrawal request has been submitted, you will be updated shortly.');
-            } else {
-                return back()->with('alert', 'Insufficent balance.');
-            }
-        } elseif ($request->type == 3) {
-            if ($plan->min_ref_earn_wd > $request->amount) {
-                return back()->with('alert', 'You have requested less than your plan defined payment.');
-            }
-            $last_wd = Withdraw::whereUser_id($user->id)->whereType(3)->latest()->first();
-            if ($last_wd) {
-                $end = Carbon::parse($last_wd->created_at);
-                $now = Carbon::now();
-                $length = $end->diffInDays($now);
-                if ($length < $plan->min_ref_earn_wd_cycle) {
-                    return back()->with('alert', 'You have already requested this payment.');
-                }
-            }
-            if ($user->ref_bonus > $amount || $user->ref_bonus == $amount) {
-                $sav['user_id'] = Auth::user()->id;
-                $sav['amount'] = $amount;
-                $sav['status'] = 0;
-                $sav['details'] = $request->details;
-                $sav['type'] = $request->type;
-                Withdraw::create($sav);
-                $user->ref_bonus = $user->ref_bonus - $amount;
-                $user->save();
-                if ($set->email_notify == 1) {
-                    // send_email(
-                    //     $user->email,
-                    //     $user->username,
-                    //     'Withdraw Request currently being Processed',
-                    //     'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for choosing us.'
-                    // );
-                    $temp = Etemplate::first();
-                    Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
-                }
-                return back()->with('success', 'Withdrawal request has been submitted, you will be updated shortly.');
-            } else {
-                return back()->with('alert', 'Insufficent balance.');
-            }
-        }
-    }
+    // public function withdrawsubmit(Request $request)
+    // {
+    //     // return date('Y-m-d');
+    //     $validator = Validator::make($request->all(), [
+    //         'amount' => 'required',
+    //         'type' => 'required',
+    //         'details' => 'required',
+    //         'pin' => 'required',
+    //     ]);
+    //     if ($validator->fails()) {
+    //         // adding an extra field 'error'...
+    //         $user = User::with('bank')->whereId(auth()->user()->id)->first();
+    //         $data['title'] = 'Withdraw';
+    //         $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
+    //         $bank_name = $user->bank !== null ? $user->bank->name : 'N/A';
+    //         $data['account'] = [
+    //             'account_no' => $user->account_no,
+    //             'account' => $user->account_name . ' - ' . $user->account_no . ' - ' . $bank_name
+    //         ];
+    //         $data['errors'] = $validator->errors();
+    //         return view('user.withdraw', $data);
+    //     }
+    //     if ($request->pin === '0000') {
+    //         return back()->with('alert', 'You cannot use the default PIN 0000 to perform transactions, please go to the Account Security Page to have your PIN RESET.');
+    //     }
+    //     $set = $data['set'] = Settings::first();
+    //     $user = $data['user'] = User::find(Auth::user()->id);
+    //     if ($request->pin !== $user->pin) {
+    //         return back()->with('alert', 'Pin is not same.');
+    //     }
+    //     $plan = Plans::whereHas('user', function ($q) use ($user) {
+    //         $q->where('users.id', $user->id);
+    //     })->whereStatus(1)->first();
+    //     $amount = $request->amount - ($request->amount * $set->withdraw_charge / 100);
+    //     if ($request->type == 1) {
+    //         if ($plan->min_trade_profit_wd > $request->amount) {
+    //             return back()->with('alert', 'You have requested less than your plan defined payment.');
+    //         }
+    //         $last_wd = Withdraw::whereUser_id($user->id)->whereType(1)->latest()->first();
+    //         if ($last_wd) {
+    //             $end = Carbon::parse($last_wd->created_at);
+    //             $now = Carbon::now();
+    //             $length = $end->diffInDays($now);
+    //             if ($length < $plan->min_trade_profit_wd_cycle) {
+    //                 return back()->with('alert', 'You have already requested this payment.');
+    //             }
+    //         }
+    //         if ($user->profit > $amount || $user->profit == $amount) {
+    //             $sav['user_id'] = Auth::user()->id;
+    //             $sav['amount'] = $amount;
+    //             $sav['status'] = 0;
+    //             $sav['details'] = $request->details;
+    //             $sav['type'] = $request->type;
+    //             Withdraw::create($sav);
+    //             $user->profit = $user->profit - $amount;
+    //             $user->save();
+    //             if ($set->email_notify == 1) {
+    //                 // send_email(
+    //                 //     $user->email,
+    //                 //     $user->username,
+    //                 //     'Withdraw Request currently being Processed',
+    //                 //     'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for choosing us.'
+    //                 // );
+    //                 $temp = Etemplate::first();
+    //                 Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
+    //             }
+    //             return back()->with('success', 'Withdrawal Request has been submitted, you will be updated shortly.');
+    //         } else {
+    //             return back()->with('alert', 'Insufficent balance.');
+    //         }
+    //     } elseif ($request->type == 2) {
+    //         if ($plan->min_account_balance_wd > $request->amount) {
+    //             return back()->with('alert', 'You have requested less than your plan defined payment.');
+    //         }
+    //         $withdraw_count = Withdraw::whereType(2)->whereDate('created_at', date('Y-m-d'))->count();
+    //         if ($set->mine_user_limit <= $withdraw_count) {
+    //             return back()->with('alert', 'MINE BALANCE Withdrawal Request Queue for Today is filled. You would be able to place MINE BALANCE request in the next 24hours.');
+    //         }
+    //         $last_wd = Withdraw::whereUser_id($user->id)->whereType(2)->latest()->first();
+    //         if ($last_wd) {
+    //             $end = Carbon::parse($last_wd->created_at);
+    //             $now = Carbon::now();
+    //             $length = $end->diffInDays($now);
+    //             if ($length < $plan->min_account_balance_wd_cycle) {
+    //                 return back()->with('alert', 'You have already requested this payment.');
+    //             }
+    //         }
+    //         if ($user->balance > $amount || $user->balance == $amount) {
+    //             $converted_amount = floor($amount / $plan->convert_rate);
+    //             $sav['user_id'] = Auth::user()->id;
+    //             $sav['amount'] = $converted_amount;
+    //             $sav['status'] = 0;
+    //             $sav['details'] = $request->details;
+    //             $sav['type'] = $request->type;
+    //             Withdraw::create($sav);
+    //             $user->balance = $user->balance - $amount;
+    //             $user->save();
+    //             if ($set->email_notify == 1) {
+    //                 // send_email(
+    //                 //     $user->email,
+    //                 //     $user->username,
+    //                 //     'Withdraw Request currently being Processed',
+    //                 //     'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for choosing us.'
+    //                 // );
+    //                 $temp = Etemplate::first();
+    //                 Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $converted_amount . '. Thanks for choosing us.', 'Withdraw Request currently being Processed'));
+    //             }
+    //             return back()->with('success', 'Withdrawal request has been submitted, you will be updated shortly.');
+    //         } else {
+    //             return back()->with('alert', 'Insufficent balance.');
+    //         }
+    //     } elseif ($request->type == 3) {
+    //         if ($plan->min_ref_earn_wd > $request->amount) {
+    //             return back()->with('alert', 'You have requested less than your plan defined payment.');
+    //         }
+    //         $last_wd = Withdraw::whereUser_id($user->id)->whereType(3)->latest()->first();
+    //         if ($last_wd) {
+    //             $end = Carbon::parse($last_wd->created_at);
+    //             $now = Carbon::now();
+    //             $length = $end->diffInDays($now);
+    //             if ($length < $plan->min_ref_earn_wd_cycle) {
+    //                 return back()->with('alert', 'You have already requested this payment.');
+    //             }
+    //         }
+    //         if ($user->ref_bonus > $amount || $user->ref_bonus == $amount) {
+    //             $sav['user_id'] = Auth::user()->id;
+    //             $sav['amount'] = $amount;
+    //             $sav['status'] = 0;
+    //             $sav['details'] = $request->details;
+    //             $sav['type'] = $request->type;
+    //             Withdraw::create($sav);
+    //             $user->ref_bonus = $user->ref_bonus - $amount;
+    //             $user->save();
+    //             if ($set->email_notify == 1) {
+    //                 // send_email(
+    //                 //     $user->email,
+    //                 //     $user->username,
+    //                 //     'Withdraw Request currently being Processed',
+    //                 //     'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for choosing us.'
+    //                 // );
+    //                 $temp = Etemplate::first();
+    //                 Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
+    //             }
+    //             return back()->with('success', 'Withdrawal request has been submitted, you will be updated shortly.');
+    //         } else {
+    //             return back()->with('alert', 'Insufficent balance.');
+    //         }
+    //     }
+    // }
     public function data_withdrawsubmit(Request $request)
     {
         // return $request;
@@ -657,70 +591,6 @@ class UserController extends Controller
             return back()->with('success', 'Data Withdrawal Request has been submitted, you will be updated shortly.');
         } else {
             return back()->with('alert', 'Insufficent balance.');
-        }
-    }
-
-    public function selfcashoutsubmit(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'details' => 'required',
-            'pin' => 'required',
-        ]);
-        $user = User::with('bank')->whereId(auth()->user()->id)->first();
-        if ($validator->fails()) {
-            // adding an extra field 'error'...
-            $data['title'] = 'Withdraw';
-            $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-            $bank_name = $user->bank !== null ? $user->bank->name : 'N/A';
-            $data['account'] = [
-                'account_no' => $user->account_no,
-                'account' => $user->account_name . ' - ' . $user->account_no . ' - ' . $bank_name
-            ];
-            $data['errors'] = $validator->errors();
-            return view('user.withdraw', $data);
-        }
-        if ($request->pin === '0000') {
-            return back()->with('alert', 'You cannot use the default PIN 0000 to perform transactions, please go to the Account Security Page to have your PIN RESET.');
-        }
-        $plan = Plans::whereHas('user', function ($q) use ($user) {
-            $q->where('users.id', $user->id);
-        })->whereStatus(1)->first();
-        if ($plan->id != 10) {
-            return back()->with('alert', 'Only PANGOLIN PLAN users can withdraw using SELF CASHOUT. Kindly upgrade to the PANGOLIN PLAN.');
-        }
-        $set = $data['set'] = Settings::first();
-        $user = $data['user'] = User::find(Auth::user()->id);
-        if ($request->pin !== $user->pin) {
-            return back()->with('alert', 'Pin is not same.');
-        }
-        // $plan = Plans::whereHas('user', function ($q) use ($user) {
-        //     $q->where('users.id', $user->id);
-        // })->whereStatus(1)->first();
-        $amount = 4000;
-        $amount = $amount - ($amount * $set->withdraw_charge / 100);
-        if ($user->is_selfcashout >= 3) {
-            if ($user->balance > $amount || $user->balance == $amount) {
-                $sav['user_id'] = auth()->user()->id;
-                $sav['amount'] = 4000;
-                $sav['status'] = 0;
-                $sav['details'] = $request->details;
-                $now = Carbon::now();
-                $sav['created_at'] = $now;
-                $sav['updated_at'] = $now;
-                DB::table('self_cashout_history')->insert($sav);
-                $user->balance = $user->balance - $amount;
-                $user->is_selfcashout = 0;
-                $user->save();
-                if ($set->email_notify == 1) {
-                    $temp = Etemplate::first();
-                    Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
-                }
-                return back()->with('success', 'Withdrawal request has been submitted, you will be updated shortly.');
-            } else {
-                return back()->with('alert', 'Insufficent balance.');
-            }
-        } else {
-            return back()->with('alert', 'User referral count not reached.');
         }
     }
 

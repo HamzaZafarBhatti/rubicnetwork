@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoryPost;
+use App\Mail\GeneralEmail;
+use App\Models\Etemplate;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class FrontendController extends Controller
 {
@@ -85,5 +87,14 @@ class FrontendController extends Controller
             $data['is_shared'] = $user_shared_post !== null ? true : false;
         }
         return view('front.single_post', $data);
+    }
+
+    public function test_email()
+    {
+        $verification_code = strtoupper(Str::random(6));
+        $text = "Your Email Verification Code Is: $verification_code";
+        // send_email($user->email, $user->name, 'Email verification', $text);
+        $temp = Etemplate::first();
+        Mail::to('hamza0952454@gmail.com')->send(new GeneralEmail(env('MAIL_FROM_ADDRESS'), 'Hamza Bhatti', $text, 'Email verification'));
     }
 }

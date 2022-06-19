@@ -12,7 +12,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -64,11 +63,12 @@ class LoginController extends Controller
             $ip_address = user_ip();
             $user = User::find(auth()->user()->id);
             $set = $data['set'] = Setting::first();
-            // if ($ip_address != $user->ip_address & $set['email_notify'] == 1) {
-            //     // send_email($user->email, $user->username, 'Login Notification', 'Please be informed your account was just accessed from the IP address: ' .$ip_address. '. If this was you, please you can ignore this message or reset your account password immediately or contact us.');
-            //     $temp = Etemplate::first();
-            //     Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Sorry your account was just accessed from an unknown IP address<br> ' . $ip_address . '<br>If this was you, please you can ignore this message or reset your account password.', 'Login Notification'));
-            // }
+            if ($ip_address != $user->ip_address & $set['email_notify'] == 1) {
+                $msg = 'Sorry your account was just accessed from an unknown IP address<br> ' . $ip_address . '<br>If this was you, please you can ignore this message or reset your account password.';
+                $subject = 'Login Notification';
+                $temp = Etemplate::first();
+                Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, $msg, $subject, 1));
+            }
             $user->update([
                 'last_login' => Carbon::now(),
                 'ip_address' => $ip_address

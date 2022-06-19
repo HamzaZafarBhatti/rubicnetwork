@@ -13,7 +13,7 @@
                         <div class="d-flex flex-column h-100">
                             <div class="mb-4 mb-md-5 text-center">
                                 <a href="{{ url('/') }}" class="d-block auth-logo">
-                                    <img src="{{ url('/') }}/asset/{{ $logo->image_link }}" alt="" height="28"> <span class="logo-txt"></span>
+                                    <img src="{{ url('/') }}/asset/{{ $logo->image_link }}" alt="" height="50"> <span class="logo-txt"></span>
                                 </a>
                             </div>
                             <div class="auth-content my-auto">

@@ -62,6 +62,14 @@
                 confirmButtonColor: "#1c84ee"
             })
         @endif
+        @if (Session::has('alert'))
+            Swal.fire({
+                title: "Error",
+                text: '{{ session('alert') }}',
+                icon: "alert",
+                confirmButtonColor: "#1c84ee"
+            })
+        @endif
     })
 </script>
 </body>

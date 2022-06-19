@@ -4,32 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Mail\GeneralEmail;
 use App\Models\Etemplate;
-use App\Models\Plan;
 use App\Models\Setting;
+use App\Models\StakePlan;
+use App\Models\StakeWithdraw;
 use App\Models\User;
-use App\Models\Withdraw;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 
-class WithdrawController extends Controller
+class StakeWithdrawController extends Controller
 {
     //
-    public function wallet_withdraw()
+    public function withdraw_to_tether()
     {
-        $user = User::with('bank')->whereId(auth()->user()->id)->first();
+        // $user = User::whereId(auth()->user()->id)->first();
         // return $user;
-        // $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-        $bank_name = $user->bank !== null ? $user->bank->name : 'N/A';
-        $data['account'] = [
-            'account_no' => $user->account_no,
-            'account' => $user->account_name . ' - ' . $user->account_no . ' - ' . $bank_name
-        ];
-        return view('user.withdraws.withdraw', $data);
+        return view('user.stake_withdraws.withdraw_tether');
     }
 
-    public function wallet_do_withdraw(Request $request)
+    public function do_withdraw_to_tether (Request $request)
     {
         // return $request;
         $pin = implode('', $request->pins);
@@ -61,11 +53,16 @@ class WithdrawController extends Controller
         if ($pin !== $user->pin) {
             return back()->with('error', 'Pin is not same.');
         }
+        // $plan = StakePlan::whereHas('user', function ($q) use ($user) {
+        //     $q->where('users.id', $user->id);
+        // })->whereStatus(1)->first();
         $plan = $user->plan;
+        // return $user->plan;
         // if ($plan->min_account_balance_wd > $request->amount) {
         //     return back()->with('error', 'You have requested less than your plan defined payment.');
         // }
-        $amount = $request->amount;
+        // Amount/ NGN RATE = USDT Amount
+        $amount = $request->amount / $set->ngn_rate;
         if ($plan->min_trade_profit_wd > $request->amount) {
             return back()->with('error', 'You have requested less than your plan defined payment.');
         }
@@ -78,27 +75,28 @@ class WithdrawController extends Controller
         //         return back()->with('error', 'You have already requested this payment.');
         //     }
         // }
-        if ($user->rubic_wallet >= $amount) {
-            Withdraw::create([
+        if ($user->rubic_stake_wallet >= $request->amount) {
+            StakeWithdraw::create([
                 'user_id' => $user->id,
                 'amount' => $amount,
                 'status' => '0',
-                'account_no' => $request->account_no
+                'account_no' => $request->account_no,
+                'withdraw_to' => 'tether',
             ]);
-            $user->update(['rubic_wallet' => $user->rubic_wallet - $amount]);
+            $user->update(['rubic_stake_wallet' => $user->rubic_wallet - $request->amount]);
             if ($set->email_notify == 1) {
                 $temp = Etemplate::first();
-                Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
+                Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of $' . $amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
             }
-            return redirect()->route('user.wallet.withdraw_history')->with('success', 'Withdrawal Request has been submitted, you will be updated shortly.');
+            return redirect()->route('user.stake_wallet.withdraw_history')->with('success', 'Withdrawal Request has been submitted, you will be updated shortly.');
         } else {
             return back()->with('error', 'Insufficent balance.');
         }
     }
 
-    public function wallet_withdraw_history()
+    public function withdraw_history ()
     {
-        $withdraws = Withdraw::with('user')->whereUserId(auth()->user()->id)->get();
-        return view('user.withdraws.history', compact('withdraws'));
+        $stake_withdraws = StakeWithdraw::with('user')->whereUserId(auth()->user()->id)->get();
+        return view('user.stake_withdraws.history', compact('stake_withdraws'));
     }
 }

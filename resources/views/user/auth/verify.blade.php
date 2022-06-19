@@ -1,39 +1,100 @@
 @extends('user.layouts.master-without-nav')
 @section('title')
-@lang('translation.Confirm_Mail')
+Verify your Email
 @endsection
 @section('content')
-
 <div class="auth-page">
     <div class="container-fluid p-0">
         <div class="row g-0">
-            <div class="col-xxl-3 col-lg-4 col-md-5">
+            <div class="col-xxl-4 col-lg-4 col-md-5">
                 <div class="auth-full-page-content d-flex p-sm-5 p-4">
                     <div class="w-100">
                         <div class="d-flex flex-column h-100">
                             <div class="mb-4 mb-md-5 text-center">
-                                <a href="{{ URL::asset('index') }}" class="d-block auth-logo">
-                                    <img src="{{ URL::asset('user_assets/images/logo-sm.svg') }}" alt="" height="28"> <span class="logo-txt">Dason</span>
+                                <a href="{{ url('/') }}" class="d-block auth-logo">
+                                    <img src="{{ url('/') }}/asset/{{ $logo->image_link }}" alt="" height="50">
                                 </a>
                             </div>
+
+                            <div class="mb-4 mb-md-5 text-center">
+                                @if (Session::has('success'))
+                                <p class="text-success">{{ session('success') }}</p>
+                                @endif
+                                @if (Session::has('error'))
+                                <p class="text-danger">{{ session('error') }}</p>
+                                @endif
+                            </div>
+                            
                             <div class="auth-content my-auto">
                                 <div class="text-center">
                                     <div class="avatar-lg mx-auto">
                                         <div class="avatar-title rounded-circle bg-light">
-                                            <i class="bx bx-mail-send h2 mb-0 text-primary"></i>
+                                            <i class="bx bxs-envelope h2 mb-0 text-primary"></i>
                                         </div>
                                     </div>
                                     <div class="p-2 mt-4">
-                                        <h4>Success !</h4>
-                                        <p class="text-muted">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et</p>
-                                        <div class="mt-4">
-                                            <a href="{{ URL::asset('index') }}" class="btn btn-primary w-100">Back to Home</a>
-                                        </div>
+
+                                        <h4>Verify your email</h4>
+                                        <p class="mb-5">Please enter the 6 digit code sent to <span class="fw-bold">{{ auth()->user()->email }}</span></p>
+
+                                        <form action="{{ route('user.do_verify_email') }}" method="post">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit1-input" class="visually-hidden">Dight 1</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 2)" maxlength="1" id="digit1-input">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit2-input" class="visually-hidden">Dight 2</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 3)" maxlength="1" id="digit2-input">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit3-input" class="visually-hidden">Dight 3</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 4)" maxlength="1" id="digit3-input">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit4-input" class="visually-hidden">Dight 4</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 5)" maxlength="1" id="digit4-input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit5-input" class="visually-hidden">Dight 5</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 6)" maxlength="1" id="digit5-input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit6-input" class="visually-hidden">Dight 6</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 6)" maxlength="1" id="digit6-input">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-4">
+                                                <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Confirm</button>
+                                            </div>
+                                        </form>
+
+
                                     </div>
+
                                 </div>
-                            </div>
-                            <div class="mt-4 mt-md-5 text-center">
-                                <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Dason   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</p>
+
+                                <div class="mt-5 text-center">
+                                    <p class="text-muted mb-0">Didn't receive an email ? <a href="{{ route('user.resend_code') }}"
+                                        class="text-primary fw-semibold"> Resend </a> </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -41,7 +102,7 @@
                 <!-- end auth full page content -->
             </div>
             <!-- end col -->
-            <div class="col-xxl-9 col-lg-8 col-md-7">
+            <div class="col-xxl-8 col-lg-8 col-md-7">
                 <div class="auth-bg pt-md-5 p-4 d-flex">
                     <div class="bg-overlay"></div>
                     <ul class="bg-bubbles">
@@ -140,8 +201,12 @@
     </div>
     <!-- end container fluid -->
 </div>
+
 @endsection
 @section('script')
-    <script src="{{ URL::asset('user_assets/js/pages/feather-icon.init.js') }}"></script>
+<script src="{{ URL::asset('user_assets/js/pages/feather-icon.init.js') }}"></script>
+<script>
+    function moveToNext(t,e){0<t.value.length&&$("#digit"+e+"-input").focus()}
+</script>
 @endsection
 

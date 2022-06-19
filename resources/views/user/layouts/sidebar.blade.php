@@ -102,8 +102,8 @@
                         <span data-key="t-ecommerce">Withdraw Rubic NGN to Bank from Wallet</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-products">Withdraw Rubic NGN to Bank from Wallet</a></li>
-                        <li><a href="#" data-key="t-product-detail">Rubic Wallet Withdrawal History</a></li>
+                        <li><a href="{{ route('user.wallet.withdraw') }}" key="t-products">Withdraw Rubic NGN to Bank from Wallet</a></li>
+                        <li><a href="{{ route('user.wallet.withdraw_history') }}" data-key="t-product-detail">Rubic Wallet Withdrawal History</a></li>
                     </ul>
                 </li>
                 <li>
@@ -112,8 +112,8 @@
                         <span data-key="t-ecommerce">Withdraw Rubic Stake Wallet to Tether USDT</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-products">Withdraw Rubic Stake Wallet to Tether USDT</a></li>
-                        <li><a href="#" data-key="t-product-detail">Rubic Stake Wallet Withdrawal History</a></li>
+                        <li><a href="{{ route('user.stake_wallet.withdraw_to_tether') }}" key="t-products">Withdraw Rubic Stake Wallet to Tether USDT</a></li>
+                        <li><a href="{{ route('user.stake_wallet.withdraw_to_tether') }}" data-key="t-product-detail">Rubic Stake Wallet Withdrawal History</a></li>
                     </ul>
                 </li>
 

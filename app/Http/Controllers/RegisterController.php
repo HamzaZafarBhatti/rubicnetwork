@@ -11,7 +11,7 @@ use App\Models\User;
 use App\Models\Referral;
 use App\Models\Etemplate;
 use App\Models\IndirectReferral;
-use App\Models\Settings;
+use App\Models\Setting;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Session;
 class RegisterController extends Controller
 {
 
-    protected $redirectTo = '/user/dashboard';
+    // protected $redirectTo = '/user/dashboard';
 
 
     /**
@@ -67,7 +67,7 @@ class RegisterController extends Controller
                 ->withInput();
         }
 
-        $basic = Settings::first();
+        $basic = Setting::first();
         if ($basic->email_verification == 1) {
             $email_verify = 0;
         } else {
@@ -79,11 +79,6 @@ class RegisterController extends Controller
         } else {
             $phone_verify = 1;
         }
-        // if ($basic->coupon_verification == 1) {
-        //     $coupon = 0;
-        // } else {
-        //     $coupon = 1;
-        // }
         $verification_code = strtoupper(Str::random(6));
         $sms_code = strtoupper(Str::random(6));
         $email_time = Carbon::parse()->addMinutes(5);
@@ -109,12 +104,11 @@ class RegisterController extends Controller
         $coupon_code->update(['status' => 1]);
 
 
-        // if ($basic->email_verification == 1) {
-        //     $text = "Your Email Verification Code Is: $user->verification_code";
-        //     // send_email($user->email, $user->name, 'Email verification', $text);
-        //     $temp = Etemplate::first();
-        //     Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->name, $text, 'Email verification'));
-        // }
+        if ($basic->email_verification == 1) {
+            $text = "Your Email Verification Code Is: $user->verification_code";
+            $temp = Etemplate::first();
+            Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->name, $text, 'Email verification'));
+        }
         // if ($basic->sms_verification == 1) {
         //     $message = "Your phone verification code is: $user->sms_code";
         //     send_sms($user->phone, strip_tags($message));
@@ -173,7 +167,7 @@ class RegisterController extends Controller
         }
         // return $coupon_code;
 
-        $basic = Settings::first();
+        $basic = Setting::first();
 
         if ($basic->email_verification == 1) {
             $email_verify = 0;
@@ -186,12 +180,6 @@ class RegisterController extends Controller
         } else {
             $phone_verify = 1;
         }
-        // if ($basic->coupon_verification == 1) {
-        //     $coupon = 0;
-        // } else {
-        //     $coupon = 1;
-        // }
-        // return $request;
         $verification_code = strtoupper(Str::random(6));
         $sms_code = strtoupper(Str::random(6));
         $email_time = Carbon::parse()->addMinutes(5);
@@ -237,13 +225,11 @@ class RegisterController extends Controller
         }
         $coupon_code->update(['status' => 1]);
 
-
-        // if ($basic->email_verification == 1) {
-        //     $text = "Your Email Verification Code Is: $user->verification_code";
-        //     // send_email($user->email, $user->name, 'Email verification', $text);
-        //     $temp = Etemplate::first();
-        //     Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->name, $text, 'Email verification'));
-        // }
+        if ($basic->email_verification == 1) {
+            $text = "Your Email Verification Code Is: $user->verification_code";
+            $temp = Etemplate::first();
+            Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->name, $text, 'Email verification'));
+        }
         // if ($basic->sms_verification == 1) {
         //     $message = "Your phone verification code is: $user->sms_code";
         //     send_sms($user->phone, strip_tags($message));

@@ -14,7 +14,7 @@
                     @guest
                         <a href="{{ route('user.login') }}" class="log d-none d-sm-block"> Log In </a>
                         <a href="{{ route('user.register') }}" class="button button--effect d-none d-sm-block"> Join Now
-                            <i class="fa-solid fa-arrow-right-long"></i> </a>F
+                            <i class="fa-solid fa-arrow-right-long"></i> </a>
                     @endguest
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav"

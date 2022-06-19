@@ -49,6 +49,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-form-label col-lg-2">NGN RATE:</label>
+                                <div class="col-lg-10">
+                                    <input type="number" name="ngn_rate" step="any" max-length="10"
+                                        value="{{ convertFloat($set->ngn_rate) }}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Upgrade fee <span
                                         class="text-danger">*</span></label>
                                 <div class="col-lg-10">

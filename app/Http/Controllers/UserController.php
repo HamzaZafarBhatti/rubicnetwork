@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\GeneralEmail;
 use App\Models\Bank;
-use App\Models\DataOperator;
+use App\Models\Etemplate;
 use App\Models\Extraction;
 use App\Models\PostUser;
 use App\Models\Referral;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Image;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -122,6 +126,53 @@ class UserController extends Controller
         } else {
             return back()->with('error', 'Error Updating Tether Account.');
         }
+    }
+
+    public function verify_email()
+    {
+        $user = auth()->user();
+        if (($user->status == 0 || $user->status == null) && $user->email_verify == 1/*  && $user->sms_verify == '1' */) {
+            return redirect()->route('user.dashboard');
+        } else {
+            return view('user.auth.verify');
+        }
+    }
+
+    public function do_verify_email(Request $request)
+    {
+        // return $request;
+        $pin = implode('',$request->pin);
+        $user = User::find(auth()->user()->id);
+        if ($user->verification_code == $pin) {
+            $user->update(['email_verify' => 1]);
+            session()->flash('success', 'Your Profile has been verfied successfully');
+            return redirect()->route('user.dashboard');
+        } else {
+            session()->flash('error', 'Verification Code Did not matched');
+        }
+        return back();
+    }
+
+    public function resend_code()
+    {
+        $user = User::find(auth()->user()->id);
+
+        if (Carbon::parse($user->email_time)->addMinutes(1) > Carbon::now()) {
+            $time = Carbon::parse($user->email_time)->addMinutes(1);
+            $delay = $time->diffInSeconds(Carbon::now());
+            $delay = gmdate('i:s', $delay);
+            session()->flash('error', 'You can resend Verification Code after ' . $delay . ' minutes');
+        } else {
+            $code = strtoupper(Str::random(6));
+            $user->update([
+                'email_time' => Carbon::now(),
+                'verification_code' => $code
+            ]);
+            $temp = Etemplate::first();
+            Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Your Verification Code is ' . $code, 'Verificatin Code'));
+            session()->flash('success', 'Verification Code Send successfully');
+        }
+        return back();
     }
 
     public function logout()
