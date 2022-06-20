@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
-                        <h6 class="card-title font-weight-semibold">Self Cashout logs</h6>
+                        <h6 class="card-title font-weight-semibold">Withdraw logs</h6>
                     </div>
                     <div class="">
                         <table class="table datatable-show-all">
@@ -15,21 +15,24 @@
                                     <th>S/N</th>
                                     <th>Name</th>
                                     <th>Amount</th>                                                                       
-                                    <th>Account number</th>
-                                    <th>Bank name</th>
+                                    <th>Account Number</th>
+                                    <th>Withdrawn to</th>
+                                    <th>Bank Name / Tether Network</th>
                                     <th>Created</th>
                                     <th>Updated</th>
                                     <th class="text-center">Action</th>    
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($selfcashout as $k=>$val)
+                            @foreach($withdraw as $k=>$val)
                                 <tr>
                                     <td>{{++$k}}.</td>
-                                    <td><a href="{{url('admin/manage-user')}}/{{$val->user_id}}">{{$val->user_name}}</a></td>
-                                    <td>₦{{substr($val->amount,0,9)}}</td>
-                                    <td>{{$val->details}}</td> 
-                                    <td>{{$val->bank_name}}</td> 
+                                    <td>{{-- <a href="{{url('admin/manage-user')}}/{{$val->user_id}}"> --}}{{$val->user->name}}{{-- </a> --}}</td>
+                                    <td>{{ $val->withdraw_to == 'bank' ? '₦' : '$' }}{{substr($val->amount,0,9)}}</td>
+                                    <td>{{$val->account_no}}</td> 
+                                    <td>{{ $val->withdraw_to == 'bank' ? 'Bank' : 'Tether USDT' }}</td>
+                                    <td>{{ $val->withdraw_to == 'bank' ? $val->bank_name : $val->user->tether_network_label }}
+                                    </td>
                                     <td>{{date("Y/m/d h:i:A", strtotime($val->created_at))}}</td>
                                     <td>{{date("Y/m/d h:i:A", strtotime($val->updated_at))}}</td>
                                     <td class="text-center">
@@ -56,7 +59,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                                                <a  href="{{url('/')}}/admin/selfcashout/delete/{{$val->id}}" class="btn bg-danger">Proceed</a>
+                                                <a  href="{{ route('admin.stake_wallet.withdraw_delete', $val->id) }}" class="btn bg-danger">Proceed</a>
                                             </div>
                                         </div>
                                     </div>

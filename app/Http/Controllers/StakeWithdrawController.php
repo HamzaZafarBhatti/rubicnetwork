@@ -19,7 +19,7 @@ class StakeWithdrawController extends Controller
         return view('user.stake_withdraws.withdraw_tether');
     }
 
-    public function do_withdraw_to_tether (Request $request)
+    public function do_withdraw_to_tether(Request $request)
     {
         // return $request;
         $pin = implode('', $request->pins);
@@ -56,12 +56,12 @@ class StakeWithdrawController extends Controller
         }
     }
 
-    public function withdraw_history_tether ()
+    public function withdraw_history_tether()
     {
         $stake_withdraws = StakeWithdraw::with('user')->whereUserId(auth()->user()->id)->get();
         return view('user.stake_withdraws.history', compact('stake_withdraws'));
     }
-    
+
     public function withdraw_to_bank()
     {
         $user = User::with('bank')->whereId(auth()->user()->id)->first();
@@ -73,7 +73,7 @@ class StakeWithdrawController extends Controller
         return view('user.stake_withdraws.withdraw_bank', $data);
     }
 
-    public function do_withdraw_to_bank (Request $request)
+    public function do_withdraw_to_bank(Request $request)
     {
         // return $request;
         $pin = implode('', $request->pins);
@@ -109,9 +109,114 @@ class StakeWithdrawController extends Controller
         }
     }
 
-    public function withdraw_history_bank ()
+    public function withdraw_history_bank()
     {
         $stake_withdraws = StakeWithdraw::with('user')->whereUserId(auth()->user()->id)->get();
         return view('user.stake_withdraws.history', compact('stake_withdraws'));
+    }
+
+    public function withdraw_log()
+    {
+        $data['title'] = 'Rubic Stake Wallet Withdraw logs';
+        $data['withdraw'] = StakeWithdraw::with('user')->latest('id')->get();
+        return view('admin.stake_withdrawal.index', $data);
+    }
+
+    public function withdraw_approve($id)
+    {
+        $data = StakeWithdraw::findOrFail($id);
+        // return $data;
+        $user = User::find($data->user_id);
+        $set = Setting::first();
+        // return $data;
+        // $user->show_popup = 1;
+        // $user->save();
+        $currency = $data->withdraw_to == 'bank' ? '₦' : '$';
+        $res = $data->update(['status' => '1']);
+        if ($set->email_notify == 1) {
+            $temp = Etemplate::first();
+            Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Withdrawal request of ' . $currency . substr($data->amount, 0, 9) . ' has been approved<br>Thanks for working with us.', 'Withdraw Request has been approved', 1));
+        }
+        if ($res) {
+            return redirect()->route('admin.stake_wallet.withdraw_log')->with('success', 'Request was Successfully approved!');
+        } else {
+            return redirect()->route('admin.stake_wallet.withdraw_log')->with('alert', 'Problem With Approving Request');
+        }
+    }
+
+    public function withdraw_approved()
+    {
+        $data['title'] = 'Approved Rubic Wallet Withdraw';
+        $data['withdraw'] = StakeWithdraw::with('user')->whereStatus('1')->latest('id')->get();
+        return view('admin.stake_withdrawal.approved', $data);
+    }
+
+    public function withdraw_approve_multi(Request $request)
+    {
+        // return $request;
+        $set = Setting::first();
+        foreach ($request->ids as $id) {
+            $data = StakeWithdraw::findOrFail($id);
+            $user = User::find($data->user_id);
+            // $user->show_popup = 1;
+            // $user->save();
+            $currency = $data->withdraw_to == 'bank' ? '₦' : '$';
+            $res = $data->update(['status' => '1']);
+            // return 'out';
+            if ($set->email_notify == 1) {
+                $temp = Etemplate::first();
+                Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Withdrawal request of ' . $currency . substr($data->amount, 0, 9) . ' has been approved<br>Thanks for working with us.', 'Withdraw Request has been approved'));
+            }
+        }
+        return 1;
+    }
+
+    public function withdraw_unpaid()
+    {
+        $data['title'] = 'Unpaid Rubic Wallet Withdraw';
+        $data['withdraw'] = StakeWithdraw::with('user')->whereStatus('0')->latest('id')->get();
+        return view('admin.stake_withdrawal.unpaid', $data);
+    }
+
+    public function withdraw_delete($id)
+    {
+        $data = StakeWithdraw::findOrFail($id);
+        // return json_encode($data->status == '0');
+        if ($data->status == '0') {
+            return back()->with('alert', 'You cannot delete an unpaid withdraw request');
+        } else {
+            $res =  $data->delete();
+            if ($res) {
+                return back()->with('success', 'Request was Successfully deleted!');
+            } else {
+                return back()->with('alert', 'Problem With Deleting Request');
+            }
+        }
+    }
+
+    public function withdraw_decline($id)
+    {
+        $data = StakeWithdraw::findOrFail($id);
+        $user = User::find($data->user_id);
+        $set = Setting::first();
+        $currency = $data->withdraw_to == 'bank' ? '₦' : '$';
+        $res = $data->update(['status' => '2']);
+        $user->update(['rubic_wallet' => $user->rubic_wallet + $data->amount]);
+        if ($set->email_notify == 1) {
+            $temp = Etemplate::first();
+            Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Withdrawal request of ' . $currency . substr($data->amount, 0, 9) . ' has been declined<br>Thanks for working with us.', 'Withdraw Request has been declined'));
+        }
+        if ($res) {
+            return back()->with('success', 'Request was Successfully declined!');
+        } else {
+            return back()->with('alert', 'Problem With Declining Request');
+        }
+    }
+
+    public function withdraw_declined()
+    {
+        $data['title'] = 'Declined Withdraw';
+        $data['withdraw'] = StakeWithdraw::with('user')->whereStatus('2')->latest('id')->get();
+        return view('admin.stake_withdrawal.declined', $data);
     }
 }

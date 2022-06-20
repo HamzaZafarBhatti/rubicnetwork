@@ -13,10 +13,11 @@
                             <thead>
                                 <tr>
                                     <th>S/N</th>
-                                    <th>Username</th>
+                                    <th>Name</th>
                                     <th>Amount</th>                                                                       
-                                    <th>Phone Number</th>
-                                    <th>Operator name</th>
+                                    <th>Account number</th>
+                                    <th>Withdrawn to</th>
+                                    <th>Bank Name / Tether Network</th>
                                     <th>Created</th>
                                     <th>Updated</th>
                                     <th class="text-center">Action</th>    
@@ -26,10 +27,12 @@
                             @foreach($withdraw as $k=>$val)
                                 <tr>
                                     <td>{{++$k}}.</td>
-                                    <td><a href="{{url('admin/manage-user')}}/{{$val->user->id}}">{{$val->user->username}}</a></td>
-                                    <td>{{substr($val->amount/10, 0, 9)}}MB</td>
-                                    <td>{{$val->details}}</td> 
-                                    <td>{{$val->data_operator->name}}</td> 
+                                    <td>{{-- <a href="{{url('admin/manage-user')}}/{{$val->user_id}}"> --}}{{$val->user->name}}{{-- </a> --}}</td>
+                                    <td>{{ $val->withdraw_to == 'bank' ? '₦' : '$' }}{{substr($val->amount,0,9)}}</td>
+                                    <td>{{$val->account_no}}</td> 
+                                    <td>{{ $val->withdraw_to == 'bank' ? 'Bank' : 'Tether USDT' }}</td>
+                                    <td>{{ $val->withdraw_to == 'bank' ? $val->bank_name : $val->user->tether_network_label }}
+                                    </td>
                                     <td>{{date("Y/m/d h:i:A", strtotime($val->created_at))}}</td>
                                     <td>{{date("Y/m/d h:i:A", strtotime($val->updated_at))}}</td>
                                     <td class="text-center">
@@ -56,7 +59,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                                                <a  href="{{url('/')}}/admin/data_withdraw/delete/{{$val->id}}" class="btn bg-danger">Proceed</a>
+                                                <a  href="{{ route('admin.stake_wallet.withdraw_delete', $val->id) }}" class="btn bg-danger">Proceed</a>
                                             </div>
                                         </div>
                                     </div>

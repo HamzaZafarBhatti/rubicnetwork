@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
-                        <h6 class="card-title font-weight-semibold">Pending Self Cashout logs</h6>
+                        <h6 class="card-title font-weight-semibold">Pending Withdrawal logs</h6>
                         <div class="header-elements">
                             <button type="button" class="btn btn-primary approve_multi" disabled>Approve Checked</button>
                         </div>
@@ -19,23 +19,24 @@
                                     <th>Account Name</th>
                                     <th>Amount</th>
                                     <th>Account Number</th>
-                                    <th>Bank name</th>
+                                    <th>Withdrawn to</th>
+                                    <th>Bank Name / Tether Network</th>
                                     <th>Created</th>
                                     <th>Updated</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($selfcashout as $k => $val)
+                                @foreach ($withdraw as $k => $val)
                                     <tr>
-                                        <td>{{ ++$k }}. <input type="checkbox" class="cashout_ids"
-                                                name="cashout_ids" value="{{ $val->id }}"></td>
-                                        <td><a
-                                                href="{{ url('admin/manage-user') }}/{{ $val->user_id }}">{{ $val->user_name }}</a>
+                                        <td>{{ ++$k }}. <input type="checkbox" class="withdraw_ids"
+                                                name="withdraw_ids" value="{{ $val->id }}"></td>
+                                        <td>{{-- <a href="{{ url('admin/manage-user') }}/{{ $val->user_id }}"> --}}{{ $val->user->name }}{{-- </a> --}}
                                         </td>
-                                        <td>₦{{ substr($val->amount, 0, 9) }}</td>
-                                        <td>{{ $val->details }}</td>
-                                        <td>{{ $val->bank_name }}</td>
+                                        <td>{{ $val->withdraw_to == 'bank' ? '₦' : '$' }}{{ substr($val->amount, 0, 9) }}</td>
+                                        <td>{{ $val->account_no }}</td>
+                                        <td>{{ $val->withdraw_to == 'bank' ? 'Bank' : 'Tether USDT' }}</td>
+                                        <td>{{ $val->withdraw_to == 'bank' ? $val->bank_name : $val->user->tether_network_label }}</td>
                                         <td>{{ date('Y/m/d h:i:A', strtotime($val->created_at)) }}</td>
                                         <td>{{ date('Y/m/d h:i:A', strtotime($val->updated_at)) }}</td>
                                         <td class="text-center">
@@ -45,12 +46,14 @@
                                                         <i class="icon-menu9"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class='dropdown-item'
-                                                            href="{{ url('/') }}/admin/approveselfcashout/{{ $val->id }}"><i
-                                                                class="icon-thumbs-up3 mr-2"></i>Approve request</a>
-                                                        <a class='dropdown-item'
-                                                            href="{{ url('/') }}/admin/declineselfcashout/{{ $val->id }}"><i
-                                                                class="icon-thumbs-down3 mr-2"></i>Decline request</a>
+                                                        @if ($val->status == 0)
+                                                            <a class='dropdown-item'
+                                                                href="{{ route('admin.stake_wallet.withdraw_approve', $val->id) }}"><i
+                                                                    class="icon-thumbs-up3 mr-2"></i>Approve request</a>
+                                                            <a class='dropdown-item'
+                                                                href="{{ route('admin.stake_wallet.withdraw_decline', $val->id) }}"><i
+                                                                    class="icon-thumbs-down3 mr-2"></i>Decline request</a>
+                                                        @endif
                                                         <a data-toggle="modal" data-target="#{{ $val->id }}delete"
                                                             class="dropdown-item"><i class="icon-bin2 mr-2"></i>Delete</a>
                                                     </div>
@@ -72,7 +75,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-link"
                                                         data-dismiss="modal">Close</button>
-                                                    <a href="{{ url('/') }}/admin/selfcashout/delete/{{ $val->id }}"
+                                                    <a href="{{ route('admin.stake_wallet.withdraw_delete', $val->id) }}"
                                                         class="btn bg-danger">Proceed</a>
                                                 </div>
                                             </div>
@@ -87,12 +90,13 @@
         </div>
     </div>
 @stop
+
 @section('script')
     <script>
         $(document).ready(function() {
-            $(document).on('click', '.cashout_ids', function() {
-                console.log($('.cashout_ids:checked').length);
-                if ($('.cashout_ids:checked').length) {
+            $(document).on('click', '.withdraw_ids', function() {
+                console.log($('.withdraw_ids:checked').length);
+                if ($('.withdraw_ids:checked').length) {
                     $('.approve_multi').removeAttr('disabled');
                 } else {
                     $('.approve_multi').attr('disabled', 'disabled');
@@ -100,12 +104,12 @@
             })
             $('.approve_multi').click(function() {
                 var approve_ids = []
-                $('.cashout_ids:checked').map(function(index, value) {
+                $('.withdraw_ids:checked').map(function(index, value) {
                     approve_ids.push(value.value);
                 })
 
                 $.ajax({
-                    url: '{{ route('admin.selfcashout.approve_multi') }}',
+                    url: '{{ route('admin.stake_wallet.withdraw_approve_multi') }}',
                     method: 'POST',
                     data: {
                         ids: approve_ids,

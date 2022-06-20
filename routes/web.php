@@ -187,6 +187,17 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
             Route::post('withdraw_approve_multi', 'withdraw_approve_multi')->name('withdraw_approve_multi');
             Route::get('withdraw_decline/{id}', 'withdraw_decline')->name('withdraw_decline');
         });
+        //Rubic Stake Wallet Withdraw
+        Route::prefix('rubic_stake_wallet')->name('stake_wallet.')->controller(StakeWithdrawController::class)->group(function () {
+            Route::get('withdraw_log', 'withdraw_log')->name('withdraw_log');
+            Route::get('withdraw_approved', 'withdraw_approved')->name('withdraw_approved');
+            Route::get('withdraw_declined', 'withdraw_declined')->name('withdraw_declined');
+            Route::get('withdraw_unpaid', 'withdraw_unpaid')->name('withdraw_unpaid');
+            Route::get('withdraw_delete/{id}', 'withdraw_delete')->name('withdraw_delete');
+            Route::get('withdraw_approve/{id}', 'withdraw_approve')->name('withdraw_approve');
+            Route::post('withdraw_approve_multi', 'withdraw_approve_multi')->name('withdraw_approve_multi');
+            Route::get('withdraw_decline/{id}', 'withdraw_decline')->name('withdraw_decline');
+        });
     });
 });
 
