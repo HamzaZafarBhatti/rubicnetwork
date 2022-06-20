@@ -131,7 +131,8 @@ class UserController extends Controller
     public function verify_email()
     {
         $user = auth()->user();
-        if (($user->status == 0 || $user->status == null) && $user->email_verify == 1/*  && $user->sms_verify == '1' */) {
+        // if (($user->status == 0 || $user->status == null) && $user->email_verify == 1/*  && $user->sms_verify == '1' */) {
+        if ($user->status == 1) {
             return redirect()->route('user.dashboard');
         } else {
             return view('user.auth.verify');
@@ -144,7 +145,7 @@ class UserController extends Controller
         $pin = implode('',$request->pin);
         $user = User::find(auth()->user()->id);
         if ($user->verification_code == $pin) {
-            $user->update(['email_verify' => 1]);
+            $user->update(['email_verify' => 1, 'status' => 1]);
             session()->flash('success', 'Your Profile has been verfied successfully');
             return redirect()->route('user.dashboard');
         } else {
@@ -163,7 +164,7 @@ class UserController extends Controller
             $delay = gmdate('i:s', $delay);
             session()->flash('error', 'You can resend Verification Code after ' . $delay . ' minutes');
         } else {
-            $code = strtoupper(Str::random(6));
+            $code = rand(100000, 999999);
             $user->update([
                 'email_time' => Carbon::now(),
                 'verification_code' => $code

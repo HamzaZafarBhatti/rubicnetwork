@@ -91,10 +91,10 @@ class FrontendController extends Controller
 
     public function test_email()
     {
-        $verification_code = strtoupper(Str::random(6));
+        $verification_code = rand(100000, 999999);
         $text = "Your Email Verification Code Is: $verification_code";
         // send_email($user->email, $user->name, 'Email verification', $text);
         $temp = Etemplate::first();
-        Mail::to('hamza0952454@gmail.com')->send(new GeneralEmail(env('MAIL_FROM_ADDRESS'), 'Hamza Bhatti', $text, 'Email verification'));
+        Mail::to('hamza0952454@gmail.com')->send(new GeneralEmail($temp->esender, 'Hamza Bhatti', $text, 'Email verification'));
     }
 }

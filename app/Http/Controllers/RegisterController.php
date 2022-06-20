@@ -79,8 +79,8 @@ class RegisterController extends Controller
         } else {
             $phone_verify = 1;
         }
-        $verification_code = strtoupper(Str::random(6));
-        $sms_code = strtoupper(Str::random(6));
+        $verification_code = rand(100000, 999999);
+        $sms_code = rand(100000, 999999);
         $email_time = Carbon::parse()->addMinutes(5);
         $phone_time = Carbon::parse()->addMinutes(5);
         $user = User::create([
@@ -180,8 +180,8 @@ class RegisterController extends Controller
         } else {
             $phone_verify = 1;
         }
-        $verification_code = strtoupper(Str::random(6));
-        $sms_code = strtoupper(Str::random(6));
+        $verification_code = rand(100000, 999999);
+        $sms_code = rand(100000, 999999);
         $email_time = Carbon::parse()->addMinutes(5);
         $phone_time = Carbon::parse()->addMinutes(5);
         $user = User::create([

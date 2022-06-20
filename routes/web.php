@@ -71,11 +71,11 @@ Route::name('user.')->group(function () {
     Route::post('/register', [RegisterController::class, 'do_register'])->name('do_register');
     Route::get('/onboarding/{username}', [RegisterController::class, 'onboarding'])->name('onboarding');
     Route::post('/onboarding', [RegisterController::class, 'do_onboarding'])->name('do_onboarding');
-    Route::get('/login', [LoginController::class, 'login'])->name('login');
-    Route::post('/login', [LoginController::class, 'do_login'])->name('do_login');
     Route::get('/user/verify_email', [UserController::class, 'verify_email'])->name('verify_email');
     Route::get('/user/resend_code', [UserController::class, 'resend_code'])->name('resend_code');
     Route::post('/user/verify_email', [UserController::class, 'do_verify_email'])->name('do_verify_email');
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/login', [LoginController::class, 'do_login'])->name('do_login');
     Route::prefix('user')->middleware(['auth:web', 'checkStatus'])->group(function () {
         Route::controller(UserController::class)->group(function() {
             Route::get('logout', 'logout')->name('logout');

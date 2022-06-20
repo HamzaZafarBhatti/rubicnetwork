@@ -232,7 +232,7 @@ class UserController extends Controller
             $delay = gmdate('i:s', $delay);
             session()->flash('alert', 'You can resend Verification Code after ' . $delay . ' minutes');
         } else {
-            $code = strtoupper(Str::random(6));
+            $code = rand(100000, 999999);
             $user->phone_time = Carbon::now();
             $user->sms_code = $code;
             $user->save();
