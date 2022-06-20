@@ -8,6 +8,7 @@ use App\Models\Etemplate;
 use App\Models\Extraction;
 use App\Models\PostUser;
 use App\Models\Referral;
+use App\Models\Setting;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -104,15 +105,32 @@ class UserController extends Controller
     {
         try {
             $user = User::findOrFail(auth()->user()->id);
+            $set = Setting::first();
             $current_pin = implode('', $request->current_pins);
             $pin = implode('', $request->pins);
             if ($current_pin != auth()->user()->pin) {
                 return back()->with('alert', 'Current Pin Not Match.');
             }
-            $user->update(['pin' => $pin]);
-            return back()->with('success', 'Pin Changed Successfully.');
+            // $user->update(['pin' => $pin]);
+            
+            if ($set->email_notify == 1) {
+                $temp = Etemplate::first();
+                Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Please click on this link to confirm the pin change: <a href="' . route('user.profile.change_pin', $pin) . '">Click Here!</a>. Thanks for working with us.', 'Request for Pin Change', 1));
+            }
+            return back()->with('success', 'A confirmation email has been sent to your EMAIL for your PIN Change confirmation. Please go to your EMAIL to your to confirm your PIN Change setup. Thank you!');
+            // return back()->with('success', 'Pin Changed Successfully.');
         } catch (\PDOException $e) {
             return back()->with('error', $e->getMessage());
+        }
+    }
+    public function profile_change_pin($pin)
+    {
+        try {
+            $user = User::findOrFail(auth()->user()->id);
+            $user->update(['pin' => $pin]);
+            return redirect()->route('user.profile.set_pin')->with('success', 'Pin Changed Successfully.');
+        } catch (\PDOException $e) {
+            return redirect()->route('user.profile.set_pin')->with('error', $e->getMessage());
         }
     }
 

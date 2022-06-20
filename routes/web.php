@@ -86,6 +86,7 @@ Route::name('user.')->group(function () {
             Route::post('profile/update_bank', 'profile_update_bank')->name('profile.update_bank');
             Route::get('profile/set_pin', 'profile_set_pin')->name('profile.set_pin');
             Route::post('profile/update_pin', 'profile_update_pin')->name('profile.update_pin');
+            Route::get('profile/change_pin/{pin}', 'profile_change_pin')->name('profile.change_pin');
             Route::post('profile/update_tether_address', 'profile_update_tether_address')->name('profile.update_tether_address');
         });
         Route::resource('login_logs', LoginLogController::class);

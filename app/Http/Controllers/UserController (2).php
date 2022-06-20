@@ -531,68 +531,6 @@ class UserController extends Controller
     //         }
     //     }
     // }
-    public function data_withdrawsubmit(Request $request)
-    {
-        // return $request;
-        $validator = Validator::make($request->all(), [
-            'amount' => 'required',
-            'details' => 'required',
-            'pin' => 'required',
-        ]);
-        $user = User::with('data_operator')->whereId(auth()->user()->id)->first();
-        if ($validator->fails()) {
-            // adding an extra field 'error'...
-
-            $data['title'] = 'Data Withdraw';
-            $data['data_withdraw'] = DataWithdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-            $data_operator_name = $user->data_operator !== null ? $user->data_operator->name : 'N/A';
-            $data['account'] = [
-                'account_no' => $user->phone,
-                'account' => $user->phone . ' - ' . $data_operator_name
-            ];
-            $data['errors'] = $validator->errors();
-            return view('user.data_withdraw', $data);
-        }
-        if ($request->pin === '0000') {
-            return back()->with('alert', 'You cannot use the default PIN 0000 to perform transactions, please go to the Account Security Page to have your PIN RESET.');
-        }
-
-        /* Monthly*/
-        // $this_month_wd = DataWithdraw::whereUser_id($user->id)->whereMonth('created_at', Carbon::now()->month)->count();
-        // if ($this_month_wd > 0) {
-        //     return back()->with('alert', 'You have already requested this withdraw.');
-        // }
-        $set = $data['set'] = Settings::first();
-        $withdraw_count = DataWithdraw::whereDate('created_at', date('Y-m-d'))->count();
-        if ($set->data_user_limit <= $withdraw_count) {
-            return back()->with('alert', 'MOBILE DATA Withdrawal Request Queue for Today is filled. You would be able to place MOBILE DATA request in the next 24hours.');
-        }
-        $user = $data['user'] = User::find(Auth::user()->id);
-        if ($request->pin !== $user->pin) {
-            return back()->with('alert', 'Pin is not same.');
-        }
-        if ($request->amount != $set->data_withdraw_limit) {
-            return back()->with('alert', 'Amount should be 500.');
-        }
-        $amount = $request->amount * 10;
-        if ($user->profit > $amount || $user->profit == $amount) {
-            $sav['user_id'] = Auth::user()->id;
-            $sav['amount'] = $amount;
-            $sav['status'] = 0;
-            $sav['details'] = $request->details;
-            $sav['data_operator_id'] = Auth::user()->data_operator_id;
-            DataWithdraw::create($sav);
-            $user->profit = $user->profit - $amount;
-            $user->save();
-            if ($set->email_notify == 1) {
-                $temp = Etemplate::first();
-                Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of MB' . $request->amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
-            }
-            return back()->with('success', 'Data Withdrawal Request has been submitted, you will be updated shortly.');
-        } else {
-            return back()->with('alert', 'Insufficent balance.');
-        }
-    }
 
     public function userDataUpdate($id)
     {
@@ -709,46 +647,46 @@ class UserController extends Controller
         }
     }
 
-    public function submitPin(Request $request)
-    {
-        $this->validate($request, [
-            'current_pin' => 'required',
-            'pin' => 'required|max:4|confirmed'
-        ]);
-        try {
-            $set = Settings::first();
-            $c_id = Auth::user()->id;
-            $user = User::findOrFail($c_id);
-            $c_pin = Auth::user()->pin;
-            if ($request->current_pin == $c_pin) {
-                if ($request->pin == $request->pin_confirmation) {
-                    if ($set->email_notify == 1) {
-                        $temp = Etemplate::first();
-                        Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Please click on this link to confirm the pin change: <a href="' . route('confirm.changePin', $request->pin) . '">Click Here!</a>. Thanks for working with us.', 'Request for Pin Change', 1));
-                    }
-                    return back()->with('pin_success', 'A confirmation email has been sent to your EMAIL for your PIN Change confirmation. Please go to your EMAIL to your to confirm your PIN Change setup. Thank you!');
-                } else {
-                    return back()->with('alert', 'New Pin Does Not Match.');
-                }
-            } else {
-                return back()->with('alert', 'Current Pin Not Match.');
-            }
-        } catch (\PDOException $e) {
-            return back()->with('alert', $e->getMessage());
-        }
-    }
-    public function confirmChangePin($pin)
-    {
-        try {
-            $c_id = Auth::user()->id;
-            $user = User::findOrFail($c_id);
-            $user->pin = $pin;
-            $user->save();
-            return redirect()->route('user.password')->with('success', 'Pin Changed Successfully.');
-        } catch (\PDOException $e) {
-            return redirect()->route('user.password')->with('alert', $e->getMessage());
-        }
-    }
+    // public function submitPin(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'current_pin' => 'required',
+    //         'pin' => 'required|max:4|confirmed'
+    //     ]);
+    //     try {
+    //         $set = Settings::first();
+    //         $c_id = Auth::user()->id;
+    //         $user = User::findOrFail($c_id);
+    //         $c_pin = Auth::user()->pin;
+    //         if ($request->current_pin == $c_pin) {
+    //             if ($request->pin == $request->pin_confirmation) {
+    //                 if ($set->email_notify == 1) {
+    //                     $temp = Etemplate::first();
+    //                     Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Please click on this link to confirm the pin change: <a href="' . route('confirm.changePin', $request->pin) . '">Click Here!</a>. Thanks for working with us.', 'Request for Pin Change', 1));
+    //                 }
+    //                 return back()->with('pin_success', 'A confirmation email has been sent to your EMAIL for your PIN Change confirmation. Please go to your EMAIL to your to confirm your PIN Change setup. Thank you!');
+    //             } else {
+    //                 return back()->with('alert', 'New Pin Does Not Match.');
+    //             }
+    //         } else {
+    //             return back()->with('alert', 'Current Pin Not Match.');
+    //         }
+    //     } catch (\PDOException $e) {
+    //         return back()->with('alert', $e->getMessage());
+    //     }
+    // }
+    // public function confirmChangePin($pin)
+    // {
+    //     try {
+    //         $c_id = Auth::user()->id;
+    //         $user = User::findOrFail($c_id);
+    //         $user->pin = $pin;
+    //         $user->save();
+    //         return redirect()->route('user.password')->with('success', 'Pin Changed Successfully.');
+    //     } catch (\PDOException $e) {
+    //         return redirect()->route('user.password')->with('alert', $e->getMessage());
+    //     }
+    // }
 
     public function submitPassword(Request $request)
     {
