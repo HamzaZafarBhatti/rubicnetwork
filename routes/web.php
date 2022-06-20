@@ -142,12 +142,17 @@ Route::name('user.')->group(function () {
         });
         //Rubic Stake Wallet
         Route::controller(StakeWithdrawController::class)->group(function() {
+            //tether
             Route::get('/stake_wallet/withdraw_to_tether', 'withdraw_to_tether')->name('stake_wallet.withdraw_to_tether');
             Route::post('/stake_wallet/withdraw_to_tether', 'do_withdraw_to_tether')->name('stake_wallet.do_withdraw_to_tether');
-            Route::get('/stake_wallet/withdraw_history', 'withdraw_history')->name('stake_wallet.withdraw_history');
+            Route::get('/stake_wallet/withdraw_history_tether', 'withdraw_history_tether')->name('stake_wallet.withdraw_history_tether');
+            //bank
+            Route::get('/stake_wallet/withdraw_to_bank', 'withdraw_to_bank')->name('stake_wallet.withdraw_to_bank');
+            Route::post('/stake_wallet/withdraw_to_bank', 'do_withdraw_to_bank')->name('stake_wallet.do_withdraw_to_bank');
+            Route::get('/stake_wallet/withdraw_history_bank', 'withdraw_history_bank')->name('stake_wallet.withdraw_history_bank');
         });
         // Route::get('stake_wallet/withdraw_to_tether', [StakePlanController::class, 'withdraw_to_tether'])->name('stake_wallet.withdraw_to_tether');
-        Route::get('stake_wallet/withdraw_to_bank', [StakePlanController::class, 'withdraw_to_bank'])->name('stake_wallet.withdraw_to_bank');
+        // Route::get('stake_wallet/withdraw_to_bank', [StakePlanController::class, 'withdraw_to_bank'])->name('stake_wallet.withdraw_to_bank');
     });
 });
 

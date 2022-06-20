@@ -109,11 +109,21 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="shopping-cart"></i>
+                        <span data-key="t-ecommerce">Withdraw Rubic Stake Wallet to Bank</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('user.stake_wallet.withdraw_to_bank') }}" key="t-products">Withdraw Rubic Stake Wallet to Bank</a></li>
+                        <li><a href="{{ route('user.stake_wallet.withdraw_history_bank') }}" data-key="t-product-detail">Rubic Stake Wallet Withdrawal History</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i data-feather="shopping-cart"></i>
                         <span data-key="t-ecommerce">Withdraw Rubic Stake Wallet to Tether USDT</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('user.stake_wallet.withdraw_to_tether') }}" key="t-products">Withdraw Rubic Stake Wallet to Tether USDT</a></li>
-                        <li><a href="{{ route('user.stake_wallet.withdraw_to_tether') }}" data-key="t-product-detail">Rubic Stake Wallet Withdrawal History</a></li>
+                        <li><a href="{{ route('user.stake_wallet.withdraw_history_tether') }}" data-key="t-product-detail">Rubic Stake Wallet Withdrawal History</a></li>
                     </ul>
                 </li>
 

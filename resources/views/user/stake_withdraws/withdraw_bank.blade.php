@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 @section('title')
-    Withdraw Rubic Stake Wallet to Tether USDT
+    Withdraw Rubic Stake Wallet to Bank
 @endsection
 @section('content')
     @component('components.breadcrumb')
@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div>
-                                <form action="{{ route('user.wallet.do_withdraw_to_tether') }}" method="post">
+                                <form action="{{ route('user.stake_wallet.do_withdraw_to_bank') }}" method="post">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">
@@ -31,7 +31,8 @@
                                                 <select name="account_no" class="form-control">
                                                     <option value="">Select Bank Account</option>
                                                     <option value="{{ $account['account_no'] }}">
-                                                        {{ $account['account'] }}</option>
+                                                        {{ $account['account'] }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>

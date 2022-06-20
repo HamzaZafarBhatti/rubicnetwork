@@ -5,10 +5,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Rubic Wallet
+            Rubic Stake Wallet
         @endslot
         @slot('title2')
-            Withdraw to Bank
+            Withdraw to Tether USDT
         @endslot
     @endcomponent
 
@@ -16,7 +16,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Withdraw Rubic NGN to Bank from Wallet</h4>
+                    <h4 class="card-title">Withdraw Rubic Stake Wallet to Tether USDT</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">

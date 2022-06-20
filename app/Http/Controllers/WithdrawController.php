@@ -20,7 +20,6 @@ class WithdrawController extends Controller
     {
         $user = User::with('bank')->whereId(auth()->user()->id)->first();
         // return $user;
-        // $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
         $bank_name = $user->bank !== null ? $user->bank->name : 'N/A';
         $data['account'] = [
             'account_no' => $user->account_no,
@@ -33,26 +32,6 @@ class WithdrawController extends Controller
     {
         // return $request;
         $pin = implode('', $request->pins);
-        // return date('Y-m-d');
-        // $validator = Validator::make($request->all(), [
-        //     'amount' => 'required',
-        //     'type' => 'required',
-        //     'details' => 'required',
-        //     'pin' => 'required',
-        // ]);
-        // if ($validator->fails()) {
-        //     // adding an extra field 'error'...
-        //     $user = User::with('bank')->whereId(auth()->user()->id)->first();
-        //     $data['title'] = 'Withdraw';
-        //     $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-        //     $bank_name = $user->bank !== null ? $user->bank->name : 'N/A';
-        //     $data['account'] = [
-        //         'account_no' => $user->account_no,
-        //         'account' => $user->account_name . ' - ' . $user->account_no . ' - ' . $bank_name
-        //     ];
-        //     $data['errors'] = $validator->errors();
-        //     return view('user.withdraw', $data);
-        // }
         if ($pin === '000000') {
             return back()->with('error', 'You cannot use the default PIN 000000 to perform transactions, please go to the Account Security Page to have your PIN RESET.');
         }
@@ -62,22 +41,10 @@ class WithdrawController extends Controller
             return back()->with('error', 'Pin is not same.');
         }
         $plan = $user->plan;
-        // if ($plan->min_account_balance_wd > $request->amount) {
-        //     return back()->with('error', 'You have requested less than your plan defined payment.');
-        // }
         $amount = $request->amount;
-        if ($plan->min_trade_profit_wd > $request->amount) {
+        if ($plan->min_account_balance_wd > $request->amount) {
             return back()->with('error', 'You have requested less than your plan defined payment.');
         }
-        // $last_wd = Withdraw::whereUser_id($user->id)->whereType(1)->latest()->first();
-        // if ($last_wd) {
-        //     $end = Carbon::parse($last_wd->created_at);
-        //     $now = Carbon::now();
-        //     $length = $end->diffInDays($now);
-        //     if ($length < $plan->min_trade_profit_wd_cycle) {
-        //         return back()->with('error', 'You have already requested this payment.');
-        //     }
-        // }
         if ($user->rubic_wallet >= $amount) {
             Withdraw::create([
                 'user_id' => $user->id,

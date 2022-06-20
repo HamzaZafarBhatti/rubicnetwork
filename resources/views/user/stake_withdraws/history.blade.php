@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 @section('title')
-    Convert Extraction Balance to Rubic Wallet
+Rubic Stake Wallet Withdrawal History
 @endsection
 @section('css')
     <link href="{{ URL::asset('user_assets/libs/datatables.net-bs4/datatables.net-bs4.min.css') }}" rel="stylesheet"
@@ -13,10 +13,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Extraction
+        Rubic Stake Wallet
         @endslot
         @slot('title2')
-            Convert to Rubic Wallet
+            History
         @endslot
     @endcomponent
 
@@ -24,7 +24,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">My Transfers</h4>
+                    <h4 class="card-title">Rubic Stake Wallet Withdrawal History</h4>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
