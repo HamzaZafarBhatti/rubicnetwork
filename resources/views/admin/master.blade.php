@@ -265,7 +265,7 @@
                                         class="nav-link"><i class="icon-add"></i>Generate Stake Coupons</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item nav-item-submenu">
+                        {{-- <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-credit-card"></i><span>Deposit
                                     system</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Deposit">
@@ -283,41 +283,23 @@
                                         class="nav-link"><i class="icon-thumbs-down2"></i>Declined deposit</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-share2"></i><span>Withdraw
                                     system</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Withdraw">
-                                <li class="nav-item"><a href="{{ route('admin.withdraw.log') }}"
+                                <li class="nav-item"><a href="{{ route('admin.wallet.withdraw_log') }}"
                                         class="nav-link"><i class="icon-list-unordered"></i>Withdraw log</a>
                                 </li>
-                                <li class="nav-item"><a href="{{ route('admin.withdraw.unpaid') }}"
+                                <li class="nav-item"><a href="{{ route('admin.wallet.withdraw_unpaid') }}"
                                         class="nav-link"><i class="icon-spinner2 spinner"></i>Unpaid
                                         withdrawal</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.withdraw.approved') }}"
+                                <li class="nav-item"><a href="{{ route('admin.wallet.withdraw_approved') }}"
                                         class="nav-link"><i class="icon-thumbs-up2"></i>Approved withdrawal</a>
                                 </li>
-                                <li class="nav-item"><a href="{{ route('admin.withdraw.declined') }}"
+                                <li class="nav-item"><a href="{{ route('admin.wallet.withdraw_declined') }}"
                                         class="nav-link"><i class="icon-accessibility"></i>Declined
                                         withdrawal</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-share2"></i><span>Selfcashout
-                                    system</span></a>
-                            <ul class="nav nav-group-sub" data-submenu-title="Selfcashout">
-                                <li class="nav-item"><a href="{{ route('admin.selfcashout.log') }}"
-                                        class="nav-link"><i class="icon-list-unordered"></i>Selfcashout log</a>
-                                </li>
-                                <li class="nav-item"><a href="{{ route('admin.selfcashout.unpaid') }}"
-                                        class="nav-link"><i class="icon-spinner2 spinner"></i>Unpaid
-                                        selfcashout</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.selfcashout.approved') }}"
-                                        class="nav-link"><i class="icon-thumbs-up2"></i>Approved selfcashout</a>
-                                </li>
-                                <li class="nav-item"><a href="{{ route('admin.selfcashout.declined') }}"
-                                        class="nav-link"><i class="icon-accessibility"></i>Declined
-                                        selfcashout</a></li>
                             </ul>
                         </li>
                         <li class="nav-item nav-item-submenu">

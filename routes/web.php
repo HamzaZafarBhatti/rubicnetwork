@@ -40,6 +40,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
 // Auth::routes();
 //Language Translation
@@ -77,7 +78,7 @@ Route::name('user.')->group(function () {
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login', [LoginController::class, 'do_login'])->name('do_login');
     Route::prefix('user')->middleware(['auth:web', 'checkStatus'])->group(function () {
-        Route::controller(UserController::class)->group(function() {
+        Route::controller(UserController::class)->group(function () {
             Route::get('logout', 'logout')->name('logout');
             Route::get('/dashboard', 'dashboard')->name('dashboard');
             Route::get('profile/edit', 'profile_edit')->name('profile_edit');
@@ -91,7 +92,7 @@ Route::name('user.')->group(function () {
         });
         Route::resource('login_logs', LoginLogController::class);
         //Extraction
-        Route::controller(ExtractionController::class)->group(function() {
+        Route::controller(ExtractionController::class)->group(function () {
             Route::get('/extractions/page', 'extractions_page')->name('extractions.page');
             Route::get('/extractions/start', 'extractions_start')->name('extractions.start');
             Route::get('/extractions/thankyou', 'extractions_thankyou')->name('extractions.thankyou');
@@ -100,21 +101,21 @@ Route::name('user.')->group(function () {
             Route::post('/extractions/do_convert', 'extractions_do_convert')->name('extractions.do_convert');
         });
         //Referral
-        Route::controller(ReferralController::class)->group(function() {
+        Route::controller(ReferralController::class)->group(function () {
             Route::get('/referrals', 'index')->name('referrals.index');
             Route::get('/referrals/earning/history', 'earning_history')->name('referrals.earning_history');
             Route::get('/referrals/convert', 'convert')->name('referrals.convert');
             Route::post('/referrals/do_convert', 'do_convert')->name('referrals.do_convert');
         });
         //Indirect Referral
-        Route::controller(IndirectReferralController::class)->group(function() {
+        Route::controller(IndirectReferralController::class)->group(function () {
             Route::get('/indirect_referrals', 'index')->name('indirect_referrals.index');
             Route::get('/indirect_referrals/earning/history', 'earning_history')->name('indirect_referrals.earning_history');
             Route::get('/indirect_referrals/convert', 'convert')->name('indirect_referrals.convert');
             Route::post('/indirect_referrals/do_convert', 'do_convert')->name('indirect_referrals.do_convert');
         });
         //Viral Share
-        Route::controller(ViralShareController::class)->group(function() {
+        Route::controller(ViralShareController::class)->group(function () {
             Route::get('/viral_shares', 'index')->name('viral_shares.index');
             Route::get('/viral_shares/{id}/earn', 'earn')->name('viral_shares.earn');
             Route::get('/viral_shares/history', 'history')->name('viral_shares.history');
@@ -122,26 +123,26 @@ Route::name('user.')->group(function () {
             Route::post('/viral_shares/do_convert', 'do_convert')->name('viral_shares.do_convert');
         });
         //Rubic Wallet
-        Route::controller(WithdrawController::class)->group(function() {
+        Route::controller(WithdrawController::class)->group(function () {
             Route::get('/wallet/withdraw', 'wallet_withdraw')->name('wallet.withdraw');
             Route::post('/wallet/withdraw', 'wallet_do_withdraw')->name('wallet.do_withdraw');
             Route::get('/wallet/withdraw_history', 'wallet_withdraw_history')->name('wallet.withdraw_history');
         });
         //Stake Plan
-        Route::controller(StakePlanController::class)->group(function() {
+        Route::controller(StakePlanController::class)->group(function () {
             Route::get('stake_plans/activate', 'activate')->name('stake_plans.activate');
             Route::get('stake_plans/{stakePlan}/do_activate_tether', 'do_activate_tether')->name('stake_plans.do_activate_tether');
             Route::post('stake_plans/{stakePlan}/do_activate_coupon', 'do_activate_coupon')->name('stake_plans.do_activate_coupon');
             Route::get('stake_plans/history', 'history')->name('stake_plans.history');
         });
         //Stake Referral
-        Route::controller(StakeReferralController::class)->group(function() {
+        Route::controller(StakeReferralController::class)->group(function () {
             Route::get('stake_referrals/earning_history', 'earning_history')->name('stake_referrals.earning_history');
             Route::get('stake_referrals/convert', 'convert')->name('stake_referrals.convert');
             Route::post('stake_referrals/do_convert', 'do_convert')->name('stake_referrals.do_convert');
         });
         //Rubic Stake Wallet
-        Route::controller(StakeWithdrawController::class)->group(function() {
+        Route::controller(StakeWithdrawController::class)->group(function () {
             //tether
             Route::get('/stake_wallet/withdraw_to_tether', 'withdraw_to_tether')->name('stake_wallet.withdraw_to_tether');
             Route::post('/stake_wallet/withdraw_to_tether', 'do_withdraw_to_tether')->name('stake_wallet.do_withdraw_to_tether');
@@ -151,8 +152,6 @@ Route::name('user.')->group(function () {
             Route::post('/stake_wallet/withdraw_to_bank', 'do_withdraw_to_bank')->name('stake_wallet.do_withdraw_to_bank');
             Route::get('/stake_wallet/withdraw_history_bank', 'withdraw_history_bank')->name('stake_wallet.withdraw_history_bank');
         });
-        // Route::get('stake_wallet/withdraw_to_tether', [StakePlanController::class, 'withdraw_to_tether'])->name('stake_wallet.withdraw_to_tether');
-        // Route::get('stake_wallet/withdraw_to_bank', [StakePlanController::class, 'withdraw_to_bank'])->name('stake_wallet.withdraw_to_bank');
     });
 });
 
@@ -177,14 +176,19 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('blogs', PostController::class);
         Route::get('blogs/unpublish/{id}', [PostController::class, 'unpublish'])->name('blogs.unpublish');
         Route::get('blogs/publish/{id}', [PostController::class, 'publish'])->name('blogs.publish');
+        //Rubic Wallet Withdraw
+        Route::prefix('rubic_wallet')->name('wallet.')->controller(WithdrawController::class)->group(function () {
+            Route::get('withdraw_log', 'withdraw_log')->name('withdraw_log');
+            Route::get('withdraw_approved', 'withdraw_approved')->name('withdraw_approved');
+            Route::get('withdraw_declined', 'withdraw_declined')->name('withdraw_declined');
+            Route::get('withdraw_unpaid', 'withdraw_unpaid')->name('withdraw_unpaid');
+            Route::get('withdraw_delete/{id}', 'withdraw_delete')->name('withdraw_delete');
+            Route::get('withdraw_approve/{id}', 'withdraw_approve')->name('withdraw_approve');
+            Route::post('withdraw_approve_multi', 'withdraw_approve_multi')->name('withdraw_approve_multi');
+            Route::get('withdraw_decline/{id}', 'withdraw_decline')->name('withdraw_decline');
+        });
     });
 });
-
-
-// Route::group(['prefix' => 'admin'], function () {
-//     Route::get('/', 'AdminLoginController@index')->name('admin.loginForm');
-//     Route::post('/', 'AdminLoginController@authenticate')->name('admin.login');
-// });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     // Route::get('/logout', 'AdminController@logout')->name('admin.logout');
@@ -252,25 +256,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::post('section3/update', [WebController::class, 'section3']);
     Route::post('section4/update', [WebController::class, 'section4']);
 
-    //Withdrawal controller
-    Route::get('withdraw-log', [WithdrawController::class, 'withdrawlog'])->name('admin.withdraw.log');
-    Route::get('withdraw-approved', [WithdrawController::class, 'withdrawapproved'])->name('admin.withdraw.approved');
-    Route::get('withdraw-declined', [WithdrawController::class, 'withdrawdeclined'])->name('admin.withdraw.declined');
-    Route::get('withdraw-unpaid', [WithdrawController::class, 'withdrawunpaid'])->name('admin.withdraw.unpaid');
-    Route::get('withdraw/delete/{id}', [WithdrawController::class, 'DestroyWithdrawal'])->name('withdraw.delete');
-    Route::get('approvewithdraw/{id}', [WithdrawController::class, 'approve'])->name('withdraw.approve');
-    Route::post('withdraw-approve-multi', [WithdrawController::class, 'approve_multi'])->name('admin.withdraw.approve_multi');
-    Route::post('approvewithdrawmine', [WithdrawController::class, 'approvemine'])->name('withdraw.approvemine');
-    Route::get('declinewithdraw/{id}', [WithdrawController::class, 'decline'])->name('withdraw.declined');
-    //Selfcashout controller
-    Route::get('selfcashout-log', [SelfcashoutController::class, 'selfcashoutlog'])->name('admin.selfcashout.log');
-    Route::get('selfcashout-approved', [SelfcashoutController::class, 'selfcashoutapproved'])->name('admin.selfcashout.approved');
-    Route::get('selfcashout-declined', [SelfcashoutController::class, 'selfcashoutdeclined'])->name('admin.selfcashout.declined');
-    Route::get('selfcashout-unpaid', [SelfcashoutController::class, 'selfcashoutunpaid'])->name('admin.selfcashout.unpaid');
-    Route::get('selfcashout/delete/{id}', [SelfcashoutController::class, 'DestroySelfcashout'])->name('selfcashout.delete');
-    Route::get('approveselfcashout/{id}', [SelfcashoutController::class, 'approve'])->name('selfcashout.approve');
-    Route::post('selfcashout-approve-multi', [SelfcashoutController::class, 'approve_multi'])->name('admin.selfcashout.approve_multi');
-    Route::get('declineselfcashout/{id}', [SelfcashoutController::class, 'decline'])->name('selfcashout.declined');
     //Payment Proof controller
     Route::get('paymentproof-log', [PaymentProofController::class, 'paymentprooflog'])->name('admin.paymentproof.log');
     Route::get('paymentproof-approved', [PaymentProofController::class, 'paymentproofapproved'])->name('admin.paymentproof.approved');

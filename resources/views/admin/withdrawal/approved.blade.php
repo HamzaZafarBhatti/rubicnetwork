@@ -17,7 +17,6 @@
                                     <th>Amount</th>                                                                       
                                     <th>Account number</th>
                                     <th>Bank name</th>
-                                    <th>Type</th>
                                     <th>Created</th>
                                     <th>Updated</th>
                                     <th class="text-center">Action</th>    
@@ -27,19 +26,10 @@
                             @foreach($withdraw as $k=>$val)
                                 <tr>
                                     <td>{{++$k}}.</td>
-                                    <td><a href="{{url('admin/manage-user')}}/{{$val->user_id}}">{{$val->user_name}}</a></td>
+                                    <td>{{-- <a href="{{url('admin/manage-user')}}/{{$val->user_id}}"> --}}{{$val->user->name}}{{-- </a> --}}</td>
                                     <td>{{substr($val->amount,0,9)}}BTC</td>
-                                    <td>{{$val->details}}</td> 
+                                    <td>{{$val->account_no}}</td> 
                                     <td>{{$val->bank_name}}</td> 
-                                    <td>          
-                                        @if($val->type==1)
-                                            <span class="badge badge-info">Trading profit</span>
-                                        @elseif($val->type==2)
-                                            <span class="badge badge-info">Account balance</span>                  
-                                        @elseif($val->type==3)
-                                            <span class="badge badge-info">Referral bonus</span>
-                                        @endif
-                                    </td>
                                     <td>{{date("Y/m/d h:i:A", strtotime($val->created_at))}}</td>
                                     <td>{{date("Y/m/d h:i:A", strtotime($val->updated_at))}}</td>
                                     <td class="text-center">
@@ -66,7 +56,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                                                <a  href="{{url('/')}}/admin/withdraw/delete/{{$val->id}}" class="btn bg-danger">Proceed</a>
+                                                <a  href="{{ route('admin.wallet.withdraw_delete', $val->id) }}" class="btn bg-danger">Proceed</a>
                                             </div>
                                         </div>
                                     </div>
