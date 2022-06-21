@@ -26,9 +26,10 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h4>Exchange Rate to Tether USDT Expected Withdrawal from WALLET: NGN1/$</h4>
+                                            <h6 class="text-primary">Exchange Rate to Tether USDT Expected Withdrawal from WALLET: NGN{{ $set->ngn_rate }}/$</h6>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3">
