@@ -143,7 +143,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Minimum withdrawal for ACCOUNT BALANCE:</label>
+                                <label class="col-form-label col-lg-2">Minimum Extraction Balance transfer to Rubic Wallet:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
                                         <input type="text" name="min_account_balance_wd" placeholder="200NGN"
@@ -152,7 +152,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">ACCOUNT BALANCE CYCLE:</label>
+                                <label class="col-form-label col-lg-2">Extraction Balance transfer Cycle to Rubic Wallet:</label>
                                 <div class="col-lg-10">
                                     <select class="form-control select" name="min_account_balance_wd_cycle" data-fouc required>
                                         <option value="1" @if ($plan->min_account_balance_wd_cycle == '1') selected @endif>Daily
@@ -165,7 +165,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Minimum withdrawal for REFERRAL EARNINGS:</label>
+                                <label class="col-form-label col-lg-2">Minimum REFERRAL EARNINGS Transfer to Rubic Wallet:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
                                         <input type="text" name="min_ref_earn_wd" placeholder="200NGN"
@@ -174,7 +174,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">REFERRAL EARNINGS CYCLE:</label>
+                                <label class="col-form-label col-lg-2">REFERRAL EARNINGS Transfer Cycle to Rubic Wallet:</label>
                                 <div class="col-lg-10">
                                     <select class="form-control select" name="min_ref_earn_wd_cycle" data-fouc required>
                                         <option value="1" @if ($plan->min_ref_earn_wd_cycle == '1') selected @endif>Daily
@@ -182,6 +182,28 @@
                                         <option value="7" @if ($plan->min_ref_earn_wd_cycle == '7') selected @endif>Weekly
                                         </option>
                                         <option value="30" @if ($plan->min_ref_earn_wd_cycle == '30') selected @endif>Monthly
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-2">Minimum Balance for Rubic Wallet Withdrawal:</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+                                        <input type="text" name="min_rubic_wallet_wd" placeholder="200NGN"
+                                            class="form-control" value="{{ $plan->min_rubic_wallet_wd }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-2">Rubic Wallet Withdrawal Cycle:</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control select" name="min_rubic_wallet_wd_cycle" data-fouc required>
+                                        <option value="1" @if ($plan->min_rubic_wallet_wd_cycle == '1') selected @endif>Daily
+                                        </option>
+                                        <option value="7" @if ($plan->min_rubic_wallet_wd_cycle == '7') selected @endif>Weekly
+                                        </option>
+                                        <option value="30" @if ($plan->min_rubic_wallet_wd_cycle == '30') selected @endif>Monthly
                                         </option>
                                     </select>
                                 </div>

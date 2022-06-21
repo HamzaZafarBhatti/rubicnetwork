@@ -167,6 +167,8 @@ class PlanController extends Controller
             'min_account_balance_wd_cycle' => $request->min_account_balance_wd_cycle,
             'min_ref_earn_wd' => $request->min_ref_earn_wd,
             'min_ref_earn_wd_cycle' => $request->min_ref_earn_wd_cycle,
+            'min_rubic_wallet_wd' => $request->min_rubic_wallet_wd,
+            'min_rubic_wallet_wd_cycle' => $request->min_rubic_wallet_wd_cycle,
             'code_prefix' => $request->code_prefix,
             'code_length' => $request->code_length,
             'convert_rate' => $request->convert_rate,
