@@ -26,6 +26,11 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">
+                                            <h4>Exchange Rate to Tether USDT Expected Withdrawal from WALLET: NGN1/$</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label" for="amount">Tether Account</label>
                                                 <select name="account_no" class="form-control">
