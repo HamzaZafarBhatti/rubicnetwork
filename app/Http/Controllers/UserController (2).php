@@ -716,27 +716,27 @@ class UserController extends Controller
         }
     }
 
-    public function user_upgrade_plan(Request $request)
-    {
-        $coupon_code = Coupons::where('serial', $request->coupon)->first();
-        // return $coupon_code;
-        if (!$coupon_code) {
-            Session::flash('error', 'COUPON CODE INVALID');
-            return redirect()->route('user.upgrade_plan');
-        }
-        if ($coupon_code->status == 'inactive') {
-            Session::flash('error', 'COUPON CODE used');
-            return redirect()->route('user.upgrade_plan');
-        }
-        $user = User::findOrFail(Auth::user()->id);
-        $user->coupon = $request->coupon;
-        $user->save();
-        if ($coupon_code) {
-            $coupon_code->update(['status' => 'inactive']);
-        }
-        Session::flash('success', 'Plan upgraded Successfully.');
-        return redirect()->route('user.upgrade_plan');
-    }
+    // public function user_upgrade_plan(Request $request)
+    // {
+    //     $coupon_code = Coupons::where('serial', $request->coupon)->first();
+    //     // return $coupon_code;
+    //     if (!$coupon_code) {
+    //         Session::flash('error', 'COUPON CODE INVALID');
+    //         return redirect()->route('user.upgrade_plan');
+    //     }
+    //     if ($coupon_code->status == 'inactive') {
+    //         Session::flash('error', 'COUPON CODE used');
+    //         return redirect()->route('user.upgrade_plan');
+    //     }
+    //     $user = User::findOrFail(Auth::user()->id);
+    //     $user->coupon = $request->coupon;
+    //     $user->save();
+    //     if ($coupon_code) {
+    //         $coupon_code->update(['status' => 'inactive']);
+    //     }
+    //     Session::flash('success', 'Plan upgraded Successfully.');
+    //     return redirect()->route('user.upgrade_plan');
+    // }
     public function do_reactivate_account(Request $request)
     {
         $coupon_code = Coupons::with('plan')->where('serial', $request->coupon)->first();
@@ -806,29 +806,29 @@ class UserController extends Controller
             }
         }
     }
-    public function upgrade_plan()
-    {
-        $data['title'] = 'Plan Upgrade';
-        $data['plan'] = Plans::whereStatus(1)->orderBy('min_deposit', 'DESC')->get();
-        // $data['user_plan1'] = Plans::whereHas('user', function ($q) {
-        //     $q->where('users.id', auth()->user()->id);
-        // })->whereStatus(1)->get();
-        // return $user_plan;
-        return view('user.upgrade_plan', $data);
-    }
-    public function upgrade()
-    {
-        $user = User::where('id', Auth::user()->id)->first();
-        $set = Settings::first();
-        if ($user->balance > $set->upgrade_fee || $user->balance == $set->upgrade_fee) {
-            $user->upgrade = 1;
-            $user->balance = $user->balance - $set->upgrade_fee;
-            $user->save();
-            return back()->with('success', 'You now have access to mining bonus.');
-        } else {
-            return back()->with('alert', 'Insufficient balance, add more funds..');
-        }
-    }
+    // public function upgrade_plan()
+    // {
+    //     $data['title'] = 'Plan Upgrade';
+    //     $data['plan'] = Plans::whereStatus(1)->orderBy('min_deposit', 'DESC')->get();
+    //     // $data['user_plan1'] = Plans::whereHas('user', function ($q) {
+    //     //     $q->where('users.id', auth()->user()->id);
+    //     // })->whereStatus(1)->get();
+    //     // return $user_plan;
+    //     return view('user.upgrade_plan', $data);
+    // }
+    // public function upgrade()
+    // {
+    //     $user = User::where('id', Auth::user()->id)->first();
+    //     $set = Settings::first();
+    //     if ($user->balance > $set->upgrade_fee || $user->balance == $set->upgrade_fee) {
+    //         $user->upgrade = 1;
+    //         $user->balance = $user->balance - $set->upgrade_fee;
+    //         $user->save();
+    //         return back()->with('success', 'You now have access to mining bonus.');
+    //     } else {
+    //         return back()->with('alert', 'Insufficient balance, add more funds..');
+    //     }
+    // }
 
     public function reactivate_account()
     {

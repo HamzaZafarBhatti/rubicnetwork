@@ -89,6 +89,8 @@ Route::name('user.')->group(function () {
             Route::post('profile/update_pin', 'profile_update_pin')->name('profile.update_pin');
             Route::get('profile/change_pin/{pin}', 'profile_change_pin')->name('profile.change_pin');
             Route::post('profile/update_tether_address', 'profile_update_tether_address')->name('profile.update_tether_address');
+            Route::get('plan/upgrade', 'upgrade_plan')->name('plan.upgrade');
+            Route::post('plan/upgrade', 'do_upgrade_plan')->name('plan.do_upgrade');
         });
         Route::resource('login_logs', LoginLogController::class);
         //Extraction

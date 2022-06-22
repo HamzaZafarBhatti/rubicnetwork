@@ -72,7 +72,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('user.plan.upgrade') }}">
                         <i data-feather="arrow-up-circle"></i>
                         <span data-key="t-chat">Upgrade Plan</span>
                     </a>

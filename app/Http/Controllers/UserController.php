@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Mail\GeneralEmail;
 use App\Models\Bank;
+use App\Models\Coupon;
 use App\Models\Etemplate;
 use App\Models\Extraction;
+use App\Models\Plan;
 use App\Models\PostUser;
 use App\Models\Referral;
 use App\Models\Setting;
@@ -15,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Image;
 use Illuminate\Support\Str;
 
@@ -192,6 +195,36 @@ class UserController extends Controller
             session()->flash('success', 'Verification Code Send successfully');
         }
         return back();
+    }
+    
+    public function upgrade_plan()
+    {
+        $plans = Plan::whereStatus(1)->get();
+        return view('user.upgrade_plan', compact('plans'));
+    }
+
+    public function do_upgrade_plan(Request $request)
+    {
+        $coupon_code = Coupon::where('serial', $request->coupon_code)->first();
+        // return $coupon_code;
+        if (!$coupon_code) {
+            Session::flash('error', 'COUPON CODE INVALID');
+            return redirect()->route('user.plan.upgrade');
+        }
+        if ($coupon_code->status == 1) {
+            Session::flash('error', 'COUPON CODE used');
+            return redirect()->route('user.plan.upgrade');
+        }
+        $user = User::findOrFail(auth()->user()->id);
+        $user->update([
+            'coupon_id' => $coupon_code->id,
+            'plan_id' => $coupon_code->plan_id,
+        ]);
+        if ($coupon_code) {
+            $coupon_code->update(['status' => 1]);
+        }
+        Session::flash('success', 'Plan upgraded Successfully.');
+        return redirect()->route('user.plan.upgrade');
     }
 
     public function logout()
