@@ -57,7 +57,9 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('user.notifications.mark_read', $item->id) }}" type="submit" class="btn btn-primary w-md">Mark as Read</a>
+                                                        @if (!$item->is_read)
+                                                            <a href="{{ route('user.notifications.mark_read', $item->id) }}" type="submit" class="btn btn-primary w-md">Mark as Read</a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach
