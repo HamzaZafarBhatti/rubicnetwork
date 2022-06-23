@@ -67,7 +67,7 @@ class AppServiceProvider extends ServiceProvider
                 }
 
                 $user_stake_plans = UserStakePlan::whereStatus(1)->get();
-                // Log::info($user_stake_plans);
+                // Log::info($user);
                 foreach ($user_stake_plans as $user_stake_plan) {
                     $stake_plan = StakePlan::find($user_stake_plan->stake_plan_id);
                     $diff = Carbon::parse($user_stake_plan->complete_time)->diffInDays(Carbon::now(), false);
@@ -96,7 +96,7 @@ class AppServiceProvider extends ServiceProvider
 
                 // $view->with('user', $user);
                 // $view->with('cast', $cast);
-                $notifications = Notification::whereIsRead(0)->where('user_id', $user->id)->get();
+                $notifications = Notification::whereIsRead(0)->where('user_id', auth()->user()->id)->orWhere('user_id', null)->get();
                 $view->with('notifications', $notifications);
                 // $user_plan = Plans::whereHas('user', function ($q) {
                 //     $q->where('users.id', Auth::user()->id);
