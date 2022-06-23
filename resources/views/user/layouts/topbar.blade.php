@@ -51,10 +51,10 @@
                             <div class="col">
                                 <h6 class="m-0"> Notifications </h6>
                             </div>
-                            <div class="col-auto">
+                            {{-- <div class="col-auto">
                                 <a href="#!" class="small text-reset text-decoration-underline"> Unread
                                     ({{ count($notifications) }})</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div data-simplebar style="max-height: 230px;">
@@ -79,7 +79,7 @@
                         @endif
                     </div>
                     <div class="p-2 border-top d-grid">
-                        <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
+                        <a class="btn btn-sm btn-link font-size-14 text-center" href="{{ route('user.notifications.index') }}">
                             <i class="mdi mdi-arrow-right-circle me-1"></i> <span>View More..</span>
                         </a>
                     </div>
