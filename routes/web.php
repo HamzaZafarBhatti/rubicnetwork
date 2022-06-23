@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ExtractionController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndirectReferralController;
@@ -184,6 +185,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('blogs', PostController::class);
         Route::get('blogs/unpublish/{id}', [PostController::class, 'unpublish'])->name('blogs.unpublish');
         Route::get('blogs/publish/{id}', [PostController::class, 'publish'])->name('blogs.publish');
+        Route::resource('faqs', FaqController::class);
         //Rubic Wallet Withdraw
         Route::prefix('rubic_wallet')->name('wallet.')->controller(WithdrawController::class)->group(function () {
             Route::get('withdraw_log', 'withdraw_log')->name('withdraw_log');
@@ -229,10 +231,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::post('/createvendors', [WebController::class, 'CreateVendors']);
     //Route::post('/vendors', [WebController::class, 'Vendors']);   
     Route::get('coupons', [WebController::class, 'coupons'])->name('admin.coupons');
-    Route::post('/createfaq', [WebController::class, 'CreateFaq']);
-    Route::post('faq/update', [WebController::class, 'UpdateFaq'])->name('faq.update');
-    Route::get('faq/delete/{id}', [WebController::class, 'DestroyFaq'])->name('faq.delete');
-    Route::get('faq', [WebController::class, 'faq'])->name('admin.faq');
     Route::post('vendors/update', [WebController::class, 'UpdateVendors'])->name('vendors.update');
     Route::post('vendors/delete/{id}', [WebController::class, 'DestroyVendors'])->name('vendors.delete');
     Route::get('vendors', [WebController::class, 'vendors'])->name('admin.vendors');

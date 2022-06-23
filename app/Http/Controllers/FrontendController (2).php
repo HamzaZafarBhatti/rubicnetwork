@@ -59,11 +59,11 @@ class FrontendController extends Controller
         return view('front.topearners', $data);
     }
 
-    public function faq()
-    {
-        $data['title'] = "Faq";
-        return view('front.faq', $data);
-    }
+    // public function faq()
+    // {
+    //     $data['title'] = "Faq";
+    //     return view('front.faq', $data);
+    // }
 
     public function terms()
     {
@@ -83,11 +83,11 @@ class FrontendController extends Controller
     }
 
 
-    public function contact()
-    {
-        $data['title'] = "Contact Us";
-        return view('front.contact', $data);
-    }
+    // public function contact()
+    // {
+    //     $data['title'] = "Contact Us";
+    //     return view('front.contact', $data);
+    // }
 
 
     public function contactSubmit(Request $request)

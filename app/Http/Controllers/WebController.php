@@ -72,12 +72,12 @@ class WebController extends Controller
         return view('admin.web-control.home', $data);
     }
     
-    public function faq()
-    {
-        $data['title']='Frequently asked questions';
-        $data['faq'] = Faq::latest()->get();
-        return view('admin.web-control.faq', $data);
-    } 
+    // public function faq()
+    // {
+    //     $data['title']='Frequently asked questions';
+    //     $data['faq'] = Faq::latest()->get();
+    //     return view('admin.web-control.faq', $data);
+    // } 
      public function vendors()
     {
         $data['title']='Manage Vendors';
@@ -185,17 +185,17 @@ class WebController extends Controller
         return view('admin.web-control.terms', $data);
     }
 
-    public function CreateFaq(Request $request)
-    {
-        $data['question'] = $request->question;
-        $data['answer'] = $request->answer;
-        $res = Faq::create($data);
-        if ($res) {
-            return back()->with('success', 'Saved Successfully!');
-        } else {
-            return back()->with('alert', 'Problem With Creating New Faq');
-        }
-    }    
+    // public function CreateFaq(Request $request)
+    // {
+    //     $data['question'] = $request->question;
+    //     $data['answer'] = $request->answer;
+    //     $res = Faq::create($data);
+    //     if ($res) {
+    //         return back()->with('success', 'Saved Successfully!');
+    //     } else {
+    //         return back()->with('alert', 'Problem With Creating New Faq');
+    //     }
+    // }    
 
      public function CreateVendors(Request $request)
     {
@@ -369,18 +369,18 @@ class WebController extends Controller
         }
     } 
 
-    public function UpdateFaq(Request $request)
-    {
-        $mac = Faq::findOrFail($request->id);
-        $mac['question'] = $request->question;
-        $mac['answer'] = $request->answer;
-        $res = $mac->save();
-        if ($res) {
-            return back()->with('success', ' Updated Successfully!');
-        } else {
-            return back()->with('alert', 'Problem With Updating Faq');
-        }
-    } 
+    // public function UpdateFaq(Request $request)
+    // {
+    //     $mac = Faq::findOrFail($request->id);
+    //     $mac['question'] = $request->question;
+    //     $mac['answer'] = $request->answer;
+    //     $res = $mac->save();
+    //     if ($res) {
+    //         return back()->with('success', ' Updated Successfully!');
+    //     } else {
+    //         return back()->with('alert', 'Problem With Updating Faq');
+    //     }
+    // } 
       public function UpdateVendors(Request $request)
     {
         $mac = Vendors::findOrFail($request->id);
@@ -451,16 +451,16 @@ class WebController extends Controller
         }
     }
 
-    public function DestroyFaq($id)
-    {
-        $data = Faq::findOrFail($id);
-        $res =  $data->delete();
-        if ($res) {
-            return back()->with('success', 'Faq was Successfully deleted!');
-        } else {
-            return back()->with('alert', 'Problem With Deleting Faq');
-        }
-    }    
+    // public function DestroyFaq($id)
+    // {
+    //     $data = Faq::findOrFail($id);
+    //     $res =  $data->delete();
+    //     if ($res) {
+    //         return back()->with('success', 'Faq was Successfully deleted!');
+    //     } else {
+    //         return back()->with('alert', 'Problem With Deleting Faq');
+    //     }
+    // }    
      public function DestroyVendors($id)
     {
         $data = Vendors::findOrFail($id);

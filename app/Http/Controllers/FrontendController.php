@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\GeneralEmail;
 use App\Models\Etemplate;
+use App\Models\Faq;
 use App\Models\Post;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -57,7 +58,8 @@ class FrontendController extends Controller
     }
     public function faq()
     {
-        return view('front.faq');
+        $faqs = Faq::latest()->get();
+        return view('front.faq', compact('faqs'));
     }
     public function pin_dispatchers()
     {

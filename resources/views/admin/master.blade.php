@@ -72,13 +72,13 @@
         <div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center">
             <div class="navbar-brand navbar-brand-md">
                 <a href="{{ url('/') }}" class="d-inline-block">
-                    <img src="{{ url('/') }}/asset/{{ $logo->image_link }}">
+                    <img src="{{ url('/') }}/asset/{{ $logo->image_link }}" style="height: 50px">
                 </a>
             </div>
 
             <div class="navbar-brand navbar-brand-xs">
                 <a href="{{ url('/') }}" class="d-inline-block">
-                    <img src="{{ url('/') }}/asset/{{ $logo->image_link }}">
+                    <img src="{{ url('/') }}/asset/{{ $logo->image_link }}" style="height: 50px">
                 </a>
             </div>
         </div>
@@ -210,8 +210,8 @@
                             <ul class="nav nav-group-sub" data-submenu-title="User Manangement">
                                 <li class="nav-item"><a href="{{ route('admin.users') }}"
                                         class="nav-link"><i class="icon-user"></i> Client accounts</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.ticket') }}"
-                                        class="nav-link"><i class="icon-bubbles5"></i>Support ticket</a></li>
+                                {{-- <li class="nav-item"><a href="{{ route('admin.ticket') }}"
+                                        class="nav-link"><i class="icon-bubbles5"></i>Support ticket</a></li> --}}
                                 <li class="nav-item"><a href="{{ route('user.promo') }}"
                                         class="nav-link"><i class="icon-envelope"></i>Promotional Emails</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.message') }}"
@@ -371,8 +371,8 @@
                                         class="nav-link"><i class="icon-stack"></i>Webpages</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.currency') }}"
                                         class="nav-link"><i class="icon-coin-euro"></i>Currency</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.faq') }}"
-                                        class="nav-link"><i class="icon-question4"></i>FAQs</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.faqs.index') }}"
+                                        class="nav-link"><i class="icon-question4"></i>new FAQs</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.terms') }}"
                                         class="nav-link"><i class="icon-file-check"></i>Terms & Condition</a>
                                 </li>
