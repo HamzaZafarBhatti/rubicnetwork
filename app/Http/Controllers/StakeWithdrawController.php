@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\GeneralEmail;
 use App\Models\Etemplate;
+use App\Models\Notification;
 use App\Models\Setting;
 use App\Models\StakePlan;
 use App\Models\StakeWithdraw;
@@ -50,6 +51,12 @@ class StakeWithdrawController extends Controller
                 $temp = Etemplate::first();
                 Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of $' . $amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
             }
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'RUBIC STAKE WALLET WITHDRAWAL - PENDING - USD' . $amount,
+                'msg' => 'You have successfully placed a Withdrawal Request from your RUBIC STAKE WALLET. Kindly wait to get paid.',
+                'is_read' => 0
+            ]);
             return redirect()->route('user.stake_wallet.withdraw_history_tether')->with('success', 'Withdrawal Request has been submitted, you will be updated shortly.');
         } else {
             return back()->with('error', 'Insufficent balance.');
@@ -138,6 +145,12 @@ class StakeWithdrawController extends Controller
             Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Withdrawal request of ' . $currency . substr($data->amount, 0, 9) . ' has been approved<br>Thanks for working with us.', 'Withdraw Request has been approved', 1));
         }
         if ($res) {
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'RUBIC STAKE WALLET WITHDRAWAL - SUCCESSFUL - ' . $currency . $data->amount,
+                'msg' => 'Your Withdrawal Request from your RUBIC STAKE WALLET has been APPROVED. Kindly POST your Payment Credit ALERT!',
+                'is_read' => 0
+            ]);
             return redirect()->route('admin.stake_wallet.withdraw_log')->with('success', 'Request was Successfully approved!');
         } else {
             return redirect()->route('admin.stake_wallet.withdraw_log')->with('alert', 'Problem With Approving Request');
@@ -167,6 +180,12 @@ class StakeWithdrawController extends Controller
                 $temp = Etemplate::first();
                 Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Withdrawal request of ' . $currency . substr($data->amount, 0, 9) . ' has been approved<br>Thanks for working with us.', 'Withdraw Request has been approved'));
             }
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'RUBIC STAKE WALLET WITHDRAWAL - SUCCESSFUL - ' . $currency . $data->amount,
+                'msg' => 'Your Withdrawal Request from your RUBIC STAKE WALLET has been APPROVED. Kindly POST your Payment Credit ALERT!',
+                'is_read' => 0
+            ]);
         }
         return 1;
     }
@@ -207,6 +226,12 @@ class StakeWithdrawController extends Controller
             Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Withdrawal request of ' . $currency . substr($data->amount, 0, 9) . ' has been declined<br>Thanks for working with us.', 'Withdraw Request has been declined'));
         }
         if ($res) {
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'RUBIC STAKE WALLET WITHDRAWAL - DECLINED - ' . $currency . $data->amount,
+                'msg' => 'Your Withdrawal Request from your RUBIC STAKE WALLET has been DECLINED - Please update your Bank account and try again or contact Rubic Network Support.',
+                'is_read' => 0
+            ]);
             return back()->with('success', 'Request was Successfully declined!');
         } else {
             return back()->with('alert', 'Problem With Declining Request');

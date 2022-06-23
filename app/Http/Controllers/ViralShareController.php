@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\Plan;
 use App\Models\Post;
 use App\Models\PostUser;
@@ -87,6 +88,12 @@ class ViralShareController extends Controller
             $user->update([
                 'rubic_wallet' => $user->rubic_wallet + $request->amount,
                 'viral_share_earning' => $user->viral_share_earning - $request->amount
+            ]);
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'Viral Share Earnings Transfer',
+                'msg' => 'You transferred NGN' . $request->amount . ' from your Viral Share Earnings to your Rubic Wallet',
+                'is_read' => 0
             ]);
             return redirect()->route('user.viral_shares.convert')->with('success', 'Viral Share profit is converted to Rubic Wallet');
         } else {

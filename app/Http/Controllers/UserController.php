@@ -7,6 +7,7 @@ use App\Models\Bank;
 use App\Models\Coupon;
 use App\Models\Etemplate;
 use App\Models\Extraction;
+use App\Models\Notification;
 use App\Models\Plan;
 use App\Models\PostUser;
 use App\Models\Referral;
@@ -223,6 +224,12 @@ class UserController extends Controller
         if ($coupon_code) {
             $coupon_code->update(['status' => 1]);
         }
+        Notification::create([
+            'user_id' => $user->id,
+            'title' => 'UPGRADE SUCCESSFUL',
+            'msg' => 'You have successfully UPGRADED Your Rubic Network Plan',
+            'is_read' => 0
+        ]);
         Session::flash('success', 'Plan upgraded Successfully.');
         return redirect()->route('user.plan.upgrade');
     }

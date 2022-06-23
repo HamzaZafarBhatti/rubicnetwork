@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Extraction;
 use App\Models\ExtractionConvert;
 use App\Models\ExtractionWithdrawal;
+use App\Models\Notification;
 use App\Models\Plan;
 use App\Models\Setting;
 use App\Models\User;
@@ -78,26 +79,32 @@ class ExtractionController extends Controller
         if ($pin !== $user->pin) {
             return back()->with('error', 'Pin is not same.');
         }
-        if(!$set->extraction_transfer) {
+        if (!$set->extraction_transfer) {
             return back()->with('error', 'You cannot transfer Extraction Profit to Rubic Wallet!');
         }
-        if($request->amount > $user->extraction_balance) {
+        if ($request->amount > $user->extraction_balance) {
             return back()->with('error', 'You extraction profit balance is less than the requested amount!');
         }
         $now = Carbon::now();
         $start = Carbon::parse($set->extraction_transfer_start);
         $end = Carbon::parse($set->extraction_transfer_end);
-        if(($start > $now) || ($end < $now)) {
-            return back()->with('error', 'You can only transfer Extraction Profit to Rubic Wallet from '.$start->format('l jS \\of F Y h:i:s A').' to '.$end->format('l jS \\of F Y h:i:s A'));
+        if (($start > $now) || ($end < $now)) {
+            return back()->with('error', 'You can only transfer Extraction Profit to Rubic Wallet from ' . $start->format('l jS \\of F Y h:i:s A') . ' to ' . $end->format('l jS \\of F Y h:i:s A'));
         }
         $res = ExtractionConvert::create([
             'user_id' => $user->id,
             'amount' => $request->amount
         ]);
-        if($res) {
+        if ($res) {
             $user->update([
                 'rubic_wallet' => $user->rubic_wallet + $request->amount,
                 'extraction_balance' => $user->extraction_balance - $request->amount
+            ]);
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'Extraction Balance Transfer',
+                'msg' => 'You transferred NGN' . $request->amount . ' from your Extraction Balance to your Rubic Wallet',
+                'is_read' => 0
             ]);
             return redirect()->route('user.extractions.convert')->with('success', 'Extraction balance is converted to Rubic Wallet');
         } else {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\Setting;
 use App\Models\StakeReferral;
 use App\Models\StakeReferralConvert;
@@ -35,26 +36,32 @@ class StakeReferralController extends Controller
         if ($pin !== $user->pin) {
             return back()->with('error', 'Pin is not same.');
         }
-        if(!$set->viral_share_transfer) {
+        if (!$set->viral_share_transfer) {
             return back()->with('error', 'You cannot transfer Stake Referral Profit to Rubic Wallet Wallet!');
         }
-        if($request->amount > $user->stake_ref_earning) {
+        if ($request->amount > $user->stake_ref_earning) {
             return back()->with('error', 'Your Stake Referral profit balance is less than the requested amount!');
         }
         $now = Carbon::now();
         $start = Carbon::parse($set->stake_ref_earning_transfer_start);
         $end = Carbon::parse($set->stake_ref_earning_transfer_end);
-        if(($start > $now) || ($end < $now)) {
-            return back()->with('error', 'You  can only transfer Stake Referral Profit to Rubic Wallet Wallet from '.$start->format('l jS \\of F Y h:i:s A').' to '.$end->format('l jS \\of F Y h:i:s A'));
+        if (($start > $now) || ($end < $now)) {
+            return back()->with('error', 'You  can only transfer Stake Referral Profit to Rubic Wallet Wallet from ' . $start->format('l jS \\of F Y h:i:s A') . ' to ' . $end->format('l jS \\of F Y h:i:s A'));
         }
         $res = StakeReferralConvert::create([
             'user_id' => $user->id,
             'amount' => $request->amount
         ]);
-        if($res) {
+        if ($res) {
             $user->update([
                 'rubic_stake_wallet' => $user->rubic_stake_wallet + $request->amount,
                 'stake_ref_earning' => $user->stake_ref_earning - $request->amount
+            ]);
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'RUBIC STAKE PROFIT Transfer to STAKE WALLET',
+                'msg' => 'You transferred NGN' . $request->amount . ' from your RUBIC STAKE REFERRAL EARNINGS to your Rubic STAKE WALLET',
+                'is_read' => 0
             ]);
             return redirect()->route('user.stake_referrals.convert')->with('success', 'Stake Referral profit is converted to Rubic Wallet Wallet');
         } else {

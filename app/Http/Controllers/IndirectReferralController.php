@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\IndirectReferral;
 use App\Models\IndirectReferralConvert;
+use App\Models\Notification;
 use App\Models\Setting;
 use App\Models\User;
 use Carbon\Carbon;
@@ -61,6 +62,12 @@ class IndirectReferralController extends Controller
             $user->update([
                 'rubic_wallet' => $user->rubic_wallet + $request->amount,
                 'indirect_ref_earning' => $user->indirect_ref_earning - $request->amount
+            ]);
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'Indirect Referral Earnings Transfer',
+                'msg' => 'You transferred NGN' . $request->amount . ' from your Indirect Referral Earnings to your Rubic Wallet',
+                'is_read' => 0
             ]);
             return redirect()->route('user.indirect_referrals.convert')->with('success', 'Indirect Referral profit is converted to Rubic Wallet');
         } else {

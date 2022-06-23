@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryPost;
+use App\Models\Notification;
 use App\Models\Post;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Image;
@@ -63,6 +65,14 @@ class PostController extends Controller
         }
         $res = Post::create($in);
         if ($res) {
+            // if($res->post_date == Carbon::now()->toDateString()) {
+                Notification::create([
+                    'user_id' => 0,
+                    'title' => 'Viral Share Post For Today has been Posted',
+                    'msg' => 'VIRAL SHARE Post for today has been posted. Kindly Go to the VIRAL SHARE Post to Share and Earn for today.',
+                    'is_read' => 0
+                ]);
+            // }
             return back()->with('success', 'Post was created Successfully!');
         } else {
             return back()->with('alert', 'Problem creating post');

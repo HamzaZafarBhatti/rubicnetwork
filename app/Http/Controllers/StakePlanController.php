@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\StakeCoupon;
 use App\Models\StakePlan;
 use App\Models\StakeReferral;
@@ -245,6 +246,12 @@ class StakePlanController extends Controller
             $parent->update(['stake_ref_earning' => $stake_ref_earning]);
         }
         $stake_coupon->update(['status' => 1]);
+        Notification::create([
+            'user_id' => $user->id,
+            'title' => 'RUBIC STAKE ACTIVATION SUCCESSFUL',
+            'msg' => 'You have successfully activated a RUBIC STAKE PLAN',
+            'is_read' => 0
+        ]);
         return redirect()->route('user.stake_plans.history');
     }
 
