@@ -67,7 +67,7 @@ class PostController extends Controller
         if ($res) {
             // if($res->post_date == Carbon::now()->toDateString()) {
                 Notification::create([
-                    'user_id' => 0,
+                    'user_id' => null,
                     'title' => 'Viral Share Post For Today has been Posted',
                     'msg' => 'VIRAL SHARE Post for today has been posted. Kindly Go to the VIRAL SHARE Post to Share and Earn for today.',
                     'is_read' => 0
