@@ -111,6 +111,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserStakePlan::class);
     }
+    public function user_stake_withdrawals()
+    {
+        return $this->hasMany(StakeWithdraw::class);
+    }
     public function coupon()
     {
         return $this->belongsTo(Coupon::class);

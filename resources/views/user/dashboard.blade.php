@@ -372,10 +372,10 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Stake Withdrawals</span>
                             <h4 class="mb-3">
-                                $<span class="counter-value" data-target="0.00">0.00</span>
+                                $<span class="counter-value" data-target="{{ auth()->user()->user_stake_withdrawals->where('status', 1)->sum('amount') }}">{{ auth()->user()->user_stake_withdrawals->where('status', 1)->sum('amount') }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+$0.00</span>
+                                <span class="badge bg-soft-success text-success">+${{ auth()->user()->user_stake_withdrawals->where('status', 1)->sum('amount') }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -385,7 +385,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="#">All Stake Withdrawal History ></a>
+                        <a href="{{ route('user.stake_wallet.withdraw_history_bank') }}">All Stake Withdrawal History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->
