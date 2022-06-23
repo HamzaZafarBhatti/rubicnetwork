@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndirectReferralController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LoginLogController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PaymentProofController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PostController;
@@ -153,6 +154,10 @@ Route::name('user.')->group(function () {
             Route::get('/stake_wallet/withdraw_to_bank', 'withdraw_to_bank')->name('stake_wallet.withdraw_to_bank');
             Route::post('/stake_wallet/withdraw_to_bank', 'do_withdraw_to_bank')->name('stake_wallet.do_withdraw_to_bank');
             Route::get('/stake_wallet/withdraw_history_bank', 'withdraw_history_bank')->name('stake_wallet.withdraw_history_bank');
+        });
+        //Notifications
+        Route::controller(NotificationController::class)->group(function () {
+            Route::get('notifications', 'user_notifications')->name('notifications.index');
         });
     });
 });

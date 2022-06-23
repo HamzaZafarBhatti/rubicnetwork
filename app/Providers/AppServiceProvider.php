@@ -8,6 +8,7 @@ use App\Models\Currency;
 use App\Models\Design;
 use App\Models\Extraction;
 use App\Models\Logo;
+use App\Models\Notification;
 use App\Models\Profits;
 use App\Models\Setting;
 use App\Models\Settings;
@@ -95,7 +96,8 @@ class AppServiceProvider extends ServiceProvider
 
                 // $view->with('user', $user);
                 // $view->with('cast', $cast);
-                // $view->with('currency', $currency);
+                $notifications = Notification::whereIsRead(0)->where('user_id', $user->id)->get();
+                $view->with('notifications', $notifications);
                 // $user_plan = Plans::whereHas('user', function ($q) {
                 //     $q->where('users.id', Auth::user()->id);
                 // })->whereStatus(1)->first();

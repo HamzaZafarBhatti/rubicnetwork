@@ -39,9 +39,12 @@
                         <span data-key="t-ecommerce">Viral Share</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('user.viral_shares.index') }}" key="t-products">Viral Share Earn</a></li>
-                        <li><a href="{{ route('user.viral_shares.history') }}" data-key="t-product-detail">Viral Share History</a></li>
-                        <li><a href="{{ route('user.viral_shares.convert') }}" data-key="t-orders">Convert to Wallet</a></li>
+                        <li><a href="{{ route('user.viral_shares.index') }}" key="t-products">Viral Share Earn</a>
+                        </li>
+                        <li><a href="{{ route('user.viral_shares.history') }}" data-key="t-product-detail">Viral Share
+                                History</a></li>
+                        <li><a href="{{ route('user.viral_shares.convert') }}" data-key="t-orders">Convert to
+                                Wallet</a></li>
                     </ul>
                 </li>
                 <li>
@@ -65,7 +68,8 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('user.indirect_referrals.index') }}" key="t-products">My Indirect
                                 Referrals</a></li>
-                        <li><a href="{{ route('user.indirect_referrals.earning_history') }}" data-key="t-product-detail">Earning
+                        <li><a href="{{ route('user.indirect_referrals.earning_history') }}"
+                                data-key="t-product-detail">Earning
                                 History</a></li>
                         <li><a href="{{ route('user.indirect_referrals.convert') }}" data-key="t-orders">Convert to
                                 Wallet</a></li>
@@ -102,8 +106,10 @@
                         <span data-key="t-ecommerce">Withdraw Rubic NGN to Bank from Wallet</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('user.wallet.withdraw') }}" key="t-products">Withdraw Rubic NGN to Bank from Wallet</a></li>
-                        <li><a href="{{ route('user.wallet.withdraw_history') }}" data-key="t-product-detail">Rubic Wallet Withdrawal History</a></li>
+                        <li><a href="{{ route('user.wallet.withdraw') }}" key="t-products">Withdraw Rubic NGN to Bank
+                                from Wallet</a></li>
+                        <li><a href="{{ route('user.wallet.withdraw_history') }}" data-key="t-product-detail">Rubic
+                                Wallet Withdrawal History</a></li>
                     </ul>
                 </li>
                 <li>
@@ -112,8 +118,10 @@
                         <span data-key="t-ecommerce">Withdraw Rubic Stake Wallet to Bank</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('user.stake_wallet.withdraw_to_bank') }}" key="t-products">Withdraw Rubic Stake Wallet to Bank</a></li>
-                        <li><a href="{{ route('user.stake_wallet.withdraw_history_bank') }}" data-key="t-product-detail">Rubic Stake Wallet Withdrawal History</a></li>
+                        <li><a href="{{ route('user.stake_wallet.withdraw_to_bank') }}" key="t-products">Withdraw
+                                Rubic Stake Wallet to Bank</a></li>
+                        <li><a href="{{ route('user.stake_wallet.withdraw_history_bank') }}"
+                                data-key="t-product-detail">Rubic Stake Wallet Withdrawal History</a></li>
                     </ul>
                 </li>
                 <li>
@@ -122,8 +130,10 @@
                         <span data-key="t-ecommerce">Withdraw Rubic Stake Wallet to Tether USDT</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('user.stake_wallet.withdraw_to_tether') }}" key="t-products">Withdraw Rubic Stake Wallet to Tether USDT</a></li>
-                        <li><a href="{{ route('user.stake_wallet.withdraw_history_tether') }}" data-key="t-product-detail">Rubic Stake Wallet Withdrawal History</a></li>
+                        <li><a href="{{ route('user.stake_wallet.withdraw_to_tether') }}" key="t-products">Withdraw
+                                Rubic Stake Wallet to Tether USDT</a></li>
+                        <li><a href="{{ route('user.stake_wallet.withdraw_history_tether') }}"
+                                data-key="t-product-detail">Rubic Stake Wallet Withdrawal History</a></li>
                     </ul>
                 </li>
 
@@ -134,9 +144,12 @@
                         <span data-key="t-ecommerce">Activate Rubic Stake Plan</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('user.stake_plans.activate') }}" key="t-products">Activate Stake Plan</a></li>
-                        <li><a href="{{ route('user.stake_plans.history') }}" data-key="t-product-detail">Stake Plan Activation History</a></li>
-                        <li><a href="#" data-key="t-product-detail">Conversion Stake to Stake Wallet History</a></li>
+                        <li><a href="{{ route('user.stake_plans.activate') }}" key="t-products">Activate Stake
+                                Plan</a></li>
+                        <li><a href="{{ route('user.stake_plans.history') }}" data-key="t-product-detail">Stake
+                                Plan Activation History</a></li>
+                        <li><a href="#" data-key="t-product-detail">Conversion Stake to Stake Wallet History</a>
+                        </li>
                     </ul>
                 </li>
                 {{-- <li>
@@ -158,8 +171,10 @@
                         <span data-key="t-ecommerce">Stake Referral Earnings</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('user.stake_referrals.earning_history') }}" key="t-products">Stake Referral Earnings</a></li>
-                        <li><a href="{{ route('user.stake_referrals.convert') }}" data-key="t-product-detail">Convert Referral Earnings to Rubic Stake Wallet</a>
+                        <li><a href="{{ route('user.stake_referrals.earning_history') }}" key="t-products">Stake
+                                Referral Earnings</a></li>
+                        <li><a href="{{ route('user.stake_referrals.convert') }}"
+                                data-key="t-product-detail">Convert Referral Earnings to Rubic Stake Wallet</a>
                         </li>
                     </ul>
                 </li>
@@ -191,7 +206,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('user.notifications.index') }}">
                         <i data-feather="info"></i>
                         <span data-key="t-chat">All Notifications</span>
                     </a>
