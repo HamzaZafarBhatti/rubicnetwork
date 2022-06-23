@@ -10,7 +10,7 @@ class NotificationController extends Controller
     //
     public function user_notifications()
     {
-        $noti = Notification::whereUserId(auth()->user()->id)->get();
+        $noti = Notification::whereUserId(auth()->user()->id)->orWhere('user_id', null)->get();
         return view('user.notifications', compact('noti'));
     }
 
