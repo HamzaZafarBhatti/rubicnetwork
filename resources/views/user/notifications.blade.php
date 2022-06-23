@@ -37,6 +37,7 @@
                                             <th>Title</th>
                                             <th>Notification</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -54,6 +55,9 @@
                                                             <span
                                                                 class="badge rounded-pill badge-soft-warning">Unread</span>
                                                         @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('user.notifications.mark_read', $item->id) }}" type="submit" class="btn btn-primary w-md">Mark as Read</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

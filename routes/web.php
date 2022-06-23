@@ -158,6 +158,7 @@ Route::name('user.')->group(function () {
         //Notifications
         Route::controller(NotificationController::class)->group(function () {
             Route::get('notifications', 'user_notifications')->name('notifications.index');
+            Route::get('notifications/{id}/mark_read', 'mark_read')->name('notifications.mark_read');
         });
     });
 });
