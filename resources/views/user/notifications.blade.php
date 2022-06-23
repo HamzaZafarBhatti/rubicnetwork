@@ -40,8 +40,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if ($notifications)
-                                            @foreach ($notifications as $item)
+                                        @if ($noti)
+                                            @foreach ($noti as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->title }}</td>

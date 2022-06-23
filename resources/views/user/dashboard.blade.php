@@ -572,21 +572,17 @@
                     <div class="table-responsive">
                         <table class="table table-striped mb-0">
                             <tbody>
+                                @if ($notifications)
+                                @foreach ($notifications as $item)
                                 <tr>
-                                    <td>You referred John Doe on 5/20/2022</td>
+                                    <td>{{ $item->msg }} on {{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}</td>
                                 </tr>
+                                @endforeach
+                                @else
                                 <tr>
-                                    <td>You Withdraw $100 from Rubic Stake Wallet on 5/20/2022</td>
+                                    <td>No notifications!</td>
                                 </tr>
-                                <tr>
-                                    <td>You recently Extracted on 5/20/2022 Hash: a8d57nfbdfbf4325n43bkb34kjk32</td>
-                                </tr>
-                                <tr>
-                                    <td>You Withdraw $100 from Rubic Stake Wallet on 5/20/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>You Withdraw N8000 from Rubic Wallet on 5/20/2022</td>
-                                </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
