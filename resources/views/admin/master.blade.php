@@ -372,7 +372,7 @@
                                 <li class="nav-item"><a href="{{ route('admin.currency') }}"
                                         class="nav-link"><i class="icon-coin-euro"></i>Currency</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.faqs.index') }}"
-                                        class="nav-link"><i class="icon-question4"></i>new FAQs</a></li>
+                                        class="nav-link"><i class="icon-question4"></i>FAQs</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.terms') }}"
                                         class="nav-link"><i class="icon-file-check"></i>Terms & Condition</a>
                                 </li>
