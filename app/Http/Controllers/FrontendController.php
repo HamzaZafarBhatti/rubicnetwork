@@ -71,7 +71,7 @@ class FrontendController extends Controller
     }
     public function payment_proof()
     {
-        $proofs = PaymentProof::simplePaginate(10);
+        $proofs = PaymentProof::where('status', '1')->simplePaginate(10);
         return view('front.payment_proof', compact('proofs'));
     }
     public function faq()
