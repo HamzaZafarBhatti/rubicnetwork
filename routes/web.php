@@ -219,6 +219,17 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
             Route::get('about_us', 'about_us')->name('about_us');
             Route::post('update_about_us', 'update_about_us')->name('update_about_us');
         });
+        //Payment Proof
+        Route::prefix('payment_proofs')->name('payment_proofs.')->controller(PaymentProofController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/pending', 'pending')->name('pending');
+            Route::get('/approved', 'approved')->name('approved');
+            Route::get('/declined', 'declined')->name('declined');
+            Route::get('/decline/{id}', 'decline')->name('decline');
+            Route::get('/approve/{id}', 'approve')->name('approve');
+            Route::get('/delete/{id}', 'destroy')->name('delete');
+            Route::post('/approve_multi', 'approve_multi')->name('approve_multi');
+        });
     });
 });
 
@@ -272,16 +283,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::post('section2/update', [WebController::class, 'section2']);
     Route::post('section3/update', [WebController::class, 'section3']);
     Route::post('section4/update', [WebController::class, 'section4']);
-
-    //Payment Proof controller
-    Route::get('paymentproof-log', [PaymentProofController::class, 'paymentprooflog'])->name('admin.paymentproof.log');
-    Route::get('paymentproof-approved', [PaymentProofController::class, 'paymentproofapproved'])->name('admin.paymentproof.approved');
-    Route::get('paymentproof-declined', [PaymentProofController::class, 'paymentproofdeclined'])->name('admin.paymentproof.declined');
-    Route::get('paymentproof-pending', [PaymentProofController::class, 'paymentproofpending'])->name('admin.paymentproof.pending');
-    Route::get('paymentproof/delete/{id}', [PaymentProofController::class, 'DestroyPaymentProof'])->name('paymentproof.delete');
-    Route::get('approvepaymentproof/{id}', [PaymentProofController::class, 'approve'])->name('paymentproof.approve');
-    Route::post('paymentproof-approve-multi', [PaymentProofController::class, 'approve_multi'])->name('admin.paymentproof.approve_multi');
-    Route::get('declinepaymentproof/{id}', [PaymentProofController::class, 'decline'])->name('paymentproof.declined');
 
     //Deposit controller
     Route::get('deposit-log', [DepositController::class, 'depositlog'])->name('admin.deposit.log');

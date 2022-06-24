@@ -324,16 +324,16 @@
                             <a href="#" class="nav-link"><i class="icon-share2"></i><span>Paymentproof
                                     system</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Paymentproof">
-                                <li class="nav-item"><a href="{{ route('admin.paymentproof.log') }}"
+                                <li class="nav-item"><a href="{{ route('admin.payment_proofs.index') }}"
                                         class="nav-link"><i class="icon-list-unordered"></i>Paymentproof log</a>
                                 </li>
-                                <li class="nav-item"><a href="{{ route('admin.paymentproof.pending') }}"
+                                <li class="nav-item"><a href="{{ route('admin.payment_proofs.pending') }}"
                                         class="nav-link"><i class="icon-spinner2 spinner"></i>Pending
                                         paymentproof</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.paymentproof.approved') }}"
+                                <li class="nav-item"><a href="{{ route('admin.payment_proofs.approved') }}"
                                         class="nav-link"><i class="icon-thumbs-up2"></i>Approved
                                         paymentproof</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.paymentproof.declined') }}"
+                                <li class="nav-item"><a href="{{ route('admin.payment_proofs.declined') }}"
                                         class="nav-link"><i class="icon-accessibility"></i>Declined
                                         paymentproof</a></li>
                             </ul>
