@@ -46,7 +46,7 @@ class WebController extends Controller
         return view('admin.web-control.social-links', $data);
     } 
     
-    public function aboutus()
+    public function about_us()
     {
         $data['title']='About us';
         $data['value'] = About::first();
@@ -549,7 +549,7 @@ class WebController extends Controller
         }
     } 
     
-    public function UpdateAbout(Request $request)
+    public function update_about_us(Request $request)
     {
         $mac = About::findOrFail(1);
         $mac['about'] = $request->details;

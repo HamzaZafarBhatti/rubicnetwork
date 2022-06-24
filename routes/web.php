@@ -186,13 +186,6 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('blogs', PostController::class);
         Route::get('blogs/unpublish/{id}', [PostController::class, 'unpublish'])->name('blogs.unpublish');
         Route::get('blogs/publish/{id}', [PostController::class, 'publish'])->name('blogs.publish');
-        Route::resource('faqs', FaqController::class);
-        Route::prefix('web_pages')->name('web.')->controller(WebController::class)->group(function () {
-            Route::get('terms', 'terms')->name('terms');
-            Route::post('update_terms', 'update_terms')->name('update_terms');
-            Route::get('privacy_policy', 'privacy_policy')->name('privacy_policy');
-            Route::post('update_privacy_policy', 'update_privacy_policy')->name('update_privacy_policy');
-        });
         //Rubic Wallet Withdraw
         Route::prefix('rubic_wallet')->name('wallet.')->controller(WithdrawController::class)->group(function () {
             Route::get('withdraw_log', 'withdraw_log')->name('withdraw_log');
@@ -215,6 +208,16 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
             Route::post('withdraw_approve_multi', 'withdraw_approve_multi')->name('withdraw_approve_multi');
             Route::get('withdraw_decline/{id}', 'withdraw_decline')->name('withdraw_decline');
         });
+        //Web Pages
+        Route::resource('faqs', FaqController::class);
+        Route::prefix('web_pages')->name('web.')->controller(WebController::class)->group(function () {
+            Route::get('terms', 'terms')->name('terms');
+            Route::post('update_terms', 'update_terms')->name('update_terms');
+            Route::get('privacy_policy', 'privacy_policy')->name('privacy_policy');
+            Route::post('update_privacy_policy', 'update_privacy_policy')->name('update_privacy_policy');
+            Route::get('about_us', 'about_us')->name('about_us');
+            Route::post('update_about_us', 'update_about_us')->name('update_about_us');
+        });
     });
 });
 
@@ -225,11 +228,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     //Web controller
     Route::post('social-links/update', [WebController::class, 'UpdateSocial'])->name('social-links.update');
     Route::get('social-links', [WebController::class, 'sociallinks'])->name('social-links');
-
-    Route::post('about-us/update', [WebController::class, 'UpdateAbout'])->name('about-us.update');
-    Route::get('about-us', [WebController::class, 'aboutus'])->name('about-us');
-
-    Route::post('terms/update', [WebController::class, 'UpdateTerms'])->name('terms.update');
 
     Route::post('/createvendors', [WebController::class, 'CreateVendors']);
     //Route::post('/vendors', [WebController::class, 'Vendors']);   

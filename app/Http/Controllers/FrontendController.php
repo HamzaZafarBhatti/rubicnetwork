@@ -20,7 +20,9 @@ class FrontendController extends Controller
     }
     public function about_us()
     {
-        return view('front.about_us');
+        $about = About::findOrFail(1);
+        $about_us = $about->about;
+        return view('front.about_us', compact('about_us'));
     }
     public function rubic_staking()
     {

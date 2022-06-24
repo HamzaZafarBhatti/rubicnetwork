@@ -378,7 +378,7 @@
                                 </li>
                                 <li class="nav-item"><a href="{{ route('admin.web.privacy_policy') }}"
                                         class="nav-link"><i class="icon-file-check"></i>Privacy policy</a></li>
-                                <li class="nav-item"><a href="{{ route('about-us') }}"
+                                <li class="nav-item"><a href="{{ route('admin.web.about_us') }}"
                                         class="nav-link"><i class="icon-file-check"></i>About us</a></li>
                                 <li class="nav-item"><a href="{{ route('social-links') }}"
                                         class="nav-link"><i class="icon-share2"></i>Social Links</a></li>
