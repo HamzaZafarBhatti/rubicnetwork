@@ -58,6 +58,7 @@ Route::get('/privacy_policy', [FrontendController::class, 'privacy_policy'])->na
 Route::get('/pin_verification', [FrontendController::class, 'pin_verification'])->name('front.pin_verification');
 Route::get('/cookies_policy', [FrontendController::class, 'cookies_policy'])->name('front.cookies_policy');
 Route::get('/contact_us', [FrontendController::class, 'contact_us'])->name('front.contact_us');
+Route::post('/send_email', [FrontendController::class, 'send_email'])->name('front.send_email');
 Route::get('/top_earners', [FrontendController::class, 'top_earners'])->name('front.top_earners');
 Route::get('/payment_proof', [FrontendController::class, 'payment_proof'])->name('front.payment_proof');
 Route::get('/faq', [FrontendController::class, 'faq'])->name('front.faq');

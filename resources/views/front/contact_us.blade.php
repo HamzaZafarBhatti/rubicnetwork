@@ -68,29 +68,30 @@
                     <div class="section__header">
                         <h2 class="neutral-top">Ask a Question</h2>
                     </div>
-                    <form action="#" name="ask__from" method="post">
+                    <form action="{{ route('front.send_email') }}" name="ask__from" method="post">
+                        @csrf
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="input input--secondary">
                                     <label for="askFirstName">First Name*</label>
-                                    <input type="text" name="ask__first__name" id="askFirstName"
+                                    <input type="text" name="from_first_name" id="askFirstName"
                                         placeholder="Enter Your First Name" required="required" />
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="input input--secondary">
                                     <label for="askLastName">Last Name*</label>
-                                    <input type="text" name="ask__last__name" id="askLastName"
+                                    <input type="text" name="from_last_name" id="askLastName"
                                         placeholder="Enter Your Last Name" required="required" />
                                 </div>
                             </div>
                         </div>
                         <div class="input input--secondary">
                             <label for="askRegistrationMail">Email*</label>
-                            <input type="email" name="ask__registration__email" id="askRegistrationMail"
+                            <input type="email" name="from_email" id="askRegistrationMail"
                                 placeholder="Enter your email" required="required" />
                         </div>
-                        <div class="input input--secondary input__alt">
+                        {{-- <div class="input input--secondary input__alt">
                             <label for="askNumber">Phone*</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -106,15 +107,15 @@
                                 <input type="number" name="ask__number" id="askNumber" required="required"
                                     placeholder="345-323-1234" />
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="input input--secondary">
                             <label for="askSubject">Subject*</label>
-                            <input type="text" name="ask__subject" id="askSubject" placeholder="Write Subject"
+                            <input type="text" name="subject" id="askSubject" placeholder="Write Subject"
                                 required="required" />
                         </div>
                         <div class="input input--secondary">
                             <label for="askMessage">Message*</label>
-                            <textarea name="ask_message" id="askMessage" required="required" placeholder="Write Message"></textarea>
+                            <textarea name="msg" id="askMessage" required="required" placeholder="Write Message"></textarea>
                         </div>
                         <div class="input__button">
                             <button type="submit" class="button button--effect">Subscribe</button>

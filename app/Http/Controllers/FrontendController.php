@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactEmail;
 use App\Mail\GeneralEmail;
 use App\Models\Etemplate;
 use App\Models\Faq;
 use App\Models\Post;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
@@ -47,6 +48,14 @@ class FrontendController extends Controller
     public function contact_us()
     {
         return view('front.contact_us');
+    }
+    public function send_email(Request $request)
+    {
+        $temp = Etemplate::first();
+        $name = $request->from_first_name.' '.$request->from_last_name;
+        // Mail::to($temp->esender)->send(new ContactEmail($request->from_email, $name, $request->msg, $request->subject));
+        Mail::to('hamza0952454@gmail.com')->send(new ContactEmail($request->from_email, $name, $request->msg, $request->subject));
+        return back()->with('success', 'Email has been sent!');
     }
     public function top_earners()
     {
