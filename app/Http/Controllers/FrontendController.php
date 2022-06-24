@@ -56,8 +56,8 @@ class FrontendController extends Controller
     {
         $temp = Etemplate::first();
         $name = $request->from_first_name.' '.$request->from_last_name;
-        // Mail::to($temp->esender)->send(new ContactEmail($request->from_email, $name, $request->msg, $request->subject));
-        Mail::to('hamza0952454@gmail.com')->send(new ContactEmail($request->from_email, $name, $request->msg, $request->subject));
+        Mail::to($temp->esender)->send(new ContactEmail($request->from_email, $name, $request->msg, $request->subject));
+        // Mail::to('hamza0952454@gmail.com')->send(new ContactEmail($request->from_email, $name, $request->msg, $request->subject));
         return back()->with('success', 'Email has been sent!');
     }
     public function top_earners()
