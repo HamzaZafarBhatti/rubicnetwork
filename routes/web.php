@@ -187,6 +187,10 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::get('blogs/unpublish/{id}', [PostController::class, 'unpublish'])->name('blogs.unpublish');
         Route::get('blogs/publish/{id}', [PostController::class, 'publish'])->name('blogs.publish');
         Route::resource('faqs', FaqController::class);
+        Route::prefix('web_pages')->name('web.')->controller(WebController::class)->group(function () {
+            Route::get('terms', 'terms')->name('terms');
+            Route::post('update_terms', 'update_terms')->name('update_terms');
+        });
         //Rubic Wallet Withdraw
         Route::prefix('rubic_wallet')->name('wallet.')->controller(WithdrawController::class)->group(function () {
             Route::get('withdraw_log', 'withdraw_log')->name('withdraw_log');
@@ -227,7 +231,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('privacy-policy', [WebController::class, 'privacypolicy'])->name('privacy-policy');
 
     Route::post('terms/update', [WebController::class, 'UpdateTerms'])->name('terms.update');
-    Route::get('terms', [WebController::class, 'terms'])->name('admin.terms');
 
     Route::post('/createvendors', [WebController::class, 'CreateVendors']);
     //Route::post('/vendors', [WebController::class, 'Vendors']);   

@@ -30,7 +30,8 @@
     <section class="terms section__space">
         <div class="container">
             <div class="terms-area">
-                <div class="terms__single">
+                {!! $term !!}
+                {{-- <div class="terms__single">
                     <h3 class="neutral-top">We're always looking for new ways to provide privacy for our customers.</h3>
                     <p>Id ipsum mi tempor eget. Pretium consectetur scelerisque blandit habitasse non ullamcorper enim,
                         diam quam id et, tempus massa. Sed nam vulputate pellentesque quis. Varius a, nunc faucibus
@@ -73,7 +74,7 @@
                         <li>Dis in at ultricies tortor sit tellus.</li>
                         <li>Habitant ornare aenean maecenas pretium</li>
                     </ul>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

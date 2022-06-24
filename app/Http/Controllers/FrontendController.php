@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactEmail;
 use App\Mail\GeneralEmail;
+use App\Models\About;
 use App\Models\Etemplate;
 use App\Models\Faq;
 use App\Models\Post;
@@ -31,7 +32,9 @@ class FrontendController extends Controller
     }
     public function terms_condition()
     {
-        return view('front.terms_condition');
+        $about = About::findOrFail(1);
+        $term = $about->terms;
+        return view('front.terms_condition', compact('term'));
     }
     public function privacy_policy()
     {

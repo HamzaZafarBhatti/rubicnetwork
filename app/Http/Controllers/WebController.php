@@ -573,7 +573,7 @@ class WebController extends Controller
         }
     }
     
-    public function UpdateTerms(Request $request)
+    public function update_terms(Request $request)
     {
         $mac = About::findOrFail(1);
         $mac['terms'] = $request->details;
