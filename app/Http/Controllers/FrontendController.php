@@ -7,6 +7,7 @@ use App\Mail\GeneralEmail;
 use App\Models\About;
 use App\Models\Etemplate;
 use App\Models\Faq;
+use App\Models\PaymentProof;
 use App\Models\Post;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -70,7 +71,8 @@ class FrontendController extends Controller
     }
     public function payment_proof()
     {
-        return view('front.payment_proof');
+        $proofs = PaymentProof::simplePaginate(10);
+        return view('front.payment_proof', compact('proofs'));
     }
     public function faq()
     {

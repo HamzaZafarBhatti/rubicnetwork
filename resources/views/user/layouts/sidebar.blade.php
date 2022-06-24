@@ -194,7 +194,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('user.payment_proofs.create') }}">
                         <i data-feather="file"></i>
                         <span data-key="t-chat">Payment Proof</span>
                     </a>

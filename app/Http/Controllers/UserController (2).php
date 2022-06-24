@@ -293,18 +293,6 @@ class UserController extends Controller
         return back()->with('success', 'Message sent!.');
     }
 
-    // public function withdraw()
-    // {
-    //     $user = User::with('bank')->whereId(auth()->user()->id)->first();
-    //     $data['title'] = 'Withdraw';
-    //     $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-    //     $bank_name = $user->bank !== null ? $user->bank->name : 'N/A';
-    //     $data['account'] = [
-    //         'account_no' => $user->account_no,
-    //         'account' => $user->account_name . ' - ' . $user->account_no . ' - ' . $bank_name
-    //     ];
-    //     return view('user.withdraw', $data);
-    // }
 
     public function data_withdraw()
     {
@@ -382,155 +370,6 @@ class UserController extends Controller
         return redirect()->route('user.get_coupon_code');
     }
 
-    // public function withdrawsubmit(Request $request)
-    // {
-    //     // return date('Y-m-d');
-    //     $validator = Validator::make($request->all(), [
-    //         'amount' => 'required',
-    //         'type' => 'required',
-    //         'details' => 'required',
-    //         'pin' => 'required',
-    //     ]);
-    //     if ($validator->fails()) {
-    //         // adding an extra field 'error'...
-    //         $user = User::with('bank')->whereId(auth()->user()->id)->first();
-    //         $data['title'] = 'Withdraw';
-    //         $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-    //         $bank_name = $user->bank !== null ? $user->bank->name : 'N/A';
-    //         $data['account'] = [
-    //             'account_no' => $user->account_no,
-    //             'account' => $user->account_name . ' - ' . $user->account_no . ' - ' . $bank_name
-    //         ];
-    //         $data['errors'] = $validator->errors();
-    //         return view('user.withdraw', $data);
-    //     }
-    //     if ($request->pin === '0000') {
-    //         return back()->with('alert', 'You cannot use the default PIN 0000 to perform transactions, please go to the Account Security Page to have your PIN RESET.');
-    //     }
-    //     $set = $data['set'] = Settings::first();
-    //     $user = $data['user'] = User::find(Auth::user()->id);
-    //     if ($request->pin !== $user->pin) {
-    //         return back()->with('alert', 'Pin is not same.');
-    //     }
-    //     $plan = Plans::whereHas('user', function ($q) use ($user) {
-    //         $q->where('users.id', $user->id);
-    //     })->whereStatus(1)->first();
-    //     $amount = $request->amount - ($request->amount * $set->withdraw_charge / 100);
-    //     if ($request->type == 1) {
-    //         if ($plan->min_trade_profit_wd > $request->amount) {
-    //             return back()->with('alert', 'You have requested less than your plan defined payment.');
-    //         }
-    //         $last_wd = Withdraw::whereUser_id($user->id)->whereType(1)->latest()->first();
-    //         if ($last_wd) {
-    //             $end = Carbon::parse($last_wd->created_at);
-    //             $now = Carbon::now();
-    //             $length = $end->diffInDays($now);
-    //             if ($length < $plan->min_trade_profit_wd_cycle) {
-    //                 return back()->with('alert', 'You have already requested this payment.');
-    //             }
-    //         }
-    //         if ($user->profit > $amount || $user->profit == $amount) {
-    //             $sav['user_id'] = Auth::user()->id;
-    //             $sav['amount'] = $amount;
-    //             $sav['status'] = 0;
-    //             $sav['details'] = $request->details;
-    //             $sav['type'] = $request->type;
-    //             Withdraw::create($sav);
-    //             $user->profit = $user->profit - $amount;
-    //             $user->save();
-    //             if ($set->email_notify == 1) {
-    //                 // send_email(
-    //                 //     $user->email,
-    //                 //     $user->username,
-    //                 //     'Withdraw Request currently being Processed',
-    //                 //     'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for choosing us.'
-    //                 // );
-    //                 $temp = Etemplate::first();
-    //                 Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
-    //             }
-    //             return back()->with('success', 'Withdrawal Request has been submitted, you will be updated shortly.');
-    //         } else {
-    //             return back()->with('alert', 'Insufficent balance.');
-    //         }
-    //     } elseif ($request->type == 2) {
-    //         if ($plan->min_account_balance_wd > $request->amount) {
-    //             return back()->with('alert', 'You have requested less than your plan defined payment.');
-    //         }
-    //         $withdraw_count = Withdraw::whereType(2)->whereDate('created_at', date('Y-m-d'))->count();
-    //         if ($set->mine_user_limit <= $withdraw_count) {
-    //             return back()->with('alert', 'MINE BALANCE Withdrawal Request Queue for Today is filled. You would be able to place MINE BALANCE request in the next 24hours.');
-    //         }
-    //         $last_wd = Withdraw::whereUser_id($user->id)->whereType(2)->latest()->first();
-    //         if ($last_wd) {
-    //             $end = Carbon::parse($last_wd->created_at);
-    //             $now = Carbon::now();
-    //             $length = $end->diffInDays($now);
-    //             if ($length < $plan->min_account_balance_wd_cycle) {
-    //                 return back()->with('alert', 'You have already requested this payment.');
-    //             }
-    //         }
-    //         if ($user->balance > $amount || $user->balance == $amount) {
-    //             $converted_amount = floor($amount / $plan->convert_rate);
-    //             $sav['user_id'] = Auth::user()->id;
-    //             $sav['amount'] = $converted_amount;
-    //             $sav['status'] = 0;
-    //             $sav['details'] = $request->details;
-    //             $sav['type'] = $request->type;
-    //             Withdraw::create($sav);
-    //             $user->balance = $user->balance - $amount;
-    //             $user->save();
-    //             if ($set->email_notify == 1) {
-    //                 // send_email(
-    //                 //     $user->email,
-    //                 //     $user->username,
-    //                 //     'Withdraw Request currently being Processed',
-    //                 //     'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for choosing us.'
-    //                 // );
-    //                 $temp = Etemplate::first();
-    //                 Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $converted_amount . '. Thanks for choosing us.', 'Withdraw Request currently being Processed'));
-    //             }
-    //             return back()->with('success', 'Withdrawal request has been submitted, you will be updated shortly.');
-    //         } else {
-    //             return back()->with('alert', 'Insufficent balance.');
-    //         }
-    //     } elseif ($request->type == 3) {
-    //         if ($plan->min_ref_earn_wd > $request->amount) {
-    //             return back()->with('alert', 'You have requested less than your plan defined payment.');
-    //         }
-    //         $last_wd = Withdraw::whereUser_id($user->id)->whereType(3)->latest()->first();
-    //         if ($last_wd) {
-    //             $end = Carbon::parse($last_wd->created_at);
-    //             $now = Carbon::now();
-    //             $length = $end->diffInDays($now);
-    //             if ($length < $plan->min_ref_earn_wd_cycle) {
-    //                 return back()->with('alert', 'You have already requested this payment.');
-    //             }
-    //         }
-    //         if ($user->ref_bonus > $amount || $user->ref_bonus == $amount) {
-    //             $sav['user_id'] = Auth::user()->id;
-    //             $sav['amount'] = $amount;
-    //             $sav['status'] = 0;
-    //             $sav['details'] = $request->details;
-    //             $sav['type'] = $request->type;
-    //             Withdraw::create($sav);
-    //             $user->ref_bonus = $user->ref_bonus - $amount;
-    //             $user->save();
-    //             if ($set->email_notify == 1) {
-    //                 // send_email(
-    //                 //     $user->email,
-    //                 //     $user->username,
-    //                 //     'Withdraw Request currently being Processed',
-    //                 //     'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for choosing us.'
-    //                 // );
-    //                 $temp = Etemplate::first();
-    //                 Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $request->amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
-    //             }
-    //             return back()->with('success', 'Withdrawal request has been submitted, you will be updated shortly.');
-    //         } else {
-    //             return back()->with('alert', 'Insufficent balance.');
-    //         }
-    //     }
-    // }
 
     public function userDataUpdate($id)
     {
@@ -647,46 +486,6 @@ class UserController extends Controller
         }
     }
 
-    // public function submitPin(Request $request)
-    // {
-    //     $this->validate($request, [
-    //         'current_pin' => 'required',
-    //         'pin' => 'required|max:4|confirmed'
-    //     ]);
-    //     try {
-    //         $set = Settings::first();
-    //         $c_id = Auth::user()->id;
-    //         $user = User::findOrFail($c_id);
-    //         $c_pin = Auth::user()->pin;
-    //         if ($request->current_pin == $c_pin) {
-    //             if ($request->pin == $request->pin_confirmation) {
-    //                 if ($set->email_notify == 1) {
-    //                     $temp = Etemplate::first();
-    //                     Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Please click on this link to confirm the pin change: <a href="' . route('confirm.changePin', $request->pin) . '">Click Here!</a>. Thanks for working with us.', 'Request for Pin Change', 1));
-    //                 }
-    //                 return back()->with('pin_success', 'A confirmation email has been sent to your EMAIL for your PIN Change confirmation. Please go to your EMAIL to your to confirm your PIN Change setup. Thank you!');
-    //             } else {
-    //                 return back()->with('alert', 'New Pin Does Not Match.');
-    //             }
-    //         } else {
-    //             return back()->with('alert', 'Current Pin Not Match.');
-    //         }
-    //     } catch (\PDOException $e) {
-    //         return back()->with('alert', $e->getMessage());
-    //     }
-    // }
-    // public function confirmChangePin($pin)
-    // {
-    //     try {
-    //         $c_id = Auth::user()->id;
-    //         $user = User::findOrFail($c_id);
-    //         $user->pin = $pin;
-    //         $user->save();
-    //         return redirect()->route('user.password')->with('success', 'Pin Changed Successfully.');
-    //     } catch (\PDOException $e) {
-    //         return redirect()->route('user.password')->with('alert', $e->getMessage());
-    //     }
-    // }
 
     public function submitPassword(Request $request)
     {
@@ -716,27 +515,6 @@ class UserController extends Controller
         }
     }
 
-    // public function user_upgrade_plan(Request $request)
-    // {
-    //     $coupon_code = Coupons::where('serial', $request->coupon)->first();
-    //     // return $coupon_code;
-    //     if (!$coupon_code) {
-    //         Session::flash('error', 'COUPON CODE INVALID');
-    //         return redirect()->route('user.upgrade_plan');
-    //     }
-    //     if ($coupon_code->status == 'inactive') {
-    //         Session::flash('error', 'COUPON CODE used');
-    //         return redirect()->route('user.upgrade_plan');
-    //     }
-    //     $user = User::findOrFail(Auth::user()->id);
-    //     $user->coupon = $request->coupon;
-    //     $user->save();
-    //     if ($coupon_code) {
-    //         $coupon_code->update(['status' => 'inactive']);
-    //     }
-    //     Session::flash('success', 'Plan upgraded Successfully.');
-    //     return redirect()->route('user.upgrade_plan');
-    // }
     public function do_reactivate_account(Request $request)
     {
         $coupon_code = Coupons::with('plan')->where('serial', $request->coupon)->first();
@@ -806,29 +584,6 @@ class UserController extends Controller
             }
         }
     }
-    // public function upgrade_plan()
-    // {
-    //     $data['title'] = 'Plan Upgrade';
-    //     $data['plan'] = Plans::whereStatus(1)->orderBy('min_deposit', 'DESC')->get();
-    //     // $data['user_plan1'] = Plans::whereHas('user', function ($q) {
-    //     //     $q->where('users.id', auth()->user()->id);
-    //     // })->whereStatus(1)->get();
-    //     // return $user_plan;
-    //     return view('user.upgrade_plan', $data);
-    // }
-    // public function upgrade()
-    // {
-    //     $user = User::where('id', Auth::user()->id)->first();
-    //     $set = Settings::first();
-    //     if ($user->balance > $set->upgrade_fee || $user->balance == $set->upgrade_fee) {
-    //         $user->upgrade = 1;
-    //         $user->balance = $user->balance - $set->upgrade_fee;
-    //         $user->save();
-    //         return back()->with('success', 'You now have access to mining bonus.');
-    //     } else {
-    //         return back()->with('alert', 'Insufficient balance, add more funds..');
-    //     }
-    // }
 
     public function reactivate_account()
     {

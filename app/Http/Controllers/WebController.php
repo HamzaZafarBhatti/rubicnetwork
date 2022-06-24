@@ -37,150 +37,150 @@ use Image;
 class WebController extends Controller
 {
 
-    
-    
+
+
     public function sociallinks()
     {
-        $data['title']='Social links';
+        $data['title'] = 'Social links';
         $data['links'] = Social::latest()->get();
         return view('admin.web-control.social-links', $data);
-    } 
-    
+    }
+
     public function about_us()
     {
-        $data['title']='About us';
+        $data['title'] = 'About us';
         $data['value'] = About::first();
         return view('admin.web-control.about-us', $data);
-    } 
-    
+    }
+
     public function privacy_policy()
     {
-        $data['title']='Privacy policy';
+        $data['title'] = 'Privacy policy';
         $data['value'] = About::first();
         return view('admin.web-control.privacy-policy', $data);
     }
-    
+
     public function logo()
     {
-        $data['title']='Logo & Favicon';
+        $data['title'] = 'Logo & Favicon';
         return view('admin.web-control.logo', $data);
-    }    
-    
+    }
+
     public function homepage()
     {
-        $data['title']='Homepage';
+        $data['title'] = 'Homepage';
         return view('admin.web-control.home', $data);
     }
-    
+
     // public function faq()
     // {
     //     $data['title']='Frequently asked questions';
     //     $data['faq'] = Faq::latest()->get();
     //     return view('admin.web-control.faq', $data);
     // } 
-     public function vendors()
+    public function vendors()
     {
-        $data['title']='Manage Vendors';
+        $data['title'] = 'Manage Vendors';
         $data['vendors'] = Vendors::latest()->get();
         return view('admin.web-control.vendors', $data);
-    }  
-       public function coupons()
+    }
+    public function coupons()
     {
-        $data['title']='Manage Coupons';
+        $data['title'] = 'Manage Coupons';
         // $data['coupons'] = Coupons::latest()->get();
         return view('admin.web-control.coupons', $data);
-    }     
-    
+    }
+
     public function services()
     {
-        $data['title']='Services';
+        $data['title'] = 'Services';
         $data['service'] = Services::latest()->get();
         return view('admin.web-control.service', $data);
-    }  
-    
+    }
+
     public function page()
     {
-        $data['title']='Web pages';
+        $data['title'] = 'Web pages';
         $data['page'] = Page::latest()->get();
         return view('admin.web-control.page', $data);
-    }     
-    
+    }
+
     public function review()
     {
-        $data['title']='Reviews';
+        $data['title'] = 'Reviews';
         $data['review'] = Review::latest()->get();
         return view('admin.web-control.review', $data);
-    }        
-    
+    }
+
     public function EditReview($id)
     {
-        $data['title']='Reviews';
+        $data['title'] = 'Reviews';
         $data['val'] = Review::find($id);
         return view('admin.web-control.review-edit', $data);
-    }   
-    
-    
+    }
+
+
     public function branch()
     {
-        $data['title']='Bank branches';
+        $data['title'] = 'Bank branches';
         $data['branch'] = Branch::latest()->get();
         return view('admin.web-control.branch', $data);
-    } 
+    }
 
     public function unpage($id)
     {
-        $page=Page::find($id);
-        $page->status=0;
+        $page = Page::find($id);
+        $page->status = 0;
         $page->save();
         return back()->with('success', 'Page has been unpublished.');
-    } 
+    }
     public function ppage($id)
     {
-        $page=Page::find($id);
-        $page->status=1;
+        $page = Page::find($id);
+        $page->status = 1;
         $page->save();
         return back()->with('success', 'Page was successfully published.');
-    }     
+    }
 
-    
+
     public function unreview($id)
     {
-        $page=Review::find($id);
-        $page->status=0;
+        $page = Review::find($id);
+        $page->status = 0;
         $page->save();
         return back()->with('success', 'Review has been unpublished.');
-    } 
+    }
     public function preview($id)
     {
-        $page=Review::find($id);
-        $page->status=1;
+        $page = Review::find($id);
+        $page->status = 1;
         $page->save();
         return back()->with('success', 'Review was successfully published.');
     }
 
     public function currency()
     {
-        $data['title']='Currency';
+        $data['title'] = 'Currency';
         $data['cur'] = Currency::all();
         return view('admin.web-control.currency', $data);
     }
 
     public function pcurrency($id)
     {
-        $data=Currency::all();
-        foreach ($data as $datas){
-        $datas->status=0;
-        $datas->save();
+        $data = Currency::all();
+        foreach ($data as $datas) {
+            $datas->status = 0;
+            $datas->save();
         }
-        $default=Currency::find($id);
-        $default->status=1;
+        $default = Currency::find($id);
+        $default->status = 1;
         $default->save();
         return back()->with('success', 'Update was Successful!.');
     }
 
     public function terms()
     {
-        $data['title']='Terms & Conditions';
+        $data['title'] = 'Terms & Conditions';
         $data['value'] = About::first();
         return view('admin.web-control.terms', $data);
     }
@@ -197,9 +197,9 @@ class WebController extends Controller
     //     }
     // }    
 
-     public function CreateVendors(Request $request)
+    public function CreateVendors(Request $request)
     {
-      $data['name'] = $request->name;
+        $data['name'] = $request->name;
         $data['whatsapp'] = $request->whatsapp;
         $data['status'] = $request->status;
         $res = Vendors::create($data);
@@ -208,11 +208,11 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Creating New Vendors');
         }
-    }  
-     public function CreateCoupons(Request $request)
+    }
+    public function CreateCoupons(Request $request)
     {
-      $data['serial'] = '2'.rand(1, 9).rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9);;
-       // $data['whatsapp'] = $request->whatsapp;
+        $data['serial'] = '2' . rand(1, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);;
+        // $data['whatsapp'] = $request->whatsapp;
         $data['status'] = $request->status;
         $res = Coupons::create($data);
         if ($res) {
@@ -220,9 +220,9 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Creating New Vendors');
         }
-    }  
-    
-    
+    }
+
+
     public function CreateService(Request $request)
     {
         $data['title'] = $request->title;
@@ -234,8 +234,8 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Creating New Service');
         }
-    } 
-    
+    }
+
     public function CreatePage(Request $request)
     {
         $data['title'] = $request->title;
@@ -246,38 +246,38 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Creating New Page');
         }
-    }  
+    }
     public function Updatehomepage(Request $request)
     {
         $data = Design::findOrFail(1);
-        $data->header_title=$request->header_title;
-        $data->header_body=$request->header_body;
-        $data->s5_title=$request->s5_title;
-        $data->s5_body=$request->s5_body;
-        $data->s6_title=$request->s6_title;
-        $data->s6_body=$request->s6_body;
-        $data->s8_title=$request->s8_title;
-        $data->s8_body=$request->s8_body;        
-        $data->total_assets=$request->total_assets;
-        $data->experience=$request->experience;
-        $data->traders=$request->traders;
-        $data->countries=$request->countries;
-        $res=$data->save();
+        $data->header_title = $request->header_title;
+        $data->header_body = $request->header_body;
+        $data->s5_title = $request->s5_title;
+        $data->s5_body = $request->s5_body;
+        $data->s6_title = $request->s6_title;
+        $data->s6_body = $request->s6_body;
+        $data->s8_title = $request->s8_title;
+        $data->s8_body = $request->s8_body;
+        $data->total_assets = $request->total_assets;
+        $data->experience = $request->experience;
+        $data->traders = $request->traders;
+        $data->countries = $request->countries;
+        $res = $data->save();
         if ($res) {
             return back()->with('success', 'Update was Successful!');
         } else {
             return back()->with('alert', 'An error occured');
         }
-    }   
-    
+    }
+
     public function CreateReview(Request $request)
     {
         $data['name'] = $request->name;
         $data['occupation'] = $request->occupation;
         $data['review'] = $request->review;
-        if($request->hasFile('image5')){
+        if ($request->hasFile('image5')) {
             $image = $request->file('image');
-            $filename = 'review_'.time().'.jpg';
+            $filename = 'review_' . time() . '.jpg';
             $location = 'asset/review/' . $filename;
             Image::make($image)->save($location);
             $data['image_link'] = $filename;
@@ -288,14 +288,14 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Creating Review');
         }
-    }    
-    
+    }
+
     public function CreateBrand(Request $request)
     {
         $data['title'] = $request->title;
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $filename = 'brand_'.time().'.jpg';
+            $filename = 'brand_' . time() . '.jpg';
             $location = 'asset/brands/' . $filename;
             Image::make($image)->save($location);
             $data['image'] = $filename;
@@ -306,20 +306,20 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Creating Brand');
         }
-    }    
-    
+    }
+
     public function UpdateReview(Request $request)
     {
         $data = Review::find($request->id);
         $data['name'] = $request->name;
         $data['occupation'] = $request->occupation;
         $data['review'] = $request->review;
-        if($request->hasFile('update')){
+        if ($request->hasFile('update')) {
             $image = $request->file('update');
-            $filename = 'update_'.time().'.jpg';
+            $filename = 'update_' . time() . '.jpg';
             $location = 'asset/review/' . $filename;
             $path = './asset/review/';
-            File::delete($path.$data->image_link);
+            File::delete($path . $data->image_link);
             Image::make($image)->save($location);
             $data['image_link'] = $filename;
         }
@@ -329,19 +329,19 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Creating Review');
         }
-    }   
-    
+    }
+
     public function UpdateBrand(Request $request)
     {
         $data = Brands::find($request->id);
         $in = Input::except('_token');
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $filename = 'brand_'.time().'.png';
+            $filename = 'brand_' . time() . '.png';
             $location = 'asset/brands/' . $filename;
             Image::make($image)->save($location);
             $path = './asset/brands/';
-            File::delete($path.$data->image);
+            File::delete($path . $data->image);
             $in['image'] = $filename;
         }
         $res = $data->fill($in)->save();
@@ -350,38 +350,9 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Creating Brand');
         }
-    } 
-    
-    public function CreateBranch(Request $request)
-    {
-        $data['name'] = $request->name;
-        $data['country'] = $request->country;
-        $data['state'] = $request->state;
-        $data['mobile'] = $request->mobile;
-        $data['zip_code'] = $request->zip_code;
-        $data['postal_code'] = $request->postal_code;
-        $data['address'] = $request->address;
-        $res = Branch::create($data);
-        if ($res) {
-            return back()->with('success', 'Saved Successfully!');
-        } else {
-            return back()->with('alert', 'Problem With Creating New Faq');
-        }
-    } 
+    }
 
-    // public function UpdateFaq(Request $request)
-    // {
-    //     $mac = Faq::findOrFail($request->id);
-    //     $mac['question'] = $request->question;
-    //     $mac['answer'] = $request->answer;
-    //     $res = $mac->save();
-    //     if ($res) {
-    //         return back()->with('success', ' Updated Successfully!');
-    //     } else {
-    //         return back()->with('alert', 'Problem With Updating Faq');
-    //     }
-    // } 
-      public function UpdateVendors(Request $request)
+    public function UpdateVendors(Request $request)
     {
         $mac = Vendors::findOrFail($request->id);
         $mac['name'] = $request->name;
@@ -393,8 +364,8 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Updating Vendors');
         }
-    } 
-     public function UpdateCoupons(Request $request)
+    }
+    public function UpdateCoupons(Request $request)
     {
         $mac = Coupons::findOrFail($request->id);
         $mac['status'] = $request->status;
@@ -404,7 +375,7 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Updating Coupons');
         }
-    } 
+    }
 
     public function UpdateService(Request $request)
     {
@@ -418,8 +389,8 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Updating Service');
         }
-    }  
-    
+    }
+
     public function UpdatePage(Request $request)
     {
         $mac = Page::findOrFail($request->id);
@@ -431,8 +402,8 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Updating Page');
         }
-    } 
-    
+    }
+
     public function UpdateBranch(Request $request)
     {
         $mac = Branch::findOrFail($request->id);
@@ -451,17 +422,7 @@ class WebController extends Controller
         }
     }
 
-    // public function DestroyFaq($id)
-    // {
-    //     $data = Faq::findOrFail($id);
-    //     $res =  $data->delete();
-    //     if ($res) {
-    //         return back()->with('success', 'Faq was Successfully deleted!');
-    //     } else {
-    //         return back()->with('alert', 'Problem With Deleting Faq');
-    //     }
-    // }    
-     public function DestroyVendors($id)
+    public function DestroyVendors($id)
     {
         $data = Vendors::findOrFail($id);
         $res =  $data->delete();
@@ -470,8 +431,8 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Deleting Vendor');
         }
-    }    
-     public function DestroyCoupons($id)
+    }
+    public function DestroyCoupons($id)
     {
         $data = Coupons::findOrFail($id);
         $res =  $data->delete();
@@ -480,8 +441,8 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Deleting Coupons');
         }
-    }    
-    
+    }
+
     public function DestroyService($id)
     {
         $data = Services::findOrFail($id);
@@ -502,8 +463,8 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Deleting Page');
         }
-    }    
-    
+    }
+
     public function DestroyReview($id)
     {
         $data = Review::findOrFail($id);
@@ -513,8 +474,8 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Deleting Review');
         }
-    }    
-    
+    }
+
     public function DestroyBrand($id)
     {
         $data = Brands::findOrFail($id);
@@ -525,7 +486,7 @@ class WebController extends Controller
             return back()->with('alert', 'Problem With Deleting Brand');
         }
     }
-    
+
     public function DestroyBranch($id)
     {
         $data = Branch::findOrFail($id);
@@ -547,8 +508,8 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Updating link');
         }
-    } 
-    
+    }
+
     public function update_about_us(Request $request)
     {
         $mac = About::findOrFail(1);
@@ -559,8 +520,8 @@ class WebController extends Controller
         } else {
             return back()->with('alert', 'Problem With Updating link');
         }
-    } 
-    
+    }
+
     public function update_privacy_policy(Request $request)
     {
         $mac = About::findOrFail(1);
@@ -572,7 +533,7 @@ class WebController extends Controller
             return back()->with('alert', 'Problem With Updating link');
         }
     }
-    
+
     public function update_terms(Request $request)
     {
         $mac = About::findOrFail(1);
@@ -588,124 +549,14 @@ class WebController extends Controller
     {
 
         $data = Logo::find(1);
-        if($request->hasFile('logo')){
+        if ($request->hasFile('logo')) {
             $image = $request->file('logo');
-            $filename = 'logo_'.time().'.png';
+            $filename = 'logo_' . time() . '.png';
             $location = 'asset/images/' . $filename;
             Image::make($image)->save($location);
             $path = './asset/';
-            File::delete($path.$data->image_link);
-            $data['image_link'] = 'images/'.$filename;
-        }
-        $res = $data->save();
-        if ($res) {
-            return back()->with('success', 'Updated Successfully!');
-        } else {
-            return back()->with('alert', 'Problem With Updating Logo');
-        }
-        return $data;
-    }     
-    
-    public function section1(Request $request)
-    {
-
-        $data = Design::find(1);
-        if($request->hasFile('section1')){
-            $image = $request->file('section1');
-            $filename = 'section1_'.time().'.png';
-            $location = 'asset/images/' . $filename;
-            Image::make($image)->save($location);
-            $path = './asset/images/';
-            File::delete($path.$data->s2_image);
-            $data['s2_image'] = $filename;
-        }
-        $res = $data->save();
-        if ($res) {
-            return back()->with('success', 'Updated Successfully!');
-        } else {
-            return back()->with('alert', 'Problem With Updating Image');
-        }
-        return $data;
-    }    
-    
-    public function section2(Request $request)
-    {
-
-        $data = Design::find(1);
-        if($request->hasFile('section2')){
-            $image = $request->file('section2');
-            $filename = 'section2_'.time().'.png';
-            $location = 'asset/images/' . $filename;
-            Image::make($image)->save($location);
-            $path = './asset/images/';
-            File::delete($path.$data->s3_image);
-            $data['s3_image'] = $filename;
-        }
-        $res = $data->save();
-        if ($res) {
-            return back()->with('success', 'Updated Successfully!');
-        } else {
-            return back()->with('alert', 'Problem With Updating Image');
-        }
-        return $data;
-    }    
-    
-    public function section3(Request $request)
-    {
-
-        $data = Design::find(1);
-        if($request->hasFile('section3')){
-            $image = $request->file('section3');
-            $filename = 'section3_'.time().'.png';
-            $location = 'asset/images/' . $filename;
-            Image::make($image)->save($location);
-            $path = './asset/images/';
-            File::delete($path.$data->s4_image);
-            $data['s4_image'] = $filename;
-        }
-        $res = $data->save();
-        if ($res) {
-            return back()->with('success', 'Updated Successfully!');
-        } else {
-            return back()->with('alert', 'Problem With Updating Image');
-        }
-        return $data;
-    }     
-    
-    public function section4(Request $request)
-    {
-
-        $data = Design::find(1);
-        if($request->hasFile('section4')){
-            $image = $request->file('section4');
-            $filename = 'section4_'.time().'.png';
-            $location = 'asset/images/' . $filename;
-            Image::make($image)->save($location);
-            $path = './asset/images/';
-            File::delete($path.$data->s7_image);
-            $data['s7_image'] = $filename;
-        }
-        $res = $data->save();
-        if ($res) {
-            return back()->with('success', 'Updated Successfully!');
-        } else {
-            return back()->with('alert', 'Problem With Updating Image');
-        }
-        return $data;
-    } 
-    
-    public function UpdateFavicon(Request $request)
-    {
-
-        $data = Logo::find(1);
-        if($request->hasFile('favicon')){
-            $image = $request->file('favicon');
-            $filename = 'favicon_'.time().'.jpg';
-            $location = 'asset/images/' . $filename;
-            Image::make($image)->save($location);
-            $path = './asset/';
-            File::delete($path.$data->image_link2);
-            $data['image_link2'] = 'images/'.$filename;
+            File::delete($path . $data->image_link);
+            $data['image_link'] = 'images/' . $filename;
         }
         $res = $data->save();
         if ($res) {
@@ -715,6 +566,114 @@ class WebController extends Controller
         }
         return $data;
     }
-    
-        
+
+    public function section1(Request $request)
+    {
+
+        $data = Design::find(1);
+        if ($request->hasFile('section1')) {
+            $image = $request->file('section1');
+            $filename = 'section1_' . time() . '.png';
+            $location = 'asset/images/' . $filename;
+            Image::make($image)->save($location);
+            $path = './asset/images/';
+            File::delete($path . $data->s2_image);
+            $data['s2_image'] = $filename;
+        }
+        $res = $data->save();
+        if ($res) {
+            return back()->with('success', 'Updated Successfully!');
+        } else {
+            return back()->with('alert', 'Problem With Updating Image');
+        }
+        return $data;
+    }
+
+    public function section2(Request $request)
+    {
+
+        $data = Design::find(1);
+        if ($request->hasFile('section2')) {
+            $image = $request->file('section2');
+            $filename = 'section2_' . time() . '.png';
+            $location = 'asset/images/' . $filename;
+            Image::make($image)->save($location);
+            $path = './asset/images/';
+            File::delete($path . $data->s3_image);
+            $data['s3_image'] = $filename;
+        }
+        $res = $data->save();
+        if ($res) {
+            return back()->with('success', 'Updated Successfully!');
+        } else {
+            return back()->with('alert', 'Problem With Updating Image');
+        }
+        return $data;
+    }
+
+    public function section3(Request $request)
+    {
+
+        $data = Design::find(1);
+        if ($request->hasFile('section3')) {
+            $image = $request->file('section3');
+            $filename = 'section3_' . time() . '.png';
+            $location = 'asset/images/' . $filename;
+            Image::make($image)->save($location);
+            $path = './asset/images/';
+            File::delete($path . $data->s4_image);
+            $data['s4_image'] = $filename;
+        }
+        $res = $data->save();
+        if ($res) {
+            return back()->with('success', 'Updated Successfully!');
+        } else {
+            return back()->with('alert', 'Problem With Updating Image');
+        }
+        return $data;
+    }
+
+    public function section4(Request $request)
+    {
+
+        $data = Design::find(1);
+        if ($request->hasFile('section4')) {
+            $image = $request->file('section4');
+            $filename = 'section4_' . time() . '.png';
+            $location = 'asset/images/' . $filename;
+            Image::make($image)->save($location);
+            $path = './asset/images/';
+            File::delete($path . $data->s7_image);
+            $data['s7_image'] = $filename;
+        }
+        $res = $data->save();
+        if ($res) {
+            return back()->with('success', 'Updated Successfully!');
+        } else {
+            return back()->with('alert', 'Problem With Updating Image');
+        }
+        return $data;
+    }
+
+    public function UpdateFavicon(Request $request)
+    {
+
+        $data = Logo::find(1);
+        if ($request->hasFile('favicon')) {
+            $image = $request->file('favicon');
+            $filename = 'favicon_' . time() . '.jpg';
+            $location = 'asset/images/' . $filename;
+            Image::make($image)->save($location);
+            $path = './asset/';
+            File::delete($path . $data->image_link2);
+            $data['image_link2'] = 'images/' . $filename;
+        }
+        $res = $data->save();
+        if ($res) {
+            return back()->with('success', 'Updated Successfully!');
+        } else {
+            return back()->with('alert', 'Problem With Updating Logo');
+        }
+        return $data;
+    }
 }

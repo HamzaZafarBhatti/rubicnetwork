@@ -96,6 +96,7 @@ Route::name('user.')->group(function () {
             Route::post('plan/upgrade', 'do_upgrade_plan')->name('plan.do_upgrade');
         });
         Route::resource('login_logs', LoginLogController::class);
+        Route::resource('payment_proofs', PaymentProofController::class)->only('create', 'store');
         //Extraction
         Route::controller(ExtractionController::class)->group(function () {
             Route::get('/extractions/page', 'extractions_page')->name('extractions.page');
@@ -222,8 +223,6 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
-    // Route::get('/logout', 'AdminController@logout')->name('admin.logout');
-    // Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 
     //Web controller
     Route::post('social-links/update', [WebController::class, 'UpdateSocial'])->name('social-links.update');
@@ -235,30 +234,30 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::post('vendors/update', [WebController::class, 'UpdateVendors'])->name('vendors.update');
     Route::post('vendors/delete/{id}', [WebController::class, 'DestroyVendors'])->name('vendors.delete');
     Route::get('vendors', [WebController::class, 'vendors'])->name('admin.vendors');
-    Route::post('/createcoupons', [WebController::class, 'CreateCoupons']);
-    Route::get('coupons/delete/{id}', [WebController::class, 'DestroyCoupons'])->name('coupons.delete');
-    Route::post('coupons/update', [WebController::class, 'UpdateCoupons'])->name('coupons.update');
+    // Route::post('/createcoupons', [WebController::class, 'CreateCoupons']);
+    // Route::get('coupons/delete/{id}', [WebController::class, 'DestroyCoupons'])->name('coupons.delete');
+    // Route::post('coupons/update', [WebController::class, 'UpdateCoupons'])->name('coupons.update');
 
 
-    Route::post('/createservice', [WebController::class, 'CreateService']);
-    Route::post('service/update', [WebController::class, 'UpdateService'])->name('service.update');
-    Route::get('service/delete/{id}', [WebController::class, 'DestroyService'])->name('service.delete');
+    // Route::post('/createservice', [WebController::class, 'CreateService']);
+    // Route::post('service/update', [WebController::class, 'UpdateService'])->name('service.update');
+    // Route::get('service/delete/{id}', [WebController::class, 'DestroyService'])->name('service.delete');
     Route::get('service', [WebController::class, 'services'])->name('admin.service');
 
-    Route::post('/createpage', [WebController::class, 'CreatePage']);
-    Route::post('page/update', [WebController::class, 'UpdatePage'])->name('page.update');
-    Route::get('page/delete/{id}', [WebController::class, 'DestroyPage'])->name('page.delete');
+    // Route::post('/createpage', [WebController::class, 'CreatePage']);
+    // Route::post('page/update', [WebController::class, 'UpdatePage'])->name('page.update');
+    // Route::get('page/delete/{id}', [WebController::class, 'DestroyPage'])->name('page.delete');
     Route::get('page', [WebController::class, 'page'])->name('admin.page');
-    Route::get('/unpage/{id}', [WebController::class, 'unpage'])->name('page.unpublish');
-    Route::get('/ppage/{id}', [WebController::class, 'ppage'])->name('page.publish');
+    // Route::get('/unpage/{id}', [WebController::class, 'unpage'])->name('page.unpublish');
+    // Route::get('/ppage/{id}', [WebController::class, 'ppage'])->name('page.publish');
 
-    Route::post('/createreview', [WebController::class, 'CreateReview']);
-    Route::post('review/update', [WebController::class, 'UpdateReview'])->name('review.update');
-    Route::get('review/edit/{id}', [WebController::class, 'EditReview'])->name('review.edit');
-    Route::get('review/delete/{id}', [WebController::class, 'DestroyReview'])->name('review.delete');
+    // Route::post('/createreview', [WebController::class, 'CreateReview']);
+    // Route::post('review/update', [WebController::class, 'UpdateReview'])->name('review.update');
+    // Route::get('review/edit/{id}', [WebController::class, 'EditReview'])->name('review.edit');
+    // Route::get('review/delete/{id}', [WebController::class, 'DestroyReview'])->name('review.delete');
     Route::get('review', [WebController::class, 'review'])->name('admin.review');
-    Route::get('/unreview/{id}', [WebController::class, 'unreview'])->name('review.unpublish');
-    Route::get('/preview/{id}', [WebController::class, 'preview'])->name('review.publish');
+    // Route::get('/unreview/{id}', [WebController::class, 'unreview'])->name('review.unpublish');
+    // Route::get('/preview/{id}', [WebController::class, 'preview'])->name('review.publish');
 
     Route::get('currency', [WebController::class, 'currency'])->name('admin.currency');
     Route::get('pcurrency/{id}', [WebController::class, 'pcurrency'])->name('blog.publish');
@@ -300,8 +299,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('py-pending', [PyschemeController::class, 'Pending'])->name('admin.py.pending');
 
     //Setting controller
-    // Route::get('settings', [SettingController::class, 'Settings'])->name('admin.setting');
-    // Route::post('settings', [SettingController::class, 'SettingsUpdate'])->name('admin.settings.update');
     Route::get('email', [SettingController::class, 'Email'])->name('admin.email');
     Route::post('email', [SettingController::class, 'EmailUpdate'])->name('admin.email.update');
     Route::get('sms', [SettingController::class, 'Sms'])->name('admin.sms');

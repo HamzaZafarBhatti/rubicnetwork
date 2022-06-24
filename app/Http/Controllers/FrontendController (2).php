@@ -196,51 +196,45 @@ class FrontendController extends Controller
         return view('front.payment_proof', $data);
     }
 
-    public function upload_proof()
-    {
-        $data['title'] = 'Upload Payment Proof';
-        return view('front.upload_payment_proof', $data);
-    }
-
-    public function do_upload_proof(Request $request)
-    {
-        // return json_encode(auth()->user());
-        if(!auth()->user()) {
-            return back()->with('alert', 'Please Log in first!');
-        }
-        $validator = Validator::make($request->all(), [
-            'caption' => 'required',
-            'image' => 'required',
-        ]);
-        if ($validator->fails()) {
-            // adding an extra field 'error'...
-            $errors = $validator->errors();
-            $html_err = "Error: ";
-            foreach ($errors->all() as $error) {
-                $html_err .=  $error.', ';
-            }
-            Session::flash('alert', $html_err);
-            return redirect()->route('upload.proof');
-        }
-        // return $request;
-        $data = $request->except('_token');
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = 'proof_' . time() . '.jpg';
-            $location = 'asset/payment_proofs/' . $filename;
-            Image::make($image)->save($location);
-            $data['image'] = $filename;
-        }
-        $data['user_id'] = auth()->user()->id;
-        // return $data;
-        $res = PaymentProof::create($data);
-        if ($res) {
-            $user = User::find(auth()->user()->id);
-            $user->show_popup = 0;
-            $user->save();
-            return back()->with('success', 'Payment Proof uploaded Successfully!');
-        } else {
-            return back()->with('alert', 'Problem uploading payment proof');
-        }
-    }
+    // public function do_upload_proof(Request $request)
+    // {
+    //     // return json_encode(auth()->user());
+    //     if(!auth()->user()) {
+    //         return back()->with('alert', 'Please Log in first!');
+    //     }
+    //     $validator = Validator::make($request->all(), [
+    //         'caption' => 'required',
+    //         'image' => 'required',
+    //     ]);
+    //     if ($validator->fails()) {
+    //         // adding an extra field 'error'...
+    //         $errors = $validator->errors();
+    //         $html_err = "Error: ";
+    //         foreach ($errors->all() as $error) {
+    //             $html_err .=  $error.', ';
+    //         }
+    //         Session::flash('alert', $html_err);
+    //         return redirect()->route('upload.proof');
+    //     }
+    //     // return $request;
+    //     $data = $request->except('_token');
+    //     if ($request->hasFile('image')) {
+    //         $image = $request->file('image');
+    //         $filename = 'proof_' . time() . '.jpg';
+    //         $location = 'asset/payment_proofs/' . $filename;
+    //         Image::make($image)->save($location);
+    //         $data['image'] = $filename;
+    //     }
+    //     $data['user_id'] = auth()->user()->id;
+    //     // return $data;
+    //     $res = PaymentProof::create($data);
+    //     if ($res) {
+    //         $user = User::find(auth()->user()->id);
+    //         $user->show_popup = 0;
+    //         $user->save();
+    //         return back()->with('success', 'Payment Proof uploaded Successfully!');
+    //     } else {
+    //         return back()->with('alert', 'Problem uploading payment proof');
+    //     }
+    // }
 }
