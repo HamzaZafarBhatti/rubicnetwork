@@ -17,4 +17,5 @@
 
 <!-- main css -->
 <link rel="stylesheet" href="{{ asset('front_assets/css/style.css') }}" />
+<link href="{{ URL::asset('user_assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('front_assets/css/custom.css') }}" />
