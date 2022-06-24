@@ -376,7 +376,7 @@
                                 <li class="nav-item"><a href="{{ route('admin.web.terms') }}"
                                         class="nav-link"><i class="icon-file-check"></i>Terms & Condition</a>
                                 </li>
-                                <li class="nav-item"><a href="{{ route('privacy-policy') }}"
+                                <li class="nav-item"><a href="{{ route('admin.web.privacy_policy') }}"
                                         class="nav-link"><i class="icon-file-check"></i>Privacy policy</a></li>
                                 <li class="nav-item"><a href="{{ route('about-us') }}"
                                         class="nav-link"><i class="icon-file-check"></i>About us</a></li>

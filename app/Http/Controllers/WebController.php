@@ -53,7 +53,7 @@ class WebController extends Controller
         return view('admin.web-control.about-us', $data);
     } 
     
-    public function privacypolicy()
+    public function privacy_policy()
     {
         $data['title']='Privacy policy';
         $data['value'] = About::first();
@@ -561,7 +561,7 @@ class WebController extends Controller
         }
     } 
     
-    public function UpdatePrivacy(Request $request)
+    public function update_privacy_policy(Request $request)
     {
         $mac = About::findOrFail(1);
         $mac['privacy_policy'] = $request->details;

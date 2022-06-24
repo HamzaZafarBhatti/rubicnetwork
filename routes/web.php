@@ -190,6 +190,8 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::prefix('web_pages')->name('web.')->controller(WebController::class)->group(function () {
             Route::get('terms', 'terms')->name('terms');
             Route::post('update_terms', 'update_terms')->name('update_terms');
+            Route::get('privacy_policy', 'privacy_policy')->name('privacy_policy');
+            Route::post('update_privacy_policy', 'update_privacy_policy')->name('update_privacy_policy');
         });
         //Rubic Wallet Withdraw
         Route::prefix('rubic_wallet')->name('wallet.')->controller(WithdrawController::class)->group(function () {
@@ -226,9 +228,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
     Route::post('about-us/update', [WebController::class, 'UpdateAbout'])->name('about-us.update');
     Route::get('about-us', [WebController::class, 'aboutus'])->name('about-us');
-
-    Route::post('privacy-policy/update', [WebController::class, 'UpdatePrivacy'])->name('privacy-policy.update');
-    Route::get('privacy-policy', [WebController::class, 'privacypolicy'])->name('privacy-policy');
 
     Route::post('terms/update', [WebController::class, 'UpdateTerms'])->name('terms.update');
 

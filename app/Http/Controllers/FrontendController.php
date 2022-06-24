@@ -38,7 +38,9 @@ class FrontendController extends Controller
     }
     public function privacy_policy()
     {
-        return view('front.privacy_policy');
+        $about = About::findOrFail(1);
+        $privacy = $about->privacy_policy;
+        return view('front.privacy_policy', compact('privacy'));
     }
     public function pin_verification()
     {
