@@ -197,10 +197,10 @@
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-lan2"></i><span>Transfer</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Transfer">
-                                <li class="nav-item"><a href="{{ route('admin.transfers') }}"
-                                        class="nav-link"><i class="icon-office"></i>Transfer logs</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.referrals') }}"
-                                        class="nav-link"><i class="icon-city"></i>Referral earnings</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.transfers') }}" class="nav-link"><i
+                                            class="icon-office"></i>Transfer logs</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.referrals') }}" class="nav-link"><i
+                                            class="icon-city"></i>Referral earnings</a></li>
                             </ul>
                         </li>
                         <li class="nav-item nav-item-submenu">
@@ -208,14 +208,14 @@
                                     Manangement</span></a>
 
                             <ul class="nav nav-group-sub" data-submenu-title="User Manangement">
-                                <li class="nav-item"><a href="{{ route('admin.users') }}"
-                                        class="nav-link"><i class="icon-user"></i> Client accounts</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.users') }}" class="nav-link"><i
+                                            class="icon-user"></i> Client accounts</a></li>
                                 {{-- <li class="nav-item"><a href="{{ route('admin.ticket') }}"
                                         class="nav-link"><i class="icon-bubbles5"></i>Support ticket</a></li> --}}
-                                <li class="nav-item"><a href="{{ route('user.promo') }}"
-                                        class="nav-link"><i class="icon-envelope"></i>Promotional Emails</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.message') }}"
-                                        class="nav-link"><i class="icon-bubbles5"></i>Messages</a></li>
+                                <li class="nav-item"><a href="{{ route('user.promo') }}" class="nav-link"><i
+                                            class="icon-envelope"></i>Promotional Emails</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.message') }}" class="nav-link"><i
+                                            class="icon-bubbles5"></i>Messages</a></li>
                             </ul>
                         </li>
                         <li class="nav-item nav-item-submenu">
@@ -224,12 +224,12 @@
                             <ul class="nav nav-group-sub" data-submenu-title="System configuration">
                                 <li class="nav-item"><a href="{{ route('admin.settings.index') }}"
                                         class="nav-link"><i class="icon-hammer-wrench"></i>Settings</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.email') }}"
-                                        class="nav-link"><i class="icon-envelope"></i>Email</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.email') }}" class="nav-link"><i
+                                            class="icon-envelope"></i>Email</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.sms') }}" class="nav-link"><i
                                             class="icon-bubble"></i>Sms</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.account') }}"
-                                        class="nav-link"><i class="icon-user"></i>Account information</a>
+                                <li class="nav-item"><a href="{{ route('admin.account') }}" class="nav-link"><i
+                                            class="icon-user"></i>Account information</a>
                                 </li>
                             </ul>
                         </li>
@@ -243,8 +243,8 @@
                                         class="nav-link"><i class="icon-puzzle4"></i>Plans</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.py.completed') }}"
                                         class="nav-link"><i class="icon-cup2"></i>Completed</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.py.pending') }}"
-                                        class="nav-link"><i class="icon-spinner2 spinner"></i>Pending</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.py.pending') }}" class="nav-link"><i
+                                            class="icon-spinner2 spinner"></i>Pending</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.coupons.index') }}"
                                         class="nav-link"><i class="icon-add"></i>Generate Coupons</a></li>
                             </ul>
@@ -303,7 +303,8 @@
                             </ul>
                         </li>
                         <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-share2"></i><span>Rubic Stake Wallet Withdraw
+                            <a href="#" class="nav-link"><i class="icon-share2"></i><span>Rubic Stake Wallet
+                                    Withdraw
                                     system</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Withdraw">
                                 <li class="nav-item"><a href="{{ route('admin.stake_wallet.withdraw_log') }}"
@@ -355,33 +356,37 @@
                                     control</span></a>
 
                             <ul class="nav nav-group-sub" data-submenu-title="News Section">
-                                <li class="nav-item"><a href="{{ route('homepage') }}"
-                                        class="nav-link"><i class="icon-home4"></i>Homepage</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.logo') }}"
-                                        class="nav-link"><i class="icon-image2"></i>Logo & Favicon</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.review') }}"
-                                        class="nav-link"><i class="icon-clipboard6"></i>Platform Review</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.service') }}"
-                                        class="nav-link"><i class="icon-portfolio"></i>Services</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.vendors') }}"
-                                        class="nav-link"><i class="icon-accessibility"></i>Vendors</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.coupons') }}"
-                                        class="nav-link"><i class="icon-cogs"></i>Coupons</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.page') }}"
-                                        class="nav-link"><i class="icon-stack"></i>Webpages</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.currency') }}"
-                                        class="nav-link"><i class="icon-coin-euro"></i>Currency</a></li>
+                                <li class="nav-item"><a href="{{ route('homepage') }}" class="nav-link"><i
+                                            class="icon-home4"></i>Homepage</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.web.rubic_network') }}"
+                                        class="nav-link"><i class="icon-file-check"></i>RUBIC NETWORK</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.web.rubic_staking') }}"
+                                        class="nav-link"><i class="icon-file-check"></i>RUBIC STAKING</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.logo') }}" class="nav-link"><i
+                                            class="icon-image2"></i>Logo & Favicon</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.review') }}" class="nav-link"><i
+                                            class="icon-clipboard6"></i>Platform Review</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.service') }}" class="nav-link"><i
+                                            class="icon-portfolio"></i>Services</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.vendors') }}" class="nav-link"><i
+                                            class="icon-accessibility"></i>Vendors</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.coupons') }}" class="nav-link"><i
+                                            class="icon-cogs"></i>Coupons</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.page') }}" class="nav-link"><i
+                                            class="icon-stack"></i>Webpages</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.currency') }}" class="nav-link"><i
+                                            class="icon-coin-euro"></i>Currency</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.faqs.index') }}"
                                         class="nav-link"><i class="icon-question4"></i>FAQs</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.web.terms') }}"
-                                        class="nav-link"><i class="icon-file-check"></i>Terms & Condition</a>
+                                <li class="nav-item"><a href="{{ route('admin.web.terms') }}" class="nav-link"><i
+                                            class="icon-file-check"></i>Terms & Condition</a>
                                 </li>
                                 <li class="nav-item"><a href="{{ route('admin.web.privacy_policy') }}"
                                         class="nav-link"><i class="icon-file-check"></i>Privacy policy</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.web.about_us') }}"
                                         class="nav-link"><i class="icon-file-check"></i>About us</a></li>
-                                <li class="nav-item"><a href="{{ route('social-links') }}"
-                                        class="nav-link"><i class="icon-share2"></i>Social Links</a></li>
+                                <li class="nav-item"><a href="{{ route('social-links') }}" class="nav-link"><i
+                                            class="icon-share2"></i>Social Links</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -218,6 +218,10 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
             Route::post('update_privacy_policy', 'update_privacy_policy')->name('update_privacy_policy');
             Route::get('about_us', 'about_us')->name('about_us');
             Route::post('update_about_us', 'update_about_us')->name('update_about_us');
+            Route::get('rubic_network', 'rubic_network')->name('rubic_network');
+            Route::post('update_rubic_network', 'update_rubic_network')->name('update_rubic_network');
+            Route::get('rubic_staking', 'rubic_staking')->name('rubic_staking');
+            Route::post('update_rubic_staking', 'update_rubic_staking')->name('update_rubic_staking');
         });
         //Payment Proof
         Route::prefix('payment_proofs')->name('payment_proofs.')->controller(PaymentProofController::class)->group(function () {

@@ -27,11 +27,15 @@ class FrontendController extends Controller
     }
     public function rubic_staking()
     {
-        return view('front.rubic_staking');
+        $about = About::findOrFail(1);
+        $rubic_staking = $about->rubic_staking;
+        return view('front.rubic_staking', compact('rubic_staking'));
     }
     public function rubic_network()
     {
-        return view('front.rubic_network');
+        $about = About::findOrFail(1);
+        $rubic_network = $about->rubic_network;
+        return view('front.rubic_network', compact('rubic_network'));
     }
     public function terms_condition()
     {

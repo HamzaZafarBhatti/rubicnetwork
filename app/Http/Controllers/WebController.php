@@ -676,4 +676,42 @@ class WebController extends Controller
         }
         return $data;
     }
+
+    public function rubic_network()
+    {
+        $data['title'] = 'RUBIC NETWORK';
+        $data['value'] = About::first();
+        return view('admin.web-control.rubic_network', $data);
+    }
+
+    public function update_rubic_network(Request $request)
+    {
+        $mac = About::findOrFail(1);
+        $mac['rubic_network'] = $request->details;
+        $res = $mac->save();
+        if ($res) {
+            return back()->with('success', ' Updated Successfully!');
+        } else {
+            return back()->with('alert', 'Problem With Updating link');
+        }
+    }
+
+    public function rubic_staking()
+    {
+        $data['title'] = 'RUBIC NETWORK';
+        $data['value'] = About::first();
+        return view('admin.web-control.rubic_staking', $data);
+    }
+
+    public function update_rubic_staking(Request $request)
+    {
+        $mac = About::findOrFail(1);
+        $mac['rubic_staking'] = $request->details;
+        $res = $mac->save();
+        if ($res) {
+            return back()->with('success', ' Updated Successfully!');
+        } else {
+            return back()->with('alert', 'Problem With Updating link');
+        }
+    }
 }
