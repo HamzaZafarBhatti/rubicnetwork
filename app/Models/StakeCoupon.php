@@ -19,7 +19,7 @@ class StakeCoupon extends Model
         return $this->belongsTo(StakePlan::class, 'stake_plan_id');
     }
 
-    public function user() {
-        return $this->hasOneThrough(User::class, UserStakePlan::class, 'stake_coupon_id', 'id', '');
+    public function user_stake_plan() {
+        return $this->hasOne(UserStakePlan::class);
     }
 }

@@ -153,10 +153,19 @@ class FrontendController extends Controller
                 }
             }
         } else {
-            $coupon = StakeCoupon::with('plan', 'user')->where('serial', $request->code)->first();
-            $user = !$coupon->user->isEmpty() ? $coupon->user[0] : null;
+            $coupon = StakeCoupon::with('plan', 'user_stake_plan')->where('serial', $request->code)->first();
+            // return $coupon;
+            if($coupon->user_stake_plan) {
+                $user = User::with('parent')->find($coupon->user_stake_plan->user_id);
+                // return $user;
+                $username = $user->username;
+                $name = $user->name;
+                if(!$user->parent->isEmpty()) {
+                    $parent = User::find($user->parent[0]->id);
+                    $referral = $parent->username;
+                }
+            }
         }
-        // return $coupon;
         if (!$coupon) {
             return redirect()->route('verify_pin')->with('error', 'ACTIVATION PIN CODE INVALID');
         }
