@@ -59,6 +59,8 @@
                             <li><a class="dropdown-item" href="{{ route('front.cookies_policy') }}">COOKIES
                                     POLICY</a>
                             </li>
+                            <li><a class="dropdown-item" href="{{ route('front.disclaimer') }}">EARNING DISLCLAIMER</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -90,8 +92,6 @@
                             <li><a class="dropdown-item" href="{{ route('front.payment_proof') }}">PAYMENT PROOF</a>
                             </li>
                             <li><a class="dropdown-item" href="{{ route('front.faq') }}">FAQ</a>
-                            </li>
-                            <li><a class="dropdown-item" href="{{ route('front.disclaimer') }}">DISLCLAIMER</a>
                             </li>
                         </ul>
                     </li>

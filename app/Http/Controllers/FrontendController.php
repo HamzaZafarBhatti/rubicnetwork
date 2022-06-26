@@ -91,7 +91,9 @@ class FrontendController extends Controller
     }
     public function disclaimer()
     {
-        return view('front.disclaimer');
+        $about = About::findOrFail(1);
+        $disclaimer = $about->disclaimer;
+        return view('front.disclaimer', compact('disclaimer'));
     }
     public function sponsored_post()
     {
