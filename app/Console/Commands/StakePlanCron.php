@@ -43,8 +43,8 @@ class StakePlanCron extends Command
                     $bonus = $stake_plan->percent * $stake_plan->amount / 100;
                     $user_stake_plan->update([
                         'stake_profit' => $user_stake_plan->stake_profit + $bonus,
-                        // 'next_update_time' => Carbon::now()->addDay(),
-                        'next_update_time' => Carbon::now()->addMinute(),
+                        'next_update_time' => Carbon::now()->addDay(),
+                        // 'next_update_time' => Carbon::now()->addMinute(),
                         'remaining_days' => $user_stake_plan->remaining_days - 1
                     ]);
                 }
