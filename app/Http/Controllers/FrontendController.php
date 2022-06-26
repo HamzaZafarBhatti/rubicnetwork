@@ -147,7 +147,10 @@ class FrontendController extends Controller
                 // return $user;
                 $username = $user->username;
                 $name = $user->name;
-                $referral = !$user->parent->isEmpty() ? $user->parent->username : 'N/A';
+                if(!$user->parent->isEmpty()) {
+                    $parent = User::find($user->parent[0]->id);
+                    $referral = $parent->username;
+                }
             }
         } else {
             $coupon = StakeCoupon::with('plan', 'user')->where('serial', $request->code)->first();
