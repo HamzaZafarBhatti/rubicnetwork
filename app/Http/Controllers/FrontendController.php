@@ -55,7 +55,9 @@ class FrontendController extends Controller
     }
     public function cookies_policy()
     {
-        return view('front.cookies_policy');
+        $about = About::findOrFail(1);
+        $cookie_policy = $about->cookie_policy;
+        return view('front.cookies_policy', compact('cookie_policy'));
     }
     public function contact_us()
     {

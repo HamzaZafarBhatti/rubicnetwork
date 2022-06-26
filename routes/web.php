@@ -222,6 +222,8 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
             Route::post('update_rubic_network', 'update_rubic_network')->name('update_rubic_network');
             Route::get('rubic_staking', 'rubic_staking')->name('rubic_staking');
             Route::post('update_rubic_staking', 'update_rubic_staking')->name('update_rubic_staking');
+            Route::get('cookie_policy', 'cookie_policy')->name('cookie_policy');
+            Route::post('update_cookie_policy', 'update_cookie_policy')->name('update_cookie_policy');
         });
         //Payment Proof
         Route::prefix('payment_proofs')->name('payment_proofs.')->controller(PaymentProofController::class)->group(function () {
