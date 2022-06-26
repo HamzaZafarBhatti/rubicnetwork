@@ -56,9 +56,9 @@ Route::get('/rubic_network', [FrontendController::class, 'rubic_network'])->name
 Route::get('/terms_condition', [FrontendController::class, 'terms_condition'])->name('front.terms_condition');
 Route::get('/privacy_policy', [FrontendController::class, 'privacy_policy'])->name('front.privacy_policy');
 Route::get('/pin_verification', [FrontendController::class, 'pin_verification'])->name('front.pin_verification');
+Route::post('/pin_verification', [FrontendController::class, 'confirm_code'])->name('front.confirm_code');
 Route::get('/cookies_policy', [FrontendController::class, 'cookies_policy'])->name('front.cookies_policy');
 Route::get('/contact_us', [FrontendController::class, 'contact_us'])->name('front.contact_us');
-Route::post('/send_email', [FrontendController::class, 'send_email'])->name('front.send_email');
 Route::get('/top_earners', [FrontendController::class, 'top_earners'])->name('front.top_earners');
 Route::get('/payment_proof', [FrontendController::class, 'payment_proof'])->name('front.payment_proof');
 Route::get('/faq', [FrontendController::class, 'faq'])->name('front.faq');
@@ -66,6 +66,7 @@ Route::get('/pin_dispatchers', [FrontendController::class, 'pin_dispatchers'])->
 Route::get('/disclaimer', [FrontendController::class, 'disclaimer'])->name('front.disclaimer');
 Route::get('/sponsored_post', [FrontendController::class, 'sponsored_post'])->name('front.sponsored_post');
 Route::get('/sponsored_post/{id}/{slug}', [FrontendController::class, 'article'])->name('front.single.post');
+Route::post('/send_email', [FrontendController::class, 'send_email'])->name('front.send_email');
 
 Route::get('/test/email', [FrontendController::class, 'test_email']);
 

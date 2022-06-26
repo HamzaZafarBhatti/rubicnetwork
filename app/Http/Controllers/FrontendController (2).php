@@ -45,13 +45,6 @@ class FrontendController extends Controller
         return view('front.index', $data);
     }
 
-
-    public function about()
-    {
-        $data['title'] = "About Us";
-        $data['review'] = Review::whereStatus(1)->get();
-        return view('front.about', $data);
-    }
     public function topearners()
     {
         $data['title'] = "Top Earners";
@@ -59,35 +52,11 @@ class FrontendController extends Controller
         return view('front.topearners', $data);
     }
 
-    // public function faq()
-    // {
-    //     $data['title'] = "Faq";
-    //     return view('front.faq', $data);
-    // }
-
-    public function terms()
-    {
-        $data['title'] = "Terms & conditions";
-        return view('front.terms', $data);
-    }
     public function coupon()
     {
         $data['title'] = "Activation PIN Code Dispatchers";
         return view('front.coupon', $data);
     }
-
-    public function privacy()
-    {
-        $data['title'] = "Privacy policy";
-        return view('front.privacy', $data);
-    }
-
-
-    // public function contact()
-    // {
-    //     $data['title'] = "Contact Us";
-    //     return view('front.contact', $data);
-    // }
 
 
     public function contactSubmit(Request $request)
@@ -108,31 +77,6 @@ class FrontendController extends Controller
     }
 
 
-    public function blog()
-    {
-        $data['title'] = "Blog Feed";
-        $data['posts'] = Blog::latest()->paginate(3);
-        return view('front.blog', $data);
-    }
-
-    public function category($id)
-    {
-        // return $trending;
-        $cat = Category::find($id);
-        $data['title'] = $cat->categories;
-        $data['posts'] = Blog::where('cat_id', $id)->/* where('post_date', Carbon::now()->format('Y-m-d'))-> */latest()->paginate(3);
-        // return $data['posts'];
-        return view('front.cat', $data);
-    }
-
-    public function page($id)
-    {
-        $page = $data['page'] = Page::find($id);
-        $data['title'] = $page->title;
-        return view('front.pages', $data);
-    }
-
-
     public function subscribe(Request $request)
     {
         $request->validate([
@@ -145,12 +89,6 @@ class FrontendController extends Controller
             Subscriber::create($request->all());
             return back()->with('success', ' Subscribe Successfully!');
         }
-    }
-
-    public function verify_pin()
-    {
-        $data['title'] = "Verify pin";
-        return view('front.verify_pin', $data);
     }
 
     public function do_verify_pin(Request $request)

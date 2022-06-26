@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Mail\ContactEmail;
 use App\Mail\GeneralEmail;
 use App\Models\About;
+use App\Models\Coupon;
 use App\Models\Etemplate;
 use App\Models\Faq;
 use App\Models\PaymentProof;
 use App\Models\Post;
+use App\Models\StakeCoupon;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
@@ -124,5 +127,39 @@ class FrontendController extends Controller
         // send_email($user->email, $user->name, 'Email verification', $text);
         $temp = Etemplate::first();
         Mail::to('hamza0952454@gmail.com')->send(new GeneralEmail($temp->esender, 'Hamza Bhatti', $text, 'Email verification'));
+    }
+
+    public function confirm_code(Request $request)
+    {
+        // return $request;
+        if(!$request->type) {
+            return back()->with('error', 'Code Type is not selected! Please select one.');
+        }
+        $type = $request->type;
+        if($type == 'network') {
+            $coupon = Coupon::with('plan', 'user')->where('serial', $request->code)->first();
+            $user = $coupon->user;
+        } else {
+            $coupon = StakeCoupon::with('plan', 'user')->where('serial', $request->code)->first();
+            $user = !$coupon->user->isEmpty() ? $coupon->user[0] : null;
+        }
+        // return $coupon;
+        if (!$coupon) {
+            return redirect()->route('verify_pin')->with('error', 'ACTIVATION PIN CODE INVALID');
+        }
+        if ($coupon->status) {
+            $data = [
+                'status' => 'Disabled',
+                'username' => $user ? $user->username : 'N/A',
+                'name' => $user ? $user->name : 'N/A',
+                'date_used' => Carbon::parse($coupon->updated_at)->toFormattedDateString(),
+                'plan' => $coupon->plan->name,
+                'referral' => $user ? $user->parent->username : 'N/A'
+            ];
+            $html_text = "<h6>STATUS: <small>".$data['status']."</small></h6><h6>USERNAME: <small>".$data['username']."</small></h6><h6>NAME: <small>".$data['name']."</small></h6><h6>DATE USED: <small>".$data['date_used']."</small></h6><h6>PLAN: <small>".$data['plan']."</small></h6><h6>REFERRAL: <small>".$data['referral']."</small></h6>";
+            return redirect()->route('front.pin_verification')->with('coupon_details', $html_text);
+        } else {
+            return redirect()->route('front.pin_verification')->with('success', 'ACTIVATION PIN code is valid and can be used');
+        }
     }
 }

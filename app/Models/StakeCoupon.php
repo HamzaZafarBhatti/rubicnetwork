@@ -20,6 +20,6 @@ class StakeCoupon extends Model
     }
 
     public function user() {
-        return $this->hasOne(User::class);
+        return $this->belongsToMany(User::class, UserStakePlan::class);
     }
 }

@@ -45,4 +45,12 @@
             confirmButtonColor: "#1c84ee"
         })
     @endif
+    @if (Session::has('coupon_details'))
+        Swal.fire({
+            title: "Coupon Details",
+            html: '{!! session('coupon_details') !!}',
+            icon: "info",
+            confirmButtonColor: "#1c84ee"
+        })
+    @endif
 </script>
