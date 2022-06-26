@@ -20,6 +20,6 @@ class StakeCoupon extends Model
     }
 
     public function user() {
-        return $this->belongsToMany(User::class, UserStakePlan::class);
+        return $this->hasOneThrough(User::class, UserStakePlan::class, 'stake_coupon_id', 'id', '');
     }
 }

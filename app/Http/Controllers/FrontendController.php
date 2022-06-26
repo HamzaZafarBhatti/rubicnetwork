@@ -11,6 +11,7 @@ use App\Models\Faq;
 use App\Models\PaymentProof;
 use App\Models\Post;
 use App\Models\StakeCoupon;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -136,9 +137,18 @@ class FrontendController extends Controller
             return back()->with('error', 'Code Type is not selected! Please select one.');
         }
         $type = $request->type;
+        $username = 'N/A';
+        $name = 'N/A';
+        $referral = 'N/A';
         if($type == 'network') {
             $coupon = Coupon::with('plan', 'user')->where('serial', $request->code)->first();
-            $user = $coupon->user;
+            if($coupon->user) {
+                $user = User::with('parent')->find($coupon->user->id);
+                // return $user;
+                $username = $user->username;
+                $name = $user->name;
+                $referral = !$user->parent->isEmpty() ? $user->parent->username : 'N/A';
+            }
         } else {
             $coupon = StakeCoupon::with('plan', 'user')->where('serial', $request->code)->first();
             $user = !$coupon->user->isEmpty() ? $coupon->user[0] : null;
@@ -150,11 +160,11 @@ class FrontendController extends Controller
         if ($coupon->status) {
             $data = [
                 'status' => 'Disabled',
-                'username' => $user ? $user->username : 'N/A',
-                'name' => $user ? $user->name : 'N/A',
+                'username' => $username,
+                'name' => $name,
                 'date_used' => Carbon::parse($coupon->updated_at)->toFormattedDateString(),
                 'plan' => $coupon->plan->name,
-                'referral' => $user ? $user->parent->username : 'N/A'
+                'referral' => $referral
             ];
             $html_text = "<h6>STATUS: <small>".$data['status']."</small></h6><h6>USERNAME: <small>".$data['username']."</small></h6><h6>NAME: <small>".$data['name']."</small></h6><h6>DATE USED: <small>".$data['date_used']."</small></h6><h6>PLAN: <small>".$data['plan']."</small></h6><h6>REFERRAL: <small>".$data['referral']."</small></h6>";
             return redirect()->route('front.pin_verification')->with('coupon_details', $html_text);
