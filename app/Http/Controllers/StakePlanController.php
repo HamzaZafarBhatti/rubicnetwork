@@ -229,10 +229,10 @@ class StakePlanController extends Controller
             'stake_coupon_id' => $stake_coupon->id,
             'stake_profit' => $bonus,
             // 'next_update_time' => Carbon::now()->addDay(),
-            'next_update_time' => Carbon::now()->addSeconds(10),
+            'next_update_time' => Carbon::now()->addMinute(),
             // 'start_time' => Carbon::now(),
             // 'complete_time' => Carbon::now()->addDays($stakePlan->duration)
-            'remaining_days' => 30
+            'remaining_days' => 29
             // 'remaining_days' => $stakePlan->duration
         ]);
         if (!$user->parent->isEmpty()) {
