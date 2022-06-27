@@ -26,6 +26,7 @@ class User extends Authenticatable
         'rubic_wallet',
         'rubic_stake_wallet',
         'stake_ref_earning',
+        'stake_profit',
         'extraction_balance',
         'ref_earning',
         'indirect_ref_earning',
@@ -110,6 +111,10 @@ class User extends Authenticatable
     public function user_stake_plans()
     {
         return $this->hasMany(UserStakePlan::class);
+    }
+    public function completed_stake_plans()
+    {
+        return $this->belongsToMany(StakePlan::class, UserStakePlan::class, 'user_id', 'stake_plan_id')->wherePivot('status', 0);
     }
     public function user_stake_withdrawals()
     {

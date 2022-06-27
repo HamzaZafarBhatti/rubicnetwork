@@ -36,7 +36,7 @@ class StakeReferralController extends Controller
         if ($pin !== $user->pin) {
             return back()->with('error', 'Pin is not same.');
         }
-        if (!$set->viral_share_transfer) {
+        if (!$set->stake_ref_earning_transfer) {
             return back()->with('error', 'You cannot transfer Stake Referral Profit to Rubic Wallet Wallet!');
         }
         if ($request->amount > $user->stake_ref_earning) {
@@ -59,7 +59,7 @@ class StakeReferralController extends Controller
             ]);
             Notification::create([
                 'user_id' => $user->id,
-                'title' => 'RUBIC STAKE PROFIT Transfer to STAKE WALLET',
+                'title' => 'RUBIC STAKE REFERRAL Transfer to STAKE WALLET',
                 'msg' => 'You transferred NGN' . $request->amount . ' from your RUBIC STAKE REFERRAL EARNINGS to your Rubic STAKE WALLET',
                 'is_read' => 0
             ]);

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\StakePlan;
+use App\Models\User;
 use App\Models\UserStakePlan;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -50,8 +51,11 @@ class StakePlanCron extends Command
                 }
             }
             if (!$user_stake_plan->remaining_days) {
+                $user = User::find($user_stake_plan->user_id);
+                $user->update(['stake_profit' => $user->stake_profit + $user_stake_plan->stake_profit]);
                 $user_stake_plan->update([
                     'status' => 0,
+                    'is_withdrawn' => 1,
                 ]);
             }
         }

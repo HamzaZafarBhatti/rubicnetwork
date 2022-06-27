@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Notification;
 use App\Models\Setting;
 use App\Models\StakeCoupon;
+use App\Models\StakeEarningConvert;
 use App\Models\StakePlan;
 use App\Models\StakeReferral;
 use App\Models\User;
@@ -198,9 +199,7 @@ class StakePlanController extends Controller
     public function history()
     {
         $plans = UserStakePlan::with('stake_plan', 'stake_coupon')->where('user_id', auth()->user()->id)->get();
-        $user_stake_profit = UserStakePlan::where('user_id', auth()->user()->id)->where('is_withdrawn', 0)->sum('stake_profit');
-        // $user = User::with('user_stake_plans')->whereId(auth()->user()->id)->first();
-        // return $user_stake_profit;
+        $user_stake_profit = auth()->user()->stake_profit;
         return view('user.stake_plans.history', compact('plans', 'user_stake_profit'));
     }
     public function activate()
@@ -356,6 +355,52 @@ class StakePlanController extends Controller
             ]);
 
             return redirect($url);
+        }
+    }
+
+    public function convert(Request $request)
+    {
+        $converts = StakeEarningConvert::with('user')->get();
+        return view('user.stake_plans.convert', compact('converts'));
+    }
+
+    public function do_convert(Request $request)
+    {
+        // return $request;
+        $user = User::with('completed_stake_plans')->find(auth()->user()->id);
+        $pin = implode('', $request->pins);
+        if ($pin === '000000') {
+            return back()->with('error', 'You cannot use the default PIN 000000 to perform transactions, please go to the Account Security Page to have your PIN RESET.');
+        }
+        if ($pin !== $user->pin) {
+            return back()->with('error', 'Pin is not same.');
+        }
+        $user_stake_profit = $user->stake_profit;
+        if ($request->amount > $user_stake_profit) {
+            return back()->with('error', 'Your Stake profit balance is less than the requested amount!');
+        }
+        $min_stake_profit_transfer = $user->completed_stake_plans->min('stake_profit_transfer');
+        if ($min_stake_profit_transfer > $request->amount) {
+            return back()->with('error', 'You have requested less amount to transfer to Stake Wallet');
+        }
+        $res = StakeEarningConvert::create([
+            'user_id' => $user->id,
+            'amount' => $request->amount
+        ]);
+        if ($res) {
+            $user->update([
+                'rubic_stake_wallet' => $user->rubic_stake_wallet + $request->amount,
+                'stake_profit' => $user->stake_profit - $request->amount
+            ]);
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'RUBIC STAKE PROFIT Transfer to STAKE WALLET',
+                'msg' => 'You transferred NGN' . $request->amount . ' from your RUBIC STAKE PROFIT to your Rubic STAKE WALLET',
+                'is_read' => 0
+            ]);
+            return redirect()->route('user.stake_referrals.convert')->with('success', 'Stake Referral profit is converted to Rubic Wallet Wallet');
+        } else {
+            return back()->with('error', 'Something went wrong!');
         }
     }
 }

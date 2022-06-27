@@ -141,6 +141,8 @@ Route::name('user.')->group(function () {
             Route::get('stake_plans/{stakePlan}/do_activate_tether', 'do_activate_tether')->name('stake_plans.do_activate_tether');
             Route::post('stake_plans/{stakePlan}/do_activate_coupon', 'do_activate_coupon')->name('stake_plans.do_activate_coupon');
             Route::get('stake_plans/history', 'history')->name('stake_plans.history');
+            Route::get('stake_plans/convert', 'convert')->name('stake_plans.convert');
+            Route::post('stake_plans/do_convert', 'do_convert')->name('stake_plans.do_convert');
         });
         //Stake Referral
         Route::controller(StakeReferralController::class)->group(function () {

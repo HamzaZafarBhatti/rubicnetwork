@@ -148,7 +148,7 @@
                                 Plan</a></li>
                         <li><a href="{{ route('user.stake_plans.history') }}" data-key="t-product-detail">Stake
                                 Plan Activation History</a></li>
-                        <li><a href="#" data-key="t-product-detail">Conversion Stake to Stake Wallet History</a>
+                        <li><a href="{{ route('user.stake_plans.convert') }}" data-key="t-product-detail">Conversion Stake to Stake Wallet History</a>
                         </li>
                     </ul>
                 </li>

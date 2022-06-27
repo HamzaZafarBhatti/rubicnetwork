@@ -54,7 +54,7 @@
                                             <th>Next Daily Profit</th>
                                             {{-- <th>Completion Date</th> --}}
                                             <th>Bonus</th>
-                                            <th>Withdrawn</th>
+                                            {{-- <th>Withdrawn</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -69,7 +69,7 @@
                                                     <td>{{ $item->status ? \Carbon\Carbon::parse($item->next_update_time)->toDateTimeString() : 'NA' }}</td>
                                                     {{-- <td>{{ \Carbon\Carbon::parse($item->complete_time)->toFormattedDateString() }}</td> --}}
                                                     <td>{{ $item->stake_profit }}</td>
-                                                    <td>{{ $item->is_withdrawn ? 'Yes' : 'No' }}</td>
+                                                    {{-- <td>{{ $item->is_withdrawn ? 'Yes' : 'No' }}</td> --}}
                                                 </tr>
                                             @endforeach
                                         @endif

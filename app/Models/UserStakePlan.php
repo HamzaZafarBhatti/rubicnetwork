@@ -29,7 +29,7 @@ class UserStakePlan extends Model
 
     public function stake_plan()
     {
-        return $this->belongsTo(StakePlan::class)->select('id', 'name', 'duration');
+        return $this->belongsTo(StakePlan::class)->select('id', 'name', 'duration', 'stake_profit_transfer');
     }
 
     public function stake_coupon()
