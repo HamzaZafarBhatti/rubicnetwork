@@ -271,7 +271,7 @@ class StakePlanController extends Controller
         $user = User::with('parent')->whereId(auth()->user()->id)->first();
         // return $user;
         if(!$user->tether_network) {
-            return back()->with('error', 'Please set your tether wallet in Profile page!');
+            return back()->with('error', 'Please set your Tether USDT Wallet Address and Network before attempting to Activate STAKE PLAN');
         }
         $amount = $stakePlan->amount / $setting->ngn_rate;
         $system = $user->tether_network;
