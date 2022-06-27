@@ -221,13 +221,13 @@ class StakePlanController extends Controller
         }
         $user = User::with('parent')->whereId(auth()->user()->id)->first();
         // return $user;
-        $bonus = $stakePlan->percent * $stakePlan->amount / 100;
+        // $bonus = $stakePlan->percent * $stakePlan->amount / 100;
         UserStakePlan::create([
             'user_id' => $user->id,
             'stake_plan_id' => $stakePlan->id,
             'status' => 1,
             'stake_coupon_id' => $stake_coupon->id,
-            'stake_profit' => $bonus,
+            'stake_profit' => 0,
             'next_update_time' => Carbon::now()->addDay(),
             // 'next_update_time' => Carbon::now()->addMinute(),
             // 'start_time' => Carbon::now(),
