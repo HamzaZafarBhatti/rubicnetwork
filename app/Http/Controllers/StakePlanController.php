@@ -269,6 +269,10 @@ class StakePlanController extends Controller
 
 
         $user = User::with('parent')->whereId(auth()->user()->id)->first();
+        // return $user;
+        if(!$user->tether_network) {
+            return back()->with('error', 'Please set your tether wallet in Profile page!');
+        }
         $amount = $stakePlan->amount / $setting->ngn_rate;
         $system = $user->tether_network;
         $currency = 'USDT';
@@ -326,7 +330,6 @@ class StakePlanController extends Controller
                 'user_id' => $user->id,
                 'stake_plan_id' => $stakePlan->id,
                 'status' => 1,
-                'stake_coupon_id' => $stake_coupon->id,
                 'stake_profit' => 0,
                 'next_update_time' => Carbon::now()->addDay(),
                 // 'next_update_time' => Carbon::now()->addMinute(),
@@ -345,7 +348,6 @@ class StakePlanController extends Controller
                 ]);
                 $parent->update(['stake_ref_earning' => $stake_ref_earning]);
             }
-            $stake_coupon->update(['status' => 1]);
             Notification::create([
                 'user_id' => $user->id,
                 'title' => 'RUBIC STAKE ACTIVATION SUCCESSFUL',

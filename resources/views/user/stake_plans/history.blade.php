@@ -63,7 +63,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->stake_plan->name }}</td>
-                                                    <td>{{ $item->stake_coupon->serial }}</td>
+                                                    <td>{{ $item->stake_coupon ? $item->stake_coupon->serial : 'TETHER' }}</td>
                                                     <td>{{ $item->status ? 'Active' : 'Completed' }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}</td>
                                                     <td>{{ $item->status ? \Carbon\Carbon::parse($item->next_update_time)->toDateTimeString() : 'NA' }}</td>
