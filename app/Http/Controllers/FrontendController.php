@@ -143,7 +143,7 @@ class FrontendController extends Controller
         if ($type == 'network') {
             $coupon = Coupon::with('plan', 'user')->where('serial', $request->code)->first();
             if (!$coupon) {
-                return redirect()->route('verify_pin')->with('error', 'INVALID NETWORK CODE');
+                return redirect()->route('front.pin_verification')->with('error', 'INVALID NETWORK CODE');
             }
             if ($coupon->user) {
                 $user = User::with('parent')->find($coupon->user->id);
@@ -159,7 +159,7 @@ class FrontendController extends Controller
             $coupon = StakeCoupon::with('plan', 'user_stake_plan')->where('serial', $request->code)->first();
             // return $coupon;
             if (!$coupon) {
-                return redirect()->route('verify_pin')->with('error', 'INVALID STAKE CODE');
+                return redirect()->route('front.pin_verification')->with('error', 'INVALID STAKE CODE');
             }
             if ($coupon->user_stake_plan) {
                 $user = User::with('parent')->find($coupon->user_stake_plan->user_id);
