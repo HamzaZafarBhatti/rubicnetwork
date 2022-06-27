@@ -85,7 +85,7 @@
                                                                 <div>
                                                                     <h6>Stake Profit: {{ $plan->percent }}%</h6>
                                                                 </div>
-                                                                <a type="button" {{-- href="{{ route('user.stake_plans.do_activate_tether', $plan->id) }}" --}} class="btn btn-primary">ACTIVATE USING
+                                                                <a type="button" href="{{ route('user.stake_plans.do_activate_tether', $plan->id) }}" class="btn btn-primary">ACTIVATE USING
                                                                     TETHER USDT</a>
                                                                 <button type="button" class="btn btn-primary stake_activate">ACTIVATE USING
                                                                     STAKE ACTIVATION CODE</button>

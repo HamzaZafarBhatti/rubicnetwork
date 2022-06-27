@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification;
+use App\Models\Setting;
 use App\Models\StakeCoupon;
 use App\Models\StakePlan;
 use App\Models\StakeReferral;
@@ -259,19 +260,21 @@ class StakePlanController extends Controller
 
     public function do_activate_tether(StakePlan $stakePlan)
     {
-        // return $stakePlan;
         require_once('app/paykassa/paykassa_sci.class.php'); //the plug-in class to work with SCI, you can download it at the link
 
-        $paykassa_merchant_id = '16603';                 // the ID of the merchant
-        $paykassa_merchant_password = '49fDhcMSxMA8yTmbCJ2rvAhzR7SmDIFG';     // merchant password
-        $test = true;                                              // False test mode - off, True - Enabled
+        $setting = Setting::first();
+        $paykassa_merchant_id = env('MERCHANT_ID');                 // the ID of the merchant
+        $paykassa_merchant_password = env('MERCHANT_PASS');     // merchant password
+        $test = false;                                              // False test mode - off, True - Enabled
 
 
-        $amount = 10;
-        $system = 'tron_trc20';
+        $user = User::with('parent')->whereId(auth()->user()->id)->first();
+        $amount = $stakePlan->amount / $setting->ngn_rate;
+        $system = $user->tether_network;
         $currency = 'USDT';
-        $order_id = 'shop_377';
-        $comment = 'comment';
+        $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+        $order_id = substr(str_shuffle($data), 0, 16);
+        $comment = 'User activating Rubic Stake Plan!';
 
 
         $paykassa = new PayKassaSCI(
@@ -293,9 +296,9 @@ class StakePlanController extends Controller
             "tron" => 27, // supported currencies TRX    
             "stellar" => 28, // supported currencies XLM    
             "binancecoin" => 29, // supported currencies BNB    
-            "tron_trc20" => 30, // supported currencies USDT    
-            "binancesmartchain_bep20" => 31, // supported currencies USDT, BUSD, USDC, ADA, EOS, BTC, ETH, DOGE    
-            "ethereum_erc20" => 32, // supported currencies USDT    
+            "trc" => 30, // supported currencies USDT    
+            "bep" => 31, // supported currencies USDT, BUSD, USDC, ADA, EOS, BTC, ETH, DOGE    
+            "erc" => 32, // supported currencies USDT    
         ];
 
         $res = $paykassa->sci_create_order_get_data(
@@ -319,8 +322,38 @@ class StakePlanController extends Controller
             $url = $res['data']['url'];             // The link to proceed for payment
             $tag = $res['data']['tag'];             // Tag to indicate the translation to ripple
 
-            return 'Send funds to this address ' . $wallet . (!empty($tag) ? ' Tag: ' . $tag : '') . ' Balance will be updated automatically.';
-            //Send funds to this address 32e6LAW8Nps9GJMSQK4Busm6UUUkUc4tzE. Balance will be updated automatically.
+            UserStakePlan::create([
+                'user_id' => $user->id,
+                'stake_plan_id' => $stakePlan->id,
+                'status' => 1,
+                'stake_coupon_id' => $stake_coupon->id,
+                'stake_profit' => 0,
+                'next_update_time' => Carbon::now()->addDay(),
+                // 'next_update_time' => Carbon::now()->addMinute(),
+                // 'remaining_days' => 10
+                'remaining_days' => $stakePlan->duration
+            ]);
+            if (!$user->parent->isEmpty()) {
+                $parent = User::find($user->parent[0]->id);
+                $stake_ref_bonus = $stakePlan->amount * $stakePlan->ref_percent / 100;
+                $stake_ref_earning = $parent->stake_ref_earning + $stake_ref_bonus;
+                StakeReferral::create([
+                    'referral_id' => $user->id,
+                    'referee_id' => $parent->id,
+                    'referee_stake_ref_earning' => $parent->stake_ref_earning,
+                    'bonus' => $stake_ref_bonus,
+                ]);
+                $parent->update(['stake_ref_earning' => $stake_ref_earning]);
+            }
+            $stake_coupon->update(['status' => 1]);
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'RUBIC STAKE ACTIVATION SUCCESSFUL',
+                'msg' => 'You have successfully activated a RUBIC STAKE PLAN',
+                'is_read' => 0
+            ]);
+
+            return redirect($url);
         }
     }
 }
