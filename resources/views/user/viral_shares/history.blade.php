@@ -46,7 +46,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->post->title }}</td>
                                                     <td>{{ $item->bonus }}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($item->created_on)->toFormattedDateString() }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}</td>
                                                 </tr>
                                             @endforeach
                                         @endif
