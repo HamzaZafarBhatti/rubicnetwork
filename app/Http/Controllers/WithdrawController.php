@@ -40,7 +40,7 @@ class WithdrawController extends Controller
         }
         $plan = $user->plan;
         $amount = $request->amount;
-        if ($plan->min_account_balance_wd > $request->amount) {
+        if ($plan->min_rubic_wallet_wd > $request->amount) {
             return back()->with('error', 'You have requested less than your plan defined payment.');
         }
         if ($user->rubic_wallet >= $amount) {
