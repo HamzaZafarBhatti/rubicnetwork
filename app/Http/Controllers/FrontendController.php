@@ -70,7 +70,7 @@ class FrontendController extends Controller
     public function send_email(Request $request)
     {
         $temp = Etemplate::first();
-        $name = $request->from_first_name.' '.$request->from_last_name;
+        $name = $request->from_first_name . ' ' . $request->from_last_name;
         Mail::to($temp->esender)->send(new ContactEmail($request->from_email, $name, $request->msg, $request->subject));
         // Mail::to('hamza0952454@gmail.com')->send(new ContactEmail($request->from_email, $name, $request->msg, $request->subject));
         return back()->with('success', 'Email has been sent!');
@@ -133,21 +133,24 @@ class FrontendController extends Controller
     public function confirm_code(Request $request)
     {
         // return $request;
-        if(!$request->type) {
+        if (!$request->type) {
             return back()->with('error', 'Code Type is not selected! Please select one.');
         }
         $type = $request->type;
         $username = 'N/A';
         $name = 'N/A';
         $referral = 'N/A';
-        if($type == 'network') {
+        if ($type == 'network') {
             $coupon = Coupon::with('plan', 'user')->where('serial', $request->code)->first();
-            if($coupon->user) {
+            if (!$coupon) {
+                return redirect()->route('verify_pin')->with('error', 'INVALID NETWORK CODE');
+            }
+            if ($coupon->user) {
                 $user = User::with('parent')->find($coupon->user->id);
                 // return $user;
                 $username = $user->username;
                 $name = $user->name;
-                if(!$user->parent->isEmpty()) {
+                if (!$user->parent->isEmpty()) {
                     $parent = User::find($user->parent[0]->id);
                     $referral = $parent->username;
                 }
@@ -155,19 +158,19 @@ class FrontendController extends Controller
         } else {
             $coupon = StakeCoupon::with('plan', 'user_stake_plan')->where('serial', $request->code)->first();
             // return $coupon;
-            if($coupon->user_stake_plan) {
+            if (!$coupon) {
+                return redirect()->route('verify_pin')->with('error', 'INVALID STAKE CODE');
+            }
+            if ($coupon->user_stake_plan) {
                 $user = User::with('parent')->find($coupon->user_stake_plan->user_id);
                 // return $user;
                 $username = $user->username;
                 $name = $user->name;
-                if(!$user->parent->isEmpty()) {
+                if (!$user->parent->isEmpty()) {
                     $parent = User::find($user->parent[0]->id);
                     $referral = $parent->username;
                 }
             }
-        }
-        if (!$coupon) {
-            return redirect()->route('verify_pin')->with('error', 'ACTIVATION PIN CODE INVALID');
         }
         if ($coupon->status) {
             $data = [
@@ -178,7 +181,7 @@ class FrontendController extends Controller
                 'plan' => $coupon->plan->name,
                 'referral' => $referral
             ];
-            $html_text = "<h6>STATUS: <small>".$data['status']."</small></h6><h6>USERNAME: <small>".$data['username']."</small></h6><h6>NAME: <small>".$data['name']."</small></h6><h6>DATE USED: <small>".$data['date_used']."</small></h6><h6>PLAN: <small>".$data['plan']."</small></h6><h6>REFERRAL: <small>".$data['referral']."</small></h6>";
+            $html_text = "<h6>STATUS: <small>" . $data['status'] . "</small></h6><h6>USERNAME: <small>" . $data['username'] . "</small></h6><h6>NAME: <small>" . $data['name'] . "</small></h6><h6>DATE USED: <small>" . $data['date_used'] . "</small></h6><h6>PLAN: <small>" . $data['plan'] . "</small></h6><h6>REFERRAL: <small>" . $data['referral'] . "</small></h6>";
             return redirect()->route('front.pin_verification')->with('coupon_details', $html_text);
         } else {
             return redirect()->route('front.pin_verification')->with('success', 'ACTIVATION PIN code is valid and can be used');
