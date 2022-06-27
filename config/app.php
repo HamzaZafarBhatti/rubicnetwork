@@ -67,8 +67,8 @@ return [
     |
     */
 
-    // 'timezone' => 'Africa/Lagos',
-    'timezone' => 'UTC',
+    'timezone' => 'Africa/Lagos',
+    // 'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
