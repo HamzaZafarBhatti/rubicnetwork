@@ -227,6 +227,8 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
             Route::post('update_cookie_policy', 'update_cookie_policy')->name('update_cookie_policy');
             Route::get('disclaimer', 'disclaimer')->name('disclaimer');
             Route::post('update_disclaimer', 'update_disclaimer')->name('update_disclaimer');
+            Route::get('notice', 'notice')->name('notice');
+            Route::post('update_notice', 'update_notice')->name('update_notice');
         });
         //Payment Proof
         Route::prefix('payment_proofs')->name('payment_proofs.')->controller(PaymentProofController::class)->group(function () {

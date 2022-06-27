@@ -387,6 +387,8 @@
                                         class="nav-link"><i class="icon-file-check"></i>Cookie policy</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.web.disclaimer') }}"
                                         class="nav-link"><i class="icon-file-check"></i>Earning Disclaimer</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.web.notice') }}"
+                                        class="nav-link"><i class="icon-file-check"></i>Notice Board</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.web.about_us') }}"
                                         class="nav-link"><i class="icon-file-check"></i>About us</a></li>
                                 <li class="nav-item"><a href="{{ route('social-links') }}" class="nav-link"><i

@@ -752,4 +752,23 @@ class WebController extends Controller
             return back()->with('alert', 'Problem With Updating link');
         }
     }
+
+    public function notice()
+    {
+        $data['title'] = 'Cookie Policy';
+        $data['value'] = About::first();
+        return view('admin.web-control.notice', $data);
+    }
+
+    public function update_notice(Request $request)
+    {
+        $mac = About::findOrFail(1);
+        $mac['notice'] = $request->details;
+        $res = $mac->save();
+        if ($res) {
+            return back()->with('success', ' Updated Successfully!');
+        } else {
+            return back()->with('alert', 'Problem With Updating link');
+        }
+    }
 }

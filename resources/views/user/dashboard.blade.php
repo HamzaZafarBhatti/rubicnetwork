@@ -474,11 +474,7 @@
                     <div class="px-3" data-simplebar style="max-height: 386px;">
                         <div class="d-flex align-items-center pb-4">
                             <div class="flex-grow-1">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem ex neque impedit voluptate
-                                    deserunt, voluptatibus aliquid reprehenderit necessitatibus dolor consequatur.</p>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quos doloremque
-                                    officia temporibus veniam, quia nisi repellendus pariatur fugit iure saepe sunt voluptas
-                                    aut impedit nostrum, adipisci quaerat. Incidunt, dicta?</p>
+                                {!! $about->notice !!}
                             </div>
                         </div>
                     </div>

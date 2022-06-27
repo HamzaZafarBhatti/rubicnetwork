@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\GeneralEmail;
+use App\Models\About;
 use App\Models\Bank;
 use App\Models\Coupon;
 use App\Models\Etemplate;
@@ -37,11 +38,13 @@ class UserController extends Controller
         $extractions_count = $ext_query->count();
         $viral_share_count = PostUser::where('user_id', auth()->user()->id)->count();
         $referral_count = Referral::where('referee_id', auth()->user()->id)->count();
+        $about = About::first();
         return view('user.dashboard', compact(
             'extractions',
             'extractions_count',
             'viral_share_count',
             'referral_count',
+            'about',
         ));
     }
 
