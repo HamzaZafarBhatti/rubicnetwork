@@ -93,7 +93,9 @@ class AppServiceProvider extends ServiceProvider
                 // $view->with('user', $user);
                 // $view->with('cast', $cast);
                 $notifications = Notification::whereIsRead(0)->where('user_id', auth()->user()->id)->orWhere('user_id', null)->latest()->limit(7)->get();
+                $all_notifications = Notification::whereIsRead(0)->where('user_id', auth()->user()->id)->orWhere('user_id', null)->latest()->get();
                 $view->with('notifications', $notifications);
+                $view->with('all_notifications', $all_notifications);
                 // $user_plan = Plans::whereHas('user', function ($q) {
                 //     $q->where('users.id', Auth::user()->id);
                 // })->whereStatus(1)->first();
