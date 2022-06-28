@@ -46,7 +46,7 @@ class StakeWithdrawController extends Controller
                 'account_no' => $request->account_no,
                 'withdraw_to' => 'tether',
             ]);
-            $user->update(['rubic_stake_wallet' => $user->rubic_wallet - $request->amount]);
+            $user->update(['rubic_stake_wallet' => $user->rubic_stake_wallet - $request->amount]);
             if ($set->email_notify == 1) {
                 $temp = Etemplate::first();
                 Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of $' . $amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
@@ -105,11 +105,17 @@ class StakeWithdrawController extends Controller
                 'account_no' => $request->account_no,
                 'withdraw_to' => 'bank',
             ]);
-            $user->update(['rubic_stake_wallet' => $user->rubic_wallet - $request->amount]);
+            $user->update(['rubic_stake_wallet' => $user->rubic_stake_wallet - $request->amount]);
             if ($set->email_notify == 1) {
                 $temp = Etemplate::first();
                 Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'We are currently reviewing your withdrawal request of ₦' . $amount . '. Thanks for working with us.', 'Withdraw Request currently being Processed'));
             }
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'RUBIC STAKE WALLET WITHDRAWAL - PENDING - USD' . $amount,
+                'msg' => 'You have successfully placed a Withdrawal Request from your RUBIC STAKE WALLET. Kindly wait to get paid.',
+                'is_read' => 0
+            ]);
             return redirect()->route('user.stake_wallet.withdraw_history_bank')->with('success', 'Withdrawal Request has been submitted, you will be updated shortly.');
         } else {
             return back()->with('error', 'Insufficent balance.');
