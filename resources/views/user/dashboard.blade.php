@@ -372,10 +372,12 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Stake Withdrawals</span>
                             <h4 class="mb-3">
-                                $<span class="counter-value" data-target="{{ auth()->user()->user_stake_withdrawals->where('status', 1)->sum('amount') }}">{{ auth()->user()->user_stake_withdrawals->where('status', 1)->sum('amount') }}</span>
+                                $<span class="counter-value"
+                                    data-target="{{ auth()->user()->user_stake_withdrawals->where('status', 1)->sum('amount') }}">{{ auth()->user()->user_stake_withdrawals->where('status', 1)->sum('amount') }}</span>
                             </h4>
                             <div class="text-nowrap">
-                                <span class="badge bg-soft-success text-success">+${{ auth()->user()->user_stake_withdrawals->where('status', 1)->sum('amount') }}</span>
+                                <span
+                                    class="badge bg-soft-success text-success">+${{ auth()->user()->user_stake_withdrawals->where('status', 1)->sum('amount') }}</span>
                                 <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
                         </div>
@@ -385,7 +387,8 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="{{ route('user.stake_wallet.withdraw_history_bank') }}">All Stake Withdrawal History ></a>
+                        <a href="{{ route('user.stake_wallet.withdraw_history_bank') }}">All Stake Withdrawal History
+                            ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->
@@ -545,7 +548,8 @@
                             <div class="simplebar-placeholder" style="width: auto; height: 454px;"></div>
                         </div>
                         <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-                            <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;">
+                            <div class="simplebar-scrollbar"
+                                style="transform: translate3d(0px, 0px, 0px); display: none;">
                             </div>
                         </div>
                         <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
@@ -569,17 +573,29 @@
                         <table class="table table-striped mb-0">
                             <tbody>
                                 @if ($notifications)
-                                @foreach ($notifications as $item)
-                                <tr>
-                                    <td>{{ $item->msg }} on {{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}</td>
-                                </tr>
-                                @endforeach
+                                    @foreach ($notifications as $item)
+                                        <tr>
+                                            <td>{{ $item->msg }} on
+                                                {{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 @else
-                                <tr>
-                                    <td>No notifications!</td>
-                                </tr>
+                                    <tr>
+                                        <td>No notifications!</td>
+                                    </tr>
                                 @endif
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th class="text-center">
+                                        <a class="btn btn-sm btn-link font-size-14"
+                                            href="{{ route('user.notifications.index') }}">
+                                            <i class="mdi mdi-arrow-right-circle me-1"></i> <span>View More..</span>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -631,16 +647,20 @@
                                                                         <p class="mb-0">Good Morning</p>
                                                                     </div>
                                                                     <div class="dropdown align-self-start">
-                                                                        <a class="dropdown-toggle" href="#" role="button"
-                                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                            aria-expanded="false">
+                                                                        <a class="dropdown-toggle" href="#"
+                                                                            role="button" data-bs-toggle="dropdown"
+                                                                            aria-haspopup="true" aria-expanded="false">
                                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                                         </a>
                                                                         <div class="dropdown-menu">
-                                                                            <a class="dropdown-item" href="#">Copy</a>
-                                                                            <a class="dropdown-item" href="#">Save</a>
-                                                                            <a class="dropdown-item" href="#">Forward</a>
-                                                                            <a class="dropdown-item" href="#">Delete</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Copy</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Save</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Forward</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Delete</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -662,16 +682,20 @@
                                                                         <p class="mb-0">Good morning</p>
                                                                     </div>
                                                                     <div class="dropdown align-self-start">
-                                                                        <a class="dropdown-toggle" href="#" role="button"
-                                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                            aria-expanded="false">
+                                                                        <a class="dropdown-toggle" href="#"
+                                                                            role="button" data-bs-toggle="dropdown"
+                                                                            aria-haspopup="true" aria-expanded="false">
                                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                                         </a>
                                                                         <div class="dropdown-menu">
-                                                                            <a class="dropdown-item" href="#">Copy</a>
-                                                                            <a class="dropdown-item" href="#">Save</a>
-                                                                            <a class="dropdown-item" href="#">Forward</a>
-                                                                            <a class="dropdown-item" href="#">Delete</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Copy</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Save</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Forward</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Delete</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -700,16 +724,20 @@
                                                                         </p>
                                                                     </div>
                                                                     <div class="dropdown align-self-start">
-                                                                        <a class="dropdown-toggle" href="#" role="button"
-                                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                            aria-expanded="false">
+                                                                        <a class="dropdown-toggle" href="#"
+                                                                            role="button" data-bs-toggle="dropdown"
+                                                                            aria-haspopup="true" aria-expanded="false">
                                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                                         </a>
                                                                         <div class="dropdown-menu">
-                                                                            <a class="dropdown-item" href="#">Copy</a>
-                                                                            <a class="dropdown-item" href="#">Save</a>
-                                                                            <a class="dropdown-item" href="#">Forward</a>
-                                                                            <a class="dropdown-item" href="#">Delete</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Copy</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Save</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Forward</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Delete</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -731,16 +759,20 @@
                                                                         </p>
                                                                     </div>
                                                                     <div class="dropdown align-self-start">
-                                                                        <a class="dropdown-toggle" href="#" role="button"
-                                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                            aria-expanded="false">
+                                                                        <a class="dropdown-toggle" href="#"
+                                                                            role="button" data-bs-toggle="dropdown"
+                                                                            aria-haspopup="true" aria-expanded="false">
                                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                                         </a>
                                                                         <div class="dropdown-menu">
-                                                                            <a class="dropdown-item" href="#">Copy</a>
-                                                                            <a class="dropdown-item" href="#">Save</a>
-                                                                            <a class="dropdown-item" href="#">Forward</a>
-                                                                            <a class="dropdown-item" href="#">Delete</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Copy</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Save</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Forward</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Delete</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -765,16 +797,20 @@
                                                                         </p>
                                                                     </div>
                                                                     <div class="dropdown align-self-start">
-                                                                        <a class="dropdown-toggle" href="#" role="button"
-                                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                            aria-expanded="false">
+                                                                        <a class="dropdown-toggle" href="#"
+                                                                            role="button" data-bs-toggle="dropdown"
+                                                                            aria-haspopup="true" aria-expanded="false">
                                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                                         </a>
                                                                         <div class="dropdown-menu">
-                                                                            <a class="dropdown-item" href="#">Copy</a>
-                                                                            <a class="dropdown-item" href="#">Save</a>
-                                                                            <a class="dropdown-item" href="#">Forward</a>
-                                                                            <a class="dropdown-item" href="#">Delete</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Copy</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Save</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Forward</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Delete</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -803,16 +839,20 @@
                                                                         </p>
                                                                     </div>
                                                                     <div class="dropdown align-self-start">
-                                                                        <a class="dropdown-toggle" href="#" role="button"
-                                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                            aria-expanded="false">
+                                                                        <a class="dropdown-toggle" href="#"
+                                                                            role="button" data-bs-toggle="dropdown"
+                                                                            aria-haspopup="true" aria-expanded="false">
                                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                                         </a>
                                                                         <div class="dropdown-menu">
-                                                                            <a class="dropdown-item" href="#">Copy</a>
-                                                                            <a class="dropdown-item" href="#">Save</a>
-                                                                            <a class="dropdown-item" href="#">Forward</a>
-                                                                            <a class="dropdown-item" href="#">Delete</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Copy</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Save</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Forward</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Delete</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -841,7 +881,8 @@
 
                                                                         <ul class="list-inline message-img mt-3  mb-0">
                                                                             <li class="list-inline-item message-img-list">
-                                                                                <a class="d-inline-block m-1" href="">
+                                                                                <a class="d-inline-block m-1"
+                                                                                    href="">
                                                                                     <img src="{{ asset('user_assets/images/small/img-1.jpg') }}"
                                                                                         alt=""
                                                                                         class="rounded img-thumbnail">
@@ -849,7 +890,8 @@
                                                                             </li>
 
                                                                             <li class="list-inline-item message-img-list">
-                                                                                <a class="d-inline-block m-1" href="">
+                                                                                <a class="d-inline-block m-1"
+                                                                                    href="">
                                                                                     <img src="{{ asset('user_assets/images/small/img-2.jpg') }}"
                                                                                         alt=""
                                                                                         class="rounded img-thumbnail">
@@ -858,16 +900,20 @@
                                                                         </ul>
                                                                     </div>
                                                                     <div class="dropdown align-self-start">
-                                                                        <a class="dropdown-toggle" href="#" role="button"
-                                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                            aria-expanded="false">
+                                                                        <a class="dropdown-toggle" href="#"
+                                                                            role="button" data-bs-toggle="dropdown"
+                                                                            aria-haspopup="true" aria-expanded="false">
                                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                                         </a>
                                                                         <div class="dropdown-menu">
-                                                                            <a class="dropdown-item" href="#">Copy</a>
-                                                                            <a class="dropdown-item" href="#">Save</a>
-                                                                            <a class="dropdown-item" href="#">Forward</a>
-                                                                            <a class="dropdown-item" href="#">Delete</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Copy</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Save</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Forward</a>
+                                                                            <a class="dropdown-item"
+                                                                                href="#">Delete</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -883,7 +929,8 @@
                             <div class="simplebar-placeholder" style="width: auto; height: 747px;"></div>
                         </div>
                         <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-                            <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;">
+                            <div class="simplebar-scrollbar"
+                                style="transform: translate3d(0px, 0px, 0px); display: none;">
                             </div>
                         </div>
                         <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
@@ -901,7 +948,8 @@
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-primary chat-send w-md waves-effect waves-light"><span
+                                <button type="submit"
+                                    class="btn btn-primary chat-send w-md waves-effect waves-light"><span
                                         class="d-none d-sm-inline-block me-2">Send</span> <i
                                         class="mdi mdi-send float-end"></i></button>
                             </div>
