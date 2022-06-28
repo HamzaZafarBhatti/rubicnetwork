@@ -376,7 +376,7 @@ class StakePlanController extends Controller
             return back()->with('error', 'Pin is not same.');
         }
         $user_stake_profit = $user->stake_profit;
-        if ($request->amount > $user_stake_profit) {
+        if ($request->amount >= $user_stake_profit) {
             return back()->with('error', 'Your Stake profit balance is less than the requested amount!');
         }
         $min_stake_profit_transfer = $user->completed_stake_plans->min('stake_profit_transfer');
