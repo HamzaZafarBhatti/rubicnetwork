@@ -28,6 +28,7 @@ use App\Http\Controllers\StakeReferralController;
 use App\Http\Controllers\StakeWithdrawController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ViralShareController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\WithdrawController;
@@ -190,6 +191,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('blogs', PostController::class);
         Route::get('blogs/unpublish/{id}', [PostController::class, 'unpublish'])->name('blogs.unpublish');
         Route::get('blogs/publish/{id}', [PostController::class, 'publish'])->name('blogs.publish');
+        Route::resource('vendors', VendorController::class)->only('index', 'store', 'update', 'destroy');
         //Rubic Wallet Withdraw
         Route::prefix('rubic_wallet')->name('wallet.')->controller(WithdrawController::class)->group(function () {
             Route::get('withdraw_log', 'withdraw_log')->name('withdraw_log');
@@ -251,13 +253,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     //Web controller
     Route::post('social-links/update', [WebController::class, 'UpdateSocial'])->name('social-links.update');
     Route::get('social-links', [WebController::class, 'sociallinks'])->name('social-links');
-
-    Route::post('/createvendors', [WebController::class, 'CreateVendors']);
-    //Route::post('/vendors', [WebController::class, 'Vendors']);   
+    
     Route::get('coupons', [WebController::class, 'coupons'])->name('admin.coupons');
-    Route::post('vendors/update', [WebController::class, 'UpdateVendors'])->name('vendors.update');
-    Route::post('vendors/delete/{id}', [WebController::class, 'DestroyVendors'])->name('vendors.delete');
-    Route::get('vendors', [WebController::class, 'vendors'])->name('admin.vendors');
     // Route::post('/createcoupons', [WebController::class, 'CreateCoupons']);
     // Route::get('coupons/delete/{id}', [WebController::class, 'DestroyCoupons'])->name('coupons.delete');
     // Route::post('coupons/update', [WebController::class, 'UpdateCoupons'])->name('coupons.update');

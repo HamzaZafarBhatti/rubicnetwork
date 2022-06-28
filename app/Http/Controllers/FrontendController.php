@@ -12,6 +12,7 @@ use App\Models\PaymentProof;
 use App\Models\Post;
 use App\Models\StakeCoupon;
 use App\Models\User;
+use App\Models\Vendor;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -91,7 +92,8 @@ class FrontendController extends Controller
     }
     public function pin_dispatchers()
     {
-        return view('front.pin_dispatchers');
+        $vendors = Vendor::inRandomOrder()->get();
+        return view('front.pin_dispatchers', compact('vendors'));
     }
     public function disclaimer()
     {

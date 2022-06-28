@@ -72,18 +72,6 @@ class WebController extends Controller
         return view('admin.web-control.home', $data);
     }
 
-    // public function faq()
-    // {
-    //     $data['title']='Frequently asked questions';
-    //     $data['faq'] = Faq::latest()->get();
-    //     return view('admin.web-control.faq', $data);
-    // } 
-    public function vendors()
-    {
-        $data['title'] = 'Manage Vendors';
-        $data['vendors'] = Vendors::latest()->get();
-        return view('admin.web-control.vendors', $data);
-    }
     public function coupons()
     {
         $data['title'] = 'Manage Coupons';
@@ -185,30 +173,6 @@ class WebController extends Controller
         return view('admin.web-control.terms', $data);
     }
 
-    // public function CreateFaq(Request $request)
-    // {
-    //     $data['question'] = $request->question;
-    //     $data['answer'] = $request->answer;
-    //     $res = Faq::create($data);
-    //     if ($res) {
-    //         return back()->with('success', 'Saved Successfully!');
-    //     } else {
-    //         return back()->with('alert', 'Problem With Creating New Faq');
-    //     }
-    // }    
-
-    public function CreateVendors(Request $request)
-    {
-        $data['name'] = $request->name;
-        $data['whatsapp'] = $request->whatsapp;
-        $data['status'] = $request->status;
-        $res = Vendors::create($data);
-        if ($res) {
-            return back()->with('success', 'Saved Successfully!');
-        } else {
-            return back()->with('alert', 'Problem With Creating New Vendors');
-        }
-    }
     public function CreateCoupons(Request $request)
     {
         $data['serial'] = '2' . rand(1, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);;
@@ -352,19 +316,6 @@ class WebController extends Controller
         }
     }
 
-    public function UpdateVendors(Request $request)
-    {
-        $mac = Vendors::findOrFail($request->id);
-        $mac['name'] = $request->name;
-        $mac['whatsapp'] = $request->whatsapp;
-        $mac['status'] = $request->status;
-        $res = $mac->save();
-        if ($res) {
-            return back()->with('success', ' Updated Successfully!');
-        } else {
-            return back()->with('alert', 'Problem With Updating Vendors');
-        }
-    }
     public function UpdateCoupons(Request $request)
     {
         $mac = Coupons::findOrFail($request->id);
@@ -421,17 +372,7 @@ class WebController extends Controller
             return back()->with('alert', 'Problem With Updating Faq');
         }
     }
-
-    public function DestroyVendors($id)
-    {
-        $data = Vendors::findOrFail($id);
-        $res =  $data->delete();
-        if ($res) {
-            return back()->with('success', 'Vendor was Successfully deleted!');
-        } else {
-            return back()->with('alert', 'Problem With Deleting Vendor');
-        }
-    }
+    
     public function DestroyCoupons($id)
     {
         $data = Coupons::findOrFail($id);
