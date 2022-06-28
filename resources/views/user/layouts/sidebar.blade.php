@@ -91,12 +91,12 @@
                         <li><a href="#" data-key="t-product-detail">Conversion History</a></li>
                     </ul>
                 </li> --}}
-                <li>
+                {{-- <li>
                     <a href="#">
                         <i data-feather="send"></i>
                         <span data-key="t-chat">Transfer Extraction</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="menu-title" data-key="t-apps">@lang('translation.Pages')</li>
 
