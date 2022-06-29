@@ -325,34 +325,34 @@ class StakePlanController extends Controller
             $url = $res['data']['url'];             // The link to proceed for payment
             $tag = $res['data']['tag'];             // Tag to indicate the translation to ripple
 
-            UserStakePlan::create([
-                'user_id' => $user->id,
-                'stake_plan_id' => $stakePlan->id,
-                'status' => 1,
-                'stake_profit' => 0,
-                'next_update_time' => Carbon::now()->addDay(),
-                // 'next_update_time' => Carbon::now()->addMinute(),
-                // 'remaining_days' => 10
-                'remaining_days' => $stakePlan->duration
-            ]);
-            if (!$user->parent->isEmpty()) {
-                $parent = User::find($user->parent[0]->id);
-                $stake_ref_bonus = $stakePlan->amount * $stakePlan->ref_percent / 100;
-                $stake_ref_earning = $parent->stake_ref_earning + $stake_ref_bonus;
-                StakeReferral::create([
-                    'referral_id' => $user->id,
-                    'referee_id' => $parent->id,
-                    'referee_stake_ref_earning' => $parent->stake_ref_earning,
-                    'bonus' => $stake_ref_bonus,
-                ]);
-                $parent->update(['stake_ref_earning' => $stake_ref_earning]);
-            }
-            Notification::create([
-                'user_id' => $user->id,
-                'title' => 'RUBIC STAKE ACTIVATION SUCCESSFUL',
-                'msg' => 'You have successfully activated a RUBIC STAKE PLAN',
-                'is_read' => 0
-            ]);
+            // UserStakePlan::create([
+            //     'user_id' => $user->id,
+            //     'stake_plan_id' => $stakePlan->id,
+            //     'status' => 1,
+            //     'stake_profit' => 0,
+            //     'next_update_time' => Carbon::now()->addDay(),
+            //     // 'next_update_time' => Carbon::now()->addMinute(),
+            //     // 'remaining_days' => 10
+            //     'remaining_days' => $stakePlan->duration
+            // ]);
+            // if (!$user->parent->isEmpty()) {
+            //     $parent = User::find($user->parent[0]->id);
+            //     $stake_ref_bonus = $stakePlan->amount * $stakePlan->ref_percent / 100;
+            //     $stake_ref_earning = $parent->stake_ref_earning + $stake_ref_bonus;
+            //     StakeReferral::create([
+            //         'referral_id' => $user->id,
+            //         'referee_id' => $parent->id,
+            //         'referee_stake_ref_earning' => $parent->stake_ref_earning,
+            //         'bonus' => $stake_ref_bonus,
+            //     ]);
+            //     $parent->update(['stake_ref_earning' => $stake_ref_earning]);
+            // }
+            // Notification::create([
+            //     'user_id' => $user->id,
+            //     'title' => 'RUBIC STAKE ACTIVATION SUCCESSFUL',
+            //     'msg' => 'You have successfully activated a RUBIC STAKE PLAN',
+            //     'is_read' => 0
+            // ]);
 
             return redirect($url);
         }
