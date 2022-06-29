@@ -28,7 +28,7 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
                             <hr />
                             <p class="neutral-bottom">
-                                <a href="mailto:example@example.com">{{$set->email}}</a>
+                                <a href="mailto:{{$set->email}}">{{$set->email}}</a>
                             </p>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
                             <hr />
                             <p class="neutral-bottom">
-                                <a href="tel:+17087362094">{{$set->mobile}}</a>
+                                <a href="tel:{{$set->mobile}}">{{$set->mobile}}</a>
                             </p>
                         </div>
                     </div>

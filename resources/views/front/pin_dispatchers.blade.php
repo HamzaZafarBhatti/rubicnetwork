@@ -44,7 +44,11 @@
                                         @foreach ($vendors as $item)
                                             <div class="single">
                                                 <p>{{ $item->name }}</p>
-                                                <p>{{ $item->whatsapp }}</p>
+                                                <p>
+                                                    <a href="https://wa.me/{{ $item->whatsapp }}">
+                                                        <i class="fa-brands fa-whatsapp"></i> {{ $item->whatsapp }}
+                                                    </a>
+                                                </p>
                                             </div>
                                         @endforeach
                                     @endif
