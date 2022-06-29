@@ -17,9 +17,8 @@ class UserStakePlan extends Model
         'stake_profit',
         'is_withdrawn',
         'next_update_time',
-        // 'start_time',
-        // 'complete_time',
-        'remaining_days'
+        'remaining_days',
+        'wallet_address_id',
     ];
 
     public function user()
@@ -30,6 +29,16 @@ class UserStakePlan extends Model
     public function stake_plan()
     {
         return $this->belongsTo(StakePlan::class)->select('id', 'name', 'duration', 'stake_profit_transfer');
+    }
+
+    public function wallet_address()
+    {
+        return $this->belongsTo(WalletAddress::class)->select('id', 'address');
+    }
+
+    public function tether_payment()
+    {
+        return $this->hasOne(TetherPayment::class);
     }
 
     public function stake_coupon()

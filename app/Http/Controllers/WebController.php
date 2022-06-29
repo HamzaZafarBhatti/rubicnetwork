@@ -2,32 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Validator;
-use App\Models\User;
-use App\Models\Settings;
 use App\Models\Logo;
-use App\Models\Save;
 use App\Models\Branch;
-use App\Models\Loan;
-use App\Models\Bank;
 use App\Models\Currency;
-use App\Models\Alerts;
 use App\Models\Social;
-use App\Models\Earners;
-use App\Models\Vendors;
 use App\Models\Coupons;
 use App\Models\About;
-use App\Models\Faq;
 use App\Models\Page;
 use App\Models\Review;
 use App\Models\Services;
 use App\Models\Design;
-use Carbon\Carbon;
 use Image;
 
 

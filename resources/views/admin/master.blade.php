@@ -194,6 +194,14 @@
                                 </span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.wallet_addresses.index') }}" class="nav-link">
+                                <i class="icon-home"></i>
+                                <span>
+                                    Wallet Addresses
+                                </span>
+                            </a>
+                        </li>
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-lan2"></i><span>Transfer</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Transfer">
@@ -258,11 +266,11 @@
                                 <li class="nav-item"><a href="{{ route('admin.stake_plans.index') }}"
                                         class="nav-link"><i class="icon-puzzle4"></i>Stake Plans</a></li>
                                 {{-- <li class="nav-item"><a href="{{ route('admin.py.completed') }}"
-                                        class="nav-link"><i class="icon-cup2"></i>Completed</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.py.pending') }}"
-                                        class="nav-link"><i class="icon-spinner2 spinner"></i>Pending</a></li> --}}
+                                        class="nav-link"><i class="icon-cup2"></i>Completed</a></li> --}}
                                 <li class="nav-item"><a href="{{ route('admin.stake_coupons.index') }}"
                                         class="nav-link"><i class="icon-add"></i>Generate Stake Coupons</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.stake_plans.pending') }}"
+                                        class="nav-link"><i class="icon-spinner2 spinner"></i>Pending User Stake Plans</a></li>
                             </ul>
                         </li>
                         {{-- <li class="nav-item nav-item-submenu">
@@ -368,8 +376,8 @@
                                             class="icon-clipboard6"></i>Platform Review</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.service') }}" class="nav-link"><i
                                             class="icon-portfolio"></i>Services</a></li>
-                                <li class="nav-item"><a href="{{ route('admin.vendors.index') }}" class="nav-link"><i
-                                            class="icon-accessibility"></i>Vendors</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.vendors.index') }}"
+                                        class="nav-link"><i class="icon-accessibility"></i>Vendors</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.coupons') }}" class="nav-link"><i
                                             class="icon-cogs"></i>Coupons</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.page') }}" class="nav-link"><i

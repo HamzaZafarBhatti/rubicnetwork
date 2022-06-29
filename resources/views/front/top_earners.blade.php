@@ -38,12 +38,14 @@
                                 <div class="tabular__group">
                                     @if ($rubic_earners)
                                         <div class="single">
+                                            <p class="fw-bold">S/N</p>
                                             <p class="fw-bold">Name</p>
                                             <p class="fw-bold">Amount</p>
                                             <p class="fw-bold">Status</p>
                                         </div>
                                         @foreach ($rubic_earners as $item)
                                             <div class="single">
+                                                <p>{{ $loop->iteration }}</p>
                                                 <p>{{ $item->name }}</p>
                                                 <p>₦{{ $item->amount }}</p>
                                                 <p class="badge bg-success">
@@ -71,12 +73,14 @@
                                 <div class="tabular__group">
                                     @if ($stake_earners)
                                         <div class="single">
+                                            <p class="fw-bold">S/N</p>
                                             <p class="fw-bold">Name</p>
                                             <p class="fw-bold">Amount</p>
                                             <p class="fw-bold">Status</p>
                                         </div>
                                         @foreach ($stake_earners as $item)
                                             <div class="single">
+                                                <p>{{ $loop->iteration }}</p>
                                                 <p>{{ $item->name }}</p>
                                                 <p>₦{{ $item->amount }}</p>
                                                 <p class="badge bg-success">

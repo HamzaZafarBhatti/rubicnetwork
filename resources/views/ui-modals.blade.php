@@ -96,7 +96,8 @@
                                 </div>
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
+                    </div>
+                    <!-- /.modal -->
                 </div> <!-- end preview-->
 
             </div><!-- end card-body -->

@@ -8,8 +8,10 @@ use App\Models\StakeCoupon;
 use App\Models\StakeEarningConvert;
 use App\Models\StakePlan;
 use App\Models\StakeReferral;
+use App\Models\TetherPayment;
 use App\Models\User;
 use App\Models\UserStakePlan;
+use App\Models\WalletAddress;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -259,104 +261,145 @@ class StakePlanController extends Controller
 
     public function do_activate_tether(StakePlan $stakePlan)
     {
-        require_once('app/paykassa/paykassa_sci.class.php'); //the plug-in class to work with SCI, you can download it at the link
+        $user = User::/* with('parent')-> */whereId(auth()->user()->id)->first();
+        $userStakePlan = UserStakePlan::create([
+            'user_id' => $user->id,
+            'stake_plan_id' => $stakePlan->id,
+            'status' => 2, //pending
+            'stake_profit' => 0,
+            'next_update_time' => Carbon::now()->addDay(),
+            'remaining_days' => $stakePlan->duration
+        ]);
+        // if (!$user->parent->isEmpty()) {
+        //     $parent = User::find($user->parent[0]->id);
+        //     $stake_ref_bonus = $stakePlan->amount * $stakePlan->ref_percent / 100;
+        //     $stake_ref_earning = $parent->stake_ref_earning + $stake_ref_bonus;
+        //     StakeReferral::create([
+        //         'referral_id' => $user->id,
+        //         'referee_id' => $parent->id,
+        //         'referee_stake_ref_earning' => $parent->stake_ref_earning,
+        //         'bonus' => $stake_ref_bonus,
+        //     ]);
+        //     $parent->update(['stake_ref_earning' => $stake_ref_earning]);
+        // }
+        Notification::create([
+            'user_id' => $user->id,
+            'title' => 'RUBIC STAKE ACTIVATION PENDING',
+            'msg' => 'Your RUBIC STAKE PLAN activation is pending!',
+            'is_read' => 0
+        ]);
+        return to_route('user.stake_plans.confirm_payment', $userStakePlan->id);
+    }
 
-        $setting = Setting::first();
-        $paykassa_merchant_id = env('MERCHANT_ID');                 // the ID of the merchant
-        $paykassa_merchant_password = env('MERCHANT_PASS');     // merchant password
-        $test = false;                                              // False test mode - off, True - Enabled
+    public function confirm_payment(UserStakePlan $userStakePlan)
+    {
+        // $user = User::with('parent')->whereId($userStakePlan->user_id)->first();
+        $stakePlan = StakePlan::find($userStakePlan->stake_plan_id);
+        $wallet_address = WalletAddress::whereStatus(1)->inRandomOrder()->first();
+        return view('user.stake_plans.confirm_payment', compact('stakePlan', 'wallet_address', 'userStakePlan'));
+    }
 
-
-        $user = User::with('parent')->whereId(auth()->user()->id)->first();
-        // return $user;
-        if(!$user->tether_network) {
-            return back()->with('error', 'Please set your Tether USDT Wallet Address and Network before attempting to Activate STAKE PLAN');
-        }
-        $amount = $stakePlan->amount / $setting->ngn_rate;
-        $system = $user->tether_network;
-        $currency = 'USDT';
-        $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
-        $order_id = substr(str_shuffle($data), 0, 16);
-        $comment = 'User activating Rubic Stake Plan!';
-
-
-        $paykassa = new PayKassaSCI(
-            $paykassa_merchant_id,
-            $paykassa_merchant_password,
-            $test
-        );
-        // return json_encode($paykassa);
-
-        $system_id = [
-            "bitcoin" => 11, // supported currencies BTC    
-            "ethereum" => 12, // supported currencies ETH    
-            "litecoin" => 14, // supported currencies LTC    
-            "dogecoin" => 15, // supported currencies DOGE    
-            "dash" => 16, // supported currencies DASH    
-            "bitcoincash" => 18, // supported currencies BCH    
-            "zcash" => 19, // supported currencies ZEC    
-            "ripple" => 22, // supported currencies XRP    
-            "tron" => 27, // supported currencies TRX    
-            "stellar" => 28, // supported currencies XLM    
-            "binancecoin" => 29, // supported currencies BNB    
-            "trc" => 30, // supported currencies USDT    
-            "bep" => 31, // supported currencies USDT, BUSD, USDC, ADA, EOS, BTC, ETH, DOGE    
-            "erc" => 32, // supported currencies USDT    
-        ];
-
-        $res = $paykassa->sci_create_order_get_data(
-            $amount,    // required parameter the payment amount example: 1.0433
-            $currency,  // mandatory parameter, currency, example: BTC
-            $order_id,  // mandatory parameter, the unique numeric identifier of the payment in your system, example: 150800
-            $comment,   // mandatory parameter, text commentary of payment example: service Order #150800
-            $system_id[$system] // a required parameter, for example: 12 - Ethereum
-        );
-        // return json_encode($res);
-
-        if ($res['error']) {        // $res['error'] - true if the error
-            return $res['message'];   // $res['message'] - the text of the error message
-            // actions in case of an error
-        } else {
-            $invoice = $res['data']['invoice'];     // The operation number in the system Paykassa.pro
-            $order_id = $res['data']['order_id'];   // The order in the merchant
-            $wallet = $res['data']['wallet'];       // Address for payment
-            $amount = $res['data']['amount'];       // The amount to be paid may change if the Board is translated into a client
-            $system = $res['data']['system'];       // A system in which the billed
-            $url = $res['data']['url'];             // The link to proceed for payment
-            $tag = $res['data']['tag'];             // Tag to indicate the translation to ripple
-
-            // UserStakePlan::create([
-            //     'user_id' => $user->id,
-            //     'stake_plan_id' => $stakePlan->id,
-            //     'status' => 1,
-            //     'stake_profit' => 0,
-            //     'next_update_time' => Carbon::now()->addDay(),
-            //     // 'next_update_time' => Carbon::now()->addMinute(),
-            //     // 'remaining_days' => 10
-            //     'remaining_days' => $stakePlan->duration
-            // ]);
-            // if (!$user->parent->isEmpty()) {
-            //     $parent = User::find($user->parent[0]->id);
-            //     $stake_ref_bonus = $stakePlan->amount * $stakePlan->ref_percent / 100;
-            //     $stake_ref_earning = $parent->stake_ref_earning + $stake_ref_bonus;
-            //     StakeReferral::create([
-            //         'referral_id' => $user->id,
-            //         'referee_id' => $parent->id,
-            //         'referee_stake_ref_earning' => $parent->stake_ref_earning,
-            //         'bonus' => $stake_ref_bonus,
-            //     ]);
-            //     $parent->update(['stake_ref_earning' => $stake_ref_earning]);
-            // }
-            // Notification::create([
-            //     'user_id' => $user->id,
-            //     'title' => 'RUBIC STAKE ACTIVATION SUCCESSFUL',
-            //     'msg' => 'You have successfully activated a RUBIC STAKE PLAN',
-            //     'is_read' => 0
-            // ]);
-
-            return redirect($url);
+    public function do_confirm_payment(Request $request)
+    {
+        try {
+            $userStakePlan = UserStakePlan::find($request->user_stake_plan_id);
+            $user = User::with('parent')->whereId($userStakePlan->user_id)->first();
+            // return $request;
+            $wallet_address = WalletAddress::find($request->wallet_address_id);
+            $data = [
+                'hash' => $request->hash,
+                'user_id' => $user->id,
+                'stake_plan_id' => $request->stake_plan_id,
+                'user_stake_plan_id' => $request->user_stake_plan_id,
+                'wallet_address_id' => $request->wallet_address_id
+            ];
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $filename = time() . '_' . $user->username . '.jpg';
+                $location = 'asset/tether_payments/' . $filename;
+                Image::make($image)->save($location);
+                $data['image'] = $filename;
+            }
+            TetherPayment::create($data);
+            $userStakePlan->update(['wallet_address_id' => $request->wallet_address_id]);
+            $wallet_address->update(['status' => 0]);
+            return redirect()->route('user.stake_plans.history');
+        } catch (\Exception $e) {
+            return redirect()->route('user.stake_plans.history')->with('error', 'Error: ' . $e->getMessage());
         }
     }
+
+    // public function do_activate_tether(StakePlan $stakePlan)
+    // {
+    //     require_once('app/paykassa/paykassa_sci.class.php'); //the plug-in class to work with SCI, you can download it at the link
+
+    //     $setting = Setting::first();
+    //     $paykassa_merchant_id = env('MERCHANT_ID');                 // the ID of the merchant
+    //     $paykassa_merchant_password = env('MERCHANT_PASS');     // merchant password
+    //     $test = false;                                              // False test mode - off, True - Enabled
+
+
+    //     $user = User::with('parent')->whereId(auth()->user()->id)->first();
+    //     // return $user;
+    //     if(!$user->tether_network) {
+    //         return back()->with('error', 'Please set your Tether USDT Wallet Address and Network before attempting to Activate STAKE PLAN');
+    //     }
+    //     $amount = $stakePlan->amount / $setting->ngn_rate;
+    //     $system = $user->tether_network;
+    //     $currency = 'USDT';
+    //     $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+    //     $order_id = substr(str_shuffle($data), 0, 16);
+    //     $comment = 'User activating Rubic Stake Plan!';
+
+
+    //     $paykassa = new PayKassaSCI(
+    //         $paykassa_merchant_id,
+    //         $paykassa_merchant_password,
+    //         $test
+    //     );
+    //     // return json_encode($paykassa);
+
+    //     $system_id = [
+    //         "bitcoin" => 11, // supported currencies BTC    
+    //         "ethereum" => 12, // supported currencies ETH    
+    //         "litecoin" => 14, // supported currencies LTC    
+    //         "dogecoin" => 15, // supported currencies DOGE    
+    //         "dash" => 16, // supported currencies DASH    
+    //         "bitcoincash" => 18, // supported currencies BCH    
+    //         "zcash" => 19, // supported currencies ZEC    
+    //         "ripple" => 22, // supported currencies XRP    
+    //         "tron" => 27, // supported currencies TRX    
+    //         "stellar" => 28, // supported currencies XLM    
+    //         "binancecoin" => 29, // supported currencies BNB    
+    //         "trc" => 30, // supported currencies USDT    
+    //         "bep" => 31, // supported currencies USDT, BUSD, USDC, ADA, EOS, BTC, ETH, DOGE    
+    //         "erc" => 32, // supported currencies USDT    
+    //     ];
+
+    //     $res = $paykassa->sci_create_order_get_data(
+    //         $amount,    // required parameter the payment amount example: 1.0433
+    //         $currency,  // mandatory parameter, currency, example: BTC
+    //         $order_id,  // mandatory parameter, the unique numeric identifier of the payment in your system, example: 150800
+    //         $comment,   // mandatory parameter, text commentary of payment example: service Order #150800
+    //         $system_id[$system] // a required parameter, for example: 12 - Ethereum
+    //     );
+    //     // return json_encode($res);
+
+    //     if ($res['error']) {        // $res['error'] - true if the error
+    //         return $res['message'];   // $res['message'] - the text of the error message
+    //         // actions in case of an error
+    //     } else {
+    //         $invoice = $res['data']['invoice'];     // The operation number in the system Paykassa.pro
+    //         $order_id = $res['data']['order_id'];   // The order in the merchant
+    //         $wallet = $res['data']['wallet'];       // Address for payment
+    //         $amount = $res['data']['amount'];       // The amount to be paid may change if the Board is translated into a client
+    //         $system = $res['data']['system'];       // A system in which the billed
+    //         $url = $res['data']['url'];             // The link to proceed for payment
+    //         $tag = $res['data']['tag'];             // Tag to indicate the translation to ripple
+
+    //         return redirect($url);
+    //     }
+    // }
 
     public function convert(Request $request)
     {
@@ -402,5 +445,31 @@ class StakePlanController extends Controller
         } else {
             return back()->with('error', 'Something went wrong!');
         }
+    }
+
+    public function pending()
+    {
+        // return 'hello';
+        $title = 'Pending User Stake Plans';
+        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment')->whereStatus(2)->get();
+        // return $user_stake_plans;
+        return view('admin.stake_plans.pending', compact('title', 'user_stake_plans'));
+    }
+
+    public function do_activate($id)
+    {
+        $user_stake_plan = UserStakePlan::with('user')->find($id);
+        $user_stake_plan->update([
+            'status' => 1,
+            'next_update_time' => Carbon::now()->addDay(),
+        ]);
+
+        Notification::create([
+            'user_id' => $user_stake_plan->user_id,
+            'title' => 'RUBIC STAKE ACTIVATION SUCCESSFUL',
+            'msg' => 'You have successfully activated a RUBIC STAKE PLAN',
+            'is_read' => 0
+        ]);
+        return back()->with('success', 'User Stake Plan has been confirmed paid and activated');
     }
 }

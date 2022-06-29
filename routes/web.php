@@ -20,7 +20,6 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PyschemeController;
 use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\SelfcashoutController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StakeCouponController;
 use App\Http\Controllers\StakePlanController;
@@ -30,8 +29,10 @@ use App\Http\Controllers\TransferController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ViralShareController;
+use App\Http\Controllers\WalletAddressController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\WithdrawController;
+use App\Models\UserStakePlan;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -141,6 +142,8 @@ Route::name('user.')->group(function () {
             Route::get('stake_plans/activate', 'activate')->name('stake_plans.activate');
             Route::get('stake_plans/{stakePlan}/do_activate_tether', 'do_activate_tether')->name('stake_plans.do_activate_tether');
             Route::post('stake_plans/{stakePlan}/do_activate_coupon', 'do_activate_coupon')->name('stake_plans.do_activate_coupon');
+            Route::get('stake_plans/{userStakePlan}/confirm_payment', 'confirm_payment')->name('stake_plans.confirm_payment');
+            Route::post('stake_plans/do_confirm_payment', 'do_confirm_payment')->name('stake_plans.do_confirm_payment');
             Route::get('stake_plans/history', 'history')->name('stake_plans.history');
             Route::get('stake_plans/convert', 'convert')->name('stake_plans.convert');
             Route::post('stake_plans/do_convert', 'do_convert')->name('stake_plans.do_convert');
@@ -182,6 +185,8 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::resource('settings', SettingController::class);
         Route::resource('banks', BankController::class);
         Route::resource('plans', PlanController::class);
+        Route::get('stake_plans/pending', [StakePlanController::class, 'pending'])->name('stake_plans.pending');
+        Route::get('stake_plans/do_activate/{id}', [StakePlanController::class, 'do_activate'])->name('stake_plans.do_activate');
         Route::resource('stake_plans', StakePlanController::class);
         Route::resource('coupons', CouponController::class);
         Route::get('/coupons/download', [CouponController::class, 'coupons_download'])->name('coupons.download');
@@ -192,6 +197,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::get('blogs/unpublish/{id}', [PostController::class, 'unpublish'])->name('blogs.unpublish');
         Route::get('blogs/publish/{id}', [PostController::class, 'publish'])->name('blogs.publish');
         Route::resource('vendors', VendorController::class)->only('index', 'store', 'update', 'destroy');
+        Route::resource('wallet_addresses', WalletAddressController::class)->only('index', 'store', 'edit', 'update', 'destroy');
         //Rubic Wallet Withdraw
         Route::prefix('rubic_wallet')->name('wallet.')->controller(WithdrawController::class)->group(function () {
             Route::get('withdraw_log', 'withdraw_log')->name('withdraw_log');
