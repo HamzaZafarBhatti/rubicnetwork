@@ -6,6 +6,7 @@ use App\Mail\GeneralEmail;
 use App\Models\Etemplate;
 use App\Models\Notification;
 use App\Models\Setting;
+use App\Models\TopEarner;
 use App\Models\User;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
@@ -89,24 +90,22 @@ class WithdrawController extends Controller
         // $user->show_popup = 1;
         // $user->save();
         $res = $data->update(['status' => '1']);
-        // if ($data->type == 3) {
-        //     $earner = Earners::where('user_id', $data->user_id)->first();
-        //     $earn_data = [
-        //         'user_id' => $user->id,
-        //         'name' => $user->name,
-        //         'amount' => $data->amount,
-        //         'status' => 'active'
-        //     ];
-        //     if (!$earner) {
-        //         // return 'if';
-        //         $earner = Earners::create($earn_data);
-        //     } else {
-        //         // return 'hello';
-        //         $earner->amount += $data->amount;
-        //         $earner->update(['amount' => $earner->amount]);
-        //     }
-        // }
-        // return 'out';
+        $earner = TopEarner::where('user_id', $data->user_id)->where('type', 1)->first();
+        if (!$earner) {
+            $earn_data = [
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'amount' => $data->amount,
+                'status' => 1,
+                'type' => 1
+            ];
+            // return 'if';
+            $earner = TopEarner::create($earn_data);
+        } else {
+            // return 'hello';
+            $earner->amount += $data->amount;
+            $earner->update(['amount' => $earner->amount]);
+        }
         if ($set->email_notify == 1) {
             $temp = Etemplate::first();
             Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Withdrawal request of ₦' . substr($data->amount, 0, 9) . ' has been approved<br>Thanks for working with us.', 'Withdraw Request has been approved', 1));
@@ -142,6 +141,22 @@ class WithdrawController extends Controller
             // $user->show_popup = 1;
             // $user->save();
             $res = $data->update(['status' => '1']);
+            $earner = TopEarner::where('user_id', $data->user_id)->where('type', 1)->first();
+            if (!$earner) {
+                $earn_data = [
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'amount' => $data->amount,
+                    'status' => 1,
+                    'type' => 1
+                ];
+                // return 'if';
+                $earner = TopEarner::create($earn_data);
+            } else {
+                // return 'hello';
+                $earner->amount += $data->amount;
+                $earner->update(['amount' => $earner->amount]);
+            }
             // return 'out';
             if ($set->email_notify == 1) {
                 $temp = Etemplate::first();

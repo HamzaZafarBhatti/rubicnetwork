@@ -210,7 +210,7 @@
                         <div class="flex-grow-1">
                             <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Wallet Withdrawal</span>
                             <h4 class="mb-3">
-                                ₦<span class="counter-value" data-target="0.00">0.00</span>
+                                ₦<span class="counter-value" data-target="{{ auth()->user()->user_withdrawals->where('status',1)->sum('amount') }}">{{ auth()->user()->user_withdrawals->where('status',1)->sum('amount') }}</span>
                             </h4>
                         </div>
 
@@ -219,7 +219,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="#">Wallet Transaction History ></a>
+                        <a href="{{ route('user.wallet.withdraw_history') }}">Wallet Transaction History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->

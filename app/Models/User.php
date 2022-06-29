@@ -120,6 +120,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(StakeWithdraw::class);
     }
+    public function user_withdrawals()
+    {
+        return $this->hasMany(Withdraw::class);
+    }
     public function coupon()
     {
         return $this->belongsTo(Coupon::class);

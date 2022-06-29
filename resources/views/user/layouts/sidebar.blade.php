@@ -12,7 +12,7 @@
                 <li>
                     <a href="{{ route('user.dashboard') }}">
                         <i data-feather="home"></i>
-                        <span class="badge rounded-pill bg-soft-success text-success float-end">9+</span>
+                        {{-- <span class="badge rounded-pill bg-soft-success text-success float-end">9+</span> --}}
                         <span data-key="t-dashboard">@lang('translation.Dashboards')</span>
                     </a>
                 </li>
@@ -81,22 +81,6 @@
                         <span data-key="t-chat">Upgrade Plan</span>
                     </a>
                 </li>
-                {{-- <li>
-                    <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="shuffle"></i>
-                        <span data-key="t-ecommerce">Convert Extraction to Activation Code</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-products">Convert Extraction to Activation Code</a></li>
-                        <li><a href="#" data-key="t-product-detail">Conversion History</a></li>
-                    </ul>
-                </li> --}}
-                {{-- <li>
-                    <a href="#">
-                        <i data-feather="send"></i>
-                        <span data-key="t-chat">Transfer Extraction</span>
-                    </a>
-                </li> --}}
 
                 <li class="menu-title" data-key="t-apps">@lang('translation.Pages')</li>
 
@@ -152,19 +136,6 @@
                         </li>
                     </ul>
                 </li>
-                {{-- <li>
-                    <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="shopping-bag"></i>
-                        <span data-key="t-ecommerce">Stake Rubic to Earn</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-products">Stake Plans</a></li>
-                        <li><a href="#" data-key="t-product-detail">Active Stakes</a></li>
-                        <li><a href="#" data-key="t-product-detail">Convert Profits to Rubic USD Wallet</a></li>
-                        <li><a href="#" data-key="t-product-detail">Staking History</a></li>
-                        <li><a href="#" data-key="t-product-detail">Conversion Stake to Stake Wallet History</a></li>
-                    </ul>
-                </li> --}}
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="shopping-cart"></i>

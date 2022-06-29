@@ -11,6 +11,7 @@ use App\Models\Faq;
 use App\Models\PaymentProof;
 use App\Models\Post;
 use App\Models\StakeCoupon;
+use App\Models\TopEarner;
 use App\Models\User;
 use App\Models\Vendor;
 use Carbon\Carbon;
@@ -78,7 +79,9 @@ class FrontendController extends Controller
     }
     public function top_earners()
     {
-        return view('front.top_earners');
+        $stake_earners = TopEarner::where('type', 0)->orderBy('amount', 'desc')->limit(50)->get();
+        $rubic_earners = TopEarner::where('type', 1)->orderBy('amount', 'desc')->limit(50)->get();
+        return view('front.top_earners', compact('stake_earners', 'rubic_earners'));
     }
     public function payment_proof()
     {

@@ -8,6 +8,7 @@ use App\Models\Notification;
 use App\Models\Setting;
 use App\Models\StakePlan;
 use App\Models\StakeWithdraw;
+use App\Models\TopEarner;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -144,8 +145,30 @@ class StakeWithdrawController extends Controller
         // return $data;
         // $user->show_popup = 1;
         // $user->save();
-        $currency = $data->withdraw_to == 'bank' ? '₦' : '$';
+        if ($data->withdraw_to == 'bank') {
+            $currency = '₦';
+            $amount = $data->amount;
+        } else {
+            $currency = '$';
+            $amount = $data->amount * $set->ngn_rate;
+        }
         $res = $data->update(['status' => '1']);
+        $earner = TopEarner::where('user_id', $data->user_id)->where('type', 0)->first();
+        if (!$earner) {
+            $earn_data = [
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'amount' => $amount,
+                'status' => 1,
+                'type' => 0
+            ];
+            // return 'if';
+            $earner = TopEarner::create($earn_data);
+        } else {
+            // return 'hello';
+            $earner->amount += $amount;
+            $earner->update(['amount' => $earner->amount]);
+        }
         if ($set->email_notify == 1) {
             $temp = Etemplate::first();
             Mail::to($user->email)->send(new GeneralEmail($temp->esender, $user->username, 'Withdrawal request of ' . $currency . substr($data->amount, 0, 9) . ' has been approved<br>Thanks for working with us.', 'Withdraw Request has been approved', 1));
@@ -179,8 +202,30 @@ class StakeWithdrawController extends Controller
             $user = User::find($data->user_id);
             // $user->show_popup = 1;
             // $user->save();
-            $currency = $data->withdraw_to == 'bank' ? '₦' : '$';
+            if ($data->withdraw_to == 'bank') {
+                $currency = '₦';
+                $amount = $data->amount;
+            } else {
+                $currency = '$';
+                $amount = $data->amount * $set->ngn_rate;
+            }
             $res = $data->update(['status' => '1']);
+            $earner = TopEarner::where('user_id', $data->user_id)->where('type', 0)->first();
+            if (!$earner) {
+                $earn_data = [
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'amount' => $amount,
+                    'status' => 1,
+                    'type' => 0
+                ];
+                // return 'if';
+                $earner = TopEarner::create($earn_data);
+            } else {
+                // return 'hello';
+                $earner->amount += $amount;
+                $earner->update(['amount' => $earner->amount]);
+            }
             // return 'out';
             if ($set->email_notify == 1) {
                 $temp = Etemplate::first();
