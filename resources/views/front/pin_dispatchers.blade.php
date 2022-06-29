@@ -45,7 +45,7 @@
                                             <div class="single">
                                                 <p>{{ $item->name }}</p>
                                                 <p>
-                                                    <a href="https://wa.me/{{ $item->whatsapp }}">
+                                                    <a href="https://wa.me/{{ $item->whatsapp }}" class="text-primary">
                                                         <i class="fa-brands fa-whatsapp"></i> {{ $item->whatsapp }}
                                                     </a>
                                                 </p>
