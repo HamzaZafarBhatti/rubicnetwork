@@ -56,8 +56,8 @@
                             <thead>
                                 <tr>
                                     <th scope="col"></th>
-                                    <th scope="col" class="text-bold">Name</th>
-                                    <th scope="col" class="text-bold">Plan</th>
+                                    <th scope="col" class="fw-bold">Name</th>
+                                    <th scope="col" class="fw-bold">Plan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,8 +88,8 @@
                             <thead>
                                 <tr>
                                     <th scope="col"></th>
-                                    <th scope="col" class="text-bold">Name</th>
-                                    <th scope="col" class="text-bold">Amount</th>
+                                    <th scope="col" class="fw-bold">Name</th>
+                                    <th scope="col" class="fw-bold">Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -120,8 +120,8 @@
                             <thead>
                                 <tr>
                                     <th scope="col"></th>
-                                    <th scope="col" class="text-bold">Name</th>
-                                    <th scope="col" class="text-bold">Amount</th>
+                                    <th scope="col" class="fw-bold">Name</th>
+                                    <th scope="col" class="fw-bold">Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
