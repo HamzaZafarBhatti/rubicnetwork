@@ -65,14 +65,14 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Mine Balance:</label>
+                                <label class="col-form-label col-lg-2">Extraction Balance:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
                                         <span class="input-group-prepend">
                                             <span class="input-group-text">NGN</span>
                                         </span>
-                                        <input type="number" name="balance" step="any" max-length="10"
-                                            value="{{ convertFloat($client->balance) }}" class="form-control">
+                                        <input type="number" name="extraction_balance" step="any" max-length="10"
+                                            value="{{ convertFloat($client->extraction_balance) }}" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -83,20 +83,56 @@
                                         <span class="input-group-prepend">
                                             <span class="input-group-text">NGN</span>
                                         </span>
-                                        <input type="number" name="ref_bonus" step="any" max-length="10"
-                                            value="{{ convertFloat($client->ref_bonus) }}" class="form-control">
+                                        <input type="number" name="ref_earning" step="any" max-length="10"
+                                            value="{{ convertFloat($client->ref_earning) }}" class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Sponsored Balance:</label>
+                                <label class="col-form-label col-lg-2">INDIRECT REFERRAL EARNING Balance:</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
                                         <span class="input-group-prepend">
                                             <span class="input-group-text">NGN</span>
                                         </span>
-                                        <input type="number" name="profit" step="any" max-length="10"
-                                            value="{{ convertFloat($client->profit) }}" class="form-control">
+                                        <input type="number" name="indirect_ref_earning" step="any" max-length="10"
+                                            value="{{ convertFloat($client->indirect_ref_earning) }}" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-2">VIRAL SHARE Balance:</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <span class="input-group-text">NGN</span>
+                                        </span>
+                                        <input type="number" name="viral_share_earning" step="any" max-length="10"
+                                            value="{{ convertFloat($client->viral_share_earning) }}" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-2">STAKE PROFIT Balance:</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <span class="input-group-text">NGN</span>
+                                        </span>
+                                        <input type="number" name="stake_profit" step="any" max-length="10"
+                                            value="{{ convertFloat($client->stake_profit) }}" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-2">STAKE REFFERAL Balance:</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <span class="input-group-text">NGN</span>
+                                        </span>
+                                        <input type="number" name="stake_ref_earning" step="any" max-length="10"
+                                            value="{{ convertFloat($client->stake_ref_earning) }}" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +189,7 @@
                         <h6 class="card-title font-weight-semibold">Update Bank details</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('admin/update_bank_details') }}" method="post">
+                        <form action="{{ route('admin.users.update_bank_details') }}" method="post">
                             @csrf
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Bank Name:</label>
@@ -236,7 +272,7 @@
                         </div>
                     </div>
                 </div>
-                @if ($set->kyc == 1)
+                {{-- @if ($set->kyc == 1)
                     <div class="card">
                         <div class="card-header header-elements-inline">
                             <h6 class="card-title font-weight-semibold">Kyc verification</h6>
@@ -293,7 +329,7 @@
                             </table>
                         </div>
                     </div>
-                @endif
+                @endif --}}
                 <div class="card">
                     <div class="card-header header-elements-inline">
                         <h6 class="card-title font-weight-semibold">Update user pin</h6>

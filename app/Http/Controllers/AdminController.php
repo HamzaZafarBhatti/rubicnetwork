@@ -258,9 +258,12 @@ class AdminController extends Controller
         $data->city = $request->city;
         $data->zip_code = $request->zip_code;
         $data->address = $request->address;
-        $data->balance = $request->balance;
-        $data->ref_bonus = $request->ref_bonus;
-        $data->profit = $request->profit;
+        $data->extraction_balance = $request->extraction_balance;
+        $data->ref_earning = $request->ref_earning;
+        $data->indirect_ref_earning = $request->indirect_ref_earning;
+        $data->viral_share_earning = $request->viral_share_earning;
+        $data->stake_profit = $request->stake_profit;
+        $data->stake_ref_earning = $request->stake_ref_earning;
         if (empty($request->email_verify)) {
             $data->email_verify = 0;
         } else {

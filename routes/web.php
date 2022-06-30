@@ -261,6 +261,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
             Route::get('manage-user/{id}', 'manage_user')->name('users.manage');
             Route::post('profile-update', 'profile_update')->name('users.profile-update');
             Route::post('profile-update-pin', 'Profileupdatepin')->name('users.profile-update');
+            Route::post('update_bank_details', 'UpdateBankDetails')->name('users.update_bank_details');
         });
     });
 });
@@ -281,7 +282,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('close-ticket/delete/{id}', [AdminController::class, 'Closeticket'])->name('ticket.close');
     Route::get('manage-ticket/{id}', [AdminController::class, 'Manageticket'])->name('ticket.manage');
     Route::post('reply-ticket', [AdminController::class, 'Replyticket'])->name('ticket.reply');
-    Route::post('update_bank_details', [AdminController::class, 'UpdateBankDetails']);
     Route::get('approve-kyc/{id}', [AdminController::class, 'Approvekyc'])->name('admin.approve.kyc');
     Route::get('reject-kyc/{id}', [AdminController::class, 'Rejectkyc'])->name('admin.reject.kyc');
 
