@@ -19,7 +19,7 @@
         .table td {
             vertical-align: middle;
         }
-        .table td img {
+        .table img {
             border-radius: 50px;
         }
         @media (min-width:1400px) {
