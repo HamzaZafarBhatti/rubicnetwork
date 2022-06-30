@@ -273,6 +273,8 @@
                                         class="nav-link"><i class="icon-spinner2 spinner"></i>Pending User Stake Plans</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.stake_plans.log') }}"
                                         class="nav-link"><i class="icon-spinner2 spinner"></i>User Stake Plans Log</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.stake_plans.activated') }}"
+                                        class="nav-link"><i class="icon-spinner2 spinner"></i>User Stake Plans Activated</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.stake_plans.completed') }}"
                                         class="nav-link"><i class="icon-spinner2 spinner"></i>User Stake Plans Completed</a></li>
                             </ul>

@@ -188,6 +188,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::get('stake_plans/pending', [StakePlanController::class, 'pending'])->name('stake_plans.pending');
         Route::get('stake_plans/log', [StakePlanController::class, 'user_stake_plan_log'])->name('stake_plans.log');
         Route::get('stake_plans/completed', [StakePlanController::class, 'completed'])->name('stake_plans.completed');
+        Route::get('stake_plans/activated', [StakePlanController::class, 'activated'])->name('stake_plans.activated');
         Route::get('stake_plans/do_activate/{id}', [StakePlanController::class, 'do_activate'])->name('stake_plans.do_activate');
         Route::get('stake_plans/do_cancel/{id}', [StakePlanController::class, 'do_cancel'])->name('stake_plans.do_cancel');
         Route::resource('stake_plans', StakePlanController::class);

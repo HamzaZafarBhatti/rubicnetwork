@@ -28,8 +28,8 @@ class FrontendController extends Controller
     public function index()
     {
         $registrations = User::latest()->take(5)->get();
-        $rubic_wds = Withdraw::whereStatus(1)->latest()->take(5)->get();
-        $stake_wds = StakeWithdraw::whereStatus(1)->latest()->take(5)->get();
+        $rubic_wds = Withdraw::whereStatus('1')->latest()->take(5)->get();
+        $stake_wds = StakeWithdraw::whereStatus('1')->latest()->take(5)->get();
         $plans = Plan::whereStatus(1)->get();
         $stake_plans = StakePlan::whereStatus(1)->get();
         return view('front.index', compact(
