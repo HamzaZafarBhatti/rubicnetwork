@@ -271,6 +271,8 @@
                                         class="nav-link"><i class="icon-add"></i>Generate Stake Coupons</a></li>
                                 <li class="nav-item"><a href="{{ route('admin.stake_plans.pending') }}"
                                         class="nav-link"><i class="icon-spinner2 spinner"></i>Pending User Stake Plans</a></li>
+                                <li class="nav-item"><a href="{{ route('admin.stake_plans.log') }}"
+                                        class="nav-link"><i class="icon-spinner2 spinner"></i>User Stake Plans Log</a></li>
                             </ul>
                         </li>
                         {{-- <li class="nav-item nav-item-submenu">
