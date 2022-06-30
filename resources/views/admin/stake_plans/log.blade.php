@@ -39,7 +39,11 @@
                                         </td>
                                         <td>
                                             @if ($val->tether_payment)
-                                                <img src="{{ url('/') }}/asset/tether_payments/{{ $val->tether_payment->image }}">
+                                            <a href="{{ url('/') }}/asset/tether_payments/{{ $val->tether_payment->image }}"
+                                                target="_blank">
+                                                <img
+                                                    src="{{ url('/') }}/asset/tether_payments/{{ $val->tether_payment->image }}">
+                                            </a>
                                             @else
                                                 No Proof
                                             @endif
