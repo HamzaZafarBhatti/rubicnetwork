@@ -36,7 +36,15 @@
                                         <td>{{ ++$k }}.</td>
                                         <td>{{ $val->user->name }}</td>
                                         <td>{{ $val->stake_plan->name }}</td>
-                                        <td>{{ $val->wallet_address ? $val->wallet_address->address : $val->stake_coupon->serial }}</td>
+                                        <td>
+                                            @if ($val->wallet_address)
+                                                {{ $val->wallet_address->address }}
+                                            @elseif($val->stake_coupon)
+                                                {{ $val->stake_coupon->serial }}
+                                            @else
+                                                Not Paid
+                                            @endif
+                                        </td>
                                         <td>
                                             @if ($val->tether_payment)
                                                 {{ $val->tether_payment->hash }}
