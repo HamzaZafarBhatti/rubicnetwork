@@ -317,7 +317,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
@@ -403,8 +403,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> --}}
+        {{-- <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
@@ -499,8 +499,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> --}}
+        {{-- <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
@@ -575,8 +575,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> --}}
+        {{-- <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
@@ -665,8 +665,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> --}}
+        {{-- <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
@@ -701,8 +701,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> --}}
+        {{-- <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
@@ -733,12 +733,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
-                        <h6 class="card-title font-weight-semibold">Referrals</h6>
+                        <h6 class="card-title font-weight-semibold">Direct Referrals</h6>
                     </div>
                     <div class="">
                         <table class="table datatable-show-all">
@@ -747,7 +747,6 @@
                                     <th>S/N</th>
                                     <th>Name</th>
                                     <th>Username</th>
-                                    <th>Direct Referral</th>
                                     <th>Created</th>
                                     <th>Updated</th>
                                 </tr>
@@ -756,9 +755,40 @@
                                 @foreach ($referral as $k => $val)
                                     <tr>
                                         <td>{{ ++$k }}.</td>
-                                        <td>{{ $val->user->name ?? 'N/A' }}</td>
-                                        <td>{{ $val->user->username ?? 'N/A' }}</td>
-                                        <td>{{ $val->is_direct ? 'Yes' : 'No' }}</td>
+                                        <td>{{ $val->referral->name ?? 'N/A' }}</td>
+                                        <td>{{ $val->referral->username ?? 'N/A' }}</td>
+                                        <td>{{ date('Y/m/d', strtotime($val->created_at)) }}</td>
+                                        <td>{{ date('Y/m/d h:i:A', strtotime($val->updated_at)) }}</td>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header header-elements-inline">
+                        <h6 class="card-title font-weight-semibold">Indirect Referrals</h6>
+                    </div>
+                    <div class="">
+                        <table class="table datatable-show-all">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Name</th>
+                                    <th>Username</th>
+                                    <th>Created</th>
+                                    <th>Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($indirect_referral as $k => $val)
+                                    <tr>
+                                        <td>{{ ++$k }}.</td>
+                                        <td>{{ $val->referral->name ?? 'N/A' }}</td>
+                                        <td>{{ $val->referral->username ?? 'N/A' }}</td>
                                         <td>{{ date('Y/m/d', strtotime($val->created_at)) }}</td>
                                         <td>{{ date('Y/m/d h:i:A', strtotime($val->updated_at)) }}</td>
                                 @endforeach
