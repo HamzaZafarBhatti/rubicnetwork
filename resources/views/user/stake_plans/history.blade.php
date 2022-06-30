@@ -76,7 +76,7 @@
                                                         @endif
                                                     </td>
                                                     <td>{{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}</td>
-                                                    <td>{{ $item->status ? \Carbon\Carbon::parse($item->next_update_time)->toDateTimeString() : 'NA' }}</td>
+                                                    <td>{{ $item->status == 1 ? \Carbon\Carbon::parse($item->next_update_time)->toDateTimeString() : 'N/A' }}</td>
                                                     {{-- <td>{{ \Carbon\Carbon::parse($item->complete_time)->toFormattedDateString() }}</td> --}}
                                                     <td>{{ $item->stake_profit }}</td>
                                                     {{-- <td>{{ $item->is_withdrawn ? 'Yes' : 'No' }}</td> --}}
