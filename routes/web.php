@@ -258,6 +258,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         //Admin Contoller
         Route::controller(AdminController::class)->group(function () {
             Route::get('users', 'users')->name('users');
+            Route::get('manage-user/{id}', 'manage_user')->name('users.manage');
         });
     });
 });
@@ -268,7 +269,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('messages', [AdminController::class, 'Messages'])->name('admin.message');
     Route::get('unblock-user/{id}', [AdminController::class, 'Unblockuser'])->name('user.unblock');
     Route::get('block-user/{id}', [AdminController::class, 'Blockuser'])->name('user.block');
-    Route::get('manage-user/{id}', [AdminController::class, 'Manageuser'])->name('user.manage');
+    // Route::get('manage-user/{id}', [AdminController::class, 'Manageuser'])->name('user.manage');
     Route::get('user/delete/{id}', [AdminController::class, 'Destroyuser'])->name('user.delete');
     Route::get('email/{id}/{name}', [AdminController::class, 'Email'])->name('user.email');
     Route::post('email_send', [AdminController::class, 'Sendemail'])->name('user.email.send');

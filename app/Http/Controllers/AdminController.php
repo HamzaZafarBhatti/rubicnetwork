@@ -81,16 +81,9 @@ class AdminController extends Controller
         $data['approveddep'] = Deposits::whereStatus(1)->count();
         $data['declineddep'] = Deposits::whereStatus(2)->count();
         $data['pendingdep'] = Deposits::whereStatus(0)->count();
-        // $data['totalwd'] = Withdraw::count();
-        // $data['approvedwd'] = Withdraw::whereStatus(1)->count();
-        // $data['declinedwd'] = Withdraw::whereStatus(2)->count();
-        // $data['pendingwd'] = Withdraw::whereStatus(0)->count();
         $data['totalplan'] = Plan::count();
         $data['appplan'] = Plan::whereStatus(1)->count();
         $data['penplan'] = Plan::whereStatus(0)->count();
-        // $data['totalprofit'] = Profits::count();
-        // $data['appprofit'] = Profits::whereStatus(1)->count();
-        // $data['penprofit'] = Profits::whereStatus(0)->count();
         $data['messages'] = Contact::count();
         return view('admin.dashboard.index', $data);
     }
@@ -190,7 +183,7 @@ class AdminController extends Controller
         }
     }
 
-    public function Manageuser($id)
+    public function manage_user($id)
     {
         $data['client'] = $user = User::find($id);
         $data['title'] = $user->name;
