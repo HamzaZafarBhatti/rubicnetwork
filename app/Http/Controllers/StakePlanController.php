@@ -451,7 +451,7 @@ class StakePlanController extends Controller
     {
         // return 'hello';
         $title = 'User Stake Plans';
-        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment')->get();
+        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment')->latest()->get();
         // return $user_stake_plans;
         return view('admin.stake_plans.log', compact('title', 'user_stake_plans'));
     }
@@ -460,7 +460,7 @@ class StakePlanController extends Controller
     {
         // return 'hello';
         $title = 'Pending User Stake Plans';
-        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment')->whereStatus(2)->get();
+        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment')->whereStatus(2)->latest()->get();
         // return $user_stake_plans;
         return view('admin.stake_plans.pending', compact('title', 'user_stake_plans'));
     }
