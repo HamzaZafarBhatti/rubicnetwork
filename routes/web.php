@@ -262,6 +262,8 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
             Route::post('profile-update', 'profile_update')->name('users.profile-update');
             Route::post('profile-update-pin', 'Profileupdatepin')->name('users.profile-update-pin');
             Route::post('update_bank_details', 'UpdateBankDetails')->name('users.update_bank_details');
+            Route::get('unblock-user/{id}', 'Unblockuser')->name('users.unblock');
+            Route::get('block-user/{id}', 'Blockuser')->name('users.block');
         });
     });
 });
@@ -269,8 +271,6 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     //User controller
     Route::get('messages', [AdminController::class, 'Messages'])->name('admin.message');
-    Route::get('unblock-user/{id}', [AdminController::class, 'Unblockuser'])->name('user.unblock');
-    Route::get('block-user/{id}', [AdminController::class, 'Blockuser'])->name('user.block');
     Route::get('user/delete/{id}', [AdminController::class, 'Destroyuser'])->name('user.delete');
     Route::get('email/{id}/{name}', [AdminController::class, 'Email'])->name('user.email');
     Route::post('email_send', [AdminController::class, 'Sendemail'])->name('user.email.send');

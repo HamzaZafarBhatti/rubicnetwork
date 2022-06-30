@@ -54,13 +54,13 @@
                                                         <a class='dropdown-item'
                                                             href="{{ route('admin.users.manage', $val->id) }}"><i
                                                                 class="icon-cogs spinner mr-2"></i>Manage account</a>
-                                                        @if ($val->status == 0)
+                                                        @if ($val->status)
                                                             <a class='dropdown-item'
-                                                                href="{{ url('/') }}/admin/block-user/{{ $val->id }}"><i
+                                                                href="{{ route('admin.users.block', $val->id) }}"><i
                                                                     class="icon-eye-blocked2 mr-2"></i>Block</a>
                                                         @else
                                                             <a class='dropdown-item'
-                                                                href="{{ url('/') }}/admin/unblock-user/{{ $val->id }}"><i
+                                                                href="{{ route('admin.users.unblock', $val->id) }}"><i
                                                                     class="icon-eye mr-2"></i>Unblock</a>
                                                         @endif
                                                         <a class='dropdown-item'
