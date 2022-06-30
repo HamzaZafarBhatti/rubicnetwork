@@ -23,7 +23,7 @@
                                     <th>S/N</th>
                                     <th>User</th>
                                     <th>Stake Plan</th>
-                                    <th>Wallet Address</th>
+                                    <th>Wallet Address / Activation Code</th>
                                     <th>Payment Hash</th>
                                     <th>Payment Proof</th>
                                     <th>Status</th>
@@ -37,7 +37,7 @@
                                         <td>{{ ++$k }}.</td>
                                         <td>{{ $val->user->name }}</td>
                                         <td>{{ $val->stake_plan->name }}</td>
-                                        <td>{{ $val->wallet_address ? $val->wallet_address->address : 'Not Paid' }}</td>
+                                        <td>{{ $val->wallet_address ? $val->wallet_address->address : $val->stake_coupon->serial }}</td>
                                         <td>
                                             @if ($val->tether_payment)
                                                 {{ $val->tether_payment->hash }}

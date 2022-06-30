@@ -367,7 +367,7 @@ class StakePlanController extends Controller
     {
         // return 'hello';
         $title = 'User Stake Plans';
-        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment')->whereStatus(0)->latest()->get();
+        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment', 'stake_coupon')->whereStatus(0)->latest()->get();
         // return $user_stake_plans;
         return view('admin.stake_plans.completed', compact('title', 'user_stake_plans'));
     }
@@ -375,7 +375,7 @@ class StakePlanController extends Controller
     {
         // return 'hello';
         $title = 'User Stake Plans';
-        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment')->whereStatus(1)->latest()->get();
+        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment', 'stake_coupon')->whereStatus(1)->latest()->get();
         // return $user_stake_plans;
         return view('admin.stake_plans.activated', compact('title', 'user_stake_plans'));
     }
@@ -383,7 +383,7 @@ class StakePlanController extends Controller
     {
         // return 'hello';
         $title = 'User Stake Plans';
-        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment')->latest()->get();
+        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment', 'stake_coupon')->latest()->get();
         // return $user_stake_plans;
         return view('admin.stake_plans.log', compact('title', 'user_stake_plans'));
     }
@@ -392,7 +392,7 @@ class StakePlanController extends Controller
     {
         // return 'hello';
         $title = 'Pending User Stake Plans';
-        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment')->whereStatus(2)->latest()->get();
+        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment', 'stake_coupon')->whereStatus(2)->latest()->get();
         // return $user_stake_plans;
         return view('admin.stake_plans.pending', compact('title', 'user_stake_plans'));
     }
