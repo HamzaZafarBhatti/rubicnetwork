@@ -9,7 +9,7 @@
                     <h6 class="card-title font-weight-semibold">Send email</h6>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('user.email.send')}}" method="post">
+                    <form action="{{route('admin.users.email_send')}}" method="post">
                     @csrf
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">To:</label>

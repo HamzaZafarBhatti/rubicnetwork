@@ -34,6 +34,7 @@ use App\Models\Etemplate;
 use App\Models\IndirectReferral;
 use App\Models\Plan;
 use App\Models\Referral;
+use App\Models\Setting;
 use App\Models\StakeReferral;
 use App\Models\StakeWithdraw;
 use Carbon\Carbon;
@@ -129,8 +130,6 @@ class AdminController extends Controller
 
     public function Sendemail(Request $request)
     {
-        $set = Settings::first();
-        // send_email($request->to, $request->name, $request->subject, $request->message);  
         $temp = Etemplate::first();
         Mail::to($request->to)->send(new GeneralEmail($temp->esender, $request->name, $request->message, $request->subject));
         $notification = array('message' => 'Mail Sent Successfuly!', 'alert-type' => 'success');
