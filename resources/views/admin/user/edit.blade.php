@@ -9,7 +9,7 @@
                         <h6 class="card-title font-weight-semibold">Update account information</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('admin/profile-update') }}" method="post">
+                        <form action="{{ route('admin.users.profile-update') }}" method="post">
                             @csrf
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Username:</label>
@@ -299,7 +299,7 @@
                         <h6 class="card-title font-weight-semibold">Update user pin</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('admin/profile-update-pin') }}" method="post">
+                        <form action="{{ route('admin.users.profile-update') }}" method="post">
                             @csrf
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Pin:</label>

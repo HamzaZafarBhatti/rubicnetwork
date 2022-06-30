@@ -187,14 +187,9 @@ class AdminController extends Controller
     {
         $data['client'] = $user = User::find($id);
         $data['title'] = $user->name;
-        $data['deposit'] = Deposits::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
         $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-        $data['profit'] = Profits::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-        $data['ticket'] = Ticket::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
-        $data['earning'] = Earning::whereReferral($user->id)->orderBy('id', 'DESC')->get();
         $data['referral'] = Referral::whereRef_id($user->id)->orderBy('id', 'DESC')->get();
         $data['banks'] = Bank::all();
-        $data['transfer'] = Transfer::where('sender_id', $user->id)->orWhere('receiver_id', $user->id)->orderBy('id', 'DESC')->get();
         return view('admin.user.edit', $data);
     }
 
@@ -248,7 +243,7 @@ class AdminController extends Controller
         return back()->with('success', 'Kyc was successfully rejected.');
     }
 
-    public function Profileupdate(Request $request)
+    public function profile_update(Request $request)
     {
         $data = User::findOrFail($request->id);
         $data->username = $request->username;

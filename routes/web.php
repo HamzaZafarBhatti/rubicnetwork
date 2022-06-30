@@ -259,17 +259,17 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::controller(AdminController::class)->group(function () {
             Route::get('users', 'users')->name('users');
             Route::get('manage-user/{id}', 'manage_user')->name('users.manage');
+            Route::post('profile-update', 'profile_update')->name('users.profile-update');
+            Route::post('profile-update-pin', 'Profileupdatepin')->name('users.profile-update');
         });
     });
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     //User controller
-    // Route::get('users', [AdminController::class, 'Users'])->name('admin.users');
     Route::get('messages', [AdminController::class, 'Messages'])->name('admin.message');
     Route::get('unblock-user/{id}', [AdminController::class, 'Unblockuser'])->name('user.unblock');
     Route::get('block-user/{id}', [AdminController::class, 'Blockuser'])->name('user.block');
-    // Route::get('manage-user/{id}', [AdminController::class, 'Manageuser'])->name('user.manage');
     Route::get('user/delete/{id}', [AdminController::class, 'Destroyuser'])->name('user.delete');
     Route::get('email/{id}/{name}', [AdminController::class, 'Email'])->name('user.email');
     Route::post('email_send', [AdminController::class, 'Sendemail'])->name('user.email.send');
@@ -281,8 +281,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('close-ticket/delete/{id}', [AdminController::class, 'Closeticket'])->name('ticket.close');
     Route::get('manage-ticket/{id}', [AdminController::class, 'Manageticket'])->name('ticket.manage');
     Route::post('reply-ticket', [AdminController::class, 'Replyticket'])->name('ticket.reply');
-    Route::post('profile-update', [AdminController::class, 'Profileupdate']);
-    Route::post('profile-update-pin', [AdminController::class, 'Profileupdatepin']);
     Route::post('update_bank_details', [AdminController::class, 'UpdateBankDetails']);
     Route::get('approve-kyc/{id}', [AdminController::class, 'Approvekyc'])->name('admin.approve.kyc');
     Route::get('reject-kyc/{id}', [AdminController::class, 'Rejectkyc'])->name('admin.reject.kyc');
