@@ -28,7 +28,7 @@
                                         <td>{{ ++$k }}.</td>
                                         <td>{{ $val->user->name }}</td>
                                         <td>{{ $val->stake_plan->name }}</td>
-                                        <td>{{ $val->wallet_address->address }}</td>
+                                        <td>{{ $val->wallet_address ? $val->wallet_address->address : 'Not Paid' }}</td>
                                         <td>
                                             @if ($val->tether_payment)
                                                 {{ $val->tether_payment->hash }}
