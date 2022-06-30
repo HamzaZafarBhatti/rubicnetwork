@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
-                        <h6 class="card-title font-weight-semibold">Pending</h6>
+                        <h6 class="card-title font-weight-semibold">User Stake Plan Log</h6>
                     </div>
                     <div class="">
                         <table class="table datatable-show-all">
