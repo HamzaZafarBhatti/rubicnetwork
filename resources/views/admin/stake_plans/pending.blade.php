@@ -17,6 +17,7 @@
                                     <th>Stake Plan</th>
                                     <th>Wallet Address</th>
                                     <th>Payment Hash</th>
+                                    <th>Payment Proof</th>
                                     <th>Status</th>
                                     <th>Created</th>
                                     <th class="text-center">Action</th>
@@ -34,6 +35,13 @@
                                                 {{ $val->tether_payment->hash }}
                                             @else
                                                 Not Paid
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($val->tether_payment)
+                                                <img src="{{ url('/') }}asset/tether_payments/{{ $val->tether_payment->image }}">
+                                            @else
+                                                No Proof
                                             @endif
                                         </td>
                                         <td>

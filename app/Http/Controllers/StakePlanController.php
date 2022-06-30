@@ -363,6 +363,14 @@ class StakePlanController extends Controller
         }
     }
 
+    public function completed()
+    {
+        // return 'hello';
+        $title = 'User Stake Plans';
+        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment')->whereStatus(0)->latest()->get();
+        // return $user_stake_plans;
+        return view('admin.stake_plans.completed', compact('title', 'user_stake_plans'));
+    }
     public function user_stake_plan_log()
     {
         // return 'hello';
