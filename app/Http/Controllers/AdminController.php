@@ -58,13 +58,6 @@ class AdminController extends Controller
     public function Destroyuser($id)
     {
         $user = User::whereId($id)->delete();
-        $profit = Profits::whereUser_id($id)->delete();
-        $deposit = Deposits::whereUser_id($id)->delete();
-        $ticket = Ticket::whereUser_id($id)->delete();
-        $withdraw = Withdraw::whereUser_id($id)->delete();
-        $earning = Earning::whereReferral($id)->delete();
-        $referral = Referral::whereRef_id($id)->delete();
-        $transfers = Transfer::where('sender_id', $id)->orWhere('receiver_id', $id)->delete();
         return back()->with('success', 'User was successfully deleted');
     }
 
