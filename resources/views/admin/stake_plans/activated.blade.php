@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
-                        <h6 class="card-title font-weight-semibold">Completed User Stake Plan Log</h6>
+                        <h6 class="card-title font-weight-semibold">Activated User Stake Plan Log</h6>
                     </div>
                     <div class="">
                         <table class="table datatable-show-all">
@@ -56,7 +56,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            Completed
+                                            Activated
                                         </td>
                                         <td>{{ date('Y/m/d', strtotime($val->created_at)) }}</td>
                                     </tr>
