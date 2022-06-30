@@ -322,7 +322,7 @@ class StakePlanController extends Controller
             }
             TetherPayment::create($data);
             $userStakePlan->update(['wallet_address_id' => $request->wallet_address_id]);
-            $wallet_address->update(['status' => 0]);
+            // $wallet_address->update(['status' => 0]);
             return redirect()->route('user.stake_plans.history');
         } catch (\Exception $e) {
             return redirect()->route('user.stake_plans.history')->with('error', 'Error: ' . $e->getMessage());
