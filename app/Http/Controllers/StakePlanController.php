@@ -458,7 +458,7 @@ class StakePlanController extends Controller
 
     public function do_activate($id)
     {
-        return $id;
+        // return $id;
         $user_stake_plan = UserStakePlan::find($id);
         $user_stake_plan->update([
             'status' => 1,
