@@ -260,7 +260,7 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
             Route::get('users', 'users')->name('users');
             Route::get('manage-user/{id}', 'manage_user')->name('users.manage');
             Route::post('profile-update', 'profile_update')->name('users.profile-update');
-            Route::post('profile-update-pin', 'Profileupdatepin')->name('users.profile-update');
+            Route::post('profile-update-pin', 'Profileupdatepin')->name('users.profile-update-pin');
             Route::post('update_bank_details', 'UpdateBankDetails')->name('users.update_bank_details');
         });
     });
