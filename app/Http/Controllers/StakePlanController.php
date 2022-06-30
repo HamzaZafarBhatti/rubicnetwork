@@ -473,4 +473,21 @@ class StakePlanController extends Controller
         ]);
         return back()->with('success', 'User Stake Plan has been confirmed paid and activated');
     }
+
+    public function do_cancel($id)
+    {
+        // return $id;
+        $user_stake_plan = UserStakePlan::find($id);
+        $user_stake_plan->update([
+            'status' => 3,
+        ]);
+
+        // Notification::create([
+        //     'user_id' => $user_stake_plan->user_id,
+        //     'title' => 'RUBIC STAKE ACTIVATION SUCCESSFUL',
+        //     'msg' => 'You have successfully activated a RUBIC STAKE PLAN',
+        //     'is_read' => 0
+        // ]);
+        return back()->with('success', 'User Stake Plan has been confirmed paid and activated');
+    }
 }

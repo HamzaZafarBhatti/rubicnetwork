@@ -50,8 +50,9 @@
                                                         <a class='dropdown-item'
                                                             href="{{ route('admin.stake_plans.do_activate', $val->id) }}"><i
                                                                 class="icon-pencil7 mr-2"></i>Activate Plan</a>
-                                                        {{-- <a data-toggle="modal" data-target="#{{ $val->id }}delete"
-                                                            class="dropdown-item"><i class="icon-bin2 mr-2"></i>Delete</a> --}}
+                                                        <a class='dropdown-item'
+                                                            href="{{ route('admin.stake_plans.do_cancel', $val->id) }}"><i
+                                                                class="icon-pencil7 mr-2"></i>Cancel Plan</a>
                                                     </div>
                                                 </div>
                                             </div>
