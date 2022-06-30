@@ -39,7 +39,7 @@
                                         </td>
                                         <td>
                                             @if ($val->tether_payment)
-                                                <img src="{{ url('/') }}asset/tether_payments/{{ $val->tether_payment->image }}">
+                                                <img src="{{ url('/') }}/asset/tether_payments/{{ $val->tether_payment->image }}">
                                             @else
                                                 No Proof
                                             @endif
