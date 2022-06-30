@@ -64,7 +64,7 @@
                                                                     class="icon-eye mr-2"></i>Unblock</a>
                                                         @endif
                                                         <a class='dropdown-item'
-                                                            href="{{ url('/') }}/admin/email/{{ $val->email }}/{{ $val->name }}"><i
+                                                            href="{{ route('admin.users.email', [$val->email, $val->name]) }}"><i
                                                                 class="icon-envelope mr-2"></i>Send email</a>
                                                         <a data-toggle="modal" data-target="#{{ $val->id }}delete"
                                                             class="dropdown-item"><i class="icon-bin2 mr-2"></i>Delete
@@ -88,7 +88,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-link"
                                                         data-dismiss="modal">Close</button>
-                                                    <a href="{{ url('/') }}/admin/user/delete/{{ $val->id }}"
+                                                    <a href="{{ route('admin.users.delete', $val->id) }}"
                                                         class="btn bg-danger">Proceed</a>
                                                 </div>
                                             </div>

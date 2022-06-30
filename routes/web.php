@@ -264,6 +264,9 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
             Route::post('update_bank_details', 'UpdateBankDetails')->name('users.update_bank_details');
             Route::get('unblock-user/{id}', 'Unblockuser')->name('users.unblock');
             Route::get('block-user/{id}', 'Blockuser')->name('users.block');
+            Route::get('email/{id}/{name}', 'Email')->name('users.email');
+            Route::post('email_send', 'Sendemail')->name('users.email_send');
+            Route::get('users/delete/{id}', 'Destroyuser')->name('users.delete');
         });
     });
 });
@@ -271,9 +274,6 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     //User controller
     Route::get('messages', [AdminController::class, 'Messages'])->name('admin.message');
-    Route::get('user/delete/{id}', [AdminController::class, 'Destroyuser'])->name('user.delete');
-    Route::get('email/{id}/{name}', [AdminController::class, 'Email'])->name('user.email');
-    Route::post('email_send', [AdminController::class, 'Sendemail'])->name('user.email.send');
     Route::get('promo', [AdminController::class, 'Promo'])->name('user.promo');
     Route::post('promo', [AdminController::class, 'Sendpromo'])->name('user.promo.send');
     Route::get('message/delete/{id}', [AdminController::class, 'Destroymessage'])->name('message.delete');
