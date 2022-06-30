@@ -19,6 +19,9 @@
         .table td {
             vertical-align: middle;
         }
+        .table td img {
+            border-radius: 50px;
+        }
         @media (min-width:1400px) {
 
             .container,
