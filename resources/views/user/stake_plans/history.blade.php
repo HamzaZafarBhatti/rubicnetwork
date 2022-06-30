@@ -64,7 +64,17 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->stake_plan->name }}</td>
                                                     <td>{{ $item->stake_coupon ? $item->stake_coupon->serial : 'TETHER' }}</td>
-                                                    <td>{{ $item->status ? 'Active' : 'Completed' }}</td>
+                                                    <td>
+                                                        @if ($item->status == 3)
+                                                            Cancelled
+                                                        @elseif($item->status == 2)
+                                                            Pending
+                                                        @elseif($item->status == 1)
+                                                            Active
+                                                        @else
+                                                            Completed
+                                                        @endif
+                                                    </td>
                                                     <td>{{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}</td>
                                                     <td>{{ $item->status ? \Carbon\Carbon::parse($item->next_update_time)->toDateTimeString() : 'NA' }}</td>
                                                     {{-- <td>{{ \Carbon\Carbon::parse($item->complete_time)->toFormattedDateString() }}</td> --}}
