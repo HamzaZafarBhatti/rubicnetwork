@@ -1,5 +1,13 @@
 @extends('admin.master')
 
+@section('css')
+    <style>
+        .table td img {
+            width: 100px;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="content">
         <div class="row">
@@ -41,8 +49,7 @@
                                             @if ($val->tether_payment)
                                             <a href="{{ url('/') }}/asset/tether_payments/{{ $val->tether_payment->image }}"
                                                 target="_blank">
-                                                <img
-                                                    src="{{ url('/') }}/asset/tether_payments/{{ $val->tether_payment->image }}">
+                                                <img src="{{ url('/') }}/asset/tether_payments/{{ $val->tether_payment->image }}">
                                             </a>
                                             @else
                                                 No Proof

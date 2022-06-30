@@ -1,5 +1,13 @@
 @extends('admin.master')
 
+@section('css')
+    <style>
+        .table td img {
+            width: 100px;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="content">
         <div class="row">
