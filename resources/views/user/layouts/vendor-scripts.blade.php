@@ -16,13 +16,13 @@
     $('body').attr('data-topbar', mode)
 
     $('.layout-mode-dark').click(function() {
-        $('body').attr('data-layout-mode', 'dark')
-        $('body').attr('data-topbar', 'dark')
+        // $('body').attr('data-layout-mode', 'dark')
+        // $('body').attr('data-topbar', 'dark')
         localStorage.setItem("mode", "dark");
     })
     $('.layout-mode-light').click(function() {
-        $('body').attr('data-layout-mode', 'light')
-        $('body').attr('data-topbar', 'light')
+        // $('body').attr('data-layout-mode', 'light')
+        // $('body').attr('data-topbar', 'light')
         localStorage.setItem("mode", "light");
     })
 </script>
