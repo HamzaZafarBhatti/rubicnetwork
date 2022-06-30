@@ -45,19 +45,6 @@ class FrontendController extends Controller
         return view('front.index', $data);
     }
 
-    public function topearners()
-    {
-        $data['title'] = "Top Earners";
-        $data['topearners'] = Earners::orderBy('amount', 'DESC')->take(50)->get();
-        return view('front.topearners', $data);
-    }
-
-    public function coupon()
-    {
-        $data['title'] = "Activation PIN Code Dispatchers";
-        return view('front.coupon', $data);
-    }
-
 
     public function contactSubmit(Request $request)
     {
@@ -88,42 +75,6 @@ class FrontendController extends Controller
         } else {
             Subscriber::create($request->all());
             return back()->with('success', ' Subscribe Successfully!');
-        }
-    }
-
-    public function do_verify_pin(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'coupon' => 'required',
-        ]);
-        if ($validator->fails()) {
-            // adding an extra field 'error'...
-            Session::flash('error', 'Please enter the ACTIVATION PIN CODE');
-            return redirect()->route('verify_pin');
-        }
-        $coupon = Coupons::with('plan')->where('serial', $request->coupon)->first();
-        if (!$coupon) {
-            Session::flash('error', 'ACTIVATION PIN CODE INVALID');
-            return redirect()->route('verify_pin');
-        }
-        if ($coupon->status == 'inactive') {
-            // adding an extra field 'error'...
-            $user = User::with(['parent_reference' => function ($query) {
-                $query->where('is_direct', '1');
-            }])->where('coupon', $request->coupon)->first();
-            // return $user;
-            if($user) {
-                $user->coupon = $coupon;
-            }
-            // Session::flash('warning', 'ACTIVATION PIN code is already used by user "' . $user->username . '"');
-            $data['title'] = "Verify pin";
-            $data['verify_pin_user'] = $user;
-            // return $user;
-            return view('front.verify_pin', $data);
-            // return redirect()->route('verify_pin');
-        } else {
-            Session::flash('success', 'ACTIVATION PIN code is valid and can be used');
-            return redirect()->route('verify_pin');
         }
     }
 }

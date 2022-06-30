@@ -13,9 +13,11 @@ use App\Models\Plan;
 use App\Models\Post;
 use App\Models\StakeCoupon;
 use App\Models\StakePlan;
+use App\Models\StakeWithdraw;
 use App\Models\TopEarner;
 use App\Models\User;
 use App\Models\Vendor;
+use App\Models\Withdraw;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -25,7 +27,18 @@ class FrontendController extends Controller
     //
     public function index()
     {
-        return view('front.index');
+        $registrations = User::latest()->take(5)->get();
+        $rubic_wds = Withdraw::whereStatus(1)->latest()->take(5)->get();
+        $stake_wds = StakeWithdraw::whereStatus(1)->latest()->take(5)->get();
+        $plans = Plan::whereStatus(1)->get();
+        $stake_plans = StakePlan::whereStatus(1)->get();
+        return view('front.index', compact(
+            'registrations',
+            'rubic_wds',
+            'stake_wds',
+            'plans',
+            'stake_plans',
+        ));
     }
     public function about_us()
     {

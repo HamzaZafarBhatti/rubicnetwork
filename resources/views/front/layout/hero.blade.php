@@ -16,8 +16,8 @@
                                 opportunities worldwide.
                             </p>
                             <div class="hero__cta__group">
-                                <a href="properties.html" class="button button--effect">Start Exploring</a>
-                                <a href="business-loan.html" class="button button--secondary button--effect">Get
+                                <a href="#" class="button button--effect">Start Exploring</a>
+                                <a href="#" class="button button--secondary button--effect">Get
                                     Funding</a>
                             </div>
                         </div>
