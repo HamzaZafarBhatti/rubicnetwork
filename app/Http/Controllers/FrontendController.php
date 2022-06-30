@@ -9,8 +9,10 @@ use App\Models\Coupon;
 use App\Models\Etemplate;
 use App\Models\Faq;
 use App\Models\PaymentProof;
+use App\Models\Plan;
 use App\Models\Post;
 use App\Models\StakeCoupon;
+use App\Models\StakePlan;
 use App\Models\TopEarner;
 use App\Models\User;
 use App\Models\Vendor;
@@ -35,13 +37,16 @@ class FrontendController extends Controller
     {
         $about = About::findOrFail(1);
         $rubic_staking = $about->rubic_staking;
-        return view('front.rubic_staking', compact('rubic_staking'));
+        $plans = StakePlan::whereStatus(1)->get();
+        return view('front.rubic_staking', compact('rubic_staking', 'plans'));
     }
     public function rubic_network()
     {
         $about = About::findOrFail(1);
         $rubic_network = $about->rubic_network;
-        return view('front.rubic_network', compact('rubic_network'));
+        $plans = Plan::whereStatus(1)->get();
+        // return $plans;
+        return view('front.rubic_network', compact('rubic_network', 'plans'));
     }
     public function terms_condition()
     {

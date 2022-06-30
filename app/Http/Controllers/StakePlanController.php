@@ -458,7 +458,8 @@ class StakePlanController extends Controller
 
     public function do_activate($id)
     {
-        $user_stake_plan = UserStakePlan::with('user')->find($id);
+        return $id;
+        $user_stake_plan = UserStakePlan::find($id);
         $user_stake_plan->update([
             'status' => 1,
             'next_update_time' => Carbon::now()->addDay(),
