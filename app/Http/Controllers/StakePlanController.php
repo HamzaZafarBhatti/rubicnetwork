@@ -447,6 +447,15 @@ class StakePlanController extends Controller
         }
     }
 
+    public function user_stake_plan_log()
+    {
+        // return 'hello';
+        $title = 'User Stake Plans';
+        $user_stake_plans = UserStakePlan::with('user', 'stake_plan', 'wallet_address', 'tether_payment')->get();
+        // return $user_stake_plans;
+        return view('admin.stake_plans.log', compact('title', 'user_stake_plans'));
+    }
+
     public function pending()
     {
         // return 'hello';
@@ -488,6 +497,6 @@ class StakePlanController extends Controller
         //     'msg' => 'You have successfully activated a RUBIC STAKE PLAN',
         //     'is_read' => 0
         // ]);
-        return back()->with('success', 'User Stake Plan has been confirmed paid and activated');
+        return back()->with('success', 'User Stake Plan has been cancelled');
     }
 }
