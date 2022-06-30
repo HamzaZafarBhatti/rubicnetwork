@@ -35,6 +35,7 @@ use App\Models\IndirectReferral;
 use App\Models\Plan;
 use App\Models\Referral;
 use App\Models\StakeReferral;
+use App\Models\StakeWithdraw;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -190,6 +191,7 @@ class AdminController extends Controller
         $data['client'] = $user = User::find($id);
         $data['title'] = $user->name;
         $data['withdraw'] = Withdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
+        $data['stake_withdraw'] = StakeWithdraw::whereUser_id($user->id)->orderBy('id', 'DESC')->get();
         $data['referral'] = Referral::where('referee_id', $user->id)->orderBy('id', 'DESC')->get();
         $data['indirect_referral'] = IndirectReferral::where('referee_id', $user->id)->orderBy('id', 'DESC')->get();
         $data['stake_referral'] = StakeReferral::where('referee_id', $user->id)->orderBy('id', 'DESC')->get();
