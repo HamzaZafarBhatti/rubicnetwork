@@ -255,10 +255,36 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
             Route::get('/delete/{id}', 'destroy')->name('delete');
             Route::post('/approve_multi', 'approve_multi')->name('approve_multi');
         });
+        //Admin Contoller
+        Route::controller(AdminController::class)->group(function () {
+            Route::get('users', 'users')->name('users');
+        });
     });
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    //User controller
+    // Route::get('users', [AdminController::class, 'Users'])->name('admin.users');
+    Route::get('messages', [AdminController::class, 'Messages'])->name('admin.message');
+    Route::get('unblock-user/{id}', [AdminController::class, 'Unblockuser'])->name('user.unblock');
+    Route::get('block-user/{id}', [AdminController::class, 'Blockuser'])->name('user.block');
+    Route::get('manage-user/{id}', [AdminController::class, 'Manageuser'])->name('user.manage');
+    Route::get('user/delete/{id}', [AdminController::class, 'Destroyuser'])->name('user.delete');
+    Route::get('email/{id}/{name}', [AdminController::class, 'Email'])->name('user.email');
+    Route::post('email_send', [AdminController::class, 'Sendemail'])->name('user.email.send');
+    Route::get('promo', [AdminController::class, 'Promo'])->name('user.promo');
+    Route::post('promo', [AdminController::class, 'Sendpromo'])->name('user.promo.send');
+    Route::get('message/delete/{id}', [AdminController::class, 'Destroymessage'])->name('message.delete');
+    Route::get('ticket', [AdminController::class, 'Ticket'])->name('admin.ticket');
+    Route::get('ticket/delete/{id}', [AdminController::class, 'Destroyticket'])->name('ticket.delete');
+    Route::get('close-ticket/delete/{id}', [AdminController::class, 'Closeticket'])->name('ticket.close');
+    Route::get('manage-ticket/{id}', [AdminController::class, 'Manageticket'])->name('ticket.manage');
+    Route::post('reply-ticket', [AdminController::class, 'Replyticket'])->name('ticket.reply');
+    Route::post('profile-update', [AdminController::class, 'Profileupdate']);
+    Route::post('profile-update-pin', [AdminController::class, 'Profileupdatepin']);
+    Route::post('update_bank_details', [AdminController::class, 'UpdateBankDetails']);
+    Route::get('approve-kyc/{id}', [AdminController::class, 'Approvekyc'])->name('admin.approve.kyc');
+    Route::get('reject-kyc/{id}', [AdminController::class, 'Rejectkyc'])->name('admin.reject.kyc');
 
     //Web controller
     Route::post('social-links/update', [WebController::class, 'UpdateSocial'])->name('social-links.update');
@@ -331,26 +357,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('transfers', [TransferController::class, 'Transfers'])->name('admin.transfers');
     Route::get('referrals', [TransferController::class, 'Referrals'])->name('admin.referrals');
 
-    //User controller
-    Route::get('users', [AdminController::class, 'Users'])->name('admin.users');
-    Route::get('messages', [AdminController::class, 'Messages'])->name('admin.message');
-    Route::get('unblock-user/{id}', [AdminController::class, 'Unblockuser'])->name('user.unblock');
-    Route::get('block-user/{id}', [AdminController::class, 'Blockuser'])->name('user.block');
-    Route::get('manage-user/{id}', [AdminController::class, 'Manageuser'])->name('user.manage');
-    Route::get('user/delete/{id}', [AdminController::class, 'Destroyuser'])->name('user.delete');
-    Route::get('email/{id}/{name}', [AdminController::class, 'Email'])->name('user.email');
-    Route::post('email_send', [AdminController::class, 'Sendemail'])->name('user.email.send');
-    Route::get('promo', [AdminController::class, 'Promo'])->name('user.promo');
-    Route::post('promo', [AdminController::class, 'Sendpromo'])->name('user.promo.send');
-    Route::get('message/delete/{id}', [AdminController::class, 'Destroymessage'])->name('message.delete');
-    Route::get('ticket', [AdminController::class, 'Ticket'])->name('admin.ticket');
-    Route::get('ticket/delete/{id}', [AdminController::class, 'Destroyticket'])->name('ticket.delete');
-    Route::get('close-ticket/delete/{id}', [AdminController::class, 'Closeticket'])->name('ticket.close');
-    Route::get('manage-ticket/{id}', [AdminController::class, 'Manageticket'])->name('ticket.manage');
-    Route::post('reply-ticket', [AdminController::class, 'Replyticket'])->name('ticket.reply');
-    Route::post('profile-update', [AdminController::class, 'Profileupdate']);
-    Route::post('profile-update-pin', [AdminController::class, 'Profileupdatepin']);
-    Route::post('update_bank_details', [AdminController::class, 'UpdateBankDetails']);
-    Route::get('approve-kyc/{id}', [AdminController::class, 'Approvekyc'])->name('admin.approve.kyc');
-    Route::get('reject-kyc/{id}', [AdminController::class, 'Rejectkyc'])->name('admin.reject.kyc');
 });

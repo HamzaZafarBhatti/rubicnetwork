@@ -31,8 +31,8 @@
                                     <td>{{$val->name}}</td>
                                     <td>{{$val->username}}</td>
                                     <td>{{$val->email}}</td>
-                                    <td>{{$val->coupon}}</td>
-                                    <td>{{$val->plan_name}}</td>
+                                    <td>{{$val->coupon->serial}}</td>
+                                    <td>{{$val->plan->name}}</td>
                                     <td>
                                         @if($val->status==0)
                                             <span class="badge badge-info">Active</span>

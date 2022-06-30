@@ -95,12 +95,10 @@ class AdminController extends Controller
         return view('admin.dashboard.index', $data);
     }
 
-    public function Users()
+    public function users()
     {
         $data['title'] = 'Clients';
-        $data['users'] = User::select('users.id','users.username', 'users.name', 'users.email', 'users.status', 'users.created_at', 'users.balance', 'users.coupon', 'plan.name as plan_name')
-        ->join('coupons', 'coupons.serial', '=', 'users.coupon')
-        ->join('plan', 'plan.id', '=', 'coupons.plan_id')->latest()->get();
+        $data['users'] = User::with('plan', 'coupon')->latest()->get();
         return view('admin.user.index', $data);
     }
 
