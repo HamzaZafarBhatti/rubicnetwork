@@ -11,9 +11,9 @@
 @yield('script-bottom')
 
 <script>
-    var mode = localStorage.getItem("mode");
-    $('body').attr('data-layout-mode', mode)
-    $('body').attr('data-topbar', mode)
+    // var mode = localStorage.getItem("mode");
+    // $('body').attr('data-layout-mode', mode)
+    // $('body').attr('data-topbar', mode)
 
     $('.layout-mode-dark').click(function() {
         localStorage.setItem("mode", "dark");
