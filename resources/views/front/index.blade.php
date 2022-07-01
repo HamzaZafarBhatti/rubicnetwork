@@ -104,7 +104,7 @@
                 <div class="cities__item__wrapper">
                     <div class="cities__single__item">
                         <div class="img__box">
-                            <img src="{{ asset('front_s/images/icons/san.png') }}" alt="San Diego" />
+                            <img src="{{ asset('front_asset/images/icons/san.png') }}" alt="San Diego" />
                         </div>
                         <div>
                             <h5>San Diego</h5>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="cities__single__item">
                         <div class="img__box">
-                            <img src="{{ asset('front_s/images/icons/francisco.png') }}" alt="San Francisco" />
+                            <img src="{{ asset('front_asset/images/icons/francisco.png') }}" alt="San Francisco" />
                         </div>
                         <div>
                             <h5>San Francisco</h5>
@@ -126,7 +126,7 @@
                     </div>
                     <div class="cities__single__item">
                         <div class="img__box">
-                            <img src="{{ asset('front_s/images/icons/weldon.png') }}" alt="The Weldon" />
+                            <img src="{{ asset('front_asset/images/icons/weldon.png') }}" alt="The Weldon" />
                         </div>
                         <div>
                             <h5>The Weldon</h5>
@@ -137,7 +137,7 @@
                     </div>
                     <div class="cities__single__item">
                         <div class="img__box">
-                            <img src="{{ asset('front_s/images/icons/san.png') }}" alt="San Diego" />
+                            <img src="{{ asset('front_asset/images/icons/san.png') }}" alt="San Diego" />
                         </div>
                         <div>
                             <h5>San Diego</h5>
@@ -148,7 +148,7 @@
                     </div>
                     <div class="cities__single__item">
                         <div class="img__box">
-                            <img src="{{ asset('front_s/images/icons/francisco.png') }}" alt="San Francisco" />
+                            <img src="{{ asset('front_asset/images/icons/francisco.png') }}" alt="San Francisco" />
                         </div>
                         <div>
                             <h5>San Francisco</h5>
@@ -159,7 +159,7 @@
                     </div>
                     <div class="cities__single__item">
                         <div class="img__box">
-                            <img src="{{ asset('front_s/images/icons/weldon.png') }}" alt="The Weldon" />
+                            <img src="{{ asset('front_asset/images/icons/weldon.png') }}" alt="The Weldon" />
                         </div>
                         <div>
                             <h5>The Weldon</h5>
@@ -170,7 +170,7 @@
                     </div>
                     <div class="cities__single__item">
                         <div class="img__box">
-                            <img src="{{ asset('front_s/images/icons/san.png') }}" alt="San Diego" />
+                            <img src="{{ asset('front_asset/images/icons/san.png') }}" alt="San Diego" />
                         </div>
                         <div>
                             <h5>San Diego</h5>
@@ -181,7 +181,7 @@
                     </div>
                     <div class="cities__single__item">
                         <div class="img__box">
-                            <img src="{{ asset('front_s/images/icons/francisco.png') }}" alt="San Francisco" />
+                            <img src="{{ asset('front_asset/images/icons/francisco.png') }}" alt="San Francisco" />
                         </div>
                         <div>
                             <h5>San Francisco</h5>
@@ -192,7 +192,7 @@
                     </div>
                     <div class="cities__single__item">
                         <div class="img__box">
-                            <img src="{{ asset('front_s/images/icons/weldon.png') }}" alt="The Weldon" />
+                            <img src="{{ asset('front_asset/images/icons/weldon.png') }}" alt="The Weldon" />
                         </div>
                         <div>
                             <h5>The Weldon</h5>
@@ -230,7 +230,7 @@
                             <div class="property__grid__single column__space--secondary">
                                 <div class="img__effect">
                                     <a href="property-details.html">
-                                        <img src="{{ asset('front_s/images/property/grid-one.jpg') }}" alt="Property" />
+                                        <img src="{{ asset('front_asset/images/property/grid-one.jpg') }}" alt="Property" />
                                     </a>
                                 </div>
                                 <div class="property__grid__single__inner">
@@ -290,7 +290,7 @@
                             <div class="property__grid__single column__space--secondary">
                                 <div class="img__effect">
                                     <a href="property-details.html">
-                                        <img src="{{ asset('front_s/images/property/grid-two.jpg') }}" alt="Property" />
+                                        <img src="{{ asset('front_asset/images/property/grid-two.jpg') }}" alt="Property" />
                                     </a>
                                 </div>
                                 <div class="property__grid__single__inner">
@@ -350,7 +350,7 @@
                             <div class="property__grid__single">
                                 <div class="img__effect">
                                     <a href="property-details.html">
-                                        <img src="{{ asset('front_s/images/property/grid-three.jpg') }}" alt="Property" />
+                                        <img src="{{ asset('front_asset/images/property/grid-three.jpg') }}" alt="Property" />
                                     </a>
                                 </div>
                                 <div class="property__grid__single__inner">
@@ -428,7 +428,7 @@
                     <div class="col-md-6 col-xl-4">
                         <div class="start__single__item column__space--secondary">
                             <div class="img__box">
-                                <img src="{{ asset('front_s/images/step/browse.png') }}" alt="Browse Properties" />
+                                <img src="{{ asset('front_asset/images/step/browse.png') }}" alt="Browse Properties" />
                                 <div class="step__count">
                                     <h4>01</h4>
                                 </div>
@@ -442,7 +442,7 @@
                     <div class="col-md-6 col-xl-4">
                         <div class="start__single__item column__space--secondary">
                             <div class="img__box arrow__container">
-                                <img src="{{ asset('front_s/images/step/invest.png') }}" alt="View Details & Invest" />
+                                <img src="{{ asset('front_asset/images/step/invest.png') }}" alt="View Details & Invest" />
                                 <div class="step__count">
                                     <h4>02</h4>
                                 </div>
@@ -456,7 +456,7 @@
                     <div class="col-md-6 col-xl-4">
                         <div class="start__single__item">
                             <div class="img__box">
-                                <img src="{{ asset('front_s/images/step/earn.png') }}" alt="Earn and Track" />
+                                <img src="{{ asset('front_asset/images/step/earn.png') }}" alt="Earn and Track" />
                                 <div class="step__count">
                                     <h4>03</h4>
                                 </div>
@@ -487,18 +487,18 @@
                             <p>Transparent Real Estate Investing Through Revest.Join us and
                                 experience a smarter,better way to invest in real estate</p>
                             <a href="properties.html" class="button button--effect">Start Exploring</a>
-                            <img src="{{ asset('front_s/images/arrow.png') }}" alt="Go to" />
+                            <img src="{{ asset('front_asset/images/arrow.png') }}" alt="Go to" />
                         </div>
                     </div>
                 </div>
-                <img src="{{ asset('front_s/images/market-two-illustration.png') }}" alt="Explore the Market"
+                <img src="{{ asset('front_asset/images/market-two-illustration.png') }}" alt="Explore the Market"
                     class="d-none d-lg-block market__two__thumb" />
             </div>
             <div class="market__features">
                 <div class="row">
                     <div class="col-md-6 col-xl-4">
                         <div class="market__features__single shadow__effect__secondary">
-                            <img src="{{ asset('front_s/images/icons/gain.png') }}" alt="Gain Instant" />
+                            <img src="{{ asset('front_asset/images/icons/gain.png') }}" alt="Gain Instant" />
                             <h4>Gain Instant</h4>
                             <p class="neutral-bottom">Revest performs deep due diligence on sponsors, giving investors
                                 peace of mind.</p>
@@ -506,7 +506,7 @@
                     </div>
                     <div class="col-md-6 col-xl-4">
                         <div class="market__features__single market__features__single--alt shadow__effect">
-                            <img src="{{ asset('front_s/images/icons/noticed.png') }}" alt="Get noticed" />
+                            <img src="{{ asset('front_asset/images/icons/noticed.png') }}" alt="Get noticed" />
                             <h4>Get Noticed</h4>
                             <p class="neutral-bottom">REVEST VERIFIED sponsor profiles are available to accredited real
                                 estate investment
@@ -515,7 +515,7 @@
                     </div>
                     <div class="col-md-6 col-xl-4">
                         <div class="market__features__single alt shadow__effect__secondary">
-                            <img src="{{ asset('front_s/images/icons/focus.png') }}" alt="Focus on Deals" />
+                            <img src="{{ asset('front_asset/images/icons/focus.png') }}" alt="Focus on Deals" />
                             <h4>Focus on Deals</h4>
                             <p class="neutral-bottom">Spend less time smiling, reaserching and dialing and more time
                                 doing what you love.</p>
@@ -548,7 +548,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="platform__thumb thumb__ltr d-none d-lg-block">
-                            <img src="{{ asset('front_s/images/overview/platform-illustration.png') }}" alt="Platform" />
+                            <img src="{{ asset('front_asset/images/overview/platform-illustration.png') }}" alt="Platform" />
                         </div>
                     </div>
                 </div>
@@ -564,7 +564,7 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-4">
                         <div class="portfolio__overview__single column__space">
-                            <img src="{{ asset('front_s/images/icons/investors.png') }}" alt="Investors" />
+                            <img src="{{ asset('front_asset/images/icons/investors.png') }}" alt="Investors" />
                             <div>
                                 <h2 class="counterTwo">6738</h2>
                                 <p>Investors</p>
@@ -573,7 +573,7 @@
                     </div>
                     <div class="col-md-6 col-lg-4">
                         <div class="portfolio__overview__single column__space">
-                            <img src="{{ asset('front_s/images/icons/completed.png') }}" alt="completed" />
+                            <img src="{{ asset('front_asset/images/icons/completed.png') }}" alt="completed" />
                             <div>
                                 <h2 class="counterTwo">61316</h2>
                                 <p>Investments Completed</p>
@@ -582,7 +582,7 @@
                     </div>
                     <div class="col-md-12 col-lg-4">
                         <div class="portfolio__overview__single">
-                            <img src="{{ asset('front_s/images/icons/annual-return.png') }}" alt="Average Annual Return" />
+                            <img src="{{ asset('front_asset/images/icons/annual-return.png') }}" alt="Average Annual Return" />
                             <div>
                                 <h2><span class="counterTwo">10.36</span>%</h2>
                                 <p>Average Annual Return</p>
@@ -618,7 +618,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="port__thumb thumb__ltr">
-                                <img src="{{ asset('front_s/images/tower.png') }}" alt="Tower" />
+                                <img src="{{ asset('front_asset/images/tower.png') }}" alt="Tower" />
                             </div>
                         </div>
                     </div>
@@ -644,14 +644,14 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="why__invest__single shadow__effect__secondary">
-                                    <img src="{{ asset('front_s/images/icons/passive.png') }}" alt="Passive" />
+                                    <img src="{{ asset('front_asset/images/icons/passive.png') }}" alt="Passive" />
                                     <h5>Passive Income</h5>
                                     <p class="neutral-bottom">Earn income without active management</p>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="why__invest__single shadow__effect__secondary">
-                                    <img src="{{ asset('front_s/images/icons/stable.png') }}" alt="Stable Cash Flow" />
+                                    <img src="{{ asset('front_asset/images/icons/stable.png') }}" alt="Stable Cash Flow" />
                                     <h5>Stable Cash Flow</h5>
                                     <p class="neutral-bottom">Rental payments provide steady cash flow through dividend
                                         payouts</p>
@@ -663,7 +663,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-xxl-3">
                         <div class="why__invest__single shadow__effect__secondary">
-                            <img src="{{ asset('front_s/images/icons/tax.png') }}" alt="Tax Advantages" />
+                            <img src="{{ asset('front_asset/images/icons/tax.png') }}" alt="Tax Advantages" />
                             <h5>Tax Advantages</h5>
                             <p class="neutral-bottom">There are numerous tax breaks and favorable deductions associated
                             </p>
@@ -671,7 +671,7 @@
                     </div>
                     <div class="col-sm-6 col-xxl-3">
                         <div class="why__invest__single shadow__effect__secondary">
-                            <img src="{{ asset('front_s/images/icons/capital.png') }}" alt="Capital Appr'n" />
+                            <img src="{{ asset('front_asset/images/icons/capital.png') }}" alt="Capital Appr'n" />
                             <h5>Capital Appr'n</h5>
                             <p class="neutral-bottom">Historically, real estate prices have increased over the rude time
                             </p>
@@ -679,7 +679,7 @@
                     </div>
                     <div class="col-sm-6 col-xxl-3">
                         <div class="why__invest__single shadow__effect__secondary">
-                            <img src="{{ asset('front_s/images/icons/protection.png') }}" alt="Inflation protection" />
+                            <img src="{{ asset('front_asset/images/icons/protection.png') }}" alt="Inflation protection" />
                             <h5>Inflation protection</h5>
                             <p class="neutral-bottom">Home values and rents typically increase during times of inflation
                             </p>
@@ -687,7 +687,7 @@
                     </div>
                     <div class="col-sm-6 col-xxl-3">
                         <div class="why__invest__single shadow__effect__secondary">
-                            <img src="{{ asset('front_s/images/icons/diversifaction.png') }}" alt="Diversification" />
+                            <img src="{{ asset('front_asset/images/icons/diversifaction.png') }}" alt="Diversification" />
                             <h5>Diversification</h5>
                             <p class="neutral-bottom">Low correlation to other asset classes</p>
                         </div>
@@ -819,7 +819,7 @@
                             <div class="testimonial__author">
                                 <div class="testimonial__author__info">
                                     <div class="avatar__wrapper">
-                                        <img src="{{ asset('front_s/images/testimonial/avatar.png') }}" alt="Allan Murphy" />
+                                        <img src="{{ asset('front_asset/images/testimonial/avatar.png') }}" alt="Allan Murphy" />
                                     </div>
                                     <div>
                                         <h5>Allan Murphy</h5>
@@ -843,7 +843,7 @@
                             <div class="testimonial__author">
                                 <div class="testimonial__author__info">
                                     <div class="avatar__wrapper">
-                                        <img src="{{ asset('front_s/images/testimonial/avatar.png') }}" alt="Allan Murphy" />
+                                        <img src="{{ asset('front_asset/images/testimonial/avatar.png') }}" alt="Allan Murphy" />
                                     </div>
                                     <div>
                                         <h5>Allan Murphy</h5>
@@ -867,7 +867,7 @@
                             <div class="testimonial__author">
                                 <div class="testimonial__author__info">
                                     <div class="avatar__wrapper">
-                                        <img src="{{ asset('front_s/images/testimonial/avatar.png') }}" alt="Allan Murphy" />
+                                        <img src="{{ asset('front_asset/images/testimonial/avatar.png') }}" alt="Allan Murphy" />
                                     </div>
                                     <div>
                                         <h5>Allan Murphy</h5>
@@ -891,7 +891,7 @@
                             <div class="testimonial__author">
                                 <div class="testimonial__author__info">
                                     <div class="avatar__wrapper">
-                                        <img src="{{ asset('front_s/images/testimonial/avatar.png') }}" alt="Allan Murphy" />
+                                        <img src="{{ asset('front_asset/images/testimonial/avatar.png') }}" alt="Allan Murphy" />
                                     </div>
                                     <div>
                                         <h5>Allan Murphy</h5>
@@ -915,7 +915,7 @@
                             <div class="testimonial__author">
                                 <div class="testimonial__author__info">
                                     <div class="avatar__wrapper">
-                                        <img src="{{ asset('front_s/images/testimonial/avatar.png') }}" alt="Allan Murphy" />
+                                        <img src="{{ asset('front_asset/images/testimonial/avatar.png') }}" alt="Allan Murphy" />
                                     </div>
                                     <div>
                                         <h5>Allan Murphy</h5>
