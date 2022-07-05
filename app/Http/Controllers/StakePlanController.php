@@ -319,7 +319,7 @@ class StakePlanController extends Controller
 
     public function convert(Request $request)
     {
-        $converts = StakeEarningConvert::with('user')->get();
+        $converts = StakeEarningConvert::with('user')->where('user_id', auth()->user()->id)->get();
         return view('user.stake_plans.convert', compact('converts'));
     }
 
