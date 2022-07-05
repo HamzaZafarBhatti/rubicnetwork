@@ -19,6 +19,9 @@
                 </div>
                 <div class="card-body">
                     <h4>₦{{ auth()->user()->rubic_stake_wallet }}</h4>
+                    <p>which is equivalent &asymp; to</p>
+                    <h4><strong>${{ substr(auth()->user()->rubic_stake_wallet / $set->ngn_rate, 0, 9) }} USDT</strong></h4>
+                    <p>as <span style="color: #0000ff;"><strong>Tether USDT</strong></span></p>
                     <br>
                     <h5 class="text-success">Funds in your STAKE WALLET can now be withdrawn to your set BANK Account below.</h5>
 
