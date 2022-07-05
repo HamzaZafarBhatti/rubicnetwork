@@ -27,7 +27,7 @@ class IndirectReferralController extends Controller
 
     public function convert()
     {
-        $converts = IndirectReferralConvert::with('user')->get();
+        $converts = IndirectReferralConvert::with('user')->whereRefereeId(auth()->user()->id)->get();
         return view('user.indirect_referrals.convert', compact('converts'));
     }
 
