@@ -27,7 +27,7 @@ class ReferralController extends Controller
 
     public function convert()
     {
-        $converts = ReferralConvert::with('user')->get();
+        $converts = ReferralConvert::with('user')->whereRefereeId(auth()->user()->id)->get();
         return view('user.referrals.convert', compact('converts'));
     }
 
