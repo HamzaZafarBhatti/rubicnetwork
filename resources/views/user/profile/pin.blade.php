@@ -31,7 +31,7 @@
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="current_pins">Current Transaction Code</label>
-                                                <div class="d-flex justify-content-around" style="gap: 20px">
+                                                <div class="d-flex justify-content-around custom-gap">
                                                     <input type="text" class="form-control code-input text-center" name="current_pins[]">
                                                     <input type="text" class="form-control code-input text-center" name="current_pins[]">
                                                     <input type="text" class="form-control code-input text-center" name="current_pins[]">
@@ -44,7 +44,7 @@
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="pins">New Transaction Code</label>
-                                                <div class="d-flex justify-content-around" style="gap: 20px">
+                                                <div class="d-flex justify-content-around custom-gap">
                                                     <input type="text" class="form-control code-input2 text-center" name="pins[]">
                                                     <input type="text" class="form-control code-input2 text-center" name="pins[]">
                                                     <input type="text" class="form-control code-input2 text-center" name="pins[]">

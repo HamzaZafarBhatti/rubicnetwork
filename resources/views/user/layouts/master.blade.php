@@ -10,6 +10,17 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('front_assets/images/manual_uploads/favicon/favicon-32x32.png') }}">
     @include('user.layouts.head-css')
+    <style>
+        .custom-gap {
+            gap: 20px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .custom-gap {
+                gap: 4px;
+            }
+        }
+    </style>
     <link href="{{ URL::asset('user_assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 </head>
 
@@ -73,16 +84,16 @@
         @endif
         if ("{{ $user_proof }}" == 1) {
             swal({
-                title: null,
-                text: "Congrats on your most RECENT PAYMENT on GOLDMINT",
-                icon: "success",
-                buttons: ["Close", "Upload Payment Proof Now!"],
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    window.location.href = "{{ route('user.payment_proofs.create') }}"
-                }
-            });
+                    title: null,
+                    text: "Congrats on your most RECENT PAYMENT on GOLDMINT",
+                    icon: "success",
+                    buttons: ["Close", "Upload Payment Proof Now!"],
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = "{{ route('user.payment_proofs.create') }}"
+                    }
+                });
         }
     })
 </script>

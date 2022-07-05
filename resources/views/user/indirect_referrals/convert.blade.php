@@ -76,7 +76,7 @@ Convert Indirect Referral Earnings to Rubic Wallet
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="pins">Enter Transaction Code</label>
-                                                <div class="d-flex justify-content-around mb-2" style="gap: 20px">
+                                                <div class="d-flex justify-content-around mb-2 custom-gap">
                                                     <input type="text" class="form-control code-input text-center"
                                                         name="pins[]">
                                                     <input type="text" class="form-control code-input text-center"
