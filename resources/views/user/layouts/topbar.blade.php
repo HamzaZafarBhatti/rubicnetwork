@@ -70,7 +70,9 @@
                                             <h6 class="mb-1">{{ $item->title }}</h6>
                                             <div class="font-size-13 text-muted">
                                                 <p class="mb-1">{{ $item->msg }}</p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span></p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i>
+                                                    <span>{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +81,8 @@
                         @endif
                     </div>
                     <div class="p-2 border-top d-grid">
-                        <a class="btn btn-sm btn-link font-size-14 text-center" href="{{ route('user.notifications.index') }}">
+                        <a class="btn btn-sm btn-link font-size-14 text-center"
+                            href="{{ route('user.notifications.index') }}">
                             <i class="mdi mdi-arrow-right-circle me-1"></i> <span>View More..</span>
                         </a>
                     </div>
@@ -87,14 +90,14 @@
             </div>
 
             <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item bg-soft-light border-start border-end"
-                    id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="{{ route('user.profile_edit') }}" type="button"
+                    class="btn header-item bg-soft-light border-start border-end d-flex align-items-center">
                     <img class="rounded-circle header-profile-user"
                         src="@if (Auth::user()->image != '') {{ URL::asset('asset/profile/' . Auth::user()->image) }}@else{{ URL::asset('user_assets/images/users/rubic-avatar-min.jpg') }} @endif"
                         alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ Auth::user()->name }}</span>
                     {{-- <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i> --}}
-                </button>
+                </a>
                 {{-- <div class="dropdown-menu dropdown-menu-end"> --}}
                 <!-- item-->
                 {{-- <a class="dropdown-item" href="{{ route('user.profile') }}"><i
