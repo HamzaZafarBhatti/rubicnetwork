@@ -53,7 +53,7 @@ class ViralShareController extends Controller
 
     public function convert()
     {
-        $converts = ViralShareConvert::with('user')->get();
+        $converts = ViralShareConvert::with('user')->where('user_id', auth()->user()->id)->get();
         return view('user.viral_shares.convert', compact('converts'));
     }
 
