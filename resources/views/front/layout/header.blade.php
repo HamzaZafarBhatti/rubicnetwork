@@ -3,7 +3,8 @@
     <nav class="navbar navbar-expand-xl">
         <div class="container">
             <a class="navbar-brand" href="{{ route('front.index') }}">
-                <img src="https://rubicnetwork.com/front_assets/images/manual_uploads/Logo.png" alt="" width="239" height="56" />
+                <img src="{{ asset('front_assets/images/manual_uploads/Logo.png') }}" alt="" width="239"
+                    height="56" />
             </a>
             <div class="navbar__out order-2 order-xl-3">
                 <div class="nav__group__btn">
@@ -37,9 +38,10 @@
                             HOW IT WORKS
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarHomeDropdown">
-                             <li><a class="dropdown-item" href="{{ route('front.about_us') }}">ABOUT US</a>
+                            <li><a class="dropdown-item" href="{{ route('front.about_us') }}">ABOUT US</a>
                             </li>
-                            <li><a class="dropdown-item" href="{{ route('front.rubic_network') }}">RUBIC EXTRACTION</a>
+                            <li><a class="dropdown-item" href="{{ route('front.rubic_network') }}">RUBIC
+                                    EXTRACTION</a>
                             </li>
                             <li><a class="dropdown-item" href="{{ route('front.rubic_staking') }}">RUBIC STAKING</a>
                             </li>
@@ -60,7 +62,8 @@
                             <li><a class="dropdown-item" href="{{ route('front.cookies_policy') }}">COOKIES
                                     POLICY</a>
                             </li>
-                            <li><a class="dropdown-item" href="{{ route('front.disclaimer') }}">EARNING DISLCLAIMER</a>
+                            <li><a class="dropdown-item" href="{{ route('front.disclaimer') }}">EARNING
+                                    DISLCLAIMER</a>
                             </li>
                         </ul>
                     </li>
@@ -98,11 +101,10 @@
                     </li>
 
                     @auth
-                    <li class="nav-item d-block d-sm-none">
-                        <a href="{{ route('user.dashboard') }}"
-                            class="button button--effect button--last">DASHBOARD <i
-                                class="fa-solid fa-arrow-right-long"></i></a>
-                    </li>    
+                        <li class="nav-item d-block d-sm-none">
+                            <a href="{{ route('user.dashboard') }}" class="button button--effect button--last">DASHBOARD
+                                <i class="fa-solid fa-arrow-right-long"></i></a>
+                        </li>
                     @endauth
                     @guest
                         <li class="nav-item d-block d-sm-none">

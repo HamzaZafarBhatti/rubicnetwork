@@ -15,15 +15,15 @@
                                RUBIC is designed to perfectly skyrocket your financial results.
                             </p>
                             <div class="hero__cta__group">
-                                <a href="https://rubicnetwork.com/register" class="button button--effect">Start Extracting</a>
-                                <a href="https://rubicnetwork.com/register" class="button button--secondary button--effect">Start Staking</a>
-                                 <a href="https://rubicnetwork.com/login" class="button button--secondary button--effect">Login</a>
+                                <a href="{{ route('user.register') }}" class="button button--effect">Start Extracting</a>
+                                <a href="{{ route('user.register') }}" class="button button--secondary button--effect">Start Staking</a>
+                                 <a href="{{ route('user.login') }}" class="button button--secondary button--effect">Login</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-5 col-xxl-6">
                         <div class="hero__illustration d-none d-lg-block">
-                            <img src="https://rubicnetwork.com/front_assets/images/manual_uploads/20220704_180543-rubic.png" width="1450" height="1200" />
+                            <img src="{{ asset('front_assets/images/manual_uploads/20220704_180543-rubic.png') }}" width="1450" height="1200" />
                         </div>
                     </div>
                 </div>
