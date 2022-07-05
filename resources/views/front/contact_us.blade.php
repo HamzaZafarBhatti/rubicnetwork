@@ -9,7 +9,7 @@
             <div class="support__banner__area">
                 <div class="support__banner__inner">
                     <h1 class="neutral-top">How can we help?</h1>
-                    <h5 class="neutral-top">Got a question?</h5>
+                    <h5 class="neutral-top">Office Address: NBCC Plaza, Olubunmi Owa Street, Lekki Phase 1, Lekki, Lagos.</h5>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
                         <div class="contact__overview__single column__space--secondary shadow__effect">
                             <img src="{{asset('front_assets/images/icons/email.png')}}" alt="email" />
                             <h5>Send Us an Email</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                            <p>We would be glad to respond to you in less than few hours on your mail.</p>
                             <hr />
                             <p class="neutral-bottom">
                                 <a href="mailto:{{$set->email}}">{{$set->email}}</a>
@@ -36,7 +36,7 @@
                         <div class="contact__overview__single column__space--secondary shadow__effect">
                             <img src="{{asset('front_assets/images/icons/phone.png')}}" alt="Call" />
                             <h5>Give Us a Call</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                            <p>Our Dedicated Consultant would be glad to respond to your calls at anytime from 9am to 5pm Mon - Fri.</p>
                             <hr />
                             <p class="neutral-bottom">
                                 <a href="tel:{{$set->mobile}}">{{$set->mobile}}</a>
@@ -46,11 +46,11 @@
                     <div class="col-md-6 col-xl-4">
                         <div class="contact__overview__single shadow__effect">
                             <img src="{{asset('front_assets/images/icons/chat.png')}}" alt="Chat" />
-                            <h5>Chat with us</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                            <h5>Chat on WhatsApp</h5>
+                            <p>Chat with us on WhatsApp with regards to supports and our Rubic Project.</p>
                             <hr />
                             <p class="neutral-bottom">
-                                <a href="#0">Open live chat</a>
+                                <a href="#0">WhatsApp Chat: +33755522059</a>
                             </p>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
             <div class="ask__area">
                 <div class="alert__newsletter__area">
                     <div class="section__header">
-                        <h2 class="neutral-top">Ask a Question</h2>
+                        <h2 class="neutral-top">Send Us A Message</h2>
                     </div>
                     <form action="{{ route('front.send_email') }}" name="ask__from" method="post">
                         @csrf
@@ -118,7 +118,7 @@
                             <textarea name="msg" id="askMessage" required="required" placeholder="Write Message"></textarea>
                         </div>
                         <div class="input__button">
-                            <button type="submit" class="button button--effect">Subscribe</button>
+                            <button type="submit" class="button button--effect">SEND MESSAGE</button>
                         </div>
                     </form>
                 </div>

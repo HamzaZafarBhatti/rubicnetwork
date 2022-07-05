@@ -16,7 +16,7 @@ Convert Indirect Referral Earnings to Rubic Wallet
             Indirect Referrals
         @endslot
         @slot('title2')
-            Convert to Rubic Wallet
+            Convert Indirect Referral Earnings
         @endslot
     @endcomponent
 
@@ -28,54 +28,13 @@ Convert Indirect Referral Earnings to Rubic Wallet
                 </div>
                 <div class="card-body">
                     <h4>₦{{ auth()->user()->rubic_wallet }}</h4>
-                    <h5 class="text-success">Rubic Wallet funds can be cashed and paid instantly</h5>
+                    <h5 class="text-success">Rubic Wallet Funds can be Withdrawn and paid Instantly To Your BANK</h5>
                     <a href="{{ route('user.wallet.withdraw') }}" type="button"
-                        class="btn btn-primary w-100">Withdraw to Bank</a>
+                        class="btn btn-primary w-100">WITHDRAW to Bank</a>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Extraction Balance</h4>
-                </div>
-                <div class="card-body">
-                    <h4>₦{{ auth()->user()->extraction_balance }}</h4>
-                    <h5>Date to Transfer to Wallet</h5>
-                    <h5 class="text-info">{{ $set->extraction_transfer_start }}</h5>
-                    <h5 class="text-info">{{ $set->extraction_transfer_end }}</h5>
-                    <h6 class="text-success">Monthly Transfer flow</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Viral Share Balance</h4>
-                </div>
-                <div class="card-body">
-                    <h4>₦{{ auth()->user()->viral_share_earning }}</h4>
-                    <h5>Date to Transfer to Wallet</h5>
-                    <h5 class="text-info">{{ $set->viral_share_transfer_start }}</h5>
-                    <h5 class="text-info">{{ $set->viral_share_transfer_end }}</h5>
-                    <h6 class="text-success">Monthly Transfer flow</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Referral Earnings</h4>
-                </div>
-                <div class="card-body">
-                    <h4>₦{{ auth()->user()->ref_earning }}</h4>
-                    <h5>Date to Transfer to Wallet</h5>
-                    <h5 class="text-info">{{ $set->ref_earning_transfer_start }}</h5>
-                    <h5 class="text-info">{{ $set->ref_earning_transfer_end }}</h5>
-                    <h6 class="text-success">Monthly Transfer flow</h6>
-                </div>
-            </div>
-        </div>
+
         <div class="col">
             <div class="card">
                 <div class="card-header">
@@ -83,10 +42,10 @@ Convert Indirect Referral Earnings to Rubic Wallet
                 </div>
                 <div class="card-body">
                     <h4>₦{{ auth()->user()->indirect_ref_earning }}</h4>
-                    <h5>Date to Transfer to Wallet</h5>
+                    <h5>Date to Transfer to Rubic NGN Wallet</h5>
                     <h5 class="text-info">{{ $set->indirect_ref_earning_transfer_start }}</h5>
                     <h5 class="text-info">{{ $set->indirect_ref_earning_transfer_end }}</h5>
-                    <h6 class="text-success">Monthly Transfer flow</h6>
+                    <h6 class="text-success">WEEKLY Transfer flow</h6>
                 </div>
             </div>
         </div>
@@ -97,6 +56,9 @@ Convert Indirect Referral Earnings to Rubic Wallet
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Convert Indirect Referral Earnings to Rubic Wallet</h4>
+                    <p><strong>Convert your INDIRECT REFERRAL EARNING</strong></p>
+<p><span style="color: #008000;"><strong>Convert your INDIRECT REFERRAL Earning to your RUBIC WALLET and Withdraw as Cash to your BANK Weekly.</strong></span></p>
+<p>All you have to do is to simply make a Transfer of your INDIRECT <strong>REFERRAL EARNING</strong>&nbsp;to your <span style="background-color: #ffff99; color: #008000;"><strong>RUBIC NGN Wallet</strong></span></p>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -107,13 +69,13 @@ Convert Indirect Referral Earnings to Rubic Wallet
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label" for="amount">Amount</label>
+                                                <label class="form-label" for="amount">Amount (₦)</label>
                                                 <input type="text" class="form-control" name="amount">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label for="pins">Transaction Code</label>
+                                                <label for="pins">Enter Transaction Code</label>
                                                 <div class="d-flex justify-content-around mb-2" style="gap: 20px">
                                                     <input type="text" class="form-control code-input text-center"
                                                         name="pins[]">
@@ -136,7 +98,7 @@ Convert Indirect Referral Earnings to Rubic Wallet
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                        <button type="submit" class="btn btn-primary w-md">Transfer to Rubic Wallet</button>
                                     </div>
                                 </form>
                             </div>
@@ -148,7 +110,7 @@ Convert Indirect Referral Earnings to Rubic Wallet
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">My Transfers</h4>
+                    <h4 class="card-title">My Indirect Referral Earnings Transfers to Rubic Wallet</h4>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -158,7 +120,7 @@ Convert Indirect Referral Earnings to Rubic Wallet
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
+                                            <th>Account Name</th>
                                             <th>Amount</th>
                                             <th>Transfer Time</th>
                                         </tr>
@@ -169,7 +131,7 @@ Convert Indirect Referral Earnings to Rubic Wallet
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->user->name }}</td>
-                                                    <td>{{ $item->amount }}</td>
+                                                    <td>₦{{ $item->amount }}</td>
                                                     <td>{{ \Carbon\carbon::parse($item->created_at)->toDateTimeString() }}
                                                     </td>
                                                 </tr>

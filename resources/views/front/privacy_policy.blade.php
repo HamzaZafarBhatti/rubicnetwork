@@ -10,7 +10,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Home</a>
+                            <a href="https://rubicnetwork.com/">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Pages
@@ -22,7 +22,7 @@
                 </nav>
             </div>
         </div>
-        <img src="{{ asset('front_assets/images/banner/key-illustration.png') }}" alt="Career" class="banner__thumb" />
+       <img src="{{ asset('front_assets/images/banner/key-illustration.png') }}" alt="Career" class="banner__thumb" />
     </section>
     <!-- ==== #banner section end ==== -->
 

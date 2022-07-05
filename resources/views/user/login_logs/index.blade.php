@@ -25,6 +25,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Login Logs</h4>
+                    <p><strong>All Login information with regards to your account.</strong></p>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -33,10 +34,10 @@
                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>User</th>
+                                            <th>S/N</th>
+                                            <th>Account Name</th>
                                             <th>IP Address</th>
-                                            <th>Login Time</th>
+                                            <th>Login Timestamp</th>
                                         </tr>
                                     </thead>
                                     <tbody>

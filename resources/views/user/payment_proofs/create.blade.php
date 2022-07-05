@@ -28,19 +28,19 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label" for="caption">Caption</label>
+                                                <label class="form-label" for="caption"><h4>Write a very good caption and testimony about RubicNetwork with regards to your most recent Withdrawal. <em><strong>We love to read from you!</strong></em></h4></label>
                                                 <textarea name="caption" id="caption" cols="30" rows="4" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label" for="image">Image</label>
+                                                <label class="form-label" for="image">Upload Payment Proof image</label>
                                                 <input type="file" name="image" id="image" class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                        <button type="submit" class="btn btn-primary w-md">Upload Payment Proof</button>
                                     </div>
                                 </form>
                             </div>

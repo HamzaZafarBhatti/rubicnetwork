@@ -16,7 +16,7 @@
             Extraction
         @endslot
         @slot('title2')
-            Convert to Rubic Wallet
+            Rubic NGN Wallet Transfers to Bank
         @endslot
     @endcomponent
 
@@ -24,7 +24,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">My Transfers</h4>
+                    <h4 class="card-title">Rubic NGN Wallet Transfers to Bank</h4>
+                    <p><strong>Bank Withdrawal Status with regards to your Rubic NGN Wallet transfers is displayed here.</strong></p>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -33,12 +34,12 @@
                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Name</th>
+                                            <th>S/N</th>
+                                            <th>Account Name</th>
                                             <th>Amount</th>
                                             <th>Status</th>
                                             <th>Bank Account #</th>
-                                            <th>Transfer Time</th>
+                                            <th>Transaction Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,7 +48,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->user->name }}</td>
-                                                    <td>{{ $item->amount }}</td>
+                                                    <td>₦{{ $item->amount }}</td>
                                                     <td>
                                                         @if ($item->status == 2)
                                                             <span

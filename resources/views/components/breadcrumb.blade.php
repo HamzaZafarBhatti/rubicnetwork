@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0 font-size-18">Good Evening ! {{ auth()->user()->name }} <div><small>You are on the <a href="#!">{{ auth()->user()->plan->name }}</a></small></div></h4>
+            <h4 class="mb-sm-0 font-size-18">Hello {{ auth()->user()->name }}! <div><small>You're on the RUBIC Extraction <a href="#!">{{ auth()->user()->plan->name }} Plan</a></small></div></h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">

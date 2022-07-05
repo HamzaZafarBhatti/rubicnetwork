@@ -38,7 +38,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Home</a>
+                            <a href="https://rubicnetwork.com">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Pages
@@ -60,6 +60,14 @@
             </div>
         </div>
     </section>
+        <div class="container">
+            <div class="testimonial__area">
+                    <h5 class="neutral-top">Full Payments. No Stories. No Delays</h5>
+                    <h2>Unlimited & Easy STAKING with any of our STAKE PLANS!
+                    </h2>
+                    <p class="neutral-bottom">RUBIC STAKING is designed to perfectly skyrocket the financial results, growth, and expectation of Extractors by STAKING the RUBIC/USDT trading pairs with any of our STAKE PLANS.</p><br>
+                </div>
+                        </div>
     @if ($plans)
         <section class="section__space pt-0">
             <div class="container">
@@ -71,29 +79,29 @@
                                     <img src="{{ url('/') }}/asset/images/{{ $plan->image }}"
                                         alt="{{ $plan->name }}" />
                                     <h5>{{ $plan->name }}</h5>
-                                    <h6 class="text-center">{{ $plan->amount }}</h6>
+                                    <h3 class="text-center">₦{{ $plan->amount }}</h3>
                                     <ul>
                                         <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />
                                             {{ $plan->percent }}%
-                                            Stake profit</li>
+                                            Daily Stake Profit</li>
                                         <li><img src="{{ asset('front_assets/images/check.png') }}"
                                                 alt="Check" />{{ $plan->ref_percent }}%
-                                            referral percent</li>
+                                            Stake Referral Earnings</li>
                                         <li><img src="{{ asset('front_assets/images/check.png') }}"
-                                                alt="Check" />{{ $plan->duration . ' ' . $plan->period }}
-                                            Duration</li>
+                                                alt="Check" />{{ $plan->duration . ' ' . $plan->period }}s
+                                            Stake Active Duration</li>
                                         <li><img src="{{ asset('front_assets/images/check.png') }}"
-                                                alt="Check" />{{ $plan->return_capital ? 'Yes' : 'No' }}
-                                            Return capital</li>
+                                                alt="Check" />₦{{ $plan->stake_profit_transfer }} 
+                                            Minimum Stake Profit Transfer to Stake Wallet</li>
                                         <li><img src="{{ asset('front_assets/images/check.png') }}"
-                                                alt="Check" />{{ $plan->stake_profit_transfer }}
-                                            Stake profit transfer to stake wallet</li>
+                                                alt="Check" />₦{{ $plan->stake_wallet_wd }}
+                                            Minimum Stake Wallet Withdrawal</li>
                                         <li><img src="{{ asset('front_assets/images/check.png') }}"
-                                                alt="Check" />{{ $plan->stake_wallet_wd }}
-                                            Stake wallet withdrawal</li>
-                                        <li><img src="{{ asset('front_assets/images/check.png') }}"
-                                                alt="Check" />{{ $plan->ref_earning_transfer }}
-                                            Stake referral earning transfer to stake wallet</li>
+                                                alt="Check" />Unlimited Staking</li>
+                                                <li><img src="{{ asset('front_assets/images/check.png') }}"
+                                                alt="Check" />Instant Cashout Anytime to Bank or Tether USDT of STAKE PROFITS</li>
+                                             <a href="https://rubicnetwork.com/register" class="button button--effect d-none d-sm-block">Stake Now
+                            <i class="fa-solid fa-arrow-circle-right"></i> </a>
                                     </ul>
                                     {{-- <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
                                     <hr />

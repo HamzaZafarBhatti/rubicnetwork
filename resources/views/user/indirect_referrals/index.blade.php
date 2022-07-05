@@ -25,6 +25,8 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">My Indirect Referrals</h4>
+                    <p><span style="background-color: #ffff99; color: #008000;"><strong>INDIRECT REFERRAL EARNING</strong></span></p>
+<p>These are REFERRALS (Downlines) referred by your REFERRALS. This means, every person, friend, associate that have been referred by those whom you referred, are all listed here as your INDIRECT REFERRAL.</p>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -34,7 +36,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Full Name</th>
+                                            <th>Account Name</th>
                                             <th>Username</th>
                                         </tr>
                                     </thead>

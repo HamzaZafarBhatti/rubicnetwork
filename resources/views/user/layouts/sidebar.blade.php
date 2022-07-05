@@ -17,7 +17,7 @@
                     </a>
                 </li>
 
-                <li class="menu-title" data-key="t-apps">@lang('translation.Apps')</li>
+                <li class="menu-title" data-key="t-apps">Rubic Extraction</li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
@@ -81,22 +81,48 @@
                         <span data-key="t-chat">Upgrade Plan</span>
                     </a>
                 </li>
-
-                <li class="menu-title" data-key="t-apps">@lang('translation.Pages')</li>
-
-                <li>
+                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="shopping-cart"></i>
-                        <span data-key="t-ecommerce">Withdraw Rubic NGN to Bank from Wallet</span>
+                        <span data-key="t-ecommerce">Withdraw Rubic NGN Wallet to Bank</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('user.wallet.withdraw') }}" key="t-products">Withdraw Rubic NGN to Bank
-                                from Wallet</a></li>
+                        <li><a href="{{ route('user.wallet.withdraw') }}" key="t-products">Withdraw Rubic NGN Wallet to Bank</a></li>
                         <li><a href="{{ route('user.wallet.withdraw_history') }}" data-key="t-product-detail">Rubic
                                 Wallet Withdrawal History</a></li>
                     </ul>
                 </li>
+
+
+                <li class="menu-title" data-key="t-apps">Rubic Staking</li>
                 <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i data-feather="shopping-bag"></i>
+                        <span data-key="t-ecommerce">Activate Rubic Stake Plan</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('user.stake_plans.activate') }}" key="t-products">Activate Stake
+                                Plan</a></li>
+                        <li><a href="{{ route('user.stake_plans.history') }}" data-key="t-product-detail">Stake
+                                Plan Activation History</a></li>
+                        <li><a href="{{ route('user.stake_plans.convert') }}" data-key="t-product-detail">Convert Rubic Stake Profit to Stake Wallet</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i data-feather="shopping-cart"></i>
+                        <span data-key="t-ecommerce">Stake Referral Earnings</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('user.stake_referrals.earning_history') }}" key="t-products">Stake
+                                Referral Earnings</a></li>
+                        <li><a href="{{ route('user.stake_referrals.convert') }}"
+                                data-key="t-product-detail">Convert Referral Earnings to Rubic Stake Wallet</a>
+                        </li>
+                    </ul>
+                </li>
+ <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="shopping-cart"></i>
                         <span data-key="t-ecommerce">Withdraw Rubic Stake Wallet to Bank</span>
@@ -120,37 +146,6 @@
                                 data-key="t-product-detail">Rubic Stake Wallet Withdrawal History</a></li>
                     </ul>
                 </li>
-
-                <li class="menu-title" data-key="t-apps">Rubic Staking</li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="shopping-bag"></i>
-                        <span data-key="t-ecommerce">Activate Rubic Stake Plan</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('user.stake_plans.activate') }}" key="t-products">Activate Stake
-                                Plan</a></li>
-                        <li><a href="{{ route('user.stake_plans.history') }}" data-key="t-product-detail">Stake
-                                Plan Activation History</a></li>
-                        <li><a href="{{ route('user.stake_plans.convert') }}" data-key="t-product-detail">Conversion Stake to Stake Wallet History</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="shopping-cart"></i>
-                        <span data-key="t-ecommerce">Stake Referral Earnings</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('user.stake_referrals.earning_history') }}" key="t-products">Stake
-                                Referral Earnings</a></li>
-                        <li><a href="{{ route('user.stake_referrals.convert') }}"
-                                data-key="t-product-detail">Convert Referral Earnings to Rubic Stake Wallet</a>
-                        </li>
-                    </ul>
-                </li>
-
-
                 <li class="menu-title" data-key="t-apps">Account Information</li>
                 <li>
                     <a href="{{ route('user.profile_edit') }}">
@@ -180,6 +175,12 @@
                     <a href="{{ route('user.notifications.index') }}">
                         <i data-feather="info"></i>
                         <span data-key="t-chat">All Notifications</span>
+                    </a>
+                </li>
+                 <li>
+                    <a href="https://rubicnetwork.com/contact_us">
+                        <i data-feather="info"></i>
+                        <span data-key="t-chat">Support</span>
                     </a>
                 </li>
                 <li>

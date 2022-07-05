@@ -17,7 +17,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Update your Account Information</h4>
+                    <h4 class="card-title">Update your RubicNetwork Account Information</h4>
                 </div>
                 <div class="card-body p-4">
                     <div class="row">
@@ -77,14 +77,16 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label" for="address">Address</label>
+                                                <label class="form-label" for="address">Facebook Profile Link</label>
                                                 <input type="text" class="form-control" name="address"
-                                                    value="{{ $user->address }}">
+                                                    value="{{ $user->address }}"><p><strong><span style="color: #0000ff;">Update your Facebook Profile Link to allow RubicNetwork process your OUTPUT for your Extraction &amp; Viral Share Earnings per month.</span>&nbsp;</strong></p>
+<p><span style="background-color: #ffff99;">Updating your Facebook Profile Link is compulsory for monthly disbursement.</span></p>
+<p><span style="background-color: #ffff99;">Participating in VIRAL SHARE is also compulsory.</span></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                        <button type="submit" class="btn btn-primary w-md">Update Account</button>
                                     </div>
                                 </form>
                             </div>
@@ -94,7 +96,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Update Bank details</h4>
+                    <h4 class="card-title">Update Bank Account Information</h4>
                 </div>
                 <div class="card-body p-4">
                     <div class="row">
@@ -144,7 +146,7 @@
                                         </div>
                                         <div class="col-xl-6 col-md-12">
                                             <div class="mb-3">
-                                                <label for="pins">Transaction Code</label>
+                                                <label for="pins">Enter Transaction Code</label>
                                                 <div class="d-flex justify-content-around mb-2" style="gap: 20px">
                                                     <input type="text" class="form-control code-input text-center" name="pins[]">
                                                     <input type="text" class="form-control code-input text-center" name="pins[]">
@@ -160,7 +162,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                        <button type="submit" class="btn btn-primary w-md">Update Bank Account</button>
                                     </div>
                                 </form>
                             </div>
@@ -172,7 +174,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Change account photo</h4>
+                    <h4 class="card-title">Change Profile Picture</h4>
                 </div>
                 <div class="card-body p-4">
                     <div class="row">
@@ -185,7 +187,7 @@
                                         <input type="file" class="form-control" name="image" accept="image/*">
                                     </div>
                                     <div class="mt-4">
-                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                        <button type="submit" class="btn btn-primary w-md">Update Profile Picture</button>
                                     </div>
                                 </form>
                             </div>
@@ -195,7 +197,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Update Tether USDT Address</h4>
+                    <h4 class="card-title">Update Tether USDT Wallet Address</h4>
                 </div>
                 <div class="card-body p-4">
                     <div class="row">
@@ -217,7 +219,7 @@
                                         <input type="text" class="form-control" name="tether_address" value="{{ $user->tether_address }}">
                                     </div>
                                     <div class="mt-4">
-                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                        <button type="submit" class="btn btn-primary w-md">Update Wallet Address</button>
                                     </div>
                                 </form>
                             </div>

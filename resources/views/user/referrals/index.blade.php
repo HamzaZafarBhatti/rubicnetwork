@@ -25,6 +25,9 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Referral Link</h4>
+                    <p>Your <span style="background-color: #ffff99;"><strong>RUBICNETWORK Referral Link</strong></span> helps you Earn when you refer your downlines to register for <span style="color: #0000ff;"><strong><span style="background-color: #ffff99;">RUBIC EXTRACTION</span></strong></span> or when they activate a <span style="background-color: #ffff99; color: #0000ff;"><strong>RUBIC STAKE PLAN</strong></span>.</p>
+<p>You will also earn to your <strong><span style="text-decoration: underline;">Indirect Referral Earnings Balance</span> </strong>as well as to your main <span style="text-decoration: underline;"><strong>Referral Earnings Balance</strong></span>, by sharing your referral link to your friends, family and associates.</p>
+<p>Also, Share your Referral Link to your WhatsApp Groups, Facebook Groups. Earn a percentage of whatever Mining Plan your referred user purchase to. You also earn from Indirect Referral Earnings.</p>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -42,7 +45,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">My Referrals</h4>
+                    <h4 class="card-title">My Referral Downlines</h4>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">

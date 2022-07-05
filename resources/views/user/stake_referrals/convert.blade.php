@@ -28,24 +28,19 @@
                 </div>
                 <div class="card-body">
                     <h4>₦{{ auth()->user()->rubic_stake_wallet }}</h4>
+                    <p>which is equivalent &asymp; to</p>
+<h4><strong>$0.00 USDT</strong></h4>
+<p>as <span style="color: #0000ff;"><strong>Tether USDT</strong></span></p>
+                    <br>
+                    <h5 class="text-success">Rubic Stake Wallet Funds can be Withdrawn and paid Instantly To Your BANK or to your Tether USDT Wallet</h5>
                     <a href="{{ route('user.stake_wallet.withdraw_to_tether') }}" type="submit"
-                        class="btn btn-primary w-100">Withdraw to USDT Tether</a>
+                        class="btn btn-primary w-100">WITHDRAW to Tether USDT Wallet</a>
                     <a href="{{ route('user.stake_wallet.withdraw_to_bank') }}" type="submit"
-                        class="btn btn-primary w-100 mt-3">Withdraw to Bank</a>
+                        class="btn btn-primary w-100 mt-3">WITHDRAW to Bank</a>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Rubic Stake Profits</h4>
-                </div>
-                <div class="card-body">
-                    <h4>₦{{ auth()->user()->stake_profit }}</h4>
-                    <h5 class="text-success">Transfers to STAKE WALLET for output can be done once your STAKE BALANCE reaches minimum transfer of the PLAN</h5>
-                </div>
-            </div>
-        </div>
+      
         <div class="col">
             <div class="card">
                 <div class="card-header">
@@ -53,10 +48,13 @@
                 </div>
                 <div class="card-body">
                     <h4>₦{{ auth()->user()->stake_ref_earning }}</h4>
+                    <p>which is equivalent &asymp; to</p>
+<h4><strong>$0.00 USDT</strong></h4>
+<p>as <span style="color: #0000ff;"><strong>Tether USDT</strong></span></p>
                     <h5>Date to Transfer to Wallet</h5>
                     <h5 class="text-info">{{ $set->stake_ref_earning_transfer_start }}</h5>
                     <h5 class="text-info">{{ $set->stake_ref_earning_transfer_end }}</h5>
-                    <h6 class="text-success">Weekly flow</h6>
+                    <h6 class="text-success">Stake Referral Earnings Transfer: Weekly flow</h6>
                 </div>
             </div>
         </div>
@@ -66,7 +64,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Convert Stake Referral Earnings to Rubic Stake Wallet</h4>
+                    <h4 class="card-title">Convert Stake Referral Earnings to Stake Wallet</h4>
+                    <p><span style="color: #008000;"><strong>Convert your STAKE Referral Earning to your STAKE WALLET and Withdraw as Cash to your BANK or to your Tether USDT Weekly.</strong></span></p>
+<p>All you have to do is to simply make a Transfer of your <strong>STAKE REFERRAL EARNING</strong> to your <strong><span style="background-color: #ffff99; color: #008000;">RUBIC STAKE Wallet.</span></strong></p>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -77,13 +77,13 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label" for="amount">Amount</label>
+                                                <label class="form-label" for="amount">Amount (₦)</label>
                                                 <input type="text" class="form-control" name="amount">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label for="pins">Transaction Code</label>
+                                                <label for="pins">Enter Transaction Code</label>
                                                 <div class="d-flex justify-content-around mb-2" style="gap: 20px">
                                                     <input type="text" class="form-control code-input text-center"
                                                         name="pins[]">
@@ -106,7 +106,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                        <button type="submit" class="btn btn-primary w-md">Transfer to Stake Wallet</button>
                                     </div>
                                 </form>
                             </div>
@@ -118,7 +118,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">My Transfers</h4>
+                    <h4 class="card-title">My Stake Referral Earnings Transfers to Stake Wallet</h4>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -127,8 +127,8 @@
                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Name</th>
+                                            <th>S/N</th>
+                                            <th>Account Name</th>
                                             <th>Amount</th>
                                             <th>Transfer Time</th>
                                         </tr>
@@ -139,7 +139,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->user->name }}</td>
-                                                    <td>{{ $item->amount }}</td>
+                                                    <td>₦{{ $item->amount }}</td>
                                                     <td>{{ \Carbon\carbon::parse($item->created_at)->toDateTimeString() }}
                                                     </td>
                                                 </tr>

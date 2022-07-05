@@ -24,7 +24,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Tether USDT - TRON-20 - STAKE PLAN Activation</h4>
+                    <h4 class="card-title">Tether USDT - TRON-20 - {{ $stakePlan->name }} STAKE PLAN Activation</h4>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -87,7 +87,7 @@
                                     @csrf
                                     <div class="modal-body">
                                         <h5>Confirm Tether USDT - TRC20 SAKE PLAN - {{ $stakePlan->name }} -
-                                            {{ $stakePlan->amount / $set->ngn_rate }}USD ACTIVATION</h5>
+                                            ${{ $stakePlan->amount / $set->ngn_rate }} USDT ACTIVATION</h5>
 
                                         <div class="row">
                                             <div class="col-md-12">

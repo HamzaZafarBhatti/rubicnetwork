@@ -9,7 +9,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta content="{{ $set->site_desc }}" name="description" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="https://rubicnetwork.com/front_assets/images/manual_uploads/favicon/favicon-32x32.png">
         @include('layouts.head-css')
   </head>
 

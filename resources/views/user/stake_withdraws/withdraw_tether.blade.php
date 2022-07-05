@@ -8,15 +8,30 @@
             Rubic Stake Wallet
         @endslot
         @slot('title2')
-            Withdraw to Tether USDT
+            Withdrawal to Tether USDT
         @endslot
     @endcomponent
+<div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Rubic Stake Wallet to Tether USDT Withdrawal</h4>
+                </div>
+                <div class="card-body">
+                    <h4>₦{{ auth()->user()->rubic_stake_wallet }}</h4>
+                    <p>which is equivalent &asymp; to</p>
+<h3><strong>$0.00 USDT</strong></h3>
+<p>as <span style="color: #0000ff;"><strong>Tether USDT</strong></span></p>
+                    <br>
+                    <h5 class="text-success">Funds in your STAKE WALLET which is already calculated in equivalent ≈ to USDT can now be withdrawn to your set Tether USDT WALLET below.</h5>
 
+            </div>
+        </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Withdraw Rubic Stake Wallet to Tether USDT</h4>
+                    <h4 class="card-title">Withdraw Stake Wallet to Tether USDT</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -44,13 +59,13 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label class="form-label" for="amount">Amount</label>
+                                                <label class="form-label" for="amount">Amount ($)</label>
                                                 <input type="text" class="form-control" name="amount">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label for="pins">Transaction Code</label>
+                                                <label for="pins">Enter Transaction Code</label>
                                                 <div class="d-flex justify-content-around mb-2" style="gap: 20px">
                                                     <input type="text" class="form-control code-input text-center"
                                                         name="pins[]">
@@ -73,7 +88,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                        <button type="submit" class="btn btn-primary w-md">WITHDRAW To Tether USDT Wallet</button>
                                     </div>
                                 </form>
                             </div>

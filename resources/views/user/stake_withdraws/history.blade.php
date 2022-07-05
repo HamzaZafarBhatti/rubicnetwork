@@ -24,7 +24,8 @@ Rubic Stake Wallet Withdrawal History
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Rubic Stake Wallet Withdrawal History</h4>
+                    <h4 class="card-title">Stake Wallet Withdrawal History</h4>
+
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -33,13 +34,13 @@ Rubic Stake Wallet Withdrawal History
                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Name</th>
+                                            <th>S/N</th>
+                                            <th>Account Name</th>
                                             <th>Amount</th>
                                             <th>Status</th>
-                                            <th>Account #</th>
+                                            <th>Account Number</th>
                                             <th>Withdrawn To</th>
-                                            <th>Transfer Time</th>
+                                            <th>Transaction Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -48,7 +49,7 @@ Rubic Stake Wallet Withdrawal History
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->user->name }}</td>
-                                                    <td>{{ $item->amount }}</td>
+                                                    <td>₦{{ $item->amount }} ≈ ${{ substr($item->amount / $set->ngn_rate, 0, 9) }} USDT</td>
                                                     <td>
                                                         @if ($item->status == 2)
                                                             <span
@@ -64,9 +65,9 @@ Rubic Stake Wallet Withdrawal History
                                                     <td>{{ $item->account_no }}</td>
                                                     <td>
                                                         @if ($item->withdraw_to == 'bank')
-                                                            Bank
+                                                            Bank Account
                                                         @else
-                                                            Tether
+                                                            Tether USDT Wallet
                                                         @endif
                                                     </td>
                                                     <td>{{ \Carbon\carbon::parse($item->created_at)->toDateTimeString() }}

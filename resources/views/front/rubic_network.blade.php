@@ -25,17 +25,17 @@
     <section class="banner clear__top bg__img" data-background="{{ asset('front_assets/images/banner/banner-bg.png') }}">
         <div class="container">
             <div class="banner__area">
-                <h1 class="neutral-top">Rubic Netowrk</h1>
+                <h1 class="neutral-top">Rubic Extraction</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Home</a>
+                            <a href="https://rubicnetwork.com/">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Pages
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Rubic Netowrk
+                            Rubic Extraction
                         </li>
                     </ol>
                 </nav>
@@ -51,7 +51,8 @@
             </div>
         </div>
     </section>
-    @if ($plans)
+                        <h3>Choose your Multi-Chain Extraction Plan.</h3>
+                    @if ($plans)
         <section class="section__space pt-0">
             <div class="container">
                 <div class="contact__overview__area">
@@ -62,21 +63,27 @@
                                     <img src="{{ url('/') }}/asset/images/{{ $item->image }}"
                                         alt="{{ $item->name }}" />
                                     <h5>{{ $item->name }}</h5>
-                                    <h6 class="text-center">{{ $item->amount }}</h6>
+                                    <h3 class="text-center">₦{{ $item->amount }}</h3>
                                     <ul>
                                         <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />
                                             {{ $item->percent }}%
-                                            profit</li>
+                                            Extraction Protocol</li>
+                                            <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />
+                                            Every {{ $item->extraction_plan_time }}hrs
+                                            Extraction Power Chain</li>
                                         <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />{{ $item->ref_percent }}%
                                             Referral percent</li>
                                         <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />{{ $item->duration . ' ' . $item->period }}
                                             Duration</li>
-                                        <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />{{ $item->min_account_balance_wd }}
-                                            Profit transfer to Rubic wallet</li>
-                                        <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />{{ $item->min_rubic_wallet_wd }}
-                                            Wallet withdrawal</li>
-                                        <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />{{ $item->min_ref_earn_wd }}
-                                            Referral earning transfer to Rubic wallet</li>
+                                        <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />{{ $item->indirect_ref_com }}%
+                                            Indirect Referral Percent</li>
+                                        <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />₦{{ $item->min_rubic_wallet_wd }}
+                                            Minimum Wallet Withdrawal</li>
+                                        <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />₦{{ $item->viral_share_bonus }}
+                                            Daily Viral Share Bonus</li>
+                                            <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />No Referrals Needed for Cashout</li>
+                                            <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />Guaranteed Full Cashout Monthly</li>
+                                             <a href="https://rubicnetwork.com/register" class="button button--effect">Start Extraction</a>
                                     </ul>
                                     {{-- <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
                                     <hr />

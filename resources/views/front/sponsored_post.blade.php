@@ -7,17 +7,17 @@
         data-background="{{ asset('user_assets/images/banner/banner-bg.png') }}">
         <div class="container">
             <div class="banner__area">
-                <h1 class="neutral-top">Blog</h1>
+                <h1 class="neutral-top">Viral Share Posts</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Home</a>
+                            <a href="https://rubicnetwork.com/">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Pages
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Blog
+                            Viral Share
                         </li>
                     </ol>
                 </nav>
@@ -35,7 +35,9 @@
                     <div class="col-xl-8">
                         <div class="left__wrap">
                             <div class="filter__bar">
-                                <h3>Latest Posts</h3>
+                                <h3>Latest Viral Share Posts</h3>
+                                <p><span style="text-decoration: underline;">Ensure you participate in all RUBICNETWORK Viral Share Posts to earn.</span></p>
+<p><strong>RUBICNETWORK</strong> would confirm VIRAL SHARE Tasks before VIRAL SHARE and EXTRACTION Earnings are paid out Monthly.<span style="text-decoration: underline; color: #ff0000;"><strong> All VIRAL SHARE tasks are compulsory for participation and earning.</strong></span></p>
                                 {{-- <div class="filter__bar__tabs">
                                     <a href="javascript:void(0)" class="filter__bar__tab button button--effect"
                                         data-target="all">All</a>

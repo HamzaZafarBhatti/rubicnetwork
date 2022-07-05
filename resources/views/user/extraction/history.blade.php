@@ -34,11 +34,10 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>User</th>
                                             <th>Plan</th>
-                                            <th>User Extract Balance</th>
+                                            <th>Extraction Balance</th>
                                             <th>Extract Amount</th>
-                                            <th>Transaction</th>
+                                            <th>Extract Chain</th>
                                             <th>Status</th>
                                             <th>Start Time</th>
                                             <th>End Time</th>
@@ -49,11 +48,10 @@
                                             @foreach ($extractions as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->user->name }}</td>
                                                     <td>{{ $item->plan->name }}</td>
-                                                    <td>{{ $item->amount }}</td>
-                                                    <td>{{ $item->profit }}</td>
-                                                    <td>{{ $item->trx }}</td>
+                                                    <td>₦{{ $item->amount }}</td>
+                                                    <td>₦{{ $item->profit }}</td>
+                                                    <td>#{{ $item->trx }}</td>
                                                     <td>
                                                         @if ($item->status == 2)
                                                             <span

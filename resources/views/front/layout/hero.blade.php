@@ -6,25 +6,24 @@
                 <div class="row">
                     <div class="col-lg-7 col-xxl-6">
                         <div class="hero__content">
-                            <h5 class="neutral-top">Smart. Simple. Accessible.</h5>
-                            <h1>Investing
-                                Made <span>Simple</span> &
-                                <span>Transparent</span>
+                            <h5 class="neutral-top">Extract RUBIC Token & Stake RUBIC/USDT</h5>
+                            <h1>Powerful EXTRACTION!
+                                <span>Easy</span>
+                                <span>STAKING!</span>
                             </h1>
                             <p class="primary neutral-bottom">
-                                Start growing your passive income today. Invest from as low as 100 EUR in real estate
-                                opportunities worldwide.
+                               RUBIC is designed to perfectly skyrocket your financial results.
                             </p>
                             <div class="hero__cta__group">
-                                <a href="#" class="button button--effect">Start Exploring</a>
-                                <a href="#" class="button button--secondary button--effect">Get
-                                    Funding</a>
+                                <a href="https://rubicnetwork.com/register" class="button button--effect">Start Extracting</a>
+                                <a href="https://rubicnetwork.com/register" class="button button--secondary button--effect">Start Staking</a>
+                                 <a href="https://rubicnetwork.com/login" class="button button--secondary button--effect">Login</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-5 col-xxl-6">
                         <div class="hero__illustration d-none d-lg-block">
-                            <img src="{{ asset('front_assets/images/hero/hero-two-illustration.png') }}" alt="Hero Illustration" />
+                            <img src="https://rubicnetwork.com/front_assets/images/manual_uploads/20220704_180543-rubic.png" width="1450" height="1200" />
                         </div>
                     </div>
                 </div>

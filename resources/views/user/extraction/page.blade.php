@@ -70,7 +70,7 @@
             Extraction
         @endslot
         @slot('title2')
-            Extraction Page
+            Extraction Machine
         @endslot
     @endcomponent
 
@@ -79,7 +79,10 @@
             <div class="card card-h-100">
                 <!-- card body -->
                 <div class="card-body">
-                    <h2 class="text-center">Extraction Machine</h2>
+                    <h2 class="text-center">Rubic Extraction Machine</h2>
+                    <p><strong>Start your RUBIC EXTRACTION.&nbsp;</strong></p>
+<p>Immediately your EXTRACTION is completed, the RUBIC Tokens would be automatically processed to your EXTRACTION Balance.</p>
+<p><span style="background-color: #ffff99;"><strong>RUBICNETWORK would process your EXTRACTION Output as payment in full Monthly to your Bank.</strong></span></p>
                     <hr size="8" class="title-line">
 
                     @if ($latest_mine)
@@ -109,9 +112,9 @@
                             </div>
                         </div>
                         <div class="text-center m-4">
-                            <img src="{{ asset('user_assets/images/gifs/extract.gif') }}" alt=""
+                            <img src="https://rubicnetwork.com/front_assets/images/manual_uploads/Gear-0.2s-200px.gif" alt=""
                                 class="rounded-circle extraction-gif">
-                            <h3 class="mt-2">Extraction in progress...</h3>
+                            <h3 class="mt-2">Rubic Extraction in progress...</h3>
                         </div>
                     @else
                         <div class="d-flex justify-content-center align-items-center m-4">

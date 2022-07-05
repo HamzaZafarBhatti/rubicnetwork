@@ -4,48 +4,32 @@
         <div class="footer__newsletter">
             <div class="row d-flex align-items-center">
                 <div class="col-lg-6">
-                    <div class="footer__newsletter__content column__space">
-                        <h3>Subscribe for updates</h3>
-                        <p>Stay on top of the latest blog posts, news and announcements</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xxl-5 offset-xxl-1">
-                    <div class="footer__newsletter__form">
-                        <form action="#" method="post">
-                            <div class="footer__newsletter__input__group">
-                                <div class="input">
-                                    <input type="email" name="news__letter" id="newsLetterMail"
-                                        placeholder="Enter Your Email" required="required" />
-                                </div>
-                                <button type="submit" class="button button--effect">Subscribe</button>
-                            </div>
-                        </form>
-                    </div>
+                  
                 </div>
             </div>
         </div>
-        <div class="footer__area section__space">
             <div class="row">
                 <div class="col-md-12 col-lg-4 col-xl-4">
                     <div class="footer__intro">
-                        <a href="index.html">
-                            <img src="{{ asset('front_assets/images/logo-light.png') }}" alt="Revest"
-                                class="logo" />
+                        <a href="https://rubicnetwork.com/">
+                           <img src="https://rubicnetwork.com/front_assets/images/manual_uploads/Logo.png" width="213" height="50" />
                         </a>
-                        <p>Revest is a platform offering anyone the ability to invest and potentially earn money
-                            from property at the click of a button</p>
+                        <p>Multi-Chain Swap Protocol Network provider that enables users to manually and automatically Extract the RUBIC Token in blocks; as well as is designed to allow user STAKE the RUBIC/USDT Trading Pair.</p>
                         <div class="social">
-                            <a href="javascript:void(0)">
+                            <a href="https://web.facebook.com/officialrubicnetwork">
                                 <i class="fa-brands fa-facebook-f"></i>
                             </a>
-                            <a href="javascript:void(0)">
+                             <a href="https://web.facebook.com/groups/rubicnetwork">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="https://twitter.com/rubic_network">
                                 <i class="fa-brands fa-twitter"></i>
                             </a>
-                            <a href="javascript:void(0)">
+                            <a href="https://www.instagram.com/rubicnetwork/">
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
-                            <a href="javascript:void(0)">
-                                <i class="fa-brands fa-linkedin-in"></i>
+                            <a href="https://t.me/rubicnetwork">
+                                <i class="fa-brands fa-telegram"></i>
                             </a>
                         </div>
                     </div>
@@ -55,42 +39,38 @@
                         <h5>Company</h5>
                         <ul>
                             <li>
-                                <a href="about-us.html">About Us</a>
+                                <a href="https://rubicnetwork.com/about_us">About Us</a>
                             </li>
                             <li>
-                                <a href="career.html">Careers</a>
+                                <a href="https://rubicnetwork.com/rubic_network">Rubic Extraction</a>
                             </li>
                             <li>
-                                <a href="blog.html">Blog</a>
+                                <a href="https://rubicnetwork.com/rubic_staking">Rubic Staking</a>
                             </li>
                             <li>
-                                <a href="contact-us.html">Contact Us</a>
+                                <a href="https://rubicnetwork.com/contact_us">Contact Us</a>
                             </li>
-                            <li class="neutral-bottom">
-                                <a href="affiliate-program.html">Affiliate</a>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3 col-lg-2 col-xl-2">
                     <div class="footer__links footer__links--alt">
-                        <h5>Invest</h5>
+                        <h5>Get Started</h5>
                         <ul>
                             <li>
-                                <a href="properties.html">Browse Properties</a>
+                                <a href="https://rubicnetwork.com/user/dashboard">My Account</a>
                             </li>
                             <li>
-                                <a href="how-it-works.html">How it works</a>
+                                <a href="https://rubicnetwork.com/pin_dispatchers">PIN CODE DISPATCHERS</a>
                             </li>
                             <li>
-                                <a href="loan-application.html">Loan Application </a>
+                                <a href="https://rubicnetwork.com/pin_verification">PIN CODE Verirication </a>
                             </li>
                             <li>
-                                <a href="property-alert.html">Property Alerts</a>
+                                <a href="https://rubicnetwork.com/faq">FAQ</a>
                             </li>
-                            <li class="neutral-bottom">
-                                <a href="support.html">FAQs</a>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -99,13 +79,16 @@
                         <h5>Insights</h5>
                         <ul>
                             <li>
-                                <a href="support.html">Help Center</a>
+                                <a href="https://rubicnetwork.com/sponsored_post">Viral Share</a>
                             </li>
                             <li>
-                                <a href="list-your-property.html">List Your Property</a>
+                                <a href="https://rubicnetwork.com/top_earners">Top Earners</a>
+                            </li>
+                             <li>
+                                <a href="https://rubicnetwork.com/contact_us">Support</a>
                             </li>
                             <li class="neutral-bottom">
-                                <a href="loyality-program.html">Loyality program </a>
+                                <a href="https://rubicnetwork.com/payment_proof">Payment Proof </a>
                             </li>
                         </ul>
                     </div>
@@ -115,16 +98,16 @@
                         <h5>Legal</h5>
                         <ul>
                             <li>
-                                <a href="privacy-policy.html">Privacy Policy</a>
+                                <a href="https://rubicnetwork.com/privacy_policy">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="terms-conditions.html">Term & Conditions</a>
+                                <a href="https://rubicnetwork.com/terms_condition">Term & Conditions</a>
                             </li>
                             <li>
-                                <a href="cookie-policy.html">Cookie Policy</a>
+                                <a href="https://rubicnetwork.com/cookies_policy">Cookie Policy</a>
                             </li>
                             <li class="neutral-bottom">
-                                <a href="key-risks.html">Key Risks</a>
+                                <a href="https://rubicnetwork.com/disclaimer">Earnings Disclaimer</a>
                             </li>
                         </ul>
                     </div>
@@ -135,8 +118,7 @@
             <div class="row d-flex align-items-center">
                 <div class="col-sm-9 order-1 order-sm-0">
                     <div class="footer__copyright">
-                        <p>Copyright &copy; {{$set->site_name}} | Developed by <a
-                                href="https://themeforest.net/user/pixelaxis">TechBevy</a></p>
+                        <p>Copyright &copy; RubicNetwork.com - {{$set->site_name}} | Extraction & Staking Platform</p>
                     </div>
                 </div>
                 <div class="col-sm-3">

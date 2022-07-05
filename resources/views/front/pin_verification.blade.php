@@ -10,7 +10,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Home</a>
+                            <a href="https://rubicnetwork.com/">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Pages
@@ -31,8 +31,8 @@
             <div class="ask__area">
                 <div class="alert__newsletter__area">
                     <div class="section__header mw-100">
-                        <h6 class="neutral-top">Enter your RUBIC NETWORK Activation Code or RUBIC STAKE Action Code by
-                            verifying the Validity Status and Upline Referral</h6>
+                        <h4 class="neutral-top">Enter your RUBIC EXTRACTION  or RUBIC STAKE Activation Code by
+                            verifying the Validity Status and Upline Referral instantly.</h4>
                     </div>
                     <form action="{{ route('front.confirm_code') }}" name="ask__from" method="post">
                         @csrf
@@ -42,7 +42,7 @@
                                     <div>
                                         <input type=radio id="pone" class="radio-input" name="type" value="network">
                                         <label for="pone" class="radio-label"> <span class="radio-border"></span> Rubic
-                                            Network </label>
+                                            Extraction </label>
                                     </div>
                                     <div>
                                         <input type=radio id="ptwo" class="radio-input" name="type" value="staking">
@@ -54,12 +54,12 @@
                                 <h5>Activation Code*</h5>
                                 <div class="input input--secondary">
                                     <input type="text" name="code" id="askRegistrationMail"
-                                        placeholder="Enter your Code" required="required" />
+                                        placeholder="Enter your code" required="required" />
                                 </div>
                             </div>
                         </div>
                         <div class="input__button">
-                            <button type="submit" class="button button--effect">Validate</button>
+                            <button type="submit" class="button button--effect">Validate Activation Code</button>
                         </div>
                     </form>
                 </div>

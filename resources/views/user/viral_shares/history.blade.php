@@ -34,9 +34,9 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Post</th>
-                                            <th>Bonus</th>
-                                            <th>Share Date</th>
+                                            <th>Viral Share Post</th>
+                                            <th>Viral Share Earning</th>
+                                            <th>Viral Share Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -45,7 +45,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->post->title }}</td>
-                                                    <td>{{ $item->bonus }}</td>
+                                                    <td>₦{{ $item->bonus }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}</td>
                                                 </tr>
                                             @endforeach

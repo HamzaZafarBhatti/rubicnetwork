@@ -10,7 +10,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Home</a>
+                            <a href="https://rubicnetwork.com/">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Pages
@@ -22,7 +22,7 @@
                 </nav>
             </div>
         </div>
-        <img src="{{ asset('assets/images/banner/key-illustration.png') }}" alt="Career" class="banner__thumb" />
+        <img src="{{ asset('front_assets/images/banner/key-illustration.png') }}" alt="Career" class="banner__thumb" />
     </section>
     <!-- ==== #banner section end ==== -->
     <!-- ==== details section start ==== -->
@@ -33,7 +33,7 @@
                     <div class="col-lg-6">
                         <div class="p__details__content">
                             <div class="group__one">
-                                <h4>Rubic Network Earners</h4>
+                                <h4>Top 50 Rubic Extractor Earners</h4>
                                 {{-- <p>Purpose of the loan To increase the company's working capital</p> --}}
                                 <div class="tabular__group">
                                     @if ($rubic_earners)
@@ -68,7 +68,7 @@
                     <div class="col-lg-6">
                         <div class="p__details__content">
                             <div class="group__one">
-                                <h4>Rubic Stake Earners</h4>
+                                <h4>Top 50 Rubic Stake Earners</h4>
                                 {{-- <p>Purpose of the loan To increase the company's working capital</p> --}}
                                 <div class="tabular__group">
                                     @if ($stake_earners)

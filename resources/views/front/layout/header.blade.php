@@ -3,17 +3,16 @@
     <nav class="navbar navbar-expand-xl">
         <div class="container">
             <a class="navbar-brand" href="{{ route('front.index') }}">
-                <img src="{{ asset('front_assets/images/logo.png') }}" alt="Logo" class="logo" />
+                <img src="https://rubicnetwork.com/front_assets/images/manual_uploads/Logo.png" alt="" width="239" height="56" />
             </a>
             <div class="navbar__out order-2 order-xl-3">
                 <div class="nav__group__btn">
                     @auth
-                        <a href="{{ route('user.dashboard') }}" class="button button--effect d-none d-sm-block"> Dashboard
+                        <a href="{{ route('user.dashboard') }}" class="button button--effect d-none d-sm-block"> DASHBOARD
                             <i class="fa-solid fa-arrow-right-long"></i> </a>
                     @endauth
                     @guest
-                        <a href="{{ route('user.login') }}" class="log d-none d-sm-block"> Log In </a>
-                        <a href="{{ route('user.register') }}" class="button button--effect d-none d-sm-block"> Join Now
+                        <a href="{{ route('user.register') }}" class="button button--effect d-none d-sm-block"> JOIN NOW!
                             <i class="fa-solid fa-arrow-right-long"></i> </a>
                     @endguest
                 </div>
@@ -38,7 +37,9 @@
                             HOW IT WORKS
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarHomeDropdown">
-                            <li><a class="dropdown-item" href="{{ route('front.rubic_network') }}">RUBIC NETWORK</a>
+                             <li><a class="dropdown-item" href="{{ route('front.about_us') }}">ABOUT US</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{{ route('front.rubic_network') }}">RUBIC EXTRACTION</a>
                             </li>
                             <li><a class="dropdown-item" href="{{ route('front.rubic_staking') }}">RUBIC STAKING</a>
                             </li>
@@ -83,7 +84,7 @@
                             PAGES
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarPages">
-                            <li><a class="dropdown-item" href="{{ route('front.about_us') }}">ABOUT US</a>
+                            <li><a class="dropdown-item" href="{{ route('front.sponsored_post') }}">VIRAL SHARE</a>
                             </li>
                             <li><a class="dropdown-item" href="{{ route('front.contact_us') }}">CONTACT US</a>
                             </li>
@@ -95,23 +96,21 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('front.sponsored_post') }}">SPONSORED POST</a>
-                    </li>
+
                     @auth
                     <li class="nav-item d-block d-sm-none">
                         <a href="{{ route('user.dashboard') }}"
-                            class="button button--effect button--last">Dashboard <i
+                            class="button button--effect button--last">DASHBOARD <i
                                 class="fa-solid fa-arrow-right-long"></i></a>
                     </li>    
                     @endauth
                     @guest
                         <li class="nav-item d-block d-sm-none">
-                            <a href="{{ route('user.login') }}" class="nav-link">Log In</a>
+                            <a href="{{ route('user.login') }}" class="nav-link">LOGIN</a>
                         </li>
                         <li class="nav-item d-block d-sm-none">
-                            <a href="{{ route('user.register') }}" class="button button--effect button--last">Join
-                                Now <i class="fa-solid fa-arrow-right-long"></i></a>
+                            <a href="{{ route('user.register') }}" class="button button--effect button--last">JOIN NOW!
+                                <i class="fa-solid fa-arrow-right-long"></i></a>
                         </li>
                     @endguest
                 </ul>

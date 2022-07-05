@@ -63,7 +63,7 @@
                                 <a href="#!" class="text-reset notification-item">
                                     <div class="d-flex">
                                         {{-- <div class="flex-shrink-0 me-3">
-                                            <img src="{{ URL::asset('user_assets/images/users/avatar-3.jpg') }}"
+                                            <img src="{{ URL::asset('user_assets/images/users/rubic-avatar-min.jpg') }}"
                                                 class="rounded-circle avatar-sm" alt="user-pic">
                                         </div> --}}
                                         <div class="flex-grow-1">
@@ -90,7 +90,7 @@
                 <button type="button" class="btn header-item bg-soft-light border-start border-end"
                     id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user"
-                        src="@if (Auth::user()->image != '') {{ URL::asset('asset/profile/' . Auth::user()->image) }}@else{{ URL::asset('user_assets/images/users/avatar-1.jpg') }} @endif"
+                        src="@if (Auth::user()->image != '') {{ URL::asset('asset/profile/' . Auth::user()->image) }}@else{{ URL::asset('user_assets/images/users/rubic-avatar-min.jpg') }} @endif"
                         alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ Auth::user()->name }}</span>
                     {{-- <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i> --}}

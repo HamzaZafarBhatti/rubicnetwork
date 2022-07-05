@@ -19,15 +19,21 @@
             History
         @endslot
     @endcomponent
+<p><strong><span style="color: #0000ff;"><span style="background-color: #ffff99;">RUBIC/USDT Stakes History</span></span></strong></p>
+<p>All STAKES Trade leveraging on the<strong> RUBIC/USDT Trading</strong> can be managed from this STAKES History overview.</p>
 
     <div class="row">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Stake Plans Total Profit</h4>
+                    <h4 class="card-title">Total Stake Profit</h4>
                 </div>
                 <div class="card-body">
-                    <h4>{{ $user_stake_profit }}</h4>
+                    <h4>₦{{ $user_stake_profit }}</h4><br>
+                     <p><strong>Which is equivalent ≈ to</strong></p>
+                     <h4>${{ substr($user_stake_profit / $set->ngn_rate, 0, 9) }} USDT</h4><p><strong>as <span style="color: #0000ff;">Tether USDT</span></strong></p>
+                      <a href="https://rubicnetwork.com/user/stake_plans/convert" type="submit"
+                        class="btn btn-primary w-100">Convert to Rubic STAKE Wallet</a>
                 </div>
             </div>
         </div>
@@ -37,7 +43,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Stake Plans History</h4>
+                    <h4 class="card-title">Stake Plan History</h4>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -46,14 +52,14 @@
                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>S/N</th>
                                             <th>Stake Plan</th>
-                                            <th>Stake Activation Code</th>
-                                            <th>Status</th>
+                                            <th>Stake Activation</th>
+                                            <th>Stake Status</th>
                                             <th>Start Date</th>
                                             <th>Next Daily Profit</th>
                                             {{-- <th>Completion Date</th> --}}
-                                            <th>Bonus</th>
+                                            <th>Stake Profit</th>
                                             {{-- <th>Withdrawn</th> --}}
                                         </tr>
                                     </thead>
@@ -63,7 +69,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->stake_plan->name }}</td>
-                                                    <td>{{ $item->stake_coupon ? $item->stake_coupon->serial : 'TETHER' }}</td>
+                                                    <td>{{ $item->stake_coupon ? $item->stake_coupon->serial : 'TETHER USDT' }}</td>
                                                     <td>
                                                         @if ($item->status == 3)
                                                             Cancelled
@@ -78,7 +84,7 @@
                                                     <td>{{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}</td>
                                                     <td>{{ $item->status == 1 ? \Carbon\Carbon::parse($item->next_update_time)->toDateTimeString() : 'N/A' }}</td>
                                                     {{-- <td>{{ \Carbon\Carbon::parse($item->complete_time)->toFormattedDateString() }}</td> --}}
-                                                    <td>{{ $item->stake_profit }}</td>
+                                                    <td>₦{{ $item->stake_profit }} ≈ ${{ substr($item->stake_profit / $set->ngn_rate, 0, 9) }}</td>
                                                     {{-- <td>{{ $item->is_withdrawn ? 'Yes' : 'No' }}</td> --}}
                                                 </tr>
                                             @endforeach

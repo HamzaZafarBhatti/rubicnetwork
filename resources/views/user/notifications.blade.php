@@ -25,6 +25,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">All Notifications</h4>
+                    <p><strong>All Notification information with regards to your account.&nbsp;</strong></p>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -33,7 +34,7 @@
                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>S/N</th>
                                             <th>Title</th>
                                             <th>Notification</th>
                                             <th>Status</th>

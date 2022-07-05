@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <title> @yield('title') | Dason - Admin & Dashboard Template</title>
+    <title> @yield('title') | Rubic Network - Extract & Staking Platform - RubicNetwork.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ url('/') }}/asset/{{ $logo->image_link2 }}">
+    <link rel="shortcut icon" href="https://rubicnetwork.com/front_assets/images/manual_uploads/favicon/favicon-32x32.png">
     @include('user.layouts.head-css')
     <link href="{{ URL::asset('user_assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 </head>

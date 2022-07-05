@@ -18,6 +18,8 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Update Transaction Code</h4>
+                    <h4><strong>Default Transaction Code: <span style="background-color: #ffff99; color: #0000ff;">0 0 0 0 0 0</span></strong></h4>
+<p><strong>Kindly change your default Transaction Code to any, easy-to-remember <span style="text-decoration: underline;">6 digits code</span> which you'll be prompted to use for transacting all through the RubicNetwork.</strong></p>
                 </div>
                 <div class="card-body p-4">
                     <div class="row">
@@ -54,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                        <button type="submit" class="btn btn-primary w-md">Update Transaction Code</button>
                                     </div>
                                 </form>
                             </div>

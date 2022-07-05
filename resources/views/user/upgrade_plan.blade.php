@@ -11,7 +11,7 @@
             Upgrade
         @endslot
     @endcomponent
-
+<h2><span style="color: #000080;">Choose your Multi-Chain Extraction Plan.</span></h2>
     @if (!$plans->isEmpty())
         <div class="row">
             @foreach ($plans as $plan)
@@ -22,7 +22,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <h5 class="font-size-16">{{ $plan->name }}</h5>
-                                        <h1 class="mt-3">{{ $plan->amount }} <span
+                                        <h1 class="mt-3">₦{{ $plan->amount }} <span
                                                 class="text-muted font-size-16 fw-medium"></span>
                                         </h1>
                                     </div>
@@ -38,22 +38,29 @@
                                 <div class="mt-4 pt-2 text-muted">
                                     <p class="mb-3 font-size-15"><i
                                             class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>{{ $plan->percent }}%
-                                        profit</p>
+                                        Extraction Protocol</p>
+                                         <p class="mb-3 font-size-15"><i
+                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>Every  {{ $plan->extraction_plan_time }}hrs
+                                        Extraction Power Chain</p>
                                     <p class="mb-3 font-size-15"><i
                                             class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>{{ $plan->ref_percent }}%
                                         Referral percent</p>
                                     <p class="mb-3 font-size-15"><i
                                             class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>{{ $plan->duration . ' ' . $plan->period }}
                                         Duration</p>
+                                        <p class="mb-3 font-size-15"><i
+                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>{{ $plan->indirect_ref_com }}%
+                                        Indirect Referral Percent</p>
                                     <p class="mb-3 font-size-15"><i
-                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>{{ $plan->min_account_balance_wd }}
-                                        Profit transfer to Rubic wallet</p>
+                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>₦{{ $plan->min_rubic_wallet_wd }}
+                                        Minimum Wallet Withdrawal</p>
+                                        <p class="mb-3 font-size-15"><i
+                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>₦{{ $plan->viral_share_bonus }}
+                                        Daily Viral Share Bonus</p>
                                     <p class="mb-3 font-size-15"><i
-                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>{{ $plan->min_rubic_wallet_wd }}
-                                        Wallet withdrawal</p>
-                                    <p class="mb-3 font-size-15"><i
-                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>{{ $plan->min_ref_earn_wd }}
-                                        Referral earning transfer to Rubic wallet</p>
+                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>No Referrals Needed for Cashout</p>
+                                      <p class="mb-3 font-size-15"><i
+                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>Guaranteed Full Cashout Monthly</p>       
                                 </div>
                             </div>
                         </div>
@@ -71,7 +78,9 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Upgrade your Plan</h4>
+                    <h4 class="card-title">Upgrade your Rubic Extraction Plan</h4>
+                    <p><strong>Enter your RUBIC EXTRACTION Activation Code to Upgrade your EXTRACTION PLAN</strong></p>
+                    <p><span style="color: #0000ff;"><a style="color: #0000ff;" href="https://rubicnetwork.com/pin_dispatchers" target="_blank"><strong>Get ACTIVATION PIN CODE</strong></a></span></p>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -88,7 +97,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <button type="submit" class="btn btn-primary w-md">Upgrade</button>
+                                        <button type="submit" class="btn btn-primary w-md">Upgrade Extraction Plan</button>
                                     </div>
                                 </form>
                             </div>

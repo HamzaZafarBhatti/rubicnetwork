@@ -16,7 +16,7 @@
         Stake Referrals
         @endslot
         @slot('title2')
-        Earning History
+        Stake Referral Earning History
         @endslot
     @endcomponent
 
@@ -24,7 +24,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Earning History</h4>
+                    <h4 class="card-title">Stake Referral Earning History</h4>
+                    <p><span style="background-color: #ffff99; color: #0000ff;"><strong>Rubic Staking Referral Earning</strong></span></p>
+<p><strong>Earnings from your REFERRALS (Downlines) when they Activate any STAKE PLAN is displayed on this page.</strong></p>
                 </div>
                 <div class="card-body">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -33,10 +35,10 @@
                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Username</th>
+                                            <th>S/N</th>
+                                            <th>Account Username</th>
                                             <th>Initial Balance</th>
-                                            <th>Referral Bonus</th>
+                                            <th>Stake Referral Earnings</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -45,8 +47,8 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->referral->username }}</td>
-                                                    <td>{{ $item->referee_stake_ref_earning }}</td>
-                                                    <td>{{ $item->bonus }}</td>
+                                                    <td>₦{{ $item->referee_stake_ref_earning }}</td>
+                                                    <td>₦{{ $item->bonus }}</td>
                                                 </tr>
                                             @endforeach
                                         @endif
