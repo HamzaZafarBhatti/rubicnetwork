@@ -15,7 +15,7 @@ class LoginLogController extends Controller
     public function index()
     {
         //
-        $logs = LoginLog::with('user')->get();
+        $logs = LoginLog::with('user')->where('user_id', auth()->user()->id)->get();
         // return $logs;
         return view('user.login_logs.index', compact('logs'));
     }
