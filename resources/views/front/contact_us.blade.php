@@ -91,23 +91,6 @@
                             <input type="email" name="from_email" id="askRegistrationMail"
                                 placeholder="Enter your email" required="required" />
                         </div>
-                        {{-- <div class="input input--secondary input__alt">
-                            <label for="askNumber">Phone*</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <select class="number__code__select" id="numberCodeSelectAlert">
-                                        <option selected value="0">+1</option>
-                                        <option value="1">+2</option>
-                                        <option value="2">+3</option>
-                                        <option value="3">+4</option>
-                                        <option value="4">+5</option>
-                                        <option value="5">+6</option>
-                                    </select>
-                                </div>
-                                <input type="number" name="ask__number" id="askNumber" required="required"
-                                    placeholder="345-323-1234" />
-                            </div>
-                        </div> --}}
                         <div class="input input--secondary">
                             <label for="askSubject">Subject*</label>
                             <input type="text" name="subject" id="askSubject" placeholder="Write Subject"

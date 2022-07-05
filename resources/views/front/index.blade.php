@@ -82,7 +82,7 @@
                                             Daily Viral Share Bonus</li>
                                             <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />No Referrals Needed for Cashout</li>
                                             <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />Guaranteed Full Cashout Monthly</li>
-                                             <a href="https://rubicnetwork.com/register" class="button button--effect">Start Extraction</a>
+                                             <a href="{{ route('user.register') }}" class="button button--effect">Start Extraction</a>
                                     </ul>
                                     {{-- <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
                                     <hr />
@@ -101,7 +101,7 @@
                     <div class="col-md-6 col-xl-4">
                         <div class="start__single__item column__space--secondary">
                             <div class="img__box">
-                                <img src="https://rubicnetwork.com/front_assets/images/manual_uploads/browse.png" alt="Register & Get Activated" />
+                                <img src="{{ asset('front_assets/images/manual_uploads/browse.png') }}" alt="Register & Get Activated" />
                                 <div class="step__count">
                                     <h4>01</h4>
                                 </div>
@@ -114,7 +114,7 @@
                     <div class="col-md-6 col-xl-4">
                         <div class="start__single__item column__space--secondary">
                             <div class="img__box arrow__container">
-                                <img src="https://rubicnetwork.com/front_assets/images/manual_uploads/invest2.png" alt="View Details & Invest" />
+                                <img src="{{ asset('front_assets/images/manual_uploads/invest2.png') }}" alt="View Details & Invest" />
                                 <div class="step__count">
                                     <h4>02</h4>
                                 </div>
@@ -127,7 +127,7 @@
                     <div class="col-md-6 col-xl-4">
                         <div class="start__single__item">
                             <div class="img__box">
-                                <img src="https://rubicnetwork.com/front_assets/images/manual_uploads/browse333.png" alt="Get OUTPUT - Full Cashout" />
+                                <img src="{{ asset('front_assets/images/manual_uploads/browse333.png') }}" alt="Get OUTPUT - Full Cashout" />
                                 <div class="step__count">
                                     <h4>03</h4>
                                 </div>
@@ -155,12 +155,12 @@
                             <h2>Extract RUBIC.<br> Stake RUBIC/USDT</h2>
                             <p>Extract RUBIC TOKENS and Get as Revenue with Full Payments - Guaranteed without Referrals.<br>RUBIC/USDT Staking - Financial Earning Staking through RUBIC/USDT Market Trading leverage.
 </p>
-                            <a href="https://rubicnetwork.com/register" class="button button--effect">REGISTER NOW!</a>
+                            <a href="{{ route('user.register') }}" class="button button--effect">REGISTER NOW!</a>
                             <img src="{{ asset('front_assets/images/arrow.png') }}" alt="Go to" />
                         </div>
                     </div>
                 </div>
-                <img src="https://rubicnetwork.com/front_assets/images/manual_uploads/20220702_201634.png" alt="Explore the Market"
+                <img src="{{ asset('front_assets/images/manual_uploads/20220702_201634.png') }}" alt="Explore the Market"
                     class="d-none d-lg-block market__two__thumb" />
             </div>
             
@@ -188,13 +188,13 @@ Extract Rubic Token (Proof on Coinmarketcap)
 All you have to do is to EXTRACT DAILY, GET EXTRACTION OUTPUT MONTHLY in FULL PAYMENTS. 
 
 <br>STAKE RUBIC/USDT Trading Pair. Get Output Upon Maturity of your STAKE to your WALLET.</p>
-                            <a href="https://rubicnetwork.com/register" class="button button--effect">Start Extraction</a>
-                             <a href="https://rubicnetwork.com/register" class="button button--secondary button--effect">Start Staking</a>
+                            <a href="{{ route('user.register') }}" class="button button--effect">Start Extraction</a>
+                             <a href="{{ route('user.register') }}" class="button button--secondary button--effect">Start Staking</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="platform__thumb thumb__ltr d-none d-lg-block">
-                            <img src="https://rubicnetwork.com/front_assets/images/manual_uploads/20220702_184738.png" width="950" height="800" />
+                            <img src="{{ asset('front_assets/images/manual_uploads/20220702_184738.png') }}" width="950" height="800" />
                         </div>
                     </div>
                 </div>
@@ -316,7 +316,7 @@ All you have to do is to EXTRACT DAILY, GET EXTRACTION OUTPUT MONTHLY in FULL PA
                                                 alt="Check" />Unlimited Staking</li>
                                                 <li><img src="{{ asset('front_assets/images/check.png') }}"
                                                 alt="Check" />Instant Cashout Anytime to Bank or Tether USDT of STAKE PROFITS</li>
-                                             <a href="https://rubicnetwork.com/register" class="button button--effect d-none d-sm-block">Stake Now
+                                             <a href="{{ route('user.register') }}" class="button button--effect d-none d-sm-block">Stake Now
                             <i class="fa-solid fa-arrow-circle-right"></i> </a>
                                     </ul>
                                     {{-- <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>

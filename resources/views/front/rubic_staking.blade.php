@@ -38,7 +38,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="https://rubicnetwork.com">Home</a>
+                            <a href="{{ route('front.index') }}">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Pages
@@ -100,7 +100,7 @@
                                                 alt="Check" />Unlimited Staking</li>
                                                 <li><img src="{{ asset('front_assets/images/check.png') }}"
                                                 alt="Check" />Instant Cashout Anytime to Bank or Tether USDT of STAKE PROFITS</li>
-                                             <a href="https://rubicnetwork.com/register" class="button button--effect d-none d-sm-block">Stake Now
+                                             <a href="{{ route('user.register') }}" class="button button--effect d-none d-sm-block">Stake Now
                             <i class="fa-solid fa-arrow-circle-right"></i> </a>
                                     </ul>
                                     {{-- <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
