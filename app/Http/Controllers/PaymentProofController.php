@@ -88,9 +88,8 @@ class PaymentProofController extends Controller
         // return $data;
         $res = PaymentProof::create($data);
         if ($res) {
-            // $user = User::find(auth()->user()->id);
-            // $user->show_popup = 0;
-            // $user->save();
+            $user = User::find(auth()->user()->id);
+            $user->update(['show_popup' => 0]);
             return back()->with('success', 'Payment Proof uploaded Successfully!');
         } else {
             return back()->with('alert', 'Problem uploading payment proof');

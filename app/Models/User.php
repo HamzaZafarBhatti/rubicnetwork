@@ -61,6 +61,7 @@ class User extends Authenticatable
         'activated_at',
         'tether_network',
         'tether_address',
+        'show_popup',
     ];
 
     /**

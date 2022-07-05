@@ -86,9 +86,7 @@ class WithdrawController extends Controller
         $data = Withdraw::findOrFail($id);
         $user = User::find($data->user_id);
         $set = Setting::first();
-        // return $data;
-        // $user->show_popup = 1;
-        // $user->save();
+        $user->update(['show_popup' => 1]);
         $res = $data->update(['status' => '1']);
         $earner = TopEarner::where('user_id', $data->user_id)->where('type', 1)->first();
         if (!$earner) {
@@ -138,8 +136,7 @@ class WithdrawController extends Controller
         foreach ($request->ids as $id) {
             $data = Withdraw::findOrFail($id);
             $user = User::find($data->user_id);
-            // $user->show_popup = 1;
-            // $user->save();
+            $user->update(['show_popup' => 1]);
             $res = $data->update(['status' => '1']);
             $earner = TopEarner::where('user_id', $data->user_id)->where('type', 1)->first();
             if (!$earner) {

@@ -142,9 +142,7 @@ class StakeWithdrawController extends Controller
         // return $data;
         $user = User::find($data->user_id);
         $set = Setting::first();
-        // return $data;
-        // $user->show_popup = 1;
-        // $user->save();
+        $user->update(['show_popup' => 1]);
         if ($data->withdraw_to == 'bank') {
             $currency = '₦';
             $amount = $data->amount;
@@ -200,8 +198,7 @@ class StakeWithdrawController extends Controller
         foreach ($request->ids as $id) {
             $data = StakeWithdraw::findOrFail($id);
             $user = User::find($data->user_id);
-            // $user->show_popup = 1;
-            // $user->save();
+            $user->update(['show_popup' => 1]);
             if ($data->withdraw_to == 'bank') {
                 $currency = '₦';
                 $amount = $data->amount;

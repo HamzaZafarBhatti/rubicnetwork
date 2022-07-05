@@ -40,13 +40,14 @@
 <!-- JAVASCRIPT -->
 @include('user.layouts.vendor-scripts')
 <script src="{{ URL::asset('user_assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function() {
         setTimeout(() => {
             console.log('master timeout')
             $('body').attr('data-sidebar-size', 'lg')
         }, 2000);
-        @if(Session::has('success'))
+        @if (Session::has('success'))
             Swal.fire({
                 title: "Success",
                 text: '{{ session('success') }}',
@@ -54,7 +55,7 @@
                 confirmButtonColor: "#1c84ee"
             })
         @endif
-        @if(Session::has('error'))
+        @if (Session::has('error'))
             Swal.fire({
                 title: "Error",
                 text: '{{ session('error') }}',
@@ -70,6 +71,19 @@
                 confirmButtonColor: "#1c84ee"
             })
         @endif
+        if ("{{ $user_proof }}" == 1) {
+            swal({
+                title: null,
+                text: "Congrats on your most RECENT PAYMENT on GOLDMINT",
+                icon: "success",
+                buttons: ["Close", "Upload Payment Proof Now!"],
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = "{{ route('user.payment_proofs.create') }}"
+                }
+            });
+        }
     })
 </script>
 </body>
