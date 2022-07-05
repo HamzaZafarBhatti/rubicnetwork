@@ -24,11 +24,7 @@
         <div class="container">
             <div class="testimonial__area">
                 <div class="section__header">
-                    {{-- <h5 class="neutral-top">Investors Trust Us</h5> --}}
                     <h2>Payment Proofs</h2>
-                    {{-- <p class="neutral-bottom">We divide each property into shares so anyone can get started. Kindly
-                        check
-                        out our Investors say about revest.</p> --}}
                 </div>
                 <div class="title__with__cta">
                     <div class="row d-flex align-items-center">

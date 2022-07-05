@@ -29,7 +29,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="https://rubicnetwork.com/">Home</a>
+                            <a href="{{ route('front.index') }}">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Pages
@@ -83,7 +83,7 @@
                                             Daily Viral Share Bonus</li>
                                             <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />No Referrals Needed for Cashout</li>
                                             <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />Guaranteed Full Cashout Monthly</li>
-                                             <a href="https://rubicnetwork.com/register" class="button button--effect">Start Extraction</a>
+                                             <a href="{{ route('user.register') }}" class="button button--effect">Start Extraction</a>
                                     </ul>
                                     {{-- <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
                                     <hr />

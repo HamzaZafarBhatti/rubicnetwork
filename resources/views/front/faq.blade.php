@@ -9,7 +9,6 @@
             <div class="support__banner__area">
                 <div class="support__banner__inner">
                     <h1 class="neutral-top">Frequently Asked Questions</h1>
-                    {{-- <h5 class="neutral-top">Got a question?</h5> --}}
                 </div>
             </div>
         </div>
@@ -21,9 +20,6 @@
     <section class="faq section__space">
         <div class="container">
             <div class="faq__area">
-                {{-- <div class="section__header">
-                    <h2 class="neutral-top"></h2>
-                </div> --}}
                 <div class="faq__group">
                     @if ($faqs)
                         <div class="accordion" id="accordionExampleFund">

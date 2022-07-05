@@ -8,7 +8,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="https://rubicnetwork.com/front_assets/images/manual_uploads/favicon/favicon-32x32.png">
+    <link rel="shortcut icon" href="{{ asset('front_assets/images/manual_uploads/favicon/favicon-32x32.png') }}">
     @include('user.layouts.head-css')
     <link href="{{ URL::asset('user_assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 </head>
