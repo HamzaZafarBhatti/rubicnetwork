@@ -43,8 +43,8 @@
                 <div class="card-body">
                     <h4>₦{{ auth()->user()->viral_share_earning }}</h4>
                     <h5>Date to Transfer to Rubic NGN Wallet</h5>
-                    <h5 class="text-info">{{ $set->viral_share_transfer_start }}</h5>
-                    <h5 class="text-info">{{ $set->viral_share_transfer_end }}</h5>
+                    <h5 class="text-info">{{ $set->viral_share_transfer_start_formatted }}</h5>
+                    <h5 class="text-info">{{ $set->viral_share_transfer_end_formatted }}</h5>
                     <h6 class="text-success">Monthly Transfer flow</h6>
                 </div>
             </div>

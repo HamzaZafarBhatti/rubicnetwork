@@ -52,8 +52,8 @@
 <h4><strong>$0.00 USDT</strong></h4>
 <p>as <span style="color: #0000ff;"><strong>Tether USDT</strong></span></p>
                     <h5>Date to Transfer to Wallet</h5>
-                    <h5 class="text-info">{{ $set->stake_ref_earning_transfer_start }}</h5>
-                    <h5 class="text-info">{{ $set->stake_ref_earning_transfer_end }}</h5>
+                    <h5 class="text-info">{{ $set->stake_ref_earning_transfer_start_formatted }}</h5>
+                    <h5 class="text-info">{{ $set->stake_ref_earning_transfer_end_formatted }}</h5>
                     <h6 class="text-success">Stake Referral Earnings Transfer: Weekly flow</h6>
                 </div>
             </div>

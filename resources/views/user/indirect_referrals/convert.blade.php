@@ -43,8 +43,8 @@ Convert Indirect Referral Earnings to Rubic Wallet
                 <div class="card-body">
                     <h4>₦{{ auth()->user()->indirect_ref_earning }}</h4>
                     <h5>Date to Transfer to Rubic NGN Wallet</h5>
-                    <h5 class="text-info">{{ $set->indirect_ref_earning_transfer_start }}</h5>
-                    <h5 class="text-info">{{ $set->indirect_ref_earning_transfer_end }}</h5>
+                    <h5 class="text-info">{{ $set->indirect_ref_earning_transfer_start_formatted }}</h5>
+                    <h5 class="text-info">{{ $set->indirect_ref_earning_transfer_end_formatted }}</h5>
                     <h6 class="text-success">WEEKLY Transfer flow</h6>
                 </div>
             </div>

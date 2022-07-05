@@ -20,7 +20,7 @@ class StakeReferralController extends Controller
 
     public function convert()
     {
-        $converts = StakeReferralConvert::with('user')->whereRefereeId(auth()->user()->id)->get();
+        $converts = StakeReferralConvert::with('user')->whereUserId(auth()->user()->id)->get();
         return view('user.stake_referrals.convert', compact('converts'));
     }
 
