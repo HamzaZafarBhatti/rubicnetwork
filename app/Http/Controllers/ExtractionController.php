@@ -64,7 +64,7 @@ class ExtractionController extends Controller
 
     public function extractions_convert()
     {
-        $converts = ExtractionConvert::with('user')->get();
+        $converts = ExtractionConvert::with('user')->where('user_id', auth()->user()->id)->get();
         return view('user.extraction.convert', compact('converts'));
     }
 
