@@ -124,7 +124,7 @@ class FrontendController extends Controller
     }
     public function sponsored_post()
     {
-        $posts = Post::where('status', 1)->get();
+        $posts = Post::where('status', 1)->latest()->get();
         $popular_posts = Post::where('status', 1)->orderBy('created_at', 'desc')->orderBy('views', 'desc')->limit(3)->get();
         return view('front.sponsored_post', compact('posts', 'popular_posts'));
     }
