@@ -48,7 +48,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
 // Auth::routes();
 //Language Translation
-Route::get('index/{locale}', [HomeController::class, 'lang']);
+// Route::get('index/{locale}', [HomeController::class, 'lang']);
 
 //Frontend
 Route::get('/', [FrontendController::class, 'index'])->name('front.index');
@@ -83,6 +83,12 @@ Route::name('user.')->group(function () {
     Route::post('/user/verify_email', [UserController::class, 'do_verify_email'])->name('do_verify_email');
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login', [LoginController::class, 'do_login'])->name('do_login');
+
+    Route::get('user/password/reset', [HomeController::class, 'showLinkRequestForm'])->name('password.reset');
+    Route::post('user/password/email', [HomeController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('user/password/reset/{token}', [HomeController::class, 'showResetForm'])->name('password.reset_token');
+    Route::post('user/password/reset', [HomeController::class, 'reset'])->name('password.do_reset');
+
     Route::prefix('user')->middleware(['auth:web', 'checkStatus'])->group(function () {
         Route::controller(UserController::class)->group(function () {
             Route::get('logout', 'logout')->name('logout');
@@ -288,7 +294,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     //Web controller
     Route::post('social-links/update', [WebController::class, 'UpdateSocial'])->name('social-links.update');
     Route::get('social-links', [WebController::class, 'sociallinks'])->name('social-links');
-    
+
     Route::get('coupons', [WebController::class, 'coupons'])->name('admin.coupons');
     // Route::post('/createcoupons', [WebController::class, 'CreateCoupons']);
     // Route::get('coupons/delete/{id}', [WebController::class, 'DestroyCoupons'])->name('coupons.delete');
@@ -355,5 +361,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     //Transfer controller
     Route::get('transfers', [TransferController::class, 'Transfers'])->name('admin.transfers');
     Route::get('referrals', [TransferController::class, 'Referrals'])->name('admin.referrals');
-
 });

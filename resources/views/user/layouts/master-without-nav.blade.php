@@ -12,6 +12,7 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="https://rubicnetwork.com/front_assets/images/manual_uploads/favicon/favicon-32x32.png">
     @include('user.layouts.head-css')
+    <link href="{{ URL::asset('user_assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 </head>
 
 @yield('body')
@@ -19,26 +20,26 @@
 @yield('content')
 
 @include('user.layouts.vendor-scripts')
-{{-- <script src="{{ URL::asset('user_assets/libs/sweetalert2/sweetalert2.min.js') }}"></script> --}}
+<script src="{{ URL::asset('user_assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 <script>
-    // $(document).ready(function() {
-        // @if (Session::has('success'))
-        //     Swal.fire({
-        //         title: "Success",
-        //         text: '{{ session('success') }}',
-        //         icon: "success",
-        //         confirmButtonColor: "#1c84ee"
-        //     })
-        // @endif
-        // @if (Session::has('error'))
-        //     Swal.fire({
-        //         title: "Error",
-        //         text: '{{ session('error') }}',
-        //         icon: "error",
-        //         confirmButtonColor: "#1c84ee"
-        //     })
-        // @endif
-    // })
+    $(document).ready(function() {
+        @if (Session::has('success'))
+            Swal.fire({
+                title: "Success",
+                text: '{{ session('success') }}',
+                icon: "success",
+                confirmButtonColor: "#1c84ee"
+            })
+        @endif
+        @if (Session::has('error'))
+            Swal.fire({
+                title: "Error",
+                text: '{{ session('error') }}',
+                icon: "error",
+                confirmButtonColor: "#1c84ee"
+            })
+        @endif
+    })
 </script>
 </body>
 

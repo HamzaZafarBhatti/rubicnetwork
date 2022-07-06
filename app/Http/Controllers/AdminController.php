@@ -3,45 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use App\Mail\GeneralEmail;
 use Illuminate\Http\Request;
-use Validator;
 use App\Models\User;
 use App\Models\Settings;
-use App\Models\Logo;
-use App\Models\Currency;
-use App\Models\Transfer;
-use App\Models\Plans;
-use App\Models\Gateway;
 use App\Models\Deposits;
 use App\Models\Withdraw;
-use App\Models\Profits;
-use App\Models\Social;
-use App\Models\About;
 use App\Models\Bank;
-use App\Models\Faq;
-use App\Models\Page;
 use App\Models\Contact;
-use App\Models\DataOperator;
 use App\Models\Ticket;
 use App\Models\Reply;
 use App\Models\Review;
-use App\Models\Earning;
 use App\Models\Etemplate;
 use App\Models\IndirectReferral;
 use App\Models\Plan;
 use App\Models\Referral;
-use App\Models\Setting;
 use App\Models\StakeReferral;
 use App\Models\StakeWithdraw;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
-use Image;
-
 
 
 

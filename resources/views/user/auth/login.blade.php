@@ -58,13 +58,18 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mb-4">
-                                            <div class="col">
+                                        <div class="row mb-4 align-items-end">
+                                            <div class="col-6">
                                                 <div class="form-check font-size-15">
                                                     <input class="form-check-input " type="checkbox" id="remember-check">
                                                     <label class="form-check-label font-size-13" for="remember-check">
                                                         Remember me
                                                     </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="text-end"><a
+                                                    href="{{ route('user.password.reset') }}" class="text-primary fw-semibold">Forgot Password</a>
                                                 </div>
                                             </div>
 
