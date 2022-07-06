@@ -21,6 +21,7 @@ use App\Models\Withdraw;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class FrontendController extends Controller
 {
@@ -96,7 +97,8 @@ class FrontendController extends Controller
             // Mail::to('hamza0952454@gmail.com')->send(new ContactEmail($request->from_email, $name, $request->msg, $request->subject));
             return back()->with('success', 'Email has been sent!');
         } catch (\Exception $e) {
-            return back()->with('error', 'Error: ' . $e->getMessage());
+            Log::info($e->getMessage());
+            return back()->with('error', 'Error: Something went wrong!');
         }
     }
     public function top_earners()
