@@ -1,10 +1,17 @@
 @extends('front.layout.app')
 
 @section('styles')
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lcyvc0gAAAAADHPF7gkQ58kEawk60GSN-C_QjoX"></script>
     <script>
-        function onSubmit(token) {
-            document.getElementById("demo-form").submit();
+        function onClick(e) {
+            e.preventDefault();
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6Lcyvc0gAAAAADHPF7gkQ58kEawk60GSN-C_QjoX', {
+                    action: 'submit'
+                }).then(function(token) {
+                    // Add your logic to submit to your backend server here.
+                });
+            });
         }
     </script>
 @endsection
@@ -110,9 +117,7 @@
                             <textarea name="msg" id="askMessage" required="required" placeholder="Write Message"></textarea>
                         </div>
                         <div class="input__button">
-                            <button class="g-recaptcha button button--effect"
-                                data-sitekey="6Lcyvc0gAAAAADHPF7gkQ58kEawk60GSN-C_QjoX" data-callback='onSubmit'
-                                data-action='submit'>SEND MESSAGE</button>
+                            <button class="button button--effect" onClick="onClick">SEND MESSAGE</button>
                         </div>
                     </form>
                 </div>
