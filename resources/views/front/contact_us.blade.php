@@ -1,6 +1,13 @@
 @extends('front.layout.app')
 
-
+@section('styles')
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("demo-form").submit();
+        }
+    </script>
+@endsection
 @section('content')
     <!-- ==== banner section start ==== -->
     <section class="support__banner contact__banner bg__img clear__top"
@@ -103,8 +110,9 @@
                             <textarea name="msg" id="askMessage" required="required" placeholder="Write Message"></textarea>
                         </div>
                         <div class="input__button">
-                            <button type="submit" class="g-recaptcha button button--effect" data-sitekey="6Lcyvc0gAAAAALRDA7Xnlag5aWFt5w5on5OWZ3EN"
-                                data-callback='onSubmit' data-action='submit'>SEND MESSAGE</button>
+                            <button class="g-recaptcha button button--effect"
+                                data-sitekey="6Lcyvc0gAAAAADHPF7gkQ58kEawk60GSN-C_QjoX" data-callback='onSubmit'
+                                data-action='submit'>SEND MESSAGE</button>
                         </div>
                     </form>
                 </div>
@@ -115,10 +123,4 @@
 @endsection
 
 @section('scripts')
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <script>
-        function onSubmit(token) {
-            document.getElementById("demo-form").submit();
-        }
-    </script>
 @endsection
