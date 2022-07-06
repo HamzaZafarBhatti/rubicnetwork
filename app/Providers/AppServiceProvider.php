@@ -52,8 +52,8 @@ class AppServiceProvider extends ServiceProvider
                     }
                 }
 
-                $notifications = Notification::whereIsRead(0)->where('user_id', auth()->user()->id)->orWhere('user_id', null)->latest()->limit(7)->get();
-                $all_notifications = Notification::whereIsRead(0)->where('user_id', auth()->user()->id)->orWhere('user_id', null)->latest()->get();
+                $notifications = Notification::whereIsRead(0)->where('user_id', auth()->user()->id)->latest()->limit(7)->get();
+                $all_notifications = Notification::whereIsRead(0)->where('user_id', auth()->user()->id)->latest()->get();
                 $view->with('notifications', $notifications);
                 $view->with('all_notifications', $all_notifications);
                 $view->with('user_proof', Auth::user()->show_popup);
