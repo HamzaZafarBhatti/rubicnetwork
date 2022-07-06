@@ -85,7 +85,7 @@
         if ("{{ $user_proof }}" == 1) {
             swal({
                     title: null,
-                    text: "Congrats on your most RECENT PAYMENT on GOLDMINT",
+                    text: "Congratulations on your Approved Withdrawal PAYMENT to your BANK from RUBICNETWORK! 😊",
                     icon: "success",
                     buttons: ["Close", "Upload Payment Proof Now!"],
                 })

@@ -46,6 +46,11 @@
                                                 <div class="col-md-12">
                                                     <h6 class="text-primary">Exchange Rate to Tether USDT Expected
                                                         Withdrawal from WALLET: NGN{{ $set->ngn_rate }}/$</h6>
+                                                        <p><span style="color: #ff0000;"><strong><span style="background-color: #ffff99;">Tether USDT can only be withdrawn in NAIRA.</span> </strong></span></p>
+<p>Please enter the <strong>NAIRA Amount</strong> you wish to WITHDRAW.</p>
+<p><strong><span style="color: #0000ff;"><span style="text-decoration: underline;">The NAIRA Amount would be automatically converted to USDT</span> when processing to your Tether USDT Wallet.</span> </strong></p>
+<p><strong>Please note that the exact expected AMOUNT in USDT would not be the same as paid to your Tether USDT Wallet due to <span style="background-color: #ffff99; color: #0000ff;">NGN/USD</span> Rates differences on RUBICNETWORK with external market rates.</strong></p>
+<p>For instance, the equivalent amount in USD of your NAIRA Amount would not be the same when paid to your Tether USDT Wallet.</p>
                                                 </div>
                                             </div>
                                             <hr>
@@ -63,8 +68,8 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label" for="amount">Amount ($)</label>
-                                                        <input type="text" class="form-control" name="amount">
+                                                        <label class="form-label" for="amount">Amount (₦)</label>
+                                                        <input type="text" class="form-control" name="amount">Kindly enter Amount in NAIRA
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">

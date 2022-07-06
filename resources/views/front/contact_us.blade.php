@@ -9,7 +9,7 @@
             <div class="support__banner__area">
                 <div class="support__banner__inner">
                     <h1 class="neutral-top">How can we help?</h1>
-                    <h5 class="neutral-top">Office Address: NBCC Plaza, Olubunmi Owa Street, Lekki Phase 1, Lekki, Lagos.</h5>
+                    <h5 class="neutral-top">Office Address Lekki Phase 1, Lekki, Lagos.</h5>
                 </div>
             </div>
         </div>

@@ -83,6 +83,9 @@
                                             <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />No Referrals Needed for Cashout</li>
                                             <li><img src="{{ asset('front_assets/images/check.png') }}" alt="Check" />Guaranteed Full Cashout Monthly</li>
                                              <a href="{{ route('user.register') }}" class="button button--effect">Start Extraction</a>
+                                               <div class="content">
+                           <a href="https://rubicnetwork.com/payment_proof" class="button button--secondary button--effect">See Payment Proofs ></a>
+                        </div>
                                     </ul>
                                     {{-- <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
                                     <hr />
@@ -157,6 +160,9 @@
 </p>
                             <a href="{{ route('user.register') }}" class="button button--effect">REGISTER NOW!</a>
                             <img src="{{ asset('front_assets/images/arrow.png') }}" alt="Go to" />
+                        </div>
+                         <div class="content">
+                           <a href="https://rubicnetwork.com/payment_proof" class="button button--secondary button--effect">See Payment Proofs ></a>
                         </div>
                     </div>
                 </div>
@@ -318,6 +324,9 @@ All you have to do is to EXTRACT DAILY, GET EXTRACTION OUTPUT MONTHLY in FULL PA
                                                 alt="Check" />Instant Cashout Anytime to Bank or Tether USDT of STAKE PROFITS</li>
                                              <a href="{{ route('user.register') }}" class="button button--effect d-none d-sm-block">Stake Now
                             <i class="fa-solid fa-arrow-circle-right"></i> </a>
+                              <div class="content">
+                           <a href="https://rubicnetwork.com/payment_proof" class="button button--secondary button--effect">See Payment Proofs ></a>
+                        </div>
                                     </ul>
                                     {{-- <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
                                     <hr />

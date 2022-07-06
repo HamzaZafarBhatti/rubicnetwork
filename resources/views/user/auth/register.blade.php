@@ -251,7 +251,7 @@
                                         <!-- end carousel-inner -->
                                     </div>
                                     <!-- end review carousel -->
-                                    <a href="{{ asset('front.payment_proof') }}" target="_blank" type="button"
+                                    <a href="https://rubicnetwork.com/payment_proof" target="_blank" type="button"
                                         class="btn btn-primary w-100">See More Testimonies & Payment Proofs ></a>
                                 </div>
                             </div>
