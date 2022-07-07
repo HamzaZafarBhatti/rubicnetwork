@@ -1,19 +1,7 @@
 @extends('front.layout.app')
 
 @section('styles')
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lcyvc0gAAAAADHPF7gkQ58kEawk60GSN-C_QjoX"></script>
-    <script>
-        function onClick(e) {
-            e.preventDefault();
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6Lcyvc0gAAAAADHPF7gkQ58kEawk60GSN-C_QjoX', {
-                    action: 'submit'
-                }).then(function(token) {
-                    // Add your logic to submit to your backend server here.
-                });
-            });
-        }
-    </script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection
 @section('content')
     <!-- ==== banner section start ==== -->
@@ -116,8 +104,14 @@
                             <label for="askMessage">Message*</label>
                             <textarea name="msg" id="askMessage" required="required" placeholder="Write Message"></textarea>
                         </div>
+                        <div class="input input--secondary text-center">
+                            <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+                            @if ($errors->has('g-recaptcha-response'))
+                                <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                            @endif
+                        </div>
                         <div class="input__button">
-                            <button class="button button--effect" onClick="onClick">SEND MESSAGE</button>
+                            <button class="button button--effect" type="submit">SEND MESSAGE</button>
                         </div>
                     </form>
                 </div>

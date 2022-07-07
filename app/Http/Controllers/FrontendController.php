@@ -22,6 +22,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Rules\ReCaptcha;
 
 class FrontendController extends Controller
 {
@@ -90,6 +91,9 @@ class FrontendController extends Controller
     }
     public function send_email(Request $request)
     {
+        $request->validate([
+            'g-recaptcha-response' => ['required', new ReCaptcha]
+        ]);
         try {
             $temp = Etemplate::first();
             $name = $request->from_first_name . ' ' . $request->from_last_name;
