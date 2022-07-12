@@ -155,7 +155,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
-                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Viral Trend</span>
+                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Viral Share Earning</span>
                             <h4 class="mb-3">
                                 ₦<span class="counter-value"
                                     data-target="{{ auth()->user()->viral_share_earning }}">{{ auth()->user()->viral_share_earning }}</span>
@@ -172,7 +172,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="{{ route('user.viral_shares.history') }}">Viral Trend History ></a>
+                        <a href="{{ route('user.viral_shares.history') }}">Viral Share History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->
@@ -184,7 +184,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
-                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Viral Trend</span>
+                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Viral Shares</span>
                             <h4 class="mb-3">
                                 <span class="counter-value"
                                     data-target="{{ $viral_share_count }}">{{ $viral_share_count }}</span>
@@ -196,7 +196,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="{{ route('user.viral_shares.history') }}">Viral Trend History ></a>
+                        <a href="{{ route('user.viral_shares.history') }}">Viral Shares History ></a>
                     </div>
                 </div><!-- end card body -->
             </div><!-- end card -->

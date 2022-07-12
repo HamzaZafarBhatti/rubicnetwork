@@ -54,7 +54,7 @@
                             <p>Chat with us on WhatsApp with regards to supports and our Rubic Project.</p>
                             <hr />
                             <p class="neutral-bottom">
-                                <a href="#0">WhatsApp Chat: +33755522059</a>
+                                <a href="#0">WhatsApp Chat: +33755522059 or +2347087394692 </a>
                             </p>
                         </div>
                     </div>
