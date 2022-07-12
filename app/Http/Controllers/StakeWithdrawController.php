@@ -33,8 +33,8 @@ class StakeWithdrawController extends Controller
         if ($pin !== $user->pin) {
             return back()->with('error', 'Pin is not same.');
         }
-        // Amount/ NGN RATE = USDT Amount
-        $amount = $request->amount / $set->ngn_rate;
+        // Amount/ usdt_rate = USDT Amount
+        $amount = $request->amount / $set->usdt_rate;
         $min_wd_balance = $user->stake_plans->min('stake_wallet_wd');
         if ($min_wd_balance > $request->amount) {
             return back()->with('error', 'You have requested less than your plan defined payment.');
@@ -148,7 +148,7 @@ class StakeWithdrawController extends Controller
             $amount = $data->amount;
         } else {
             $currency = '$';
-            $amount = $data->amount * $set->ngn_rate;
+            $amount = $data->amount * $set->usdt_rate;
         }
         $res = $data->update(['status' => '1']);
         $earner = TopEarner::where('user_id', $data->user_id)->where('type', 0)->first();
@@ -204,7 +204,7 @@ class StakeWithdrawController extends Controller
                 $amount = $data->amount;
             } else {
                 $currency = '$';
-                $amount = $data->amount * $set->ngn_rate;
+                $amount = $data->amount * $set->usdt_rate;
             }
             $res = $data->update(['status' => '1']);
             $earner = TopEarner::where('user_id', $data->user_id)->where('type', 0)->first();

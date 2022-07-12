@@ -42,6 +42,7 @@ class Setting extends Model
         'upgrade_status',
         'upgrade_fee',
         'ngn_rate',
+        'usdt_rate',
     ];
 
     // protected $casts = [

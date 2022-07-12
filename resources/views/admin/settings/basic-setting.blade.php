@@ -56,6 +56,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-form-label col-lg-2">Tether USDT Withdraw RATE:</label>
+                                <div class="col-lg-10">
+                                    <input type="number" name="usdt_rate" step="any" max-length="10"
+                                        value="{{ convertFloat($set->usdt_rate) }}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Upgrade fee <span
                                         class="text-danger">*</span></label>
                                 <div class="col-lg-10">

@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <h4>₦{{ auth()->user()->rubic_stake_wallet }}</h4>
                     <p>which is equivalent &asymp; to</p>
-                    <h3><strong>${{ substr(auth()->user()->rubic_stake_wallet / $set->ngn_rate, 0, 9) }} USDT</strong>
+                    <h3><strong>${{ substr(auth()->user()->rubic_stake_wallet / $set->usdt_rate, 0, 9) }} USDT</strong>
                     </h3>
                     <p>as <span style="color: #0000ff;"><strong>Tether USDT</strong></span></p>
                     <br>
@@ -45,7 +45,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <h6 class="text-primary">Exchange Rate to Tether USDT Expected
-                                                        Withdrawal from WALLET: NGN{{ $set->ngn_rate }}/$</h6>
+                                                        Withdrawal from WALLET: NGN{{ $set->usdt_rate }}/$</h6>
                                                         <p><span style="color: #ff0000;"><strong><span style="background-color: #ffff99;">Tether USDT can only be withdrawn in NAIRA.</span> </strong></span></p>
 <p>Please enter the <strong>NAIRA Amount</strong> you wish to WITHDRAW.</p>
 <p><strong><span style="color: #0000ff;"><span style="text-decoration: underline;">The NAIRA Amount would be automatically converted to USDT</span> when processing to your Tether USDT Wallet.</span> </strong></p>
