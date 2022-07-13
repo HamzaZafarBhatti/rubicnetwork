@@ -125,14 +125,15 @@ class StakeCouponController extends Controller
         $codes = Session::get('stake_codes');
         // return public_path('/upload/codes/latest_stake_codes.txt');
         Session::forget(['stake_codes', 'download_link_stake']);
-        File::delete(public_path('/upload/codes/latest_stake_codes.txt'));
-        File::put(public_path('/upload/codes/latest_stake_codes.txt'),$codes);
-        return response()->download(public_path('/upload/codes/latest_stake_codes.txt'));
-        // return response($codes)
-        //     ->withHeaders([
-        //         'Content-Type' => 'text/plain',
-        //         'Cache-Control' => 'no-store, no-cache',
-        //         'Content-Disposition' => 'attachment; filename="latest_stake_codes.txt',
-        //     ]);
+        // File::delete(public_path('/upload/codes/latest_stake_codes.txt'));
+        // File::put(public_path('/upload/codes/latest_stake_codes.txt'),$codes);
+        // return response()->download(public_path('/upload/codes/latest_stake_codes.txt'));
+        return response($codes)
+            ->withHeaders([
+                'Content-Type' => 'text/plain',
+                'Cache-Control' => 'no-store, no-cache',
+                'Content-Security-Policy' => 'default-src "self"',
+                'Content-Disposition' => 'attachment; filename="latest_stake_codes.txt',
+            ]);
     }
 }

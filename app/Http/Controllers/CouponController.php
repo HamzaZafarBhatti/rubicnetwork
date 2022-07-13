@@ -126,14 +126,15 @@ class CouponController extends Controller
         $codes = Session::get('codes');
         // return $codes;
         Session::forget(['codes', 'download_link']);
-        File::delete(public_path('/upload/codes/latest_rubic_codes.txt'));
-        File::put(public_path('/upload/codes/latest_rubic_codes.txt'),$codes);
-        return response()->download(public_path('/upload/codes/latest_rubic_codes.txt'));
-        // return response($codes)
-        //     ->withHeaders([
-        //         'Content-Type' => 'text/plain',
-        //         'Cache-Control' => 'no-store, no-cache',
-        //         'Content-Disposition' => 'attachment; filename="latest_rubic_codes.txt',
-        //     ]);
+        // File::delete(public_path('/upload/codes/latest_rubic_codes.txt'));
+        // File::put(public_path('/upload/codes/latest_rubic_codes.txt'),$codes);
+        // return response()->download(public_path('/upload/codes/latest_rubic_codes.txt'));
+        return response($codes)
+            ->withHeaders([
+                'Content-Type' => 'text/plain',
+                'Cache-Control' => 'no-store, no-cache',
+                'Content-Security-Policy' => 'default-src "self"',
+                'Content-Disposition' => 'attachment; filename="latest_rubic_codes.txt',
+            ]);
     }
 }
