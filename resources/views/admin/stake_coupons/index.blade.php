@@ -92,7 +92,7 @@
     <script>
         console.log('{{ Session::get('download_link_stake') }}')
         if ('{{ Session::get('download_link_stake') }}') {
-            location.reload(true);
+            // location.reload(true);
             $('#download_link').removeClass('disabled').attr('href',
                 '{{ url(Session::get('download_link_stake') ?? 'user.dashboard') }}').trigger('click');
         } else {
