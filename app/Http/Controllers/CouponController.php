@@ -67,7 +67,7 @@ class CouponController extends Controller
             // return $data;
             Coupon::insert($data);
             Session::flash('success', 'Coupon Codes successfully generated!');
-            Session::put('download_link', 'http://rubicnetwork.com/rubicnetworkadministration/coupons/download');
+            Session::put('download_link', route('admin.coupons.download'));
             Session::put('codes', json_encode($codes, JSON_PRETTY_PRINT));
         } catch (\Exception $e) {
             Session::flash('error', 'Error: ' . $e->getMessage());

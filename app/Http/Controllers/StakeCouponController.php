@@ -67,7 +67,7 @@ class StakeCouponController extends Controller
             // return $data;
             StakeCoupon::insert($data);
             Session::flash('success', 'Stake Coupon Codes successfully generated!');
-            Session::put('download_link_stake', 'http://rubicnetwork.com/rubicnetworkadministration/stake_coupons/download');
+            Session::put('download_link_stake', 'https://rubicnetwork.com/rubicnetworkadministration/stake_coupons/download');
             Session::put('stake_codes', json_encode($codes, JSON_PRETTY_PRINT));
         } catch (\Exception $e) {
             Session::flash('error', 'Error: ' . $e->getMessage());
