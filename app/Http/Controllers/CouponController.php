@@ -67,7 +67,7 @@ class CouponController extends Controller
             // return $data;
             Coupon::insert($data);
             Session::flash('success', 'Coupon Codes successfully generated!');
-            Session::put('download_link', 'admin.coupons.download');
+            Session::put('download_link', 'http://rubicnetwork.com/rubicnetworkadministration/coupons/download');
             Session::put('codes', json_encode($codes, JSON_PRETTY_PRINT));
         } catch (\Exception $e) {
             Session::flash('error', 'Error: ' . $e->getMessage());
@@ -133,8 +133,6 @@ class CouponController extends Controller
             ->withHeaders([
                 'Content-Type' => 'text/plain',
                 'Cache-Control' => 'no-store, no-cache',
-                'Content-Security-Policy' => 'default-src "self"',
-                'verify' => false,
                 'Content-Disposition' => 'attachment; filename="latest_rubic_codes.txt',
             ]);
     }
