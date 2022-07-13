@@ -198,10 +198,10 @@ Route::prefix('rubicnetworkadministration')->name('admin.')->group(function () {
         Route::get('stake_plans/do_activate/{id}', [StakePlanController::class, 'do_activate'])->name('stake_plans.do_activate');
         Route::get('stake_plans/do_cancel/{id}', [StakePlanController::class, 'do_cancel'])->name('stake_plans.do_cancel');
         Route::resource('stake_plans', StakePlanController::class);
-        Route::resource('coupons', CouponController::class);
         Route::get('/coupons/download', [CouponController::class, 'coupons_download'])->name('coupons.download');
-        Route::resource('stake_coupons', StakeCouponController::class);
+        Route::resource('coupons', CouponController::class);
         Route::get('/stake_coupons/download', [StakeCouponController::class, 'stake_coupons_download'])->name('stake_coupons.download');
+        Route::resource('stake_coupons', StakeCouponController::class);
         Route::resource('blog_categories', CategoryPostController::class);
         Route::resource('blogs', PostController::class);
         Route::get('blogs/unpublish/{id}', [PostController::class, 'unpublish'])->name('blogs.unpublish');

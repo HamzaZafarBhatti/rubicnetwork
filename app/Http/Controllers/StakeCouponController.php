@@ -67,7 +67,7 @@ class StakeCouponController extends Controller
             // return $data;
             StakeCoupon::insert($data);
             Session::flash('success', 'Stake Coupon Codes successfully generated!');
-            Session::put('download_link', 'admin.stake_coupons.download');
+            Session::put('download_link_stake', 'admin.stake_coupons.download');
             Session::put('stake_codes', json_encode($codes, JSON_PRETTY_PRINT));
         } catch (\Exception $e) {
             Session::flash('error', 'Error: ' . $e->getMessage());
@@ -123,15 +123,15 @@ class StakeCouponController extends Controller
     public function stake_coupons_download()
     {
         $codes = Session::get('stake_codes');
-        return $codes;
-        Session::forget(['stake_codes', 'download_link']);
-        File::put(public_path('/upload/codes/latest_stake_codes.txt'),$codes);
-        return response()->download(public_path('/upload/codes/latest_stake_codes.txt'));
-        // return response($codes)
-        //     ->withHeaders([
-        //         'Content-Type' => 'text/plain',
-        //         'Cache-Control' => 'no-store, no-cache',
-        //         'Content-Disposition' => 'attachment; filename="latest_stake_codes.txt',
-        //     ]);
+        // return $codes;
+        Session::forget(['stake_codes', 'download_link_stake']);
+        // File::put(public_path('/upload/codes/latest_stake_codes.txt'),$codes);
+        // return response()->download(public_path('/upload/codes/latest_stake_codes.txt'));
+        return response($codes)
+            ->withHeaders([
+                'Content-Type' => 'text/plain',
+                'Cache-Control' => 'no-store, no-cache',
+                'Content-Disposition' => 'attachment; filename="latest_stake_codes.txt',
+            ]);
     }
 }

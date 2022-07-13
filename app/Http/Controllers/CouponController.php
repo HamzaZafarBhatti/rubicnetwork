@@ -121,14 +121,15 @@ class CouponController extends Controller
 
     public function coupons_download()
     {
+        // return 'ello';
         $codes = Session::get('codes');
-        return $codes;
+        // return $codes;
         Session::forget(['codes', 'download_link']);
         return response($codes)
             ->withHeaders([
                 'Content-Type' => 'text/plain',
                 'Cache-Control' => 'no-store, no-cache',
-                'Content-Disposition' => 'attachment; filename="latest_codes.txt',
+                'Content-Disposition' => 'attachment; filename="latest_rubic_codes.txt',
             ]);
     }
 }

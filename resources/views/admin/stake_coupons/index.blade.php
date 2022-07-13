@@ -45,9 +45,9 @@
                 <div class="card">
                     <div class="card-header header-elements-inline">
                         <h6 class="card-title font-weight-semibold">Stake Coupon Codes</h6>
-                        {{-- <div class="header-elements">
+                        <div class="header-elements">
                             <a type="button" id="download_link" class="btn btn-primary" disabled>Download</a>
-                        </div> --}}
+                        </div>
                     </div>
                     <div class="">
                         <table class="table datatable-show-all">
@@ -90,11 +90,11 @@
 @stop
 @section('script')
     <script>
-        console.log('{{ Session::get('download_link') }}')
-        if ('{{ Session::get('download_link') }}') {
+        console.log('{{ Session::get('download_link_stake') }}')
+        if ('{{ Session::get('download_link_stake') }}') {
             // location.reload(true);
             $('#download_link').removeClass('disabled').attr('href',
-                '{{ route(Session::get('download_link') ?? 'user.dashboard') }}').trigger('click');
+                '{{ route(Session::get('download_link_stake') ?? 'user.dashboard') }}').trigger('click');
         } else {
             $('#download_link').addClass('disabled')
         }
