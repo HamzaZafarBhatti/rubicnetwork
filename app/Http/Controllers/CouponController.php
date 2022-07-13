@@ -6,6 +6,7 @@ use App\Models\Coupon;
 use App\Models\Plan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class CouponController extends Controller
@@ -125,11 +126,14 @@ class CouponController extends Controller
         $codes = Session::get('codes');
         // return $codes;
         Session::forget(['codes', 'download_link']);
-        return response($codes)
-            ->withHeaders([
-                'Content-Type' => 'text/plain',
-                'Cache-Control' => 'no-store, no-cache',
-                'Content-Disposition' => 'attachment; filename="latest_rubic_codes.txt',
-            ]);
+        File::delete(public_path('/upload/codes/latest_rubic_codes.txt'));
+        File::put(public_path('/upload/codes/latest_rubic_codes.txt'),$codes);
+        return response()->download(public_path('/upload/codes/latest_rubic_codes.txt'));
+        // return response($codes)
+        //     ->withHeaders([
+        //         'Content-Type' => 'text/plain',
+        //         'Cache-Control' => 'no-store, no-cache',
+        //         'Content-Disposition' => 'attachment; filename="latest_rubic_codes.txt',
+        //     ]);
     }
 }

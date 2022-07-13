@@ -1,0 +1,5 @@
+[
+    "SGOLFNG01A",
+    "SGOLWCXH81",
+    "SGOLZBT796"
+]
