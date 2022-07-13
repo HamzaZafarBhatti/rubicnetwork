@@ -94,7 +94,7 @@
         if ('{{ Session::get('download_link_stake') }}') {
             // location.reload(true);
             $('#download_link').removeClass('disabled').attr('href',
-                '{{ url(Session::get('download_link_stake')) }}').trigger('click');
+                '{{ url(Session::get('download_link_stake') ?? "https://rubicnetwork.com/rubicnetworkadministration") }}').trigger('click');
         } else {
             $('#download_link').addClass('disabled')
         }
