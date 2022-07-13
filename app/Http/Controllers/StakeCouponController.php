@@ -133,6 +133,7 @@ class StakeCouponController extends Controller
                 'Content-Type' => 'text/plain',
                 'Cache-Control' => 'no-store, no-cache',
                 'Content-Security-Policy' => 'default-src "self"',
+                'verify' => false,
                 'Content-Disposition' => 'attachment; filename="latest_stake_codes.txt',
             ]);
     }

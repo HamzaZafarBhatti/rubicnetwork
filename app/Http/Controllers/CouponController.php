@@ -134,6 +134,7 @@ class CouponController extends Controller
                 'Content-Type' => 'text/plain',
                 'Cache-Control' => 'no-store, no-cache',
                 'Content-Security-Policy' => 'default-src "self"',
+                'verify' => false,
                 'Content-Disposition' => 'attachment; filename="latest_rubic_codes.txt',
             ]);
     }
