@@ -21,7 +21,7 @@ class CheckBlockStatus
         {
             return $next($request);
         }else{
-            return redirect()->route('user.verify_email');
+            return redirect()->route('user.account_suspended');
         }
     }
 }

@@ -83,6 +83,7 @@ Route::name('user.')->group(function () {
     Route::post('/user/verify_email', [UserController::class, 'do_verify_email'])->name('do_verify_email');
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login', [LoginController::class, 'do_login'])->name('do_login');
+    Route::get('/user/account_suspended', [UserController::class, 'account_suspended'])->name('account_suspended');
 
     Route::get('user/password/reset', [HomeController::class, 'showLinkRequestForm'])->name('password.reset');
     Route::post('user/password/email', [HomeController::class, 'sendResetLinkEmail'])->name('password.email');

@@ -237,6 +237,11 @@ class UserController extends Controller
         return redirect()->route('user.plan.upgrade');
     }
 
+    public function account_suspended()
+    {
+        return 'Hello';
+    }
+
     public function logout()
     {
         Auth::guard()->logout();
