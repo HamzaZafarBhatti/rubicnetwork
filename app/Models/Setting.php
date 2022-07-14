@@ -73,56 +73,56 @@ class Setting extends Model
     protected function viralShareTransferStartFormatted(): Attribute
     {
         return Attribute::make(
-            get: fn ($viral_share_transfer_start) => Carbon::parse($viral_share_transfer_start)->format('F j, Y h:i A'),
+            get: fn () => Carbon::parse($this->viral_share_transfer_start)->format('F j, Y h:i A'),
         );
     }
 
     protected function viralShareTransferEndFormatted(): Attribute
     {
         return Attribute::make(
-            get: fn ($viral_share_transfer_end) => Carbon::parse($viral_share_transfer_end)->format('F j, Y h:i A'),
+            get: fn () => Carbon::parse($this->viral_share_transfer_end)->format('F j, Y h:i A'),
         );
     }
 
     protected function refEarningTransferStartFormatted(): Attribute
     {
         return Attribute::make(
-            get: fn ($ref_earning_transfer_start) => Carbon::parse($ref_earning_transfer_start)->format('F j, Y h:i A'),
+            get: fn () => Carbon::parse($this->ref_earning_transfer_start)->format('F j, Y h:i A'),
         );
     }
 
     protected function refEarningTransferEndFormatted(): Attribute
     {
         return Attribute::make(
-            get: fn ($ref_earning_transfer_end) => Carbon::parse($ref_earning_transfer_end)->format('F j, Y h:i A'),
+            get: fn () => Carbon::parse($this->ref_earning_transfer_end)->format('F j, Y h:i A'),
         );
     }
 
     protected function indirectRefEarningTransferStartFormatted(): Attribute
     {
         return Attribute::make(
-            get: fn ($indirect_ref_earning_transfer_start) => Carbon::parse($indirect_ref_earning_transfer_start)->format('F j, Y h:i A'),
+            get: fn () => Carbon::parse($this->indirect_ref_earning_transfer_start)->format('F j, Y h:i A'),
         );
     }
 
     protected function indirectRefEarningTransferEndFormatted(): Attribute
     {
         return Attribute::make(
-            get: fn ($indirect_ref_earning_transfer_end) => Carbon::parse($indirect_ref_earning_transfer_end)->format('F j, Y h:i A'),
+            get: fn () => Carbon::parse($this->indirect_ref_earning_transfer_end)->format('F j, Y h:i A'),
         );
     }
 
     protected function stakeRefEarningTransferStartFormatted(): Attribute
     {
         return Attribute::make(
-            get: fn ($stake_ref_earning_transfer_start) => Carbon::parse($stake_ref_earning_transfer_start)->format('F j, Y h:i A'),
+            get: fn () => Carbon::parse($this->stake_ref_earning_transfer_start)->format('F j, Y h:i A'),
         );
     }
 
     protected function stakeRefEarningTransferEndFormatted(): Attribute
     {
         return Attribute::make(
-            get: fn ($stake_ref_earning_transfer_end) => Carbon::parse($stake_ref_earning_transfer_end)->format('F j, Y h:i A'),
+            get: fn () => Carbon::parse($this->stake_ref_earning_transfer_end)->format('F j, Y h:i A'),
         );
     }
 }
