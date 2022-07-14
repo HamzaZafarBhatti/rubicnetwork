@@ -59,14 +59,14 @@ class Setting extends Model
     protected function extractionTransferStartFormatted(): Attribute
     {
         return Attribute::make(
-            get: fn ($extraction_transfer_start) => Carbon::parse($extraction_transfer_start)->format('F j, Y h:i A'),
+            get: fn () => Carbon::parse($this->extraction_transfer_start)->format('F j, Y h:i A'),
         );
     }
 
     protected function extractionTransferEndFormatted(): Attribute
     {
         return Attribute::make(
-            get: fn ($extraction_transfer_end) => Carbon::parse($extraction_transfer_end)->format('F j, Y h:i A'),
+            get: fn () => Carbon::parse($this->extraction_transfer_end)->format('F j, Y h:i A'),
         );
     }
 
