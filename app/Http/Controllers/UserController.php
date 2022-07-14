@@ -206,7 +206,7 @@ class UserController extends Controller
         $plans = Plan::whereStatus(1)->get();
         return view('user.upgrade_plan', compact('plans'));
     }
-
+    
     public function do_upgrade_plan(Request $request)
     {
         $coupon_code = Coupon::where('serial', $request->coupon_code)->first();
@@ -236,12 +236,12 @@ class UserController extends Controller
         Session::flash('success', 'Plan upgraded Successfully.');
         return redirect()->route('user.plan.upgrade');
     }
-
+    
     public function account_suspended()
     {
-        return 'Hello';
+        return view('errors.account_suspended');
     }
-
+    
     public function logout()
     {
         Auth::guard()->logout();
