@@ -35,7 +35,7 @@
                                         <td>{{ $val->coupon->serial }}</td>
                                         <td>{{ $val->plan->name }}</td>
                                         <td>
-                                            @if ($val->status)
+                                            @if ($val->is_blocked)
                                                 <span class="badge badge-info">Active</span>
                                             @else
                                                 <span class="badge badge-danger">Blocked</span>
