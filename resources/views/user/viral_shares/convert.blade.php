@@ -19,7 +19,9 @@
             Convert to Rubic Wallet
         @endslot
     @endcomponent
-
+<hr />
+<p><strong><span style="background-color: #ffff99; color: #ff0000;">N.B:</span></strong> Please be informed you must be participating in <strong>VIRAL SHARING</strong> <span style="text-decoration: underline;">for you to be <strong><span style="color: #008000; text-decoration: underline;">PAID</span></strong></span> your <strong><span style="background-color: #ffff99;">EXTRACTION TOKEN Balance</span></strong> and <strong><span style="background-color: #ffff99;">VIRAL SHARE Earnings</span></strong> Monthly.</p>
+<p><strong><span style="color: #ff0000;">VIRAL SHARE Participation is HIGHLY COMPULSORY for all users on RUBICNETWORK.</span></strong></p>
     <div class="row">
         <div class="col">
             <div class="card">
