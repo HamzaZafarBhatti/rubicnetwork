@@ -54,7 +54,7 @@
                                                         <a class='dropdown-item'
                                                             href="{{ route('admin.users.manage', $val->id) }}"><i
                                                                 class="icon-cogs spinner mr-2"></i>Manage account</a>
-                                                        @if ($val->status)
+                                                        @if ($val->is_blocked)
                                                             <a class='dropdown-item'
                                                                 href="{{ route('admin.users.block', $val->id) }}"><i
                                                                     class="icon-eye-blocked2 mr-2"></i>Block</a>
