@@ -89,7 +89,7 @@ Route::name('user.')->group(function () {
     Route::get('user/password/reset/{token}', [HomeController::class, 'showResetForm'])->name('password.reset_token');
     Route::post('user/password/reset', [HomeController::class, 'reset'])->name('password.do_reset');
 
-    Route::prefix('user')->middleware(['auth:web', 'checkStatus'])->group(function () {
+    Route::prefix('user')->middleware(['auth:web', 'checkStatus', 'checkBlockStatus'])->group(function () {
         Route::controller(UserController::class)->group(function () {
             Route::get('logout', 'logout')->name('logout');
             Route::get('/dashboard', 'dashboard')->name('dashboard');

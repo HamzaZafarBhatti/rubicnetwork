@@ -191,7 +191,7 @@ class AdminController extends Controller
     public function Blockuser($id)
     {
         $user = User::find($id);
-        $user->status = 0;
+        $user->is_blocked = 1;
         $user->save();
         return back()->with('success', 'User has been suspended.');
     }
@@ -199,7 +199,7 @@ class AdminController extends Controller
     public function Unblockuser($id)
     {
         $user = User::find($id);
-        $user->status = 1;
+        $user->is_blocked = 0;
         $user->save();
         return back()->with('success', 'User was successfully unblocked.');
     }
