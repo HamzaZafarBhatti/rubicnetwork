@@ -20,8 +20,8 @@ class CheckBlockStatus
     {
         $user = Auth::user();
         Log::info($user->is_blocked);
-        Log::info($request);
         if ($user->is_blocked) {
+            Log::info('blocked');
             return redirect()->route('user.account_suspended');
         }
         return $next($request);
