@@ -13,6 +13,17 @@
     <link rel="shortcut icon" href="https://rubicnetwork.com/front_assets/images/manual_uploads/favicon/favicon-32x32.png">
     @include('user.layouts.head-css')
     <link href="{{ URL::asset('user_assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
+    <style>
+        .custom-gap {
+            gap: 20px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .custom-gap {
+                gap: 4px;
+            }
+        }
+    </style>
 </head>
 
 @yield('body')

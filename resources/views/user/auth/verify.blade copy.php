@@ -12,7 +12,7 @@ Verify your Email
                         <div class="d-flex flex-column h-100">
                             <div class="mb-4 mb-md-5 text-center">
                                 <a href="{{ url('/') }}" class="d-block auth-logo">
-                                    <img src="{{ url('/') }}/asset/{{ $logo->image_link }}" alt="" height="60">
+                                    <img src="{{ url('/') }}/asset/{{ $logo->image_link }}" alt="" height="70">
                                 </a>
                             </div>
 
@@ -39,19 +39,46 @@ Verify your Email
 
                                         <form action="{{ route('user.do_verify_email') }}" method="post">
                                             @csrf
-                                            <div class="d-flex justify-content-around mb-2 custom-gap">
-                                                <input type="text" class="form-control code-input text-center"
-                                                    name="pin[]">
-                                                <input type="text" class="form-control code-input text-center"
-                                                    name="pin[]">
-                                                <input type="text" class="form-control code-input text-center"
-                                                    name="pin[]">
-                                                <input type="text" class="form-control code-input text-center"
-                                                    name="pin[]">
-                                                <input type="text" class="form-control code-input text-center"
-                                                    name="pin[]">
-                                                <input type="text" class="form-control code-input text-center"
-                                                    name="pin[]">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit1-input" class="visually-hidden">Dight 1</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 2)" maxlength="1" id="digit1-input">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit2-input" class="visually-hidden">Dight 2</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 3)" maxlength="1" id="digit2-input">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit3-input" class="visually-hidden">Dight 3</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 4)" maxlength="1" id="digit3-input">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit4-input" class="visually-hidden">Dight 4</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 5)" maxlength="1" id="digit4-input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit5-input" class="visually-hidden">Dight 5</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 6)" maxlength="1" id="digit5-input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="mb-3">
+                                                        <label for="digit6-input" class="visually-hidden">Dight 6</label>
+                                                        <input type="text" name="pin[]" class="form-control form-control-lg text-center" onkeyup="moveToNext(this, 6)" maxlength="1" id="digit6-input">
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="mt-4">
@@ -162,32 +189,7 @@ Verify your Email
 @section('script')
 <script src="{{ URL::asset('user_assets/js/pages/feather-icon.init.js') }}"></script>
 <script>
-    const inputElements = [...document.querySelectorAll('input.code-input')]
-
-    inputElements.forEach((ele, index) => {
-        ele.addEventListener('keydown', (e) => {
-            // if the keycode is backspace & the current field is empty
-            // focus the input before the current. Then the event happens
-            // which will clear the "before" input box.
-            if (e.keyCode === 8 && e.target.value === '') inputElements[Math.max(0, index - 1)].focus()
-        })
-        ele.addEventListener('input', (e) => {
-            // take the first character of the input
-            // this actually breaks if you input an emoji like 👨‍👩‍👧‍👦....
-            // but I'm willing to overlook insane security code practices.
-            const [first, ...rest] = e.target.value
-            e.target.value = first ??
-                '' // first will be undefined when backspace was entered, so set the input to ""
-            const lastInputBox = index === inputElements.length - 1
-            const insertedContent = first !== undefined
-            if (insertedContent && !lastInputBox) {
-                // continue to input the rest of the string
-                inputElements[index + 1].focus()
-                inputElements[index + 1].value = rest.join('')
-                inputElements[index + 1].dispatchEvent(new Event('input'))
-            }
-        })
-    })
+    function moveToNext(t,e){0<t.value.length&&$("#digit"+e+"-input").focus()}
 </script>
 @endsection
 
