@@ -19,7 +19,7 @@ class CheckBlockStatus
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        // Log::info($user->is_blocked);
+        Log::info($user);
         if ($user->is_blocked) {
             Log::info('blocked');
             return redirect()->route('user.account_suspended');
