@@ -239,6 +239,7 @@ class UserController extends Controller
     
     public function account_suspended()
     {
+        Auth::guard()->logout();
         return view('errors.account_suspended');
     }
     
